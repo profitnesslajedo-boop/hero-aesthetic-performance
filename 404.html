@@ -3678,8 +3678,128 @@
   async function logout(){await supabaseLogout(); sessionStorage.removeItem('hero_session'); login();}
   function admin(selectedId){const st=data(); const selected=st.alunos.find(a=>a.id===(selectedId||st.alunos[0]?.id)); mount(`${top('Central de prescrição HERO',`<button class="btn small" id="addStudent">Cadastrar aluna</button><button class="btn ghost small" id="openLib">Biblioteca HERO</button>`)}<main class="wrap"><section class="hero"><p class="eyebrow">painel do treinador</p><h1>Central de prescrição HERO</h1><p>Cadastre alunos, monte treinos, salve protocolos e libere missões individuais.</p><div class="stats"><div><b>${st.alunos.length}</b><span>alunas</span></div><div><b>${st.treinos.length}</b><span>protocolos</span></div><div><b>${st.exercicios.length}</b><span>exercícios</span></div><div><b>${st.alunos.filter(a=>a.status==='ativo').length}</b><span>ativos</span></div></div></section><section class="admin-grid"><aside class="panel"><div class="panel-title"><div><h2>Alunas</h2><p>Selecione para prescrever.</p></div></div><div id="studentList"></div></aside><section id="adminDetail" class="panel"></section></section></main>`); $('addStudent').onclick=()=>studentForm(); $('openLib').onclick=()=>library(); drawStudents(selected?.id); drawDetail(selected?.id);}
   function drawStudents(selectedId){const st=data(); $('studentList').innerHTML=st.alunos.map(a=>`<button class="student-row ${a.id===selectedId?'active':''}" onclick="HERO.admin('${a.id}')"><strong>${esc(a.nome)}</strong><small>${esc(a.email)}</small><small>${esc(a.objetivo||'Sem objetivo definido')}</small></button>`).join('');}
-  function drawDetail(alunoId){const st=data(); const a=st.alunos.find(x=>x.id===alunoId); const el=$('adminDetail'); if(!a){el.innerHTML='<div class="empty">Cadastre uma aluna para iniciar a prescrição.</div>'; return;} const ts=st.treinos.filter(t=>t.alunoId===a.id); el.innerHTML=`<div class="student-head"><div><p class="eyebrow">aluna selecionada</p><h2>${esc(a.nome)}</h2><p>${esc(a.email)}</p><div><span class="status ${a.status}">${esc(a.status)}</span></div></div><div class="toolbar"><button class="btn ghost small" onclick="HERO.studentForm('${a.id}')">Editar</button><button class="btn secondary small" onclick="HERO.toggleStudent('${a.id}')">${a.status==='ativo'?'Bloquear':'Liberar'}</button><button class="btn small" onclick="HERO.newWorkout('${a.id}')">Nova prescrição</button></div></div><div class="note"><b>Objetivo:</b> ${esc(a.objetivo||'Não informado')}<br><b>Plano:</b> ${esc(a.plano||'HERO Aesthetic Performance')}</div><div class="cards">${ts.length?ts.map(t=>workoutCard(t)).join(''):'<div class="empty">Nenhum treino criado para esta aluna.</div>'}</div>`;}
+  function drawDetail(alunoId){const st=data(); const a=st.alunos.find(x=>x.id===alunoId); const el=$('adminDetail'); if(!a){el.innerHTML='<div class="empty">Cadastre uma aluna para iniciar a prescrição.</div>'; return;} const ts=st.treinos.filter(t=>t.alunoId===a.id); el.innerHTML=`<div class="student-head"><div><p class="eyebrow">aluna selecionada</p><h2>${esc(a.nome)}</h2><p>${esc(a.email)}</p><div><span class="status ${a.status}">${esc(a.status)}</span></div></div><div class="toolbar"><button class="btn ghost small" onclick="HERO.studentForm('${a.id}')">Editar</button><button class="btn secondary small" onclick="HERO.toggleStudent('${a.id}')">${a.status==='ativo'?'Bloquear':'Liberar'}</button><button class="btn ghost small" onclick="HERO.gerarPrescricaoIA('${a.id}')">Gerar com IA</button><button class="btn small" onclick="HERO.newWorkout('${a.id}')">Nova prescrição</button></div></div><div class="note"><b>Objetivo:</b> ${esc(a.objetivo||'Não informado')}<br><b>Plano:</b> ${esc(a.plano||'HERO Aesthetic Performance')}</div><div class="cards">${ts.length?ts.map(t=>workoutCard(t)).join(''):'<div class="empty">Nenhum treino criado para esta aluna.</div>'}</div>`;}
   function workoutCard(t){const count=data().exercicios.filter(e=>e.treinoId===t.id).length; return `<article class="workout-card"><div><span class="badge">${t.liberado?'liberado':'bloqueado'}</span><h3>${esc(t.nome)}</h3><p>${esc(t.objetivo)}</p><small>${count} exercícios cadastrados</small></div><div class="toolbar"><button class="btn small" onclick="HERO.editWorkout('${t.id}')">Prescrever</button><button class="btn ghost small" onclick="HERO.student('${t.alunoId}',true)">Visualizar</button><button class="btn secondary small" onclick="HERO.toggleWorkout('${t.id}')">${t.liberado?'Bloquear':'Liberar'}</button><button class="btn ghost small" onclick="HERO.duplicateWorkout('${t.id}')">Duplicar</button></div></article>`;}
+
+  async function gerarPrescricaoIA(alunoId){
+    const client=supabaseClient();
+    if(!client){alert('Supabase não configurado. Verifique o arquivo supabase-config.js.');return;}
+    const {data:{session}}=await client.auth.getSession();
+    if(!session){alert('Faça login como treinador antes de usar a IA.');return;}
+    const st=data();
+    const aluno=st.alunos.find(a=>a.id===alunoId)||{};
+    modal(`<h2>Gerar prescrição com IA</h2>
+      <p class="muted">A IA cria uma sugestão técnica no método HERO. Você revisa antes de liberar para a aluna.</p>
+      <form id="aiForm" class="form">
+        <div class="grid two">
+          <label>Objetivo principal
+            <input name="objetivo" value="${esc(aluno.objetivo||'Hipertrofia estética com força real')}" required>
+          </label>
+          <label>Nível
+            <select name="nivel">
+              <option>iniciante</option>
+              <option selected>intermediário</option>
+              <option>avançado</option>
+            </select>
+          </label>
+          <label>Dias por semana
+            <select name="dias_semana">
+              <option>3</option>
+              <option>4</option>
+              <option selected>5</option>
+              <option>6</option>
+            </select>
+          </label>
+          <label>Tempo por treino
+            <input name="tempo_por_treino" value="50 a 60 minutos">
+          </label>
+          <label>Foco muscular/estratégico
+            <input name="foco" value="glúteos, pernas, costas, core e condicionamento">
+          </label>
+          <label>Restrições ou dores
+            <input name="restricoes" placeholder="Ex: dor no joelho, lombar, ombro...">
+          </label>
+        </div>
+        <label>Observações do treinador
+          <textarea name="observacoes" rows="4">Prescrição seguindo HERO Aesthetic Performance. Priorizar técnica, progressão de carga, execução segura e estética muscular.</textarea>
+        </label>
+        <label class="complete-check">
+          <input name="salvar" type="checkbox" checked>
+          Salvar automaticamente no Supabase como treino não liberado
+        </label>
+        <button class="btn">Gerar prescrição HERO com IA</button>
+        <div id="aiMsg" class="msg"></div>
+      </form>`);
+    $('aiForm').onsubmit=async e=>{
+      e.preventDefault();
+      const btn=e.target.querySelector('button');
+      const msg=$('aiMsg');
+      const old=btn.textContent;
+      btn.disabled=true;
+      btn.textContent='Gerando com IA...';
+      msg.textContent='A IA está montando a prescrição. Aguarde.';
+      const f=Object.fromEntries(new FormData(e.target));
+      try{
+        const response=await fetch(`${window.HERO_SUPABASE_CONFIG.url}/functions/v1/generate-prescription`,{
+          method:'POST',
+          headers:{
+            'Content-Type':'application/json',
+            Authorization:`Bearer ${session.access_token}`
+          },
+          body:JSON.stringify({
+            aluno_id:alunoId,
+            objetivo:f.objetivo,
+            nivel:f.nivel,
+            dias_semana:Number(f.dias_semana),
+            tempo_por_treino:f.tempo_por_treino,
+            foco:f.foco,
+            restricoes:f.restricoes,
+            observacoes:f.observacoes,
+            salvar:!!f.salvar
+          })
+        });
+        const result=await response.json().catch(()=>({error:'Resposta inválida da função.'}));
+        if(!response.ok||result.error){throw new Error(result.error||'Erro ao gerar prescrição.');}
+        if(result.treino){syncTreinoLocal(result.treino,alunoId);}
+        if(result.prescription&&Array.isArray(result.prescription.dias)){
+          const st2=data();
+          const treinoId=result.treino?.id||uid();
+          if(!st2.treinos.some(t=>t.id===treinoId)){
+            st2.treinos.push({
+              id:treinoId,
+              alunoId,
+              nome:result.prescription.nome_do_treino||'Prescrição HERO gerada por IA',
+              fase:result.prescription.fase||'HERO IA',
+              objetivo:result.prescription.objetivo_do_treino||f.objetivo,
+              observacoes:result.prescription.observacoes||'Prescrição gerada com IA.',
+              liberado:false
+            });
+          }
+          for(const dia of result.prescription.dias){
+            for(const ex of (dia.exercicios||[])){
+              if(!st2.exercicios.some(e=>e.treinoId===treinoId&&e.dia===dia.dia&&e.nome===ex.nome&&String(e.ordem)===String(ex.ordem))){
+                st2.exercicios.push({
+                  id:uid(),treinoId,dia:dia.dia,ordem:ex.ordem||1,
+                  nome:ex.nome||'Exercício',traducao:ex.traducao||'',grupo:ex.grupo||'',
+                  categoria:ex.categoria||'HERO - IA',series:ex.series||'',repeticoes:ex.repeticoes||'',
+                  carga:ex.carga||'',descanso:ex.descanso||'',metodo:ex.metodo||'',
+                  execucao:ex.execucao||'',observacoes:ex.observacoes||''
+                });
+              }
+            }
+          }
+          save(st2);
+        }
+        msg.textContent='Prescrição gerada com sucesso. Revise antes de liberar.';
+        setTimeout(()=>{closeModal(); admin(alunoId);},700);
+      }catch(err){
+        msg.textContent='Erro ao gerar prescrição com IA: '+err.message;
+        btn.disabled=false;
+        btn.textContent=old;
+      }
+    };
+  }
+
   function studentForm(id){const st=data(); const a=st.alunos.find(x=>x.id===id)||{nome:'',email:'',senha:'',objetivo:'',plano:'HERO Aesthetic Performance',status:'ativo'}; modal(`<h2>${id?'Editar aluna':'Cadastrar aluna'}</h2><form id="studentForm" class="form"><div class="grid two"><label>Nome<input name="nome" value="${esc(a.nome)}" required></label><label>E-mail<input name="email" type="email" value="${esc(a.email)}" required></label><label>Senha<input name="senha" value="${esc(a.senha)}" required></label><label>Status<select name="status"><option ${a.status==='ativo'?'selected':''}>ativo</option><option ${a.status==='bloqueado'?'selected':''}>bloqueado</option></select></label><label>Plano<input name="plano" value="${esc(a.plano)}"></label><label>Objetivo<input name="objetivo" value="${esc(a.objetivo)}"></label></div><button class="btn">Salvar aluna e prescrever</button></form>`); $('studentForm').onsubmit=async e=>{e.preventDefault(); const btn=e.target.querySelector('button'); const oldBtn=btn.textContent; btn.textContent='Salvando...'; btn.disabled=true; const f=Object.fromEntries(new FormData(e.target)); const d=data(); let alunoId=id; let t=null; try{if(!id&&supabaseAvailable()){const result=await cadastrarAlunaSupabase({nome:f.nome,email:f.email,senha:f.senha,objetivo:f.objetivo||'Estética, força e evolução real',plano:f.plano||'HERO Aesthetic Performance',status:f.status||'ativo'}); const localAluno=syncAlunoLocal(result.aluno); alunoId=localAluno.id; t=syncTreinoLocal(result.treino,alunoId); closeModal(); editWorkout(t.id); return;}}catch(err){alert('Erro ao cadastrar no Supabase: '+err.message); btn.textContent=oldBtn; btn.disabled=false; return;} if(id){Object.assign(d.alunos.find(x=>x.id===id),f); const u=d.users.find(u=>u.alunoId===id); if(u){u.email=f.email;u.password=f.senha;}} else {alunoId=uid(); d.alunos.push({...f,id:alunoId,foto:'',data:new Date().toLocaleDateString('pt-BR')}); d.users.push({email:f.email,password:f.senha,role:'student',alunoId});} t=d.treinos.find(t=>t.alunoId===alunoId); if(!t){t={id:uid(),alunoId,nome:'Protocolo HERO - treino do dia',fase:'Foundation',objetivo:f.objetivo||'Estética, força e evolução real',observacoes:'Execute com precisão. Evolua com disciplina.',liberado:true}; d.treinos.push(t);} save(d); closeModal(); editWorkout(t.id);};}
   function toggleStudent(id){const d=data(); const a=d.alunos.find(x=>x.id===id); a.status=a.status==='ativo'?'bloqueado':'ativo'; save(d); admin(id);}
   function newWorkout(alunoId){const d=data(); const t={id:uid(),alunoId,nome:'Protocolo HERO - treino do dia',fase:'Foundation',objetivo:'Estética, força, resistência e evolução real.',observacoes:'',liberado:true}; d.treinos.push(t); save(d); editWorkout(t.id);}
@@ -3709,7 +3829,7 @@
   function studentWorkout(t,alunoId,preview){const ex=data().exercicios.filter(e=>e.treinoId===t.id).sort((a,b)=>days.indexOf(a.dia)-days.indexOf(b.dia)||Number(a.ordem)-Number(b.ordem)); return `<article class="panel protocol"><p class="eyebrow">${esc(t.fase)}</p><h2>${esc(t.nome)}</h2><p>${esc(t.objetivo)}</p>${t.observacoes?`<div class="note"><b>Observações do treinador:</b><br>${esc(t.observacoes)}</div>`:''}${days.map(day=>{const arr=ex.filter(e=>e.dia===day); return arr.length?`<section class="day"><h3>${esc(day)}</h3>${arr.map(e=>studentEx(e,alunoId,preview,false,day)).join('')}${!preview?finishDayBox(alunoId,day,arr):''}</section>`:''}).join('')}</article>`;}
   function studentEx(e,alunoId,preview,isToday,forcedDay){const prog=e.progressaoAtiva&&Array.isArray(e.progressao)&&e.progressao.length; const day=forcedDay||e.dia||currentDay(); const st=data(); const done=!!(st.completions[completionKey(alunoId,day)]||{})[e.id]; return `<div class="student-ex ${done?'done':''}"><div class="ex-title"><div><h4>${esc(e.nome)}</h4>${e.traducao?`<small class="translation">${esc(e.traducao)}</small>`:''}</div><span class="badge">${esc(e.categoria)}</span></div>${e.execucao?`<p><b>Como executar:</b> ${esc(e.execucao)}</p>`:''}<div class="mini-grid"><span><b>${esc(e.series)}</b> séries</span><span><b>${esc(e.reps)}</b> reps</span><span><b>${esc(e.carga)}</b> carga</span><span><b>${esc(e.descanso)}</b> descanso</span><span><b>${esc(e.cadencia)}</b> cadência</span><span><b>${esc(e.metodo)}</b> método</span></div>${e.metodoDescricao?`<p class="advanced-note"><b>Execução do método:</b> ${esc(e.metodoDescricao)}</p>`:''}${prog?`<div class="series-progression"><b>Progressão de carga série à série</b><table><thead><tr><th>Série</th><th>Repetições</th><th>Carga</th></tr></thead><tbody>${e.progressao.map(r=>`<tr><td>${esc(r.serie)}</td><td>${esc(r.reps)}</td><td>${esc(r.carga)}</td></tr>`).join('')}</tbody></table></div>`:''}${e.obs?`<p class="muted"><b>Obs.:</b> ${esc(e.obs)}</p>`:''}${preview?'':`<label class="complete-check ${done?'done':''}"><input type="checkbox" ${done?'checked':''} onchange="HERO.toggleExerciseDone('${alunoId}','${day}','${e.id}')">${done?'Exercício finalizado':'Finalizar este exercício'}</label>`}</div>`;}
   function photoEditor(alunoId){modal(`<h2>Adicionar foto da aluna</h2><p class="muted">Envie a foto, ajuste o enquadramento e salve no perfil da área individual.</p><div class="crop-stage"><input id="photoInput" type="file" accept="image/*"><div class="crop-preview"><canvas id="cropCanvas" width="700" height="700"></canvas></div><div class="range-grid"><label>Zoom<input id="zoomRange" type="range" min="1" max="3" step="0.01" value="1"></label><label>Horizontal<input id="xRange" type="range" min="-300" max="300" step="1" value="0"></label><label>Vertical<input id="yRange" type="range" min="-300" max="300" step="1" value="0"></label></div><div class="toolbar"><button class="btn" id="savePhoto">Salvar foto</button><button class="btn secondary" onclick="HERO.closeModal()">Cancelar</button></div></div>`); const input=$('photoInput'), canvas=$('cropCanvas'), ctx=canvas.getContext('2d'), zoom=$('zoomRange'), xr=$('xRange'), yr=$('yRange'); let img=new Image(); function draw(){ctx.clearRect(0,0,700,700); ctx.fillStyle='#020617'; ctx.fillRect(0,0,700,700); if(!img.src){ctx.fillStyle='#93c5fd';ctx.font='700 28px Inter, Arial';ctx.textAlign='center';ctx.fillText('Escolha uma foto',350,350);return;} const scale=Math.max(700/img.width,700/img.height)*Number(zoom.value); const w=img.width*scale,h=img.height*scale,x=(700-w)/2+Number(xr.value),y=(700-h)/2+Number(yr.value); ctx.drawImage(img,x,y,w,h);} draw(); input.onchange=e=>{const file=e.target.files&&e.target.files[0]; if(!file)return; const r=new FileReader(); r.onload=ev=>{img=new Image(); img.onload=draw; img.src=ev.target.result;}; r.readAsDataURL(file);}; [zoom,xr,yr].forEach(el=>el.oninput=draw); $('savePhoto').onclick=()=>{if(!img.src){alert('Selecione uma foto antes de salvar.');return;} const st=data(); const a=st.alunos.find(x=>x.id===alunoId); a.foto=canvas.toDataURL('image/jpeg',0.9); save(st); closeModal(); student(alunoId,false);};}
-  window.HERO={admin,studentForm,toggleStudent,newWorkout,editWorkout,duplicateWorkout,toggleWorkout,exerciseForm,deleteExercise,libraryForm,addFromLibrary,student,photoEditor,closeModal,logout,toggleExerciseDone,finishWorkout,quickAddFromLibrary,drawQuick};
+  window.HERO={gerarPrescricaoIA,admin,studentForm,toggleStudent,newWorkout,editWorkout,duplicateWorkout,toggleWorkout,exerciseForm,deleteExercise,libraryForm,addFromLibrary,student,photoEditor,closeModal,logout,toggleExerciseDone,finishWorkout,quickAddFromLibrary,drawQuick};
   document.addEventListener('DOMContentLoaded',render);
 })();
 </script>
