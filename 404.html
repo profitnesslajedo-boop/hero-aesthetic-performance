@@ -464,6 +464,1029 @@ linear-gradient(135deg,#f97316,#ec4899 42%,#8b5cf6 70%,#2563eb);box-shadow:0 0 2
   }
 }
 
+
+/* CORREÇÃO CIRÚRGICA FINAL: layout, responsividade e organização visual do login */
+html,body{
+  width:100%!important;
+  max-width:100%!important;
+  overflow-x:hidden!important;
+}
+*{
+  box-sizing:border-box!important;
+}
+.login-screen{
+  width:100%!important;
+  min-height:100svh!important;
+  overflow-x:hidden!important;
+  padding:clamp(12px,2vw,28px)!important;
+}
+.login-shell{
+  width:min(1180px,100%)!important;
+  max-width:100%!important;
+  min-height:auto!important;
+  display:grid!important;
+  grid-template-columns:minmax(340px,0.88fr) minmax(0,1.12fr)!important;
+  gap:clamp(16px,2vw,28px)!important;
+  align-items:stretch!important;
+  overflow:hidden!important;
+}
+.login-card,
+.login-visual{
+  min-width:0!important;
+  max-width:100%!important;
+  overflow:hidden!important;
+}
+.login-card{
+  padding:clamp(26px,3vw,42px)!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+}
+.login-brand{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:12px!important;
+  align-items:start!important;
+  margin-bottom:clamp(18px,2.2vw,30px)!important;
+}
+.login-brand > *{
+  min-width:0!important;
+  max-width:100%!important;
+}
+.login-brand .badge{
+  position:static!important;
+  justify-self:start!important;
+  max-width:100%!important;
+  width:auto!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  line-height:1.15!important;
+  font-size:clamp(.58rem,.72vw,.68rem)!important;
+  padding:7px 11px!important;
+}
+.login-card h1{
+  max-width:100%!important;
+  font-size:clamp(2.55rem,4vw,4.45rem)!important;
+  line-height:.96!important;
+  letter-spacing:-.055em!important;
+  margin:0 0 clamp(12px,1.4vw,18px)!important;
+  overflow-wrap:normal!important;
+}
+.login-card p{
+  max-width:460px!important;
+  font-size:clamp(.86rem,.98vw,.98rem)!important;
+  line-height:1.48!important;
+  margin-bottom:0!important;
+}
+.login-card .form{
+  width:100%!important;
+  max-width:470px!important;
+  gap:12px!important;
+  margin-top:clamp(16px,1.8vw,22px)!important;
+}
+.login-card label{
+  width:100%!important;
+  gap:7px!important;
+  font-size:.8rem!important;
+}
+.login-card input{
+  width:100%!important;
+  max-width:100%!important;
+  min-height:50px!important;
+  font-size:.9rem!important;
+}
+.login-card .btn.full{
+  width:100%!important;
+  max-width:100%!important;
+  min-height:52px!important;
+  font-size:.82rem!important;
+  line-height:1.2!important;
+  white-space:normal!important;
+  text-align:center!important;
+}
+.login-card .hint{
+  max-width:470px!important;
+  font-size:.76rem!important;
+  line-height:1.4!important;
+}
+
+/* Painel visual: texto e foto separados, sem invasão */
+.login-visual{
+  position:relative!important;
+  min-height:clamp(560px,78svh,740px)!important;
+  padding:clamp(26px,3vw,44px)!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,44%) minmax(0,56%)!important;
+  grid-template-rows:auto auto 1fr!important;
+  column-gap:clamp(18px,2.3vw,32px)!important;
+  align-content:start!important;
+}
+.visual-copy{
+  grid-column:1!important;
+  grid-row:1!important;
+  position:relative!important;
+  z-index:4!important;
+  width:100%!important;
+  max-width:100%!important;
+  padding:0!important;
+  margin:0!important;
+}
+.visual-copy .eyebrow{
+  max-width:100%!important;
+  font-size:clamp(.58rem,.75vw,.7rem)!important;
+  line-height:1.25!important;
+  overflow-wrap:normal!important;
+}
+.visual-copy h2{
+  max-width:100%!important;
+  width:100%!important;
+  font-size:clamp(2.35rem,3.75vw,4.25rem)!important;
+  line-height:.95!important;
+  letter-spacing:-.05em!important;
+  margin:0 0 clamp(12px,1.4vw,16px)!important;
+  overflow-wrap:normal!important;
+}
+.visual-copy p{
+  max-width:100%!important;
+  width:100%!important;
+  font-size:clamp(.84rem,.95vw,.98rem)!important;
+  line-height:1.46!important;
+  margin:0!important;
+  overflow-wrap:normal!important;
+}
+.visual-mini{
+  max-width:100%!important;
+  margin-top:14px!important;
+}
+.visual-mini span{
+  font-size:clamp(.72rem,.82vw,.8rem)!important;
+  line-height:1.38!important;
+}
+.login-visual .visual-cards{
+  grid-column:1!important;
+  grid-row:2!important;
+  position:relative!important;
+  z-index:4!important;
+  width:100%!important;
+  max-width:100%!important;
+  margin:clamp(18px,2vw,26px) 0 0!important;
+  padding:0!important;
+  display:grid!important;
+  gap:clamp(12px,1.4vw,16px)!important;
+  transform:none!important;
+}
+.login-visual .visual-card{
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  min-height:auto!important;
+  padding:clamp(14px,1.45vw,18px)!important;
+  overflow:hidden!important;
+}
+.login-visual .visual-card b{
+  display:block!important;
+  max-width:100%!important;
+  font-size:clamp(.82rem,.9vw,.92rem)!important;
+  line-height:1.16!important;
+  margin-bottom:6px!important;
+  overflow-wrap:normal!important;
+}
+.login-visual .visual-card span{
+  display:block!important;
+  max-width:100%!important;
+  font-size:clamp(.72rem,.8vw,.78rem)!important;
+  line-height:1.38!important;
+  overflow-wrap:normal!important;
+}
+.visual-photo{
+  grid-column:2!important;
+  grid-row:1 / 4!important;
+  position:absolute!important;
+  inset:0 0 0 auto!important;
+  width:56%!important;
+  max-width:56%!important;
+  height:100%!important;
+  min-height:100%!important;
+  background-size:cover!important;
+  background-position:center right!important;
+  z-index:1!important;
+}
+.visual-photo:after{
+  pointer-events:none!important;
+}
+.instagram-photo-cta{
+  z-index:6!important;
+  max-width:calc(56% - 40px)!important;
+  white-space:normal!important;
+}
+
+/* Tablet: empilha de forma limpa, sem sobreposição */
+@media(max-width:900px){
+  .login-screen{
+    padding:10px!important;
+  }
+  .login-shell{
+    grid-template-columns:1fr!important;
+    gap:12px!important;
+    overflow:visible!important;
+  }
+  .login-card{
+    padding:22px 16px!important;
+    justify-content:flex-start!important;
+  }
+  .login-card h1{
+    font-size:clamp(2.15rem,10vw,3rem)!important;
+    line-height:.98!important;
+    letter-spacing:-.045em!important;
+  }
+  .login-card p,
+  .login-card .form,
+  .login-card .hint{
+    max-width:100%!important;
+  }
+  .login-visual{
+    min-height:auto!important;
+    padding:20px 16px!important;
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    grid-template-rows:auto auto auto!important;
+    gap:14px!important;
+    overflow:hidden!important;
+  }
+  .visual-copy{
+    grid-column:1!important;
+    grid-row:1!important;
+    max-width:100%!important;
+  }
+  .visual-copy h2{
+    font-size:clamp(2rem,9.5vw,2.85rem)!important;
+    line-height:.97!important;
+    max-width:100%!important;
+  }
+  .visual-copy p{
+    font-size:.86rem!important;
+    line-height:1.44!important;
+    max-width:100%!important;
+  }
+  .visual-mini{
+    display:none!important;
+  }
+  .visual-photo{
+    grid-column:1!important;
+    grid-row:2!important;
+    position:relative!important;
+    inset:auto!important;
+    width:100%!important;
+    max-width:100%!important;
+    height:auto!important;
+    min-height:320px!important;
+    border-radius:22px!important;
+    background-position:center top!important;
+    z-index:1!important;
+  }
+  .visual-photo:after{
+    background:linear-gradient(0deg,rgba(2,6,23,.82),rgba(2,6,23,.08) 58%,rgba(2,6,23,.1))!important;
+  }
+  .login-visual .visual-cards{
+    grid-column:1!important;
+    grid-row:3!important;
+    width:100%!important;
+    max-width:100%!important;
+    margin:0!important;
+    gap:12px!important;
+  }
+  .login-visual .visual-card{
+    padding:14px 15px!important;
+  }
+  .instagram-photo-cta{
+    right:16px!important;
+    bottom:16px!important;
+    max-width:calc(100% - 32px)!important;
+  }
+}
+
+/* Celulares comuns: 320, 375, 390 e 414px */
+@media(max-width:480px){
+  .login-screen{
+    padding:8px!important;
+  }
+  .login-shell{
+    gap:10px!important;
+  }
+  .login-card,
+  .login-visual{
+    border-radius:20px!important;
+  }
+  .login-card{
+    padding:18px 14px!important;
+  }
+  .login-brand{
+    gap:9px!important;
+    margin-bottom:15px!important;
+  }
+  .login-brand .badge{
+    font-size:.56rem!important;
+    padding:6px 9px!important;
+  }
+  .logo .word{
+    font-size:clamp(1.7rem,9vw,2.25rem)!important;
+  }
+  .logo small{
+    font-size:.48rem!important;
+    letter-spacing:.18em!important;
+  }
+  .login-card h1{
+    font-size:clamp(1.95rem,11.5vw,2.65rem)!important;
+    line-height:1!important;
+    margin-bottom:12px!important;
+  }
+  .login-card p{
+    font-size:.82rem!important;
+    line-height:1.42!important;
+  }
+  .login-card .form{
+    gap:10px!important;
+    margin-top:14px!important;
+  }
+  .login-card label{
+    font-size:.74rem!important;
+  }
+  .login-card input{
+    min-height:47px!important;
+    font-size:.84rem!important;
+    border-radius:14px!important;
+  }
+  .login-card .btn.full{
+    min-height:50px!important;
+    font-size:.76rem!important;
+    border-radius:15px!important;
+  }
+  .login-visual{
+    padding:18px 14px!important;
+    gap:12px!important;
+  }
+  .visual-copy .eyebrow{
+    font-size:.56rem!important;
+    line-height:1.25!important;
+  }
+  .visual-copy h2{
+    font-size:clamp(1.85rem,10.5vw,2.35rem)!important;
+  }
+  .visual-copy p{
+    font-size:.8rem!important;
+    line-height:1.4!important;
+  }
+  .visual-photo{
+    min-height:260px!important;
+    border-radius:18px!important;
+  }
+  .login-visual .visual-card{
+    padding:12px 13px!important;
+    border-radius:16px!important;
+  }
+  .login-visual .visual-card b{
+    font-size:.8rem!important;
+  }
+  .login-visual .visual-card span{
+    font-size:.7rem!important;
+    line-height:1.34!important;
+  }
+  .instagram-photo-cta{
+    padding:10px 12px!important;
+    right:12px!important;
+    bottom:12px!important;
+  }
+  .instagram-photo-cta:before{
+    width:28px!important;
+    height:28px!important;
+  }
+  .instagram-photo-cta b{
+    font-size:.78rem!important;
+  }
+  .instagram-photo-cta small{
+    font-size:.54rem!important;
+  }
+}
+@media(max-width:340px){
+  .login-card{
+    padding:16px 12px!important;
+  }
+  .login-card h1{
+    font-size:2rem!important;
+  }
+  .visual-copy h2{
+    font-size:1.9rem!important;
+  }
+  .visual-photo{
+    min-height:238px!important;
+  }
+}
+
+
+/* Conversão da foto lateral para background integrado premium */
+.login-visual{
+  position:relative!important;
+  overflow:hidden!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-start!important;
+  align-items:flex-start!important;
+  min-height:clamp(560px,78svh,740px)!important;
+  background:
+    linear-gradient(180deg,rgba(2,6,23,.82) 0%,rgba(2,6,23,.88) 48%,rgba(2,6,23,.92) 100%),
+    radial-gradient(circle at 78% 28%,rgba(37,99,235,.18),transparent 28%),
+    radial-gradient(circle at 28% 82%,rgba(56,189,248,.08),transparent 22%),
+    linear-gradient(135deg,rgba(7,18,39,.96),rgba(2,6,23,.98))!important;
+}
+.login-visual::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:var(--hero-bg-image);
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position:center right;
+  opacity:.18;
+  filter:blur(4px);
+  transform:scale(1.03);
+  z-index:0;
+}
+.login-visual::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,rgba(2,6,23,.98) 0%,rgba(2,6,23,.94) 26%,rgba(2,6,23,.84) 48%,rgba(2,6,23,.88) 100%),
+    linear-gradient(180deg,rgba(2,6,23,.16),rgba(2,6,23,.42));
+  z-index:1;
+  pointer-events:none;
+}
+.visual-photo{
+  display:none!important;
+}
+.visual-copy,
+.login-visual .visual-cards,
+.instagram-photo-cta{
+  position:relative!important;
+  z-index:3!important;
+}
+.visual-copy{
+  width:min(100%,560px)!important;
+  max-width:560px!important;
+  margin:0!important;
+  padding:0!important;
+}
+.visual-copy h2,
+.visual-copy p,
+.visual-copy .eyebrow{
+  max-width:100%!important;
+}
+.login-visual .visual-cards{
+  width:min(100%,460px)!important;
+  max-width:460px!important;
+  margin-top:22px!important;
+  gap:14px!important;
+  padding:0!important;
+  transform:none!important;
+}
+.login-visual .visual-card{
+  max-width:100%!important;
+}
+.instagram-photo-cta{
+  right:24px!important;
+  bottom:24px!important;
+  left:auto!important;
+}
+
+@media(max-width:900px){
+  .login-visual{
+    min-height:auto!important;
+    padding:20px 16px!important;
+  }
+  .login-visual::before{
+    background-position:center top!important;
+    opacity:.17!important;
+  }
+  .login-visual::after{
+    background:
+      linear-gradient(180deg,rgba(2,6,23,.92) 0%,rgba(2,6,23,.86) 32%,rgba(2,6,23,.94) 100%),
+      linear-gradient(90deg,rgba(2,6,23,.72),rgba(2,6,23,.88));
+  }
+  .visual-copy{
+    width:100%!important;
+    max-width:100%!important;
+  }
+  .login-visual .visual-cards{
+    width:100%!important;
+    max-width:100%!important;
+    margin-top:16px!important;
+  }
+}
+
+@media(max-width:480px){
+  .login-visual::before{
+    opacity:.16!important;
+    filter:blur(3px)!important;
+  }
+  .instagram-photo-cta{
+    right:12px!important;
+    bottom:12px!important;
+    max-width:calc(100% - 24px)!important;
+  }
+}
+
+
+/* PATCH FINAL LOGIN: layout, contraste, sombra, hierarquia e responsividade */
+html,
+body{
+  width:100%!important;
+  max-width:100%!important;
+  overflow-x:hidden!important;
+}
+body{
+  overscroll-behavior-x:none!important;
+}
+*,
+*::before,
+*::after{
+  box-sizing:border-box!important;
+}
+.login-screen{
+  width:100%!important;
+  max-width:100%!important;
+  min-height:100svh!important;
+  overflow-x:hidden!important;
+  padding:clamp(12px,1.8vw,26px)!important;
+  display:grid!important;
+  place-items:center!important;
+}
+.login-shell{
+  width:min(1160px,100%)!important;
+  max-width:100%!important;
+  min-height:auto!important;
+  display:grid!important;
+  grid-template-columns:minmax(330px,.86fr) minmax(0,1.14fr)!important;
+  gap:clamp(14px,1.8vw,26px)!important;
+  align-items:stretch!important;
+  overflow:hidden!important;
+}
+.login-card,
+.login-visual{
+  min-width:0!important;
+  max-width:100%!important;
+  overflow:hidden!important;
+}
+
+/* Painel de login: proporção e usabilidade */
+.login-card{
+  padding:clamp(26px,2.8vw,42px)!important;
+  justify-content:center!important;
+}
+.login-brand{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  align-items:start!important;
+  gap:12px!important;
+  margin-bottom:clamp(18px,2vw,28px)!important;
+}
+.login-brand .badge{
+  position:static!important;
+  justify-self:start!important;
+  max-width:min(100%,260px)!important;
+  width:auto!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  line-height:1.15!important;
+  padding:7px 11px!important;
+  font-size:clamp(.58rem,.68vw,.66rem)!important;
+}
+.login-card h1{
+  max-width:100%!important;
+  font-size:clamp(2.55rem,3.9vw,4.35rem)!important;
+  line-height:.97!important;
+  letter-spacing:-.055em!important;
+  margin:0 0 clamp(12px,1.4vw,18px)!important;
+}
+.login-card p{
+  max-width:460px!important;
+  font-size:clamp(.86rem,.95vw,.97rem)!important;
+  line-height:1.48!important;
+}
+.login-card .form{
+  width:100%!important;
+  max-width:470px!important;
+  margin-top:clamp(16px,1.8vw,22px)!important;
+  gap:12px!important;
+}
+.login-card label{
+  width:100%!important;
+  gap:7px!important;
+  font-size:.78rem!important;
+}
+.login-card input{
+  width:100%!important;
+  min-height:50px!important;
+  font-size:.88rem!important;
+  line-height:1.2!important;
+}
+.login-card .btn.full{
+  width:100%!important;
+  min-height:52px!important;
+  font-size:.8rem!important;
+  line-height:1.18!important;
+  white-space:normal!important;
+  text-align:center!important;
+}
+
+/* Área de apresentação: background sutil, sem competir com leitura */
+.login-visual{
+  position:relative!important;
+  isolation:isolate!important;
+  min-height:clamp(560px,76svh,720px)!important;
+  padding:clamp(30px,3.2vw,46px)!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  align-items:flex-start!important;
+  overflow:hidden!important;
+  background:
+    linear-gradient(180deg,rgba(2,6,23,.9) 0%,rgba(2,6,23,.93) 52%,rgba(2,6,23,.96) 100%),
+    radial-gradient(circle at 72% 22%,rgba(37,99,235,.13),transparent 30%),
+    linear-gradient(135deg,rgba(7,18,39,.98),rgba(2,6,23,.99))!important;
+}
+.login-visual::before{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:0!important;
+  pointer-events:none!important;
+  background-image:var(--hero-bg-image)!important;
+  background-repeat:no-repeat!important;
+  background-size:cover!important;
+  background-position:center right!important;
+  opacity:.12!important;
+  filter:blur(6px)!important;
+  transform:scale(1.035)!important;
+}
+.login-visual::after{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:1!important;
+  pointer-events:none!important;
+  background:
+    linear-gradient(90deg,rgba(2,6,23,.98) 0%,rgba(2,6,23,.96) 36%,rgba(2,6,23,.92) 68%,rgba(2,6,23,.95) 100%),
+    linear-gradient(180deg,rgba(2,6,23,.28),rgba(2,6,23,.58))!important;
+}
+.visual-photo{
+  display:none!important;
+}
+.visual-copy,
+.login-visual .visual-cards,
+.instagram-photo-cta{
+  position:relative!important;
+  z-index:3!important;
+}
+
+/* Hierarquia: frase azul > headline > subtítulo > cards */
+.visual-copy{
+  width:100%!important;
+  max-width:520px!important;
+  margin:0!important;
+  padding:0!important;
+}
+.visual-copy .eyebrow{
+  display:block!important;
+  max-width:100%!important;
+  margin:0 0 clamp(12px,1.2vw,16px)!important;
+  font-size:clamp(.58rem,.7vw,.68rem)!important;
+  line-height:1.25!important;
+}
+.visual-copy h2{
+  width:100%!important;
+  max-width:500px!important;
+  margin:0 0 clamp(14px,1.5vw,18px)!important;
+  font-size:clamp(2.35rem,3.65vw,4.05rem)!important;
+  line-height:.96!important;
+  letter-spacing:-.052em!important;
+  overflow-wrap:normal!important;
+  text-wrap:balance!important;
+}
+.visual-copy p{
+  width:100%!important;
+  max-width:450px!important;
+  margin:0!important;
+  font-size:clamp(.86rem,.96vw,.98rem)!important;
+  line-height:1.48!important;
+  overflow-wrap:normal!important;
+}
+.visual-mini{
+  max-width:450px!important;
+  margin-top:clamp(14px,1.4vw,18px)!important;
+}
+.visual-mini span{
+  font-size:clamp(.72rem,.82vw,.8rem)!important;
+  line-height:1.42!important;
+}
+
+/* Cards: menores, alinhados ao texto, sem cobrir subtítulo */
+.login-visual .visual-cards{
+  width:min(100%,430px)!important;
+  max-width:430px!important;
+  margin:clamp(22px,2.2vw,30px) 0 0!important;
+  padding:0!important;
+  display:grid!important;
+  gap:clamp(12px,1.3vw,16px)!important;
+  transform:none!important;
+}
+.login-visual .visual-card{
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  min-height:auto!important;
+  padding:clamp(14px,1.35vw,17px) clamp(15px,1.45vw,18px)!important;
+  overflow:hidden!important;
+  box-shadow:none!important;
+}
+.login-visual .visual-card b{
+  display:block!important;
+  max-width:100%!important;
+  margin:0 0 6px!important;
+  font-size:clamp(.8rem,.88vw,.9rem)!important;
+  line-height:1.16!important;
+}
+.login-visual .visual-card span{
+  display:block!important;
+  max-width:100%!important;
+  font-size:clamp(.7rem,.78vw,.76rem)!important;
+  line-height:1.38!important;
+}
+
+/* Instagram: permanece, mas sem disputar hierarquia */
+.instagram-photo-cta{
+  right:22px!important;
+  bottom:22px!important;
+  max-width:260px!important;
+}
+
+/* Tablet e mobile: uma coluna, sem overflow, sem textos escondidos */
+@media(max-width:1024px){
+  .login-shell{
+    grid-template-columns:minmax(320px,.9fr) minmax(0,1.1fr)!important;
+    gap:16px!important;
+  }
+  .login-visual{
+    padding:28px!important;
+  }
+  .visual-copy{
+    max-width:480px!important;
+  }
+  .visual-copy h2{
+    max-width:460px!important;
+    font-size:clamp(2.2rem,4vw,3.45rem)!important;
+  }
+  .visual-copy p{
+    max-width:420px!important;
+  }
+  .login-visual .visual-cards{
+    max-width:400px!important;
+  }
+}
+
+@media(max-width:768px){
+  .login-screen{
+    padding:10px!important;
+    place-items:start center!important;
+  }
+  .login-shell{
+    grid-template-columns:1fr!important;
+    gap:12px!important;
+    overflow:visible!important;
+  }
+  .login-card{
+    padding:22px 16px!important;
+    justify-content:flex-start!important;
+  }
+  .login-card h1{
+    font-size:clamp(2.15rem,9.5vw,3rem)!important;
+    line-height:1!important;
+    margin-bottom:12px!important;
+  }
+  .login-card p,
+  .login-card .form,
+  .login-card .hint{
+    max-width:100%!important;
+  }
+  .login-visual{
+    min-height:auto!important;
+    padding:22px 16px!important;
+    justify-content:flex-start!important;
+  }
+  .login-visual::before{
+    opacity:.1!important;
+    filter:blur(6px)!important;
+    background-position:center center!important;
+  }
+  .login-visual::after{
+    background:
+      linear-gradient(180deg,rgba(2,6,23,.95) 0%,rgba(2,6,23,.93) 48%,rgba(2,6,23,.97) 100%),
+      linear-gradient(90deg,rgba(2,6,23,.92),rgba(2,6,23,.96))!important;
+  }
+  .visual-copy{
+    max-width:100%!important;
+  }
+  .visual-copy .eyebrow{
+    margin-bottom:10px!important;
+    font-size:.6rem!important;
+  }
+  .visual-copy h2{
+    max-width:100%!important;
+    font-size:clamp(2rem,8.8vw,2.75rem)!important;
+    line-height:.98!important;
+    margin-bottom:12px!important;
+  }
+  .visual-copy p{
+    max-width:100%!important;
+    font-size:.84rem!important;
+    line-height:1.44!important;
+  }
+  .visual-mini{
+    display:none!important;
+  }
+  .login-visual .visual-cards{
+    width:100%!important;
+    max-width:100%!important;
+    margin-top:18px!important;
+    gap:12px!important;
+  }
+  .login-visual .visual-card{
+    padding:13px 14px!important;
+  }
+  .instagram-photo-cta{
+    position:relative!important;
+    right:auto!important;
+    bottom:auto!important;
+    margin-top:16px!important;
+    max-width:100%!important;
+    align-self:flex-start!important;
+  }
+}
+
+@media(max-width:480px){
+  .login-screen{
+    padding:8px!important;
+  }
+  .login-card,
+  .login-visual{
+    border-radius:20px!important;
+  }
+  .login-card{
+    padding:18px 14px!important;
+  }
+  .login-brand{
+    gap:9px!important;
+    margin-bottom:15px!important;
+  }
+  .login-brand .badge{
+    max-width:100%!important;
+    font-size:.55rem!important;
+    padding:6px 9px!important;
+  }
+  .login-card h1{
+    font-size:clamp(1.92rem,10.8vw,2.55rem)!important;
+    letter-spacing:-.04em!important;
+  }
+  .login-card p{
+    font-size:.8rem!important;
+    line-height:1.4!important;
+  }
+  .login-card .form{
+    margin-top:14px!important;
+    gap:10px!important;
+  }
+  .login-card input{
+    min-height:46px!important;
+    font-size:.82rem!important;
+  }
+  .login-card .btn.full{
+    min-height:48px!important;
+    font-size:.74rem!important;
+  }
+  .login-visual{
+    padding:18px 14px!important;
+  }
+  .visual-copy h2{
+    font-size:clamp(1.78rem,10vw,2.28rem)!important;
+  }
+  .visual-copy p{
+    font-size:.78rem!important;
+  }
+  .login-visual .visual-cards{
+    margin-top:16px!important;
+  }
+  .login-visual .visual-card{
+    padding:12px 13px!important;
+  }
+  .login-visual .visual-card b{
+    font-size:.78rem!important;
+  }
+  .login-visual .visual-card span{
+    font-size:.68rem!important;
+    line-height:1.34!important;
+  }
+}
+
+@media(max-width:340px){
+  .login-card,
+  .login-visual{
+    padding-left:12px!important;
+    padding-right:12px!important;
+  }
+  .login-card h1{
+    font-size:1.95rem!important;
+  }
+  .visual-copy h2{
+    font-size:1.78rem!important;
+  }
+}
+
+
+/* AJUSTE PONTUAL: cards abaixo do texto e remoção da sombra retangular */
+.login-visual::after{
+  background:
+    linear-gradient(180deg,rgba(2,6,23,.90) 0%,rgba(2,6,23,.92) 52%,rgba(2,6,23,.95) 100%)!important;
+}
+.visual-copy{
+  margin-bottom:0!important;
+}
+.visual-copy h2{
+  margin-bottom:clamp(16px,1.7vw,22px)!important;
+}
+.visual-copy p{
+  margin-bottom:0!important;
+  position:relative!important;
+  z-index:4!important;
+}
+.login-visual .visual-cards{
+  margin-top:clamp(42px,4.6vw,72px)!important;
+  transform:none!important;
+  position:relative!important;
+  z-index:4!important;
+}
+.login-visual .visual-card{
+  box-shadow:none!important;
+}
+@media(max-width:768px){
+  .login-visual .visual-cards{
+    margin-top:28px!important;
+  }
+}
+@media(max-width:480px){
+  .login-visual .visual-cards{
+    margin-top:24px!important;
+  }
+}
+
+
+/* AJUSTE FINAL PONTUAL: cards mais baixos e remoção total da sombra retangular */
+.login-visual::after{
+  display:none!important;
+  content:none!important;
+  background:none!important;
+  opacity:0!important;
+}
+.login-visual::before{
+  opacity:.10!important;
+  filter:blur(7px)!important;
+}
+.visual-copy,
+.login-visual .visual-cards,
+.instagram-photo-cta{
+  z-index:3!important;
+}
+.login-visual .visual-cards{
+  margin-top:clamp(78px,7.2vw,118px)!important;
+  transform:none!important;
+}
+.login-visual .visual-card{
+  box-shadow:none!important;
+}
+@media(max-width:1024px){
+  .login-visual .visual-cards{
+    margin-top:64px!important;
+  }
+}
+@media(max-width:768px){
+  .login-visual .visual-cards{
+    margin-top:36px!important;
+  }
+}
+@media(max-width:480px){
+  .login-visual .visual-cards{
+    margin-top:30px!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -4162,7 +5185,7 @@ linear-gradient(135deg,#f97316,#ec4899 42%,#8b5cf6 70%,#2563eb);box-shadow:0 0 2
   function top(title,actions=''){return `<header class="top no-print"><div>${logo()}<strong>${esc(title)}</strong></div><nav>${actions}<button class="btn secondary small" onclick="HERO.logout()">Sair</button></nav></header>${floatingAIButton()}`;}
   function modal(html){document.body.insertAdjacentHTML('beforeend',`<div class="modal" id="modal"><div class="modal-box"><button class="x" onclick="HERO.closeModal()">×</button>${html}</div></div>`);}
   function closeModal(){const m=$('modal'); if(m)m.remove();}
-  function login(){mount(`<main class="login-screen"><div class="login-shell"><section class="login-card"><div class="login-brand"><div><p class="eyebrow">área restrita</p>${logo()}</div><span class="badge">HERO Aesthetic Performance</span></div><h1>VAMOS VENCER A GUERRA HOJE!</h1><p>Acesso exclusivo para alunos autorizados do HERO Aesthetic Performance.</p><form id="loginForm" class="form"><label>E-mail<input name="email" type="email" placeholder="seu e-mail" required></label><label>Senha<input name="password" type="password" placeholder="sua senha" required></label><button class="btn full">Acesso exclusivo para sua missão</button><div id="loginMsg" class="msg"></div></form><p class="hint">Área restrita para alunos autorizados do protocolo HERO.</p><a class="instagram-cta" href="https://instagram.com/marcosesteeves" target="_blank" rel="noopener">Instagram · @marcosesteeves</a></section><section class="login-visual"><div class="visual-photo" style="background-image:url('${heroPortraitImg}')"></div><div class="visual-copy"><p class="eyebrow">Performance for body, business & life</p><h2>Transforme disciplina em identidade.</h2><p>Uma área exclusiva para sua missão. Estética, força, resistência e evolução real em um ambiente premium, tecnológico e feito para execução.</p><div class="visual-mini"><i></i><span>Ambiente exclusivo HERO. Método, disciplina e performance em uma experiência premium.</span></div></div><div class="visual-cards"><div class="visual-card"><b>Prescrição individual</b><span>Treinos liberados por aluno, com estrutura clara, progressão de carga e execução orientada.</span></div><div class="visual-card"><b>Missão com identidade</b><span>Visual forte, atmosfera premium e uma jornada que diferencia a experiência do aluno desde o primeiro acesso.</span></div></div></section></div></main>`); $('loginForm').onsubmit=async e=>{e.preventDefault(); const f=Object.fromEntries(new FormData(e.target)); const msg=$('loginMsg'); msg.textContent='Conectando...'; try{const supa=await supabaseLogin(f.email,f.password); if(supa&&supa.error){msg.textContent=supa.error;return;} if(supa&&supa.profile){const u={email:f.email,role:supa.profile.role,alunoId:supa.aluno?.id||null,supabase:true}; sessionStorage.setItem('hero_session',JSON.stringify(u)); render(); return;}}catch(err){console.warn('Falha Supabase, tentando modo local:',err);} const st=data(); const u=st.users.find(x=>x.email.toLowerCase()===f.email.toLowerCase()&&(x.password===f.password||!x.password)); if(!u){msg.textContent='Acesso não autorizado. Sua missão ainda não foi liberada.';return;} const a=u.alunoId?st.alunos.find(x=>x.id===u.alunoId):null; if(a&&a.status!=='ativo'){msg.textContent='Acesso bloqueado. Fale com o treinador.';return;} sessionStorage.setItem('hero_session',JSON.stringify(u)); render();};}
+  function login(){mount(`<main class="login-screen"><div class="login-shell"><section class="login-card"><div class="login-brand"><div><p class="eyebrow">área restrita</p>${logo()}</div><span class="badge">HERO Aesthetic Performance</span></div><h1>VAMOS VENCER A GUERRA HOJE!</h1><p>Acesso exclusivo para alunos autorizados do HERO Aesthetic Performance.</p><form id="loginForm" class="form"><label>E-mail<input name="email" type="email" placeholder="seu e-mail" required></label><label>Senha<input name="password" type="password" placeholder="sua senha" required></label><button class="btn full">Acesso exclusivo para sua missão</button><div id="loginMsg" class="msg"></div></form><p class="hint">Área restrita para alunos autorizados do protocolo HERO.</p><a class="instagram-cta" href="https://instagram.com/marcosesteeves" target="_blank" rel="noopener">Instagram · @marcosesteeves</a></section><section class="login-visual" style=\"--hero-bg-image:url('${heroPortraitImg}')\"><div class="visual-copy"><p class="eyebrow">Performance for body, business & life</p><h2>Transforme disciplina em identidade.</h2><p>Uma área exclusiva para sua missão. Estética, força, resistência e evolução real em um ambiente premium, tecnológico e feito para execução.</p><div class="visual-mini"><i></i><span>Ambiente exclusivo HERO. Método, disciplina e performance em uma experiência premium.</span></div></div><div class="visual-cards"><div class="visual-card"><b>Prescrição individual</b><span>Treinos liberados por aluno, com estrutura clara, progressão de carga e execução orientada.</span></div><div class="visual-card"><b>Missão com identidade</b><span>Visual forte, atmosfera premium e uma jornada que diferencia a experiência do aluno desde o primeiro acesso.</span></div></div></section></div></main>`); $('loginForm').onsubmit=async e=>{e.preventDefault(); const f=Object.fromEntries(new FormData(e.target)); const msg=$('loginMsg'); msg.textContent='Conectando...'; try{const supa=await supabaseLogin(f.email,f.password); if(supa&&supa.error){msg.textContent=supa.error;return;} if(supa&&supa.profile){const u={email:f.email,role:supa.profile.role,alunoId:supa.aluno?.id||null,supabase:true}; sessionStorage.setItem('hero_session',JSON.stringify(u)); render(); return;}}catch(err){console.warn('Falha Supabase, tentando modo local:',err);} const st=data(); const u=st.users.find(x=>x.email.toLowerCase()===f.email.toLowerCase()&&(x.password===f.password||!x.password)); if(!u){msg.textContent='Acesso não autorizado. Sua missão ainda não foi liberada.';return;} const a=u.alunoId?st.alunos.find(x=>x.id===u.alunoId):null; if(a&&a.status!=='ativo'){msg.textContent='Acesso bloqueado. Fale com o treinador.';return;} sessionStorage.setItem('hero_session',JSON.stringify(u)); render();};}
   function render(){const s=sessionStorage.getItem('hero_session'); if(!s)return login(); const u=JSON.parse(s); if(u.role==='admin') admin(); else student(u.alunoId,false);}
   async function logout(){await supabaseLogout(); sessionStorage.removeItem('hero_session'); login();}
   function admin(selectedId){const st=data(); const selected=st.alunos.find(a=>a.id===(selectedId||st.alunos[0]?.id)); window.HERO_SELECTED_ALUNO_ID=selected?.id||null; window.HERO_SELECTED_TREINO_ID=st.treinos.find(t=>t.alunoId===window.HERO_SELECTED_ALUNO_ID)?.id||null; mount(`${top('Central de prescrição HERO',`<button class="btn small" id="addStudent">Cadastrar aluna</button><button class="btn ghost small" id="openLib">Biblioteca HERO</button>`)}<main class="wrap"><section class="hero"><p class="eyebrow">painel do treinador</p><h1>Central de prescrição HERO</h1><p>Cadastre alunos, monte treinos, salve protocolos e libere missões individuais.</p><div class="stats"><div><b>${st.alunos.length}</b><span>alunas</span></div><div><b>${st.treinos.length}</b><span>protocolos</span></div><div><b>${st.exercicios.length}</b><span>exercícios</span></div><div><b>${st.alunos.filter(a=>a.status==='ativo').length}</b><span>ativos</span></div></div></section><section class="admin-grid"><aside class="panel"><div class="panel-title"><div><h2>Alunas</h2><p>Selecione para prescrever.</p></div></div><div id="studentList"></div></aside><section id="adminDetail" class="panel"></section></section></main>`); $('addStudent').onclick=()=>studentForm(); $('openLib').onclick=()=>library(); drawStudents(selected?.id); drawDetail(selected?.id);}
