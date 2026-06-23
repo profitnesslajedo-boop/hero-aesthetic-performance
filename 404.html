@@ -167,6 +167,303 @@ linear-gradient(135deg,#f97316,#ec4899 42%,#8b5cf6 70%,#2563eb);box-shadow:0 0 2
   box-shadow:0 0 22px rgba(56,189,248,.7);
 }
 
+
+/* Ajuste profissional final da tela de login e mobile */
+.login-screen{
+  min-height:100svh!important;
+  padding:clamp(16px,2.2vw,32px)!important;
+  align-items:center!important;
+}
+.login-shell{
+  width:min(1180px,100%)!important;
+  min-height:min(760px,calc(100svh - 44px))!important;
+  grid-template-columns:minmax(360px,.9fr) minmax(420px,1.1fr)!important;
+  gap:clamp(18px,2.3vw,32px)!important;
+  align-items:stretch!important;
+}
+.login-card{
+  padding:clamp(28px,3.2vw,46px)!important;
+  border-radius:30px!important;
+}
+.login-brand{
+  gap:14px!important;
+  align-items:flex-start!important;
+  margin-bottom:clamp(22px,2.5vw,34px)!important;
+}
+.login-brand .badge{
+  position:static!important;
+  flex-shrink:0!important;
+  max-width:210px!important;
+  white-space:normal!important;
+  text-align:center!important;
+  line-height:1.2!important;
+  font-size:.68rem!important;
+  padding:8px 12px!important;
+  transform:none!important;
+}
+.login-card h1{
+  font-size:clamp(2.9rem,4.4vw,4.85rem)!important;
+  line-height:.96!important;
+  letter-spacing:-.065em!important;
+  max-width:560px!important;
+  margin-bottom:18px!important;
+}
+.login-card p{
+  font-size:clamp(.92rem,1.05vw,1.02rem)!important;
+  line-height:1.5!important;
+  max-width:470px!important;
+}
+.login-card .form{
+  gap:14px!important;
+  margin-top:18px!important;
+}
+.login-card label{
+  gap:8px!important;
+  font-size:.82rem!important;
+}
+.login-card input{
+  min-height:52px!important;
+  border-radius:16px!important;
+  font-size:.92rem!important;
+}
+.login-card .btn.full{
+  min-height:54px!important;
+  border-radius:18px!important;
+  font-size:.88rem!important;
+}
+.login-card .hint{
+  font-size:.78rem!important;
+  opacity:.78!important;
+}
+.login-visual{
+  min-height:620px!important;
+  padding:clamp(28px,3.2vw,44px)!important;
+  border-radius:30px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-start!important;
+}
+.visual-copy{
+  max-width:430px!important;
+  width:43%!important;
+  padding-right:0!important;
+}
+.visual-copy .eyebrow{
+  font-size:.7rem!important;
+  letter-spacing:.22em!important;
+}
+.visual-copy h2{
+  font-size:clamp(2.6rem,4.1vw,4.5rem)!important;
+  line-height:.94!important;
+  letter-spacing:-.055em!important;
+  max-width:430px!important;
+}
+.visual-copy p{
+  font-size:clamp(.9rem,1vw,1.02rem)!important;
+  line-height:1.48!important;
+  max-width:390px!important;
+}
+.visual-mini{
+  margin-top:16px!important;
+  max-width:410px!important;
+}
+.visual-mini span{
+  font-size:.78rem!important;
+  line-height:1.42!important;
+}
+.login-visual .visual-cards{
+  width:43%!important;
+  max-width:430px!important;
+  margin-top:24px!important;
+  gap:16px!important;
+  transform:none!important;
+  padding-right:0!important;
+}
+.login-visual .visual-card{
+  max-width:100%!important;
+  padding:16px 18px!important;
+  border-radius:20px!important;
+}
+.login-visual .visual-card b{
+  font-size:.9rem!important;
+  line-height:1.12!important;
+  margin-bottom:6px!important;
+}
+.login-visual .visual-card span{
+  font-size:.78rem!important;
+  line-height:1.38!important;
+}
+.visual-photo{
+  width:55%!important;
+  max-width:620px!important;
+  background-size:cover!important;
+}
+.instagram-photo-cta{
+  right:28px!important;
+  bottom:28px!important;
+  padding:13px 16px!important;
+  transform:none!important;
+}
+.instagram-photo-cta b{
+  font-size:.86rem!important;
+}
+.instagram-photo-cta small{
+  font-size:.6rem!important;
+}
+
+/* Tablet e celular: prioriza login limpo, sem elementos invadindo */
+@media(max-width:980px){
+  .login-screen{
+    padding:12px!important;
+    align-items:flex-start!important;
+    overflow:auto!important;
+  }
+  .login-shell{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:14px!important;
+    min-height:auto!important;
+    width:100%!important;
+  }
+  .login-card{
+    order:1!important;
+    padding:24px 18px 22px!important;
+    border-radius:24px!important;
+    min-height:auto!important;
+  }
+  .login-brand{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:10px!important;
+    margin-bottom:18px!important;
+  }
+  .login-brand .badge{
+    justify-self:start!important;
+    max-width:100%!important;
+    font-size:.62rem!important;
+    padding:7px 10px!important;
+  }
+  .logo .word{
+    font-size:clamp(1.85rem,8vw,2.45rem)!important;
+    line-height:.9!important;
+  }
+  .logo small{
+    font-size:.52rem!important;
+    letter-spacing:.22em!important;
+  }
+  .login-card h1{
+    font-size:clamp(2.25rem,12vw,3.15rem)!important;
+    line-height:.98!important;
+    letter-spacing:-.055em!important;
+    margin-bottom:14px!important;
+    max-width:100%!important;
+  }
+  .login-card p{
+    font-size:.88rem!important;
+    line-height:1.44!important;
+    max-width:100%!important;
+  }
+  .login-card .form{
+    margin-top:16px!important;
+    gap:12px!important;
+  }
+  .login-card input{
+    min-height:50px!important;
+    font-size:.88rem!important;
+  }
+  .login-card .btn.full{
+    min-height:52px!important;
+    font-size:.8rem!important;
+    padding-inline:12px!important;
+  }
+  .login-visual{
+    order:2!important;
+    min-height:auto!important;
+    padding:22px 18px!important;
+    border-radius:24px!important;
+    overflow:hidden!important;
+  }
+  .visual-photo{
+    position:relative!important;
+    inset:auto!important;
+    width:100%!important;
+    max-width:100%!important;
+    min-height:330px!important;
+    border-radius:22px!important;
+    background-position:center top!important;
+    opacity:.92!important;
+  }
+  .visual-photo:after{
+    background:linear-gradient(0deg,rgba(2,6,23,.92),rgba(2,6,23,.12) 50%,rgba(2,6,23,.18))!important;
+  }
+  .visual-copy{
+    width:100%!important;
+    max-width:100%!important;
+    padding:0!important;
+    margin-bottom:16px!important;
+  }
+  .visual-copy .eyebrow{
+    font-size:.62rem!important;
+  }
+  .visual-copy h2{
+    font-size:clamp(2.1rem,10vw,2.85rem)!important;
+    line-height:.96!important;
+    max-width:100%!important;
+  }
+  .visual-copy p{
+    font-size:.86rem!important;
+    line-height:1.43!important;
+    max-width:100%!important;
+  }
+  .visual-mini{
+    display:none!important;
+  }
+  .login-visual .visual-cards{
+    width:100%!important;
+    max-width:100%!important;
+    margin-top:14px!important;
+    gap:12px!important;
+  }
+  .login-visual .visual-card{
+    padding:14px 15px!important;
+    border-radius:18px!important;
+  }
+  .login-visual .visual-card b{
+    font-size:.86rem!important;
+  }
+  .login-visual .visual-card span{
+    font-size:.76rem!important;
+    line-height:1.34!important;
+  }
+  .instagram-photo-cta{
+    right:16px!important;
+    bottom:16px!important;
+    padding:11px 13px!important;
+    max-width:calc(100% - 32px)!important;
+  }
+}
+@media(max-width:420px){
+  .login-screen{
+    padding:8px!important;
+  }
+  .login-card,.login-visual{
+    border-radius:20px!important;
+  }
+  .login-card{
+    padding:20px 14px!important;
+  }
+  .login-card h1{
+    font-size:clamp(2rem,12vw,2.55rem)!important;
+  }
+  .login-card .btn.full{
+    white-space:normal!important;
+    line-height:1.25!important;
+  }
+  .visual-photo{
+    min-height:280px!important;
+  }
+}
+
 </style>
 </head>
 <body>
