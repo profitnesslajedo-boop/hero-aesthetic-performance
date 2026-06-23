@@ -23,8 +23,8 @@ async function createHeroSupabaseClient() {
 
   const { createClient } = window.supabase;
   return createClient(
-    window.HERO_SUPABASE_CONFIG.url,
-    window.HERO_SUPABASE_CONFIG.anonKey
+    window.https://profitnesslajedo-boop.github.io/hero-aesthetic-performance/,
+    window.sb_publishable_drXNe-O9yyMdXKCZYCV8Gg_6k69x9ha
   );
 }
 
