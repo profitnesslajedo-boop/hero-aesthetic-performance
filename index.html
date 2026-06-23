@@ -21,9 +21,86 @@
 .ai-assistant{background:rgba(15,23,42,.82)}
 .ai-error{background:rgba(127,29,29,.28);border-color:rgba(248,113,113,.36)}
 
+
+/* HERO premium refinement patch */
+:root{--hero-blue:#2563eb;--hero-blue-soft:#60a5fa;--hero-border:rgba(148,163,184,.22);--hero-panel:rgba(15,23,42,.76)}
+.btn{border-radius:16px!important;box-shadow:0 12px 32px rgba(37,99,235,.18), inset 0 1px 0 rgba(255,255,255,.12);transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease,background .18s ease}
+.btn:hover{transform:translateY(-1px);box-shadow:0 18px 40px rgba(37,99,235,.24), inset 0 1px 0 rgba(255,255,255,.16)}
+.btn.ghost,.btn.secondary{backdrop-filter:blur(14px);border-color:rgba(147,197,253,.24)!important}
+.btn.danger{background:linear-gradient(135deg,rgba(220,38,38,.95),rgba(127,29,29,.95))!important;border-color:rgba(248,113,113,.35)!important;color:#fff!important}
+.student-row{position:relative;overflow:hidden;border-radius:22px!important;padding:18px 18px!important;background:linear-gradient(135deg,rgba(15,23,42,.88),rgba(30,41,59,.58))!important;border:1px solid rgba(147,197,253,.18)!important;box-shadow:0 18px 40px rgba(2,6,23,.24), inset 0 1px 0 rgba(255,255,255,.06);transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+.student-row:before{content:"";position:absolute;inset:-1px;background:radial-gradient(circle at 14% 0%,rgba(96,165,250,.22),transparent 32%);opacity:.85;pointer-events:none}
+.student-row strong,.student-row small{position:relative;z-index:1}
+.student-row strong{font-size:1rem;letter-spacing:.01em}
+.student-row small{opacity:.86}
+.student-row:hover,.student-row.active{transform:translateY(-2px);border-color:rgba(96,165,250,.55)!important;box-shadow:0 24px 55px rgba(37,99,235,.18), inset 0 1px 0 rgba(255,255,255,.1)}
+.student-row.active:after{content:"";position:absolute;left:0;top:18px;bottom:18px;width:4px;border-radius:99px;background:linear-gradient(#7dd3fc,#2563eb)}
+.protocol,.panel,.exercise,.today-panel{box-shadow:0 22px 60px rgba(2,6,23,.26), inset 0 1px 0 rgba(255,255,255,.05)}
+.toolbar{gap:10px!important;flex-wrap:wrap}
+.floating-ai-btn{position:fixed;right:22px;bottom:22px;z-index:80;border:none;border-radius:999px;padding:16px 20px;background:linear-gradient(135deg,#38bdf8,#2563eb 55%,#1d4ed8);color:#fff;font-weight:900;letter-spacing:.02em;box-shadow:0 24px 60px rgba(37,99,235,.42),0 0 0 1px rgba(255,255,255,.12) inset;cursor:pointer;display:flex;align-items:center;gap:10px}
+.floating-ai-btn span{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:999px;background:rgba(255,255,255,.16)}
+.floating-ai-btn:hover{transform:translateY(-2px);box-shadow:0 30px 70px rgba(37,99,235,.55)}
+.ai-chat-box{display:grid;gap:16px}
+.ai-chat-history{max-height:420px;overflow:auto;border:1px solid rgba(148,163,184,.22);border-radius:20px;padding:16px;background:rgba(2,6,23,.42);display:grid;gap:12px}
+.ai-bubble{border:1px solid rgba(148,163,184,.18);border-radius:16px;padding:14px 16px;background:rgba(15,23,42,.72)}
+.ai-bubble b{display:block;margin-bottom:6px;color:#bfdbfe}
+.ai-bubble p{margin:0;white-space:pre-wrap;line-height:1.55}
+.ai-user{background:rgba(37,99,235,.18);border-color:rgba(96,165,250,.34)}
+.ai-assistant{background:rgba(15,23,42,.82)}
+.ai-error{background:rgba(127,29,29,.28);border-color:rgba(248,113,113,.36)}
+.login-visual{overflow:hidden!important}
+.visual-copy{max-width:min(46%,520px)!important;position:relative;z-index:3;padding-right:18px}
+.visual-photo{right:0!important;left:auto!important;width:50%!important;max-width:560px!important;background-position:center right!important;z-index:1}
+.visual-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(2,6,23,.98) 0%,rgba(2,6,23,.78) 12%,rgba(2,6,23,.24) 38%,rgba(2,6,23,0) 70%)}
+.visual-cards{position:relative!important;z-index:4!important;width:min(46%,520px)!important;max-width:520px!important;margin-right:auto!important;padding-right:20px!important}
+.visual-card{backdrop-filter:blur(18px);background:rgba(15,23,42,.68)!important;border-color:rgba(147,197,253,.24)!important}
+@media(max-width:980px){
+  .visual-copy,.visual-cards{max-width:100%!important;width:100%!important;padding-right:0!important}
+  .visual-photo{position:relative!important;width:100%!important;max-width:100%!important;min-height:420px!important}
+  .visual-photo:after{background:linear-gradient(0deg,rgba(2,6,23,.94),rgba(2,6,23,.14))}
+  .floating-ai-btn{right:14px;bottom:14px;padding:14px 16px;font-size:.92rem}
+}
+
+
+/* HERO splash + premium Instagram CTA */
+.splash-screen{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:
+radial-gradient(circle at 50% 42%,rgba(56,189,248,.26),transparent 24%),
+radial-gradient(circle at 20% 80%,rgba(37,99,235,.22),transparent 30%),
+linear-gradient(135deg,#020617 0%,#071b35 48%,#03111f 100%);overflow:hidden;transition:opacity 1.2s ease,filter 1.2s ease,visibility 1.2s ease}
+.splash-screen:before{content:"";position:absolute;inset:-30%;background:conic-gradient(from 180deg,transparent,rgba(56,189,248,.16),transparent,rgba(37,99,235,.12),transparent);filter:blur(38px);animation:heroSmoke 7s ease-in-out infinite alternate}
+.splash-screen:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.045),transparent);transform:translateX(-120%);animation:heroLightSweep 4s ease-in-out infinite}
+.splash-content{position:relative;z-index:2;text-align:center;padding:32px;animation:heroSplashRise 1.2s ease both}
+.splash-content .splash-mark{width:82px;height:82px;margin:0 auto 26px;border-radius:26px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(96,165,250,.16),rgba(37,99,235,.26));border:1px solid rgba(147,197,253,.28);box-shadow:0 0 70px rgba(56,189,248,.26),inset 0 1px 0 rgba(255,255,255,.16);font-weight:950;letter-spacing:.08em;color:#dbeafe}
+.splash-content h1{font-size:clamp(2rem,5vw,5.4rem);line-height:.96;margin:0;text-transform:uppercase;letter-spacing:-.06em;color:#f8fafc;text-shadow:0 0 44px rgba(96,165,250,.28)}
+.splash-content p{margin:18px 0 0;color:#bfdbfe;letter-spacing:.18em;text-transform:uppercase;font-size:.78rem;font-weight:800}
+.splash-screen.hide{opacity:0;filter:blur(26px) saturate(1.4);visibility:hidden;pointer-events:none}
+@keyframes heroSmoke{0%{transform:rotate(0deg) scale(1);opacity:.52}100%{transform:rotate(22deg) scale(1.08);opacity:.85}}
+@keyframes heroLightSweep{0%,35%{transform:translateX(-120%)}75%,100%{transform:translateX(120%)}}
+@keyframes heroSplashRise{from{opacity:0;transform:translateY(18px) scale(.97);filter:blur(10px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+.instagram-cta{display:none!important}
+.instagram-photo-cta{position:absolute;right:34px;bottom:34px;z-index:6;display:inline-flex;align-items:center;gap:12px;padding:15px 18px;border-radius:999px;background:linear-gradient(135deg,rgba(15,23,42,.82),rgba(37,99,235,.76));border:1px solid rgba(147,197,253,.42);color:#fff!important;text-decoration:none;font-weight:900;letter-spacing:.01em;box-shadow:0 24px 62px rgba(37,99,235,.38),inset 0 1px 0 rgba(255,255,255,.14);backdrop-filter:blur(18px);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.instagram-photo-cta:before{content:"";width:34px;height:34px;border-radius:999px;background:
+radial-gradient(circle at 30% 30%,#fff 0 4%,transparent 5%),
+linear-gradient(135deg,#f97316,#ec4899 42%,#8b5cf6 70%,#2563eb);box-shadow:0 0 24px rgba(236,72,153,.35)}
+.instagram-photo-cta small{display:block;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:#bfdbfe;line-height:1}
+.instagram-photo-cta b{display:block;font-size:.94rem;line-height:1.1}
+.instagram-photo-cta:hover{transform:translateY(-3px);border-color:rgba(191,219,254,.78);box-shadow:0 30px 76px rgba(37,99,235,.52),0 0 40px rgba(236,72,153,.18)}
+@media(max-width:980px){
+  .instagram-photo-cta{right:18px;bottom:18px;padding:13px 15px}
+  .instagram-photo-cta b{font-size:.86rem}
+}
+
 </style>
 </head>
-<body><div id="app"></div>
+<body>
+<div id="heroSplash" class="splash-screen">
+  <div class="splash-content">
+    <div class="splash-mark">HERO</div>
+    <h1>Bem-vindo à<br>sua nova missão</h1>
+    <p>Aesthetic performance protocol</p>
+  </div>
+</div>
+<div id="app"></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="./supabase-config.js"></script>
 <script>
@@ -55,6 +132,14 @@
   const cats=["HERO - Estética muscular", "HERO - Força real", "HERO - Condicionamento operacional", "HERO - Blindagem articular", "SOF Training", "Tactical Barbell", "HYROX", "ATG / Knees Over Toes", "Mountain Tactical Institute"];
   const adminEmail='marcosestevees@icloud.com';
   const adminPhone='5511924787933';
+
+  function initSplash(){
+    const splash=document.getElementById('heroSplash');
+    if(!splash)return;
+    setTimeout(()=>splash.classList.add('hide'),5000);
+    setTimeout(()=>splash.remove(),6500);
+  }
+
   function supabaseAvailable(){return !!(window.supabase&&window.HERO_SUPABASE_CONFIG&&window.HERO_SUPABASE_CONFIG.url&&window.HERO_SUPABASE_CONFIG.publishableKey);}
   function supabaseClient(){if(!supabaseAvailable())return null; if(!window.heroSupabaseClient){window.heroSupabaseClient=window.supabase.createClient(window.HERO_SUPABASE_CONFIG.url,window.HERO_SUPABASE_CONFIG.publishableKey);} return window.heroSupabaseClient;}
   async function supabaseLogin(email,password){
@@ -3700,15 +3785,15 @@
   function save(d){localStorage.setItem('hero_v12',JSON.stringify(d));}
   function mount(html){$('app').innerHTML=html;}
   function logo(){return `<div class="logo"><div class="word">HERO<span></span></div><small>AESTHETIC PERFORMANCE</small></div>`;}
-  function top(title,actions=''){return `<header class="top no-print"><div>${logo()}<strong>${esc(title)}</strong></div><nav>${actions}<button class="btn secondary small" onclick="HERO.logout()">Sair</button></nav></header>`;}
+  function top(title,actions=''){return `<header class="top no-print"><div>${logo()}<strong>${esc(title)}</strong></div><nav>${actions}<button class="btn secondary small" onclick="HERO.logout()">Sair</button></nav></header>${floatingAIButton()}`;}
   function modal(html){document.body.insertAdjacentHTML('beforeend',`<div class="modal" id="modal"><div class="modal-box"><button class="x" onclick="HERO.closeModal()">×</button>${html}</div></div>`);}
   function closeModal(){const m=$('modal'); if(m)m.remove();}
   function login(){mount(`<main class="login-screen"><div class="login-shell"><section class="login-card"><div class="login-brand"><div><p class="eyebrow">área restrita</p>${logo()}</div><span class="badge">HERO Aesthetic Performance</span></div><h1>Sua missão começa aqui.</h1><p>Acesso exclusivo para alunos autorizados do HERO Aesthetic Performance.</p><form id="loginForm" class="form"><label>E-mail<input name="email" type="email" placeholder="seu e-mail" required></label><label>Senha<input name="password" type="password" placeholder="sua senha" required></label><button class="btn full">Acesso exclusivo para sua missão</button><div id="loginMsg" class="msg"></div></form><p class="hint">Área restrita para alunos autorizados do protocolo HERO.</p><a class="instagram-cta" href="https://instagram.com/marcosesteeves" target="_blank" rel="noopener">Instagram · @marcosesteeves</a></section><section class="login-visual"><div class="visual-photo" style="background-image:url('${heroPortraitImg}')"></div><div class="visual-copy"><p class="eyebrow">Performance for body, business & life</p><h2>Transforme disciplina em identidade.</h2><p>Uma área exclusiva para sua missão. Estética, força, resistência e evolução real em um ambiente premium, tecnológico e feito para execução.</p><div class="visual-mini"><i></i><span>Ambiente exclusivo HERO. Método, disciplina e performance em uma experiência premium.</span></div></div><div class="visual-cards"><div class="visual-card"><b>Prescrição individual</b><span>Treinos liberados por aluno, com estrutura clara, progressão de carga e execução orientada.</span></div><div class="visual-card"><b>Missão com identidade</b><span>Visual forte, atmosfera premium e uma jornada que diferencia a experiência do aluno desde o primeiro acesso.</span></div></div></section></div></main>`); $('loginForm').onsubmit=async e=>{e.preventDefault(); const f=Object.fromEntries(new FormData(e.target)); const msg=$('loginMsg'); msg.textContent='Conectando...'; try{const supa=await supabaseLogin(f.email,f.password); if(supa&&supa.error){msg.textContent=supa.error;return;} if(supa&&supa.profile){const u={email:f.email,role:supa.profile.role,alunoId:supa.aluno?.id||null,supabase:true}; sessionStorage.setItem('hero_session',JSON.stringify(u)); render(); return;}}catch(err){console.warn('Falha Supabase, tentando modo local:',err);} const st=data(); const u=st.users.find(x=>x.email.toLowerCase()===f.email.toLowerCase()&&(x.password===f.password||!x.password)); if(!u){msg.textContent='Acesso não autorizado. Sua missão ainda não foi liberada.';return;} const a=u.alunoId?st.alunos.find(x=>x.id===u.alunoId):null; if(a&&a.status!=='ativo'){msg.textContent='Acesso bloqueado. Fale com o treinador.';return;} sessionStorage.setItem('hero_session',JSON.stringify(u)); render();};}
   function render(){const s=sessionStorage.getItem('hero_session'); if(!s)return login(); const u=JSON.parse(s); if(u.role==='admin') admin(); else student(u.alunoId,false);}
   async function logout(){await supabaseLogout(); sessionStorage.removeItem('hero_session'); login();}
-  function admin(selectedId){const st=data(); const selected=st.alunos.find(a=>a.id===(selectedId||st.alunos[0]?.id)); mount(`${top('Central de prescrição HERO',`<button class="btn small" id="addStudent">Cadastrar aluna</button><button class="btn ghost small" id="openLib">Biblioteca HERO</button>`)}<main class="wrap"><section class="hero"><p class="eyebrow">painel do treinador</p><h1>Central de prescrição HERO</h1><p>Cadastre alunos, monte treinos, salve protocolos e libere missões individuais.</p><div class="stats"><div><b>${st.alunos.length}</b><span>alunas</span></div><div><b>${st.treinos.length}</b><span>protocolos</span></div><div><b>${st.exercicios.length}</b><span>exercícios</span></div><div><b>${st.alunos.filter(a=>a.status==='ativo').length}</b><span>ativos</span></div></div></section><section class="admin-grid"><aside class="panel"><div class="panel-title"><div><h2>Alunas</h2><p>Selecione para prescrever.</p></div></div><div id="studentList"></div></aside><section id="adminDetail" class="panel"></section></section></main>`); $('addStudent').onclick=()=>studentForm(); $('openLib').onclick=()=>library(); drawStudents(selected?.id); drawDetail(selected?.id);}
+  function admin(selectedId){const st=data(); const selected=st.alunos.find(a=>a.id===(selectedId||st.alunos[0]?.id)); window.HERO_SELECTED_ALUNO_ID=selected?.id||null; window.HERO_SELECTED_TREINO_ID=st.treinos.find(t=>t.alunoId===window.HERO_SELECTED_ALUNO_ID)?.id||null; mount(`${top('Central de prescrição HERO',`<button class="btn small" id="addStudent">Cadastrar aluna</button><button class="btn ghost small" id="openLib">Biblioteca HERO</button>`)}<main class="wrap"><section class="hero"><p class="eyebrow">painel do treinador</p><h1>Central de prescrição HERO</h1><p>Cadastre alunos, monte treinos, salve protocolos e libere missões individuais.</p><div class="stats"><div><b>${st.alunos.length}</b><span>alunas</span></div><div><b>${st.treinos.length}</b><span>protocolos</span></div><div><b>${st.exercicios.length}</b><span>exercícios</span></div><div><b>${st.alunos.filter(a=>a.status==='ativo').length}</b><span>ativos</span></div></div></section><section class="admin-grid"><aside class="panel"><div class="panel-title"><div><h2>Alunas</h2><p>Selecione para prescrever.</p></div></div><div id="studentList"></div></aside><section id="adminDetail" class="panel"></section></section></main>`); $('addStudent').onclick=()=>studentForm(); $('openLib').onclick=()=>library(); drawStudents(selected?.id); drawDetail(selected?.id);}
   function drawStudents(selectedId){const st=data(); $('studentList').innerHTML=st.alunos.map(a=>`<button class="student-row ${a.id===selectedId?'active':''}" onclick="HERO.admin('${a.id}')"><strong>${esc(a.nome)}</strong><small>${esc(a.email)}</small><small>${esc(a.objetivo||'Sem objetivo definido')}</small></button>`).join('');}
-  function drawDetail(alunoId){const st=data(); const a=st.alunos.find(x=>x.id===alunoId); const el=$('adminDetail'); if(!a){el.innerHTML='<div class="empty">Cadastre uma aluna para iniciar a prescrição.</div>'; return;} const ts=st.treinos.filter(t=>t.alunoId===a.id); el.innerHTML=`<div class="student-head"><div><p class="eyebrow">aluna selecionada</p><h2>${esc(a.nome)}</h2><p>${esc(a.email)}</p><div><span class="status ${a.status}">${esc(a.status)}</span></div></div><div class="toolbar"><button class="btn ghost small" onclick="HERO.studentForm('${a.id}')">Editar</button><button class="btn secondary small" onclick="HERO.toggleStudent('${a.id}')">${a.status==='ativo'?'Bloquear':'Liberar'}</button><button class="btn ghost small" onclick="HERO.gerarPrescricaoIA('${a.id}')">Gerar com IA</button><button class="btn small" onclick="HERO.newWorkout('${a.id}')">Nova prescrição</button></div></div><div class="note"><b>Objetivo:</b> ${esc(a.objetivo||'Não informado')}<br><b>Plano:</b> ${esc(a.plano||'HERO Aesthetic Performance')}</div><div class="cards">${ts.length?ts.map(t=>workoutCard(t)).join(''):'<div class="empty">Nenhum treino criado para esta aluna.</div>'}</div>`;}
+  function drawDetail(alunoId){const st=data(); const a=st.alunos.find(x=>x.id===alunoId); const el=$('adminDetail'); if(!a){el.innerHTML='<div class="empty">Cadastre uma aluna para iniciar a prescrição.</div>'; return;} const ts=st.treinos.filter(t=>t.alunoId===a.id); el.innerHTML=`<div class="student-head"><div><p class="eyebrow">aluna selecionada</p><h2>${esc(a.nome)}</h2><p>${esc(a.email)}</p><div><span class="status ${a.status}">${esc(a.status)}</span></div></div><div class="toolbar"><button class="btn ghost small" onclick="HERO.studentForm('${a.id}')">Editar</button><button class="btn secondary small" onclick="HERO.toggleStudent('${a.id}')">${a.status==='ativo'?'Bloquear':'Liberar'}</button><button class="btn ghost small" onclick="HERO.gerarPrescricaoIA('${a.id}')">Gerar com IA</button><button class="btn small" onclick="HERO.newWorkout('${a.id}')">Nova prescrição</button><button class="btn danger small" onclick="HERO.deleteStudent('${a.id}')">Excluir cadastro</button></div></div><div class="note"><b>Objetivo:</b> ${esc(a.objetivo||'Não informado')}<br><b>Plano:</b> ${esc(a.plano||'HERO Aesthetic Performance')}</div><div class="cards">${ts.length?ts.map(t=>workoutCard(t)).join(''):'<div class="empty">Nenhum treino criado para esta aluna.</div>'}</div>`;}
   function workoutCard(t){const count=data().exercicios.filter(e=>e.treinoId===t.id).length; return `<article class="workout-card"><div><span class="badge">${t.liberado?'liberado':'bloqueado'}</span><h3>${esc(t.nome)}</h3><p>${esc(t.objetivo)}</p><small>${count} exercícios cadastrados</small></div><div class="toolbar"><button class="btn small" onclick="HERO.editWorkout('${t.id}')">Prescrever</button><button class="btn ghost small" onclick="HERO.student('${t.alunoId}',true)">Visualizar</button><button class="btn secondary small" onclick="HERO.toggleWorkout('${t.id}')">${t.liberado?'Bloquear':'Liberar'}</button><button class="btn ghost small" onclick="HERO.duplicateWorkout('${t.id}')">Duplicar</button></div></article>`;}
 
 
@@ -3757,9 +3842,32 @@
   }
 
 
+
+  function currentTrainerContext(){
+    const s=sessionStorage.getItem('hero_session');
+    if(!s)return {alunoId:null,treinoId:null};
+    const st=data();
+    const alunos=st.alunos||[];
+    const treinos=st.treinos||[];
+    const selectedAluno=window.HERO_SELECTED_ALUNO_ID||alunos[0]?.id||null;
+    const selectedTreino=window.HERO_SELECTED_TREINO_ID||treinos.find(t=>t.alunoId===selectedAluno)?.id||null;
+    return {alunoId:selectedAluno,treinoId:selectedTreino};
+  }
+  function floatingAIButton(){
+    const s=sessionStorage.getItem('hero_session');
+    if(!s)return '';
+    try{
+      const u=JSON.parse(s);
+      if(u.role!=='admin')return '';
+      const ctx=currentTrainerContext();
+      return `<button class="floating-ai-btn no-print" onclick="HERO.abrirChatIA('${ctx.alunoId||''}','${ctx.treinoId||''}')"><span>IA</span> Chat HERO</button>`;
+    }catch(_e){return '';}
+  }
+
   async function abrirChatIA(alunoId,treinoId){
+    const ctx=currentTrainerContext(); alunoId=alunoId||ctx.alunoId; treinoId=treinoId||ctx.treinoId;
     const client=supabaseClient();
-    if(!client){alert('Supabase não configurado. Verifique o arquivo supabase-config.js.');return;}
+    if(!client){alert('Supabase não configurado. Verifique o arquivo supabase-config.js.');return;} if(!alunoId){alert('Selecione ou cadastre uma aluna antes de usar o Chat IA.');return;}
     const {data:{session}}=await client.auth.getSession();
     if(!session){alert('Faça login como treinador antes de usar o chat com IA.');return;}
     const st=data();
@@ -3944,9 +4052,42 @@
   }
 
   function studentForm(id){const st=data(); const a=st.alunos.find(x=>x.id===id)||{nome:'',email:'',senha:'',objetivo:'',plano:'HERO Aesthetic Performance',status:'ativo'}; modal(`<h2>${id?'Editar aluna':'Cadastrar aluna'}</h2><form id="studentForm" class="form"><div class="grid two"><label>Nome<input name="nome" value="${esc(a.nome)}" required></label><label>E-mail<input name="email" type="email" value="${esc(a.email)}" required></label><label>Senha<input name="senha" value="${esc(a.senha)}" required></label><label>Status<select name="status"><option ${a.status==='ativo'?'selected':''}>ativo</option><option ${a.status==='bloqueado'?'selected':''}>bloqueado</option></select></label><label>Plano<input name="plano" value="${esc(a.plano)}"></label><label>Objetivo<input name="objetivo" value="${esc(a.objetivo)}"></label></div><button class="btn">Salvar aluna e prescrever</button></form>`); $('studentForm').onsubmit=async e=>{e.preventDefault(); const btn=e.target.querySelector('button'); const oldBtn=btn.textContent; btn.textContent='Salvando...'; btn.disabled=true; const f=Object.fromEntries(new FormData(e.target)); const d=data(); let alunoId=id; let t=null; try{if(!id&&supabaseAvailable()){const result=await cadastrarAlunaSupabase({nome:f.nome,email:f.email,senha:f.senha,objetivo:f.objetivo||'Estética, força e evolução real',plano:f.plano||'HERO Aesthetic Performance',status:f.status||'ativo'}); const localAluno=syncAlunoLocal(result.aluno); alunoId=localAluno.id; t=syncTreinoLocal(result.treino,alunoId); closeModal(); editWorkout(t.id); return;}}catch(err){alert('Erro ao cadastrar no Supabase: '+err.message); btn.textContent=oldBtn; btn.disabled=false; return;} if(id){Object.assign(d.alunos.find(x=>x.id===id),f); const u=d.users.find(u=>u.alunoId===id); if(u){u.email=f.email;u.password=f.senha;}} else {alunoId=uid(); d.alunos.push({...f,id:alunoId,foto:'',data:new Date().toLocaleDateString('pt-BR')}); d.users.push({email:f.email,password:f.senha,role:'student',alunoId});} t=d.treinos.find(t=>t.alunoId===alunoId); if(!t){t={id:uid(),alunoId,nome:'Protocolo HERO - treino do dia',fase:'Foundation',objetivo:f.objetivo||'Estética, força e evolução real',observacoes:'Execute com precisão. Evolua com disciplina.',liberado:true}; d.treinos.push(t);} save(d); closeModal(); editWorkout(t.id);};}
+
+  async function deleteStudent(alunoId){
+    const st=data();
+    const a=st.alunos.find(x=>x.id===alunoId);
+    if(!a){alert('Aluna não encontrada.');return;}
+    if(!confirm(`Excluir o cadastro de ${a.nome}? Essa ação remove a aluna da plataforma e das tabelas vinculadas. No Authentication, o usuário pode continuar existindo se a função server-side não for usada.`))return;
+    try{
+      const client=supabaseClient();
+      if(client&&supabaseAvailable()){
+        const {data:{session}}=await client.auth.getSession();
+        if(session){
+          const response=await fetch(`${window.HERO_SUPABASE_CONFIG.url}/functions/v1/delete-student`,{
+            method:'POST',
+            headers:{'Content-Type':'application/json',Authorization:`Bearer ${session.access_token}`},
+            body:JSON.stringify({aluno_id:alunoId})
+          });
+          const result=await response.json().catch(()=>({error:'Resposta inválida da função delete-student.'}));
+          if(!response.ok||result.error)throw new Error(result.error||'Erro ao excluir aluna no Supabase.');
+        }
+      }
+      const d=data();
+      const treinoIds=d.treinos.filter(t=>t.alunoId===alunoId).map(t=>t.id);
+      d.exercicios=d.exercicios.filter(e=>!treinoIds.includes(e.treinoId));
+      d.treinos=d.treinos.filter(t=>t.alunoId!==alunoId);
+      d.users=d.users.filter(u=>u.alunoId!==alunoId);
+      d.alunos=d.alunos.filter(x=>x.id!==alunoId);
+      save(d);
+      admin(d.alunos[0]?.id);
+    }catch(err){
+      alert('Erro ao excluir cadastro: '+err.message);
+    }
+  }
+
   function toggleStudent(id){const d=data(); const a=d.alunos.find(x=>x.id===id); a.status=a.status==='ativo'?'bloqueado':'ativo'; save(d); admin(id);}
   function newWorkout(alunoId){const d=data(); const t={id:uid(),alunoId,nome:'Protocolo HERO - treino do dia',fase:'Foundation',objetivo:'Estética, força, resistência e evolução real.',observacoes:'',liberado:true}; d.treinos.push(t); save(d); editWorkout(t.id);}
-  async function editWorkout(id){let st=data(); let t=st.treinos.find(x=>x.id===id); if(t&&supabaseAvailable()){await syncExerciciosPrescritosSupabase(id,t.alunoId); st=data(); t=st.treinos.find(x=>x.id===id);} const a=st.alunos.find(x=>x.id===t.alunoId); const ex=st.exercicios.filter(e=>e.treinoId===id).sort((a,b)=>days.indexOf(a.dia)-days.indexOf(b.dia)||Number(a.ordem)-Number(b.ordem)); const groups=[...new Set(st.library.map(x=>x.grupo).filter(Boolean))].sort(); mount(`${top('Prescrição HERO',`<button class="btn secondary small" id="backAdmin">Voltar</button><button class="btn ghost small" id="openLib">Biblioteca</button><button class="btn ghost small" onclick="HERO.syncWorkoutFromSupabase('${id}')">Sincronizar Supabase</button><button class="btn ghost small" onclick="HERO.gerarPrescricaoIA('${t.alunoId}')">Gerar IA</button><button class="btn ghost small" onclick="HERO.abrirChatIA('${t.alunoId}','${t.id}')">Chat IA</button><button class="btn small" id="addExercise">Adicionar exercício</button>`)}<main class="wrap"><section class="hero"><p class="eyebrow">prescrição individual</p><h1>${esc(a.nome)}</h1><p>Adicione os exercícios do dia, salve o protocolo e libere para a área da aluna.</p></section><section class="panel"><form id="workoutForm" class="form"><div class="grid two"><label>Nome do protocolo<input name="nome" value="${esc(t.nome)}"></label><label>Fase<input name="fase" value="${esc(t.fase)}"></label></div><label>Objetivo<textarea name="objetivo">${esc(t.objetivo)}</textarea></label><label>Observações gerais<textarea name="observacoes">${esc(t.observacoes)}</textarea></label><div class="toolbar"><button class="btn">Salvar protocolo</button><button type="button" class="btn secondary" onclick="HERO.toggleWorkout('${t.id}')">${t.liberado?'Bloquear missão':'Liberar missão'}</button><button type="button" class="btn ghost" onclick="HERO.student('${a.id}',true)">Visualizar área da aluna</button></div></form><div class="quick-prescription no-print"><p class="eyebrow">prescrição rápida</p><h3>Adicionar exercício pelo banco HERO</h3><p class="muted">Filtre, escolha o dia e adicione exercícios sem abrir a biblioteca completa.</p><div class="quick-grid"><select id="quickDay">${days.map(day=>`<option>${day}</option>`).join('')}</select><select id="quickCat"><option value="">Todos os métodos</option>${cats.map(c=>`<option>${c}</option>`).join('')}</select><select id="quickGrp"><option value="">Todos os grupos</option>${groups.map(g=>`<option>${esc(g)}</option>`).join('')}</select></div><input id="quickSearch" class="input" placeholder="Buscar por nome, tradução ou execução"><div id="quickResults" class="quick-results"></div></div></section><section class="panel"><div class="panel-title"><div><p class="eyebrow">exercícios prescritos</p><h2>Treino do dia e divisão semanal</h2></div><button class="btn small" onclick="HERO.exerciseForm('${t.id}')">Adicionar exercício</button></div><div class="exercise-list">${ex.length?ex.map(e=>exerciseCard(e)).join(''):'<div class="empty">Adicione o primeiro exercício desta missão.</div>'}</div></section></main>`); $('backAdmin').onclick=()=>admin(a.id); $('openLib').onclick=()=>library(t.id); $('addExercise').onclick=()=>exerciseForm(t.id); $('workoutForm').onsubmit=e=>{e.preventDefault(); const f=Object.fromEntries(new FormData(e.target)); Object.assign(t,f); save(st); editWorkout(id);}; ['quickSearch','quickCat','quickGrp','quickDay'].forEach(k=>{const el=$(k); if(el)el.oninput=()=>drawQuick(t.id);}); drawQuick(t.id);}
+  async function editWorkout(id){window.HERO_SELECTED_TREINO_ID=id; let st=data(); let t=st.treinos.find(x=>x.id===id); if(t)window.HERO_SELECTED_ALUNO_ID=t.alunoId; if(t&&supabaseAvailable()){await syncExerciciosPrescritosSupabase(id,t.alunoId); st=data(); t=st.treinos.find(x=>x.id===id);} const a=st.alunos.find(x=>x.id===t.alunoId); const ex=st.exercicios.filter(e=>e.treinoId===id).sort((a,b)=>days.indexOf(a.dia)-days.indexOf(b.dia)||Number(a.ordem)-Number(b.ordem)); const groups=[...new Set(st.library.map(x=>x.grupo).filter(Boolean))].sort(); mount(`${top('Prescrição HERO',`<button class="btn secondary small" id="backAdmin">Voltar</button><button class="btn ghost small" id="openLib">Biblioteca</button><button class="btn ghost small" onclick="HERO.syncWorkoutFromSupabase('${id}')">Sincronizar Supabase</button><button class="btn ghost small" onclick="HERO.gerarPrescricaoIA('${t.alunoId}')">Gerar IA</button><button class="btn ghost small" onclick="HERO.abrirChatIA('${t.alunoId}','${t.id}')">Chat IA</button><button class="btn small" id="addExercise">Adicionar exercício</button>`)}<main class="wrap"><section class="hero"><p class="eyebrow">prescrição individual</p><h1>${esc(a.nome)}</h1><p>Adicione os exercícios do dia, salve o protocolo e libere para a área da aluna.</p></section><section class="panel"><form id="workoutForm" class="form"><div class="grid two"><label>Nome do protocolo<input name="nome" value="${esc(t.nome)}"></label><label>Fase<input name="fase" value="${esc(t.fase)}"></label></div><label>Objetivo<textarea name="objetivo">${esc(t.objetivo)}</textarea></label><label>Observações gerais<textarea name="observacoes">${esc(t.observacoes)}</textarea></label><div class="toolbar"><button class="btn">Salvar protocolo</button><button type="button" class="btn secondary" onclick="HERO.toggleWorkout('${t.id}')">${t.liberado?'Bloquear missão':'Liberar missão'}</button><button type="button" class="btn ghost" onclick="HERO.student('${a.id}',true)">Visualizar área da aluna</button></div></form><div class="quick-prescription no-print"><p class="eyebrow">prescrição rápida</p><h3>Adicionar exercício pelo banco HERO</h3><p class="muted">Filtre, escolha o dia e adicione exercícios sem abrir a biblioteca completa.</p><div class="quick-grid"><select id="quickDay">${days.map(day=>`<option>${day}</option>`).join('')}</select><select id="quickCat"><option value="">Todos os métodos</option>${cats.map(c=>`<option>${c}</option>`).join('')}</select><select id="quickGrp"><option value="">Todos os grupos</option>${groups.map(g=>`<option>${esc(g)}</option>`).join('')}</select></div><input id="quickSearch" class="input" placeholder="Buscar por nome, tradução ou execução"><div id="quickResults" class="quick-results"></div></div></section><section class="panel"><div class="panel-title"><div><p class="eyebrow">exercícios prescritos</p><h2>Treino do dia e divisão semanal</h2></div><button class="btn small" onclick="HERO.exerciseForm('${t.id}')">Adicionar exercício</button></div><div class="exercise-list">${ex.length?ex.map(e=>exerciseCard(e)).join(''):'<div class="empty">Adicione o primeiro exercício desta missão.</div>'}</div></section></main>`); $('backAdmin').onclick=()=>admin(a.id); $('openLib').onclick=()=>library(t.id); $('addExercise').onclick=()=>exerciseForm(t.id); $('workoutForm').onsubmit=e=>{e.preventDefault(); const f=Object.fromEntries(new FormData(e.target)); Object.assign(t,f); save(st); editWorkout(id);}; ['quickSearch','quickCat','quickGrp','quickDay'].forEach(k=>{const el=$(k); if(el)el.oninput=()=>drawQuick(t.id);}); drawQuick(t.id);}
   function exerciseCard(e){return `<article class="exercise"><div><span class="badge">${esc(e.dia)} · ${esc(e.categoria)}</span><h3>${esc(e.nome)}</h3>${e.traducao?`<small class="translation">${esc(e.traducao)}</small>`:''}<p>${esc(e.execucao)}</p><div class="mini-grid"><span><b>${esc(e.series)}</b>séries</span><span><b>${esc(e.reps)}</b>reps</span><span><b>${esc(e.carga)}</b>carga</span><span><b>${esc(e.metodo)}</b>método</span></div>${e.metodoDescricao?`<p class="advanced-note"><b>Execução do método:</b> ${esc(e.metodoDescricao)}</p>`:''}</div><div class="toolbar"><button class="btn small" onclick="HERO.exerciseForm('${e.treinoId}','${e.id}')">Editar</button><button class="btn danger small" onclick="HERO.deleteExercise('${e.id}')">Excluir</button></div></article>`;}
   function exerciseForm(treinoId,id){const d=data(); const groups=[...new Set(d.library.map(x=>x.grupo).filter(Boolean))].sort(); const e=d.exercicios.find(x=>x.id===id)||{treinoId,dia:'segunda-feira',bloco:'Treino do dia',nome:'',traducao:'',grupo:'',categoria:'Estética muscular',execucao:'',series:'3',reps:'10-12',carga:'a definir',descanso:'60s',cadencia:'2-0-2',metodo:'tradicional',metodoDescricao:defaultAdvanced.tradicional,progressaoAtiva:false,progressao:[],obs:'',video:'',ordem:d.exercicios.filter(x=>x.treinoId===treinoId).length+1}; modal(`<h2>${id?'Editar exercício':'Adicionar exercício'}</h2><form id="exerciseForm" class="form"><div class="grid two"><label>Dia da semana<select name="dia">${days.map(day=>`<option ${e.dia===day?'selected':''}>${day}</option>`).join('')}</select></label><label>Bloco do treino<input name="bloco" value="${esc(e.bloco)}"></label><label>Nome do exercício<input name="nome" value="${esc(e.nome)}" required></label><label>Tradução<input name="traducao" value="${esc(e.traducao)}"></label><div><button type="button" class="btn secondary full" id="openPicker">Escolher exercício do banco HERO</button></div><div class="exercise-picker" id="exercisePicker"><p class="eyebrow">banco HERO</p><div class="picker-grid"><input id="pickerQ" class="input" placeholder="Buscar exercício"><select id="pickerCat"><option value="">Todos os métodos</option>${cats.map(c=>`<option>${c}</option>`).join('')}</select><select id="pickerGrp"><option value="">Todos os grupos</option>${groups.map(g=>`<option>${esc(g)}</option>`).join('')}</select></div><div id="pickerResults" class="picker-results"></div></div><label>Grupo muscular<input name="grupo" value="${esc(e.grupo)}"></label><label>Categoria HERO<select name="categoria">${cats.map(c=>`<option ${e.categoria===c?'selected':''}>${c}</option>`).join('')}</select></label></div><label>Como executar<textarea name="execucao">${esc(e.execucao)}</textarea></label><div class="grid two"><label>Séries<input name="series" value="${esc(e.series)}"></label><label>Repetições<input name="reps" value="${esc(e.reps)}"></label><label>Carga<input name="carga" value="${esc(e.carga)}"></label><label>Descanso<input name="descanso" value="${esc(e.descanso)}"></label><label>Cadência<input name="cadencia" value="${esc(e.cadencia)}"></label><label>Ordem<input name="ordem" type="number" value="${esc(e.ordem)}"></label></div><label>Método avançado<select name="metodo" id="methodSelect">${Object.keys(defaultAdvanced).map(m=>`<option ${e.metodo===m?'selected':''}>${m}</option>`).join('')}</select></label><div class="method-desc" id="methodDesc"><b>Como executar:</b> ${esc(e.metodoDescricao||defaultAdvanced[e.metodo]||'')}</div><label>Descrição personalizada do método<textarea name="metodoDescricao" id="methodText">${esc(e.metodoDescricao||defaultAdvanced[e.metodo]||'')}</textarea></label><label class="check"><input type="checkbox" id="progToggle" ${e.progressaoAtiva?'checked':''}>Progressão de carga série à série</label><div class="progression-box" id="progBox" style="display:${e.progressaoAtiva?'block':'none'}"><b>Progressão de carga série à série</b><p class="muted">Adicione série, repetições e carga específica para cada etapa.</p><div id="progRows"></div><button type="button" class="btn ghost small" id="addProg">Adicionar mais uma série</button></div><label>Observação técnica<textarea name="obs">${esc(e.obs)}</textarea></label><label>Vídeo demonstrativo<input name="video" value="${esc(e.video)}"></label><button class="btn">Salvar exercício</button></form>`); const select=$('methodSelect'), desc=$('methodDesc'), methodText=$('methodText'), toggle=$('progToggle'), box=$('progBox'), rows=$('progRows'); const pickerBtn=$('openPicker'), picker=$('exercisePicker'), pickerQ=$('pickerQ'), pickerCat=$('pickerCat'), pickerGrp=$('pickerGrp'), pickerResults=$('pickerResults'); function fillExercise(libId){const x=data().library.find(y=>y.id===libId); if(!x)return; document.querySelector('[name=nome]').value=x.nome||''; document.querySelector('[name=traducao]').value=x.traducao||''; document.querySelector('[name=grupo]').value=x.grupo||''; document.querySelector('[name=categoria]').value=x.categoria||'Estética muscular'; document.querySelector('[name=execucao]').value=x.execucao||''; document.querySelector('[name=video]').value=x.video||''; if(picker)picker.classList.remove('open');} function drawPicker(){if(!pickerResults)return; const q=(pickerQ?.value||'').toLowerCase(), c=pickerCat?.value||'', g=pickerGrp?.value||''; const arr=data().library.filter(x=>(!c||x.categoria===c)&&(!g||x.grupo===g)&&(!q||[x.nome,x.traducao,x.execucao,x.grupo,x.categoria].join(' ').toLowerCase().includes(q))).slice(0,30); pickerResults.innerHTML=arr.map(x=>`<button type="button" class="picker-card" onclick="HERO.pickExercise('${x.id}')"><strong>${esc(x.nome)}</strong>${x.traducao?`<small>${esc(x.traducao)}</small>`:''}<small>${esc(x.categoria)} · ${esc(x.grupo)}</small></button>`).join('')||'<div class="empty">Nenhum exercício encontrado.</div>'; } window.HERO.pickExercise=fillExercise; if(pickerBtn)pickerBtn.onclick=()=>{picker.classList.toggle('open'); drawPicker();}; [pickerQ,pickerCat,pickerGrp].forEach(el=>{if(el)el.oninput=drawPicker;}); function updateMethod(){const txt=defaultAdvanced[select.value]||''; desc.innerHTML='<b>Como executar:</b> '+esc(txt); methodText.value=txt;} select.onchange=updateMethod; let prog=Array.isArray(e.progressao)?JSON.parse(JSON.stringify(e.progressao)):[]; if(!prog.length) prog=[{serie:'1',reps:e.reps||'',carga:e.carga||''}]; function drawProg(){rows.innerHTML=prog.map((r,i)=>`<div class="prog-row"><label>Série<input data-k="serie" data-i="${i}" value="${esc(r.serie)}"></label><label>Repetições<input data-k="reps" data-i="${i}" value="${esc(r.reps)}"></label><label>Carga<input data-k="carga" data-i="${i}" value="${esc(r.carga)}"></label><button type="button" class="btn danger small" onclick="HERO.removeProg(${i})">Remover</button></div>`).join(''); rows.querySelectorAll('input').forEach(inp=>inp.oninput=()=>{prog[inp.dataset.i][inp.dataset.k]=inp.value;});} window.__heroProg=prog; window.HERO.removeProg=i=>{prog.splice(i,1); if(!prog.length) prog.push({serie:'1',reps:'',carga:''}); drawProg();}; drawProg(); $('addProg').onclick=()=>{prog.push({serie:String(prog.length+1),reps:'',carga:''}); drawProg();}; toggle.onchange=()=>{box.style.display=toggle.checked?'block':'none'}; $('exerciseForm').onsubmit=ev=>{ev.preventDefault(); rows.querySelectorAll('input').forEach(inp=>{prog[inp.dataset.i][inp.dataset.k]=inp.value;}); const f=Object.fromEntries(new FormData(ev.target)); f.metodoDescricao=methodText.value; f.progressaoAtiva=toggle.checked; f.progressao=toggle.checked?prog:[]; const st=data(); if(id) Object.assign(st.exercicios.find(x=>x.id===id),f); else st.exercicios.push({...f,id:uid(),treinoId}); save(st); closeModal(); editWorkout(treinoId);};}
   function deleteExercise(id){const d=data(); const e=d.exercicios.find(x=>x.id===id); if(!confirm('Excluir este exercício?'))return; d.exercicios=d.exercicios.filter(x=>x.id!==id); save(d); editWorkout(e.treinoId);}
@@ -3981,8 +4122,8 @@
     editWorkout(treinoId);
   }
 
-  window.HERO={abrirChatIA,syncWorkoutFromSupabase,gerarPrescricaoIA,admin,studentForm,toggleStudent,newWorkout,editWorkout,duplicateWorkout,toggleWorkout,exerciseForm,deleteExercise,libraryForm,addFromLibrary,student,photoEditor,closeModal,logout,toggleExerciseDone,finishWorkout,quickAddFromLibrary,drawQuick};
-  document.addEventListener('DOMContentLoaded',render);
+  window.HERO={deleteStudent,abrirChatIA,syncWorkoutFromSupabase,gerarPrescricaoIA,admin,studentForm,toggleStudent,newWorkout,editWorkout,duplicateWorkout,toggleWorkout,exerciseForm,deleteExercise,libraryForm,addFromLibrary,student,photoEditor,closeModal,logout,toggleExerciseDone,finishWorkout,quickAddFromLibrary,drawQuick};
+  document.addEventListener('DOMContentLoaded',()=>{initSplash();render();});
 })();
 </script>
 </body>
