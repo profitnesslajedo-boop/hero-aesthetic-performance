@@ -90,12 +90,89 @@ linear-gradient(135deg,#f97316,#ec4899 42%,#8b5cf6 70%,#2563eb);box-shadow:0 0 2
   .instagram-photo-cta b{font-size:.86rem}
 }
 
+
+/* Ajuste final dos cards da página inicial */
+.login-visual .visual-cards{
+  margin-top:28px!important;
+  display:grid!important;
+  gap:18px!important;
+  align-self:start!important;
+  transform:translateY(10px)!important;
+}
+.login-visual .visual-card{
+  padding:18px 20px!important;
+  min-height:auto!important;
+  max-width:430px!important;
+  border-radius:22px!important;
+}
+.login-visual .visual-card b{
+  display:block!important;
+  font-size:.96rem!important;
+  line-height:1.15!important;
+  margin-bottom:7px!important;
+  letter-spacing:.01em!important;
+}
+.login-visual .visual-card span{
+  display:block!important;
+  font-size:.82rem!important;
+  line-height:1.42!important;
+  opacity:.9!important;
+}
+.login-visual .visual-copy{
+  padding-bottom:0!important;
+}
+.login-visual .visual-copy h2{
+  max-width:510px!important;
+}
+.login-visual .visual-copy p{
+  max-width:470px!important;
+}
+@media(max-width:980px){
+  .login-visual .visual-cards{
+    transform:none!important;
+    margin-top:18px!important;
+  }
+  .login-visual .visual-card{
+    max-width:100%!important;
+  }
+}
+
+
+/* Ajuste final splash Instagram minimalista */
+.splash-content .splash-mark{display:none!important}
+.splash-instagram{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 28px;
+  padding:10px 18px;
+  border-radius:999px;
+  color:#dbeafe;
+  font-size:.82rem;
+  font-weight:900;
+  letter-spacing:.16em;
+  text-transform:lowercase;
+  background:rgba(15,23,42,.28);
+  border:1px solid rgba(147,197,253,.22);
+  box-shadow:0 18px 54px rgba(37,99,235,.18), inset 0 1px 0 rgba(255,255,255,.08);
+  backdrop-filter:blur(14px);
+}
+.splash-instagram:before{
+  content:"";
+  width:8px;
+  height:8px;
+  margin-right:10px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#38bdf8,#2563eb);
+  box-shadow:0 0 22px rgba(56,189,248,.7);
+}
+
 </style>
 </head>
 <body>
 <div id="heroSplash" class="splash-screen">
   <div class="splash-content">
-    <div class="splash-mark">HERO</div>
+    <div class="splash-instagram">@marcosesteeves</div>
     <h1>Bem-vindo à<br>sua nova missão</h1>
     <p>Aesthetic performance protocol</p>
   </div>
@@ -3788,7 +3865,7 @@ linear-gradient(135deg,#f97316,#ec4899 42%,#8b5cf6 70%,#2563eb);box-shadow:0 0 2
   function top(title,actions=''){return `<header class="top no-print"><div>${logo()}<strong>${esc(title)}</strong></div><nav>${actions}<button class="btn secondary small" onclick="HERO.logout()">Sair</button></nav></header>${floatingAIButton()}`;}
   function modal(html){document.body.insertAdjacentHTML('beforeend',`<div class="modal" id="modal"><div class="modal-box"><button class="x" onclick="HERO.closeModal()">×</button>${html}</div></div>`);}
   function closeModal(){const m=$('modal'); if(m)m.remove();}
-  function login(){mount(`<main class="login-screen"><div class="login-shell"><section class="login-card"><div class="login-brand"><div><p class="eyebrow">área restrita</p>${logo()}</div><span class="badge">HERO Aesthetic Performance</span></div><h1>Sua missão começa aqui.</h1><p>Acesso exclusivo para alunos autorizados do HERO Aesthetic Performance.</p><form id="loginForm" class="form"><label>E-mail<input name="email" type="email" placeholder="seu e-mail" required></label><label>Senha<input name="password" type="password" placeholder="sua senha" required></label><button class="btn full">Acesso exclusivo para sua missão</button><div id="loginMsg" class="msg"></div></form><p class="hint">Área restrita para alunos autorizados do protocolo HERO.</p><a class="instagram-cta" href="https://instagram.com/marcosesteeves" target="_blank" rel="noopener">Instagram · @marcosesteeves</a></section><section class="login-visual"><div class="visual-photo" style="background-image:url('${heroPortraitImg}')"></div><div class="visual-copy"><p class="eyebrow">Performance for body, business & life</p><h2>Transforme disciplina em identidade.</h2><p>Uma área exclusiva para sua missão. Estética, força, resistência e evolução real em um ambiente premium, tecnológico e feito para execução.</p><div class="visual-mini"><i></i><span>Ambiente exclusivo HERO. Método, disciplina e performance em uma experiência premium.</span></div></div><div class="visual-cards"><div class="visual-card"><b>Prescrição individual</b><span>Treinos liberados por aluno, com estrutura clara, progressão de carga e execução orientada.</span></div><div class="visual-card"><b>Missão com identidade</b><span>Visual forte, atmosfera premium e uma jornada que diferencia a experiência do aluno desde o primeiro acesso.</span></div></div></section></div></main>`); $('loginForm').onsubmit=async e=>{e.preventDefault(); const f=Object.fromEntries(new FormData(e.target)); const msg=$('loginMsg'); msg.textContent='Conectando...'; try{const supa=await supabaseLogin(f.email,f.password); if(supa&&supa.error){msg.textContent=supa.error;return;} if(supa&&supa.profile){const u={email:f.email,role:supa.profile.role,alunoId:supa.aluno?.id||null,supabase:true}; sessionStorage.setItem('hero_session',JSON.stringify(u)); render(); return;}}catch(err){console.warn('Falha Supabase, tentando modo local:',err);} const st=data(); const u=st.users.find(x=>x.email.toLowerCase()===f.email.toLowerCase()&&(x.password===f.password||!x.password)); if(!u){msg.textContent='Acesso não autorizado. Sua missão ainda não foi liberada.';return;} const a=u.alunoId?st.alunos.find(x=>x.id===u.alunoId):null; if(a&&a.status!=='ativo'){msg.textContent='Acesso bloqueado. Fale com o treinador.';return;} sessionStorage.setItem('hero_session',JSON.stringify(u)); render();};}
+  function login(){mount(`<main class="login-screen"><div class="login-shell"><section class="login-card"><div class="login-brand"><div><p class="eyebrow">área restrita</p>${logo()}</div><span class="badge">HERO Aesthetic Performance</span></div><h1>VAMOS VENCER A GUERRA HOJE!</h1><p>Acesso exclusivo para alunos autorizados do HERO Aesthetic Performance.</p><form id="loginForm" class="form"><label>E-mail<input name="email" type="email" placeholder="seu e-mail" required></label><label>Senha<input name="password" type="password" placeholder="sua senha" required></label><button class="btn full">Acesso exclusivo para sua missão</button><div id="loginMsg" class="msg"></div></form><p class="hint">Área restrita para alunos autorizados do protocolo HERO.</p><a class="instagram-cta" href="https://instagram.com/marcosesteeves" target="_blank" rel="noopener">Instagram · @marcosesteeves</a></section><section class="login-visual"><div class="visual-photo" style="background-image:url('${heroPortraitImg}')"></div><div class="visual-copy"><p class="eyebrow">Performance for body, business & life</p><h2>Transforme disciplina em identidade.</h2><p>Uma área exclusiva para sua missão. Estética, força, resistência e evolução real em um ambiente premium, tecnológico e feito para execução.</p><div class="visual-mini"><i></i><span>Ambiente exclusivo HERO. Método, disciplina e performance em uma experiência premium.</span></div></div><div class="visual-cards"><div class="visual-card"><b>Prescrição individual</b><span>Treinos liberados por aluno, com estrutura clara, progressão de carga e execução orientada.</span></div><div class="visual-card"><b>Missão com identidade</b><span>Visual forte, atmosfera premium e uma jornada que diferencia a experiência do aluno desde o primeiro acesso.</span></div></div></section></div></main>`); $('loginForm').onsubmit=async e=>{e.preventDefault(); const f=Object.fromEntries(new FormData(e.target)); const msg=$('loginMsg'); msg.textContent='Conectando...'; try{const supa=await supabaseLogin(f.email,f.password); if(supa&&supa.error){msg.textContent=supa.error;return;} if(supa&&supa.profile){const u={email:f.email,role:supa.profile.role,alunoId:supa.aluno?.id||null,supabase:true}; sessionStorage.setItem('hero_session',JSON.stringify(u)); render(); return;}}catch(err){console.warn('Falha Supabase, tentando modo local:',err);} const st=data(); const u=st.users.find(x=>x.email.toLowerCase()===f.email.toLowerCase()&&(x.password===f.password||!x.password)); if(!u){msg.textContent='Acesso não autorizado. Sua missão ainda não foi liberada.';return;} const a=u.alunoId?st.alunos.find(x=>x.id===u.alunoId):null; if(a&&a.status!=='ativo'){msg.textContent='Acesso bloqueado. Fale com o treinador.';return;} sessionStorage.setItem('hero_session',JSON.stringify(u)); render();};}
   function render(){const s=sessionStorage.getItem('hero_session'); if(!s)return login(); const u=JSON.parse(s); if(u.role==='admin') admin(); else student(u.alunoId,false);}
   async function logout(){await supabaseLogout(); sessionStorage.removeItem('hero_session'); login();}
   function admin(selectedId){const st=data(); const selected=st.alunos.find(a=>a.id===(selectedId||st.alunos[0]?.id)); window.HERO_SELECTED_ALUNO_ID=selected?.id||null; window.HERO_SELECTED_TREINO_ID=st.treinos.find(t=>t.alunoId===window.HERO_SELECTED_ALUNO_ID)?.id||null; mount(`${top('Central de prescrição HERO',`<button class="btn small" id="addStudent">Cadastrar aluna</button><button class="btn ghost small" id="openLib">Biblioteca HERO</button>`)}<main class="wrap"><section class="hero"><p class="eyebrow">painel do treinador</p><h1>Central de prescrição HERO</h1><p>Cadastre alunos, monte treinos, salve protocolos e libere missões individuais.</p><div class="stats"><div><b>${st.alunos.length}</b><span>alunas</span></div><div><b>${st.treinos.length}</b><span>protocolos</span></div><div><b>${st.exercicios.length}</b><span>exercícios</span></div><div><b>${st.alunos.filter(a=>a.status==='ativo').length}</b><span>ativos</span></div></div></section><section class="admin-grid"><aside class="panel"><div class="panel-title"><div><h2>Alunas</h2><p>Selecione para prescrever.</p></div></div><div id="studentList"></div></aside><section id="adminDetail" class="panel"></section></section></main>`); $('addStudent').onclick=()=>studentForm(); $('openLib').onclick=()=>library(); drawStudents(selected?.id); drawDetail(selected?.id);}
