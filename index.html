@@ -7108,7 +7108,7 @@ dialog,
         msg.textContent='Prescrição gerada com sucesso. Revise antes de liberar.';
         setTimeout(()=>{closeModal(); admin(alunoId);},700);
       }catch(err){
-        msg.textContent='Erro ao gerar protocolo HERO: '+err.message+' | Verifique se a função generate-prescription está implantada e se OPENAI_API_KEY está nos Secrets do Supabase.';
+        msg.textContent='Erro ao gerar protocolo HERO: '+err.message+' | Verifique se a Edge Function generate-prescription está implantada e se OPENAI_API_KEY está nos Secrets do Supabase.';
         btn.disabled=false;
         btn.textContent=old;
       }
