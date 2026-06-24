@@ -3585,6 +3585,162 @@ dialog,
   }
 }
 
+
+/* COMUNIDADE HERO PLUS: interação, alinhamento e conexão */
+.community-composer{
+  display:grid!important;
+  gap:16px!important;
+}
+.community-composer label{
+  display:grid!important;
+  gap:8px!important;
+  margin:0!important;
+  color:rgba(226,232,240,.92)!important;
+  font-size:.78rem!important;
+  font-weight:800!important;
+  letter-spacing:.02em!important;
+}
+.community-composer textarea,
+.community-composer select,
+.community-composer input[type="file"],
+.community-comment-form input{
+  width:100%!important;
+  margin:0!important;
+}
+.community-composer textarea{
+  min-height:128px!important;
+  resize:vertical!important;
+  line-height:1.5!important;
+}
+.community-row{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  gap:14px!important;
+  align-items:start!important;
+}
+.community-composer .btn.full{
+  width:100%!important;
+  min-height:46px!important;
+  margin-top:2px!important;
+  border-radius:14px!important;
+}
+.community-quick-actions{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:8px!important;
+}
+.community-quick-actions button{
+  min-height:40px!important;
+  padding:0 10px!important;
+  border-radius:12px!important;
+  border:1px solid rgba(148,163,184,.14)!important;
+  background:rgba(2,6,23,.28)!important;
+  color:rgba(219,234,254,.92)!important;
+  font-size:.70rem!important;
+  font-weight:800!important;
+  box-shadow:none!important;
+}
+.community-quick-actions button:hover{
+  border-color:rgba(96,165,250,.38)!important;
+  background:rgba(37,99,235,.13)!important;
+}
+.community-prompt-card{
+  border:1px solid rgba(96,165,250,.18);
+  background:linear-gradient(180deg,rgba(37,99,235,.10),rgba(2,6,23,.24));
+  border-radius:18px;
+  padding:14px;
+  display:grid;
+  gap:10px;
+}
+.community-prompt-card strong{
+  color:#f8fafc;
+  font-size:.88rem;
+}
+.community-prompt-card p{
+  margin:0;
+  color:rgba(203,213,225,.84);
+  font-size:.82rem;
+  line-height:1.42;
+}
+.community-challenge{
+  border:1px solid rgba(96,165,250,.22);
+  background:rgba(37,99,235,.10);
+  border-radius:20px;
+  padding:16px;
+  display:grid;
+  gap:10px;
+}
+.community-challenge small{
+  color:#93c5fd;
+  font-size:.68rem;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.community-challenge h3{
+  margin:0!important;
+  color:#f8fafc!important;
+  font-size:1rem!important;
+}
+.community-challenge p{
+  margin:0!important;
+  color:rgba(203,213,225,.86)!important;
+  font-size:.86rem!important;
+  line-height:1.45!important;
+}
+.community-stats-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+  margin:0 0 18px;
+}
+.community-stat{
+  border:1px solid rgba(148,163,184,.12);
+  background:rgba(15,23,42,.50);
+  border-radius:18px;
+  padding:14px;
+}
+.community-stat span{
+  display:block;
+  color:rgba(148,163,184,.82);
+  font-size:.68rem;
+  font-weight:900;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+}
+.community-stat strong{
+  display:block;
+  margin-top:6px;
+  color:#f8fafc;
+  font-size:1.25rem;
+  line-height:1;
+}
+.community-file{
+  min-height:100%;
+}
+.community-file input[type="file"]{
+  min-height:46px!important;
+  display:flex!important;
+  align-items:center!important;
+}
+.community-post{
+  transition:border-color .2s ease, transform .2s ease, background .2s ease!important;
+}
+.community-post:hover{
+  transform:translateY(-1px);
+  border-color:rgba(96,165,250,.22);
+}
+.community-empty{
+  text-align:center;
+}
+@media(max-width:720px){
+  .community-row,
+  .community-quick-actions,
+  .community-stats-grid{
+    grid-template-columns:1fr!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -8434,6 +8590,28 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
     </article>`;
   }
 
+
+  function communityUsePrompt(kind){
+    const form=document.getElementById('communityForm');
+    if(!form)return;
+    const textarea=form.querySelector('textarea[name="content"]');
+    const select=form.querySelector('select[name="category"]');
+    const prompts={
+      checkin:{cat:'Check-in',text:'Check-in do dia:\\n\\nTreino concluído. Hoje eu senti mais dificuldade em: \\nMinha maior vitória de hoje foi: '},
+      duvida:{cat:'Dúvida',text:'Dúvida rápida:\\n\\nEstou com dificuldade em entender/execução de: \\nO que eu senti durante o exercício foi: '},
+      resultado:{cat:'Resultado',text:'Evolução registrada:\\n\\nHoje percebi melhora em: \\nAntes eu tinha dificuldade com: \\nAgora consegui: '},
+      execucao:{cat:'Execução',text:'Análise de execução:\\n\\nExercício: \\nO que quero que o treinador avalie: \\nSensação durante a série: '}
+    };
+    const item=prompts[kind]||prompts.checkin;
+    if(textarea){
+      textarea.value=item.text;
+      textarea.focus();
+      textarea.selectionStart=textarea.value.length;
+      textarea.selectionEnd=textarea.value.length;
+    }
+    if(select)select.value=item.cat;
+  }
+
   async function community(){
     location.hash='comunidade';
     const user=heroCurrentUser();
@@ -8442,6 +8620,9 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
     const posts=(st.communityPosts||[]).filter(p=>p.active!==false);
     const comments=st.communityComments||[];
     const likes=st.communityLikes||[];
+    const pinnedCount=posts.filter(p=>p.pinned).length;
+    const checkinCount=posts.filter(p=>String(p.category||'').toLowerCase().includes('check')).length;
+    const resultCount=posts.filter(p=>String(p.category||'').toLowerCase().includes('resultado')).length;
     const backAction=`<button class="btn secondary small" onclick="HERO.heroCommunityBack()">Voltar</button>`;
 
     mount(`${top('Comunidade HERO',backAction)}
@@ -8452,12 +8633,30 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
           <p>Compartilhe evolução, tire dúvidas, acompanhe avisos e mantenha a execução no padrão certo.</p>
           <div class="community-badge-row"><span>check-ins</span><span>dúvidas</span><span>avisos</span><span>resultados</span></div>
         </section>
+
+        <section class="community-stats-grid">
+          <div class="community-stat"><span>Publicações</span><strong>${posts.length}</strong></div>
+          <div class="community-stat"><span>Check-ins</span><strong>${checkinCount}</strong></div>
+          <div class="community-stat"><span>Resultados</span><strong>${resultCount}</strong></div>
+        </section>
+
         <section class="community-shell">
           <div>
             <form id="communityForm" class="community-composer">
+              <div class="community-prompt-card">
+                <strong>Publique uma atualização rápida</strong>
+                <p>Use um modelo pronto para postar check-in, dúvida, resultado ou análise de execução sem precisar pensar demais. A humanidade agradece quando o atrito é menor.</p>
+                <div class="community-quick-actions">
+                  <button type="button" onclick="HERO.communityUsePrompt('checkin')">Check-in</button>
+                  <button type="button" onclick="HERO.communityUsePrompt('duvida')">Dúvida</button>
+                  <button type="button" onclick="HERO.communityUsePrompt('resultado')">Resultado</button>
+                </div>
+              </div>
+
               <label>Publicação
                 <textarea name="content" placeholder="Compartilhe uma evolução, dúvida, aviso ou check-in..." required></textarea>
               </label>
+
               <div class="community-row">
                 <label>Categoria
                   <select name="category">
@@ -8473,14 +8672,34 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
                   <input type="file" name="image" accept="image/*">
                 </label>
               </div>
+
               <button class="btn full">Publicar atualização</button>
               <div id="communityMsg" class="msg"></div>
             </form>
+
             <div class="community-feed">${posts.length?posts.map(p=>heroCommunityPostCard(p,comments,likes,user,isAdmin)).join(''):'<div class="community-empty">Ainda não há publicações. Publique o primeiro check-in ou aviso.</div>'}</div>
           </div>
+
           <aside class="community-side">
-            <div class="community-side-card"><h3>Como usar</h3><ul><li>poste check-ins e dúvidas objetivas;</li><li>registre evolução com foto quando fizer sentido;</li><li>mantenha respeito e foco no processo;</li><li>o treinador pode fixar avisos importantes.</li></ul></div>
-            <div class="community-side-card"><h3>Categorias</h3><p>Check-in, dúvida, resultado, aviso, execução e motivação.</p></div>
+            <div class="community-challenge">
+              <small>desafio da semana</small>
+              <h3>4 check-ins HERO</h3>
+              <p>Publique 4 check-ins nesta semana: treino feito, dúvida, evolução ou ajuste de execução. Consistência também precisa de palco, infelizmente.</p>
+              <button class="btn secondary small" onclick="HERO.communityUsePrompt('checkin')">Fazer check-in</button>
+            </div>
+            <div class="community-side-card">
+              <h3>Como usar</h3>
+              <ul>
+                <li>poste check-ins e dúvidas objetivas;</li>
+                <li>registre evolução com foto quando fizer sentido;</li>
+                <li>comente nos posts de outras alunas;</li>
+                <li>o treinador pode fixar avisos importantes.</li>
+              </ul>
+            </div>
+            <div class="community-side-card">
+              <h3>Movimento da comunidade</h3>
+              <p>${pinnedCount} aviso(s) fixado(s), ${likes.length} curtida(s) e ${comments.length} comentário(s).</p>
+            </div>
           </aside>
         </section>
       </main>`);
@@ -8596,7 +8815,8 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
     communityDeletePost,
     heroCommunityBack,
     heroCommunityEnsureButton,
-    heroCommunityScheduleButton};
+    heroCommunityScheduleButton,
+    communityUsePrompt};
   document.addEventListener('DOMContentLoaded',()=>{initSplash();render();});
 })();
 
