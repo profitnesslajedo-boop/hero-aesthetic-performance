@@ -3414,6 +3414,169 @@ input,textarea,select{border-radius:12px!important;box-shadow:none!important}
 @media(max-width:980px){.community-shell{grid-template-columns:1fr}.community-side{position:static}}
 @media(max-width:620px){.community-row{grid-template-columns:1fr}.community-comment-form{display:grid}.community-comment-form button{width:100%!important}}
 
+
+/* CORREÇÃO DEFINITIVA: painel de alunas + comunidade visível */
+.admin-grid,
+.admin-grid-fixed{
+  display:grid!important;
+  grid-template-columns:minmax(300px,390px) minmax(0,1fr)!important;
+  gap:20px!important;
+  align-items:start!important;
+}
+#studentList,
+.student-list{
+  display:grid!important;
+  gap:12px!important;
+  margin-top:16px!important;
+  width:100%!important;
+}
+.student-row,
+.student-list-card{
+  width:100%!important;
+  min-height:88px!important;
+  height:auto!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  justify-content:center!important;
+  gap:6px!important;
+  padding:16px 18px!important;
+  border-radius:18px!important;
+  border:1px solid rgba(148,163,184,.16)!important;
+  background:rgba(15,23,42,.52)!important;
+  color:#e2e8f0!important;
+  box-shadow:none!important;
+  text-align:left!important;
+  overflow:visible!important;
+}
+.student-row:hover,
+.student-list-card:hover{
+  border-color:rgba(96,165,250,.34)!important;
+  background:rgba(15,23,42,.68)!important;
+}
+.student-row.active,
+.student-list-card.active{
+  border-color:rgba(96,165,250,.54)!important;
+  background:rgba(37,99,235,.16)!important;
+}
+.student-row strong,
+.student-list-card strong{
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  overflow:visible!important;
+  text-overflow:clip!important;
+  white-space:normal!important;
+  word-break:break-word!important;
+  line-height:1.22!important;
+  font-size:.98rem!important;
+  font-weight:800!important;
+  color:#f8fafc!important;
+}
+.student-row small,
+.student-row span,
+.student-list-card small,
+.student-list-card span{
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  overflow:visible!important;
+  text-overflow:clip!important;
+  white-space:normal!important;
+  word-break:break-word!important;
+  line-height:1.25!important;
+  font-size:.76rem!important;
+  color:rgba(203,213,225,.80)!important;
+}
+#adminDetail,
+.selected-student-panel{
+  min-width:0!important;
+  overflow:visible!important;
+}
+.hero-community-link{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-height:40px!important;
+  padding:0 14px!important;
+  border-radius:12px!important;
+  border:1px solid rgba(96,165,250,.30)!important;
+  background:rgba(37,99,235,.14)!important;
+  color:#dbeafe!important;
+  font-size:.78rem!important;
+  font-weight:800!important;
+  letter-spacing:.01em!important;
+  box-shadow:none!important;
+}
+/* COMUNIDADE HERO DEFINITIVA */
+.community-shell{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 320px;
+  gap:20px;
+  align-items:start;
+}
+.community-hero{position:relative;overflow:hidden}
+.community-hero::after{
+  content:"";position:absolute;inset:auto -120px -140px auto;width:280px;height:280px;border-radius:999px;
+  background:radial-gradient(circle,rgba(37,99,235,.18),transparent 68%);pointer-events:none;
+}
+.community-composer,.community-post,.community-side-card{
+  border:1px solid rgba(148,163,184,.15);background:rgba(15,23,42,.66);border-radius:22px;padding:18px;box-shadow:none;
+}
+.community-composer{margin-bottom:18px}
+.community-composer textarea{min-height:112px!important}
+.community-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:end}
+.community-feed{display:grid;gap:16px}
+.community-post{display:grid;gap:14px}
+.community-post.pinned{border-color:rgba(96,165,250,.34);background:linear-gradient(180deg,rgba(37,99,235,.12),rgba(15,23,42,.66))}
+.community-post-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.community-author{display:grid;gap:3px;min-width:0}
+.community-author strong{color:#f8fafc;font-size:.96rem;line-height:1.2}
+.community-author span{color:rgba(148,163,184,.88);font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.community-category{
+  display:inline-flex;align-items:center;width:max-content;min-height:26px;padding:0 9px;border-radius:999px;
+  border:1px solid rgba(96,165,250,.20);background:rgba(37,99,235,.12);color:#bfdbfe;
+  font-size:.68rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;
+}
+.community-content{color:rgba(226,232,240,.95);line-height:1.58;white-space:pre-wrap}
+.community-image{width:100%;max-height:460px;object-fit:cover;border-radius:18px;border:1px solid rgba(148,163,184,.13);background:#020617}
+.community-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding-top:4px}
+.community-actions .btn,.community-actions button{min-height:38px!important;padding:0 12px!important;border-radius:10px!important;font-size:.74rem!important}
+.community-comments{display:grid;gap:10px;margin-top:4px;padding-top:12px;border-top:1px solid rgba(148,163,184,.10)}
+.community-comment{padding:11px 12px;border-radius:14px;border:1px solid rgba(148,163,184,.10);background:rgba(2,6,23,.28)}
+.community-comment strong{color:#e2e8f0;font-size:.78rem}
+.community-comment p{margin:4px 0 0;color:rgba(203,213,225,.90);font-size:.84rem;line-height:1.45}
+.community-comment-form{display:flex;gap:8px;align-items:center}
+.community-comment-form input{min-height:42px!important}
+.community-comment-form button{min-height:42px!important;flex:0 0 auto}
+.community-empty{padding:24px;border-radius:20px;border:1px solid rgba(148,163,184,.12);background:rgba(15,23,42,.38);color:rgba(203,213,225,.82)}
+.community-side{display:grid;gap:14px;position:sticky;top:92px}
+.community-side-card h3{margin:0 0 8px;color:#f8fafc}
+.community-side-card p,.community-side-card li{color:rgba(203,213,225,.82);font-size:.86rem;line-height:1.45}
+.community-side-card ul{margin:0;padding-left:18px}
+.community-file{display:grid;gap:8px}
+.community-file input[type="file"]{padding:12px!important;min-height:auto!important}
+.community-badge-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.community-badge-row span{
+  min-height:28px;display:inline-flex;align-items:center;padding:0 10px;border-radius:999px;
+  border:1px solid rgba(148,163,184,.14);background:rgba(2,6,23,.28);color:rgba(203,213,225,.84);
+  font-size:.68rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+}
+button,.btn,a.btn,input[type="button"],input[type="submit"]{border-radius:12px!important;box-shadow:none!important;font-family:inherit!important;transition:200ms ease!important}
+button:hover,.btn:hover,a.btn:hover{transform:translateY(-1px)!important}
+input,textarea,select{border-radius:12px!important;box-shadow:none!important}
+@media(max-width:980px){
+  .admin-grid,.admin-grid-fixed,.community-shell{grid-template-columns:1fr!important}
+  .community-side{position:static}
+}
+@media(max-width:620px){
+  .community-row{grid-template-columns:1fr}
+  .community-comment-form{display:grid}
+  .community-comment-form button{width:100%!important}
+}
+
 </style>
 </head>
 <body>
@@ -7220,96 +7383,28 @@ input,textarea,select{border-radius:12px!important;box-shadow:none!important}
   async function logout(){await supabaseLogout(); sessionStorage.removeItem('hero_session'); login();}
   async function admin(selectedAlunoId=null){
     let st=data();
-
     if(supabaseAvailable()){
-      try{
-        await syncFromSupabase();
-        st=data();
-      }catch(err){
-        console.warn('Falha ao sincronizar Supabase no painel treinador:',err.message);
-      }
+      try{await syncFromSupabase();st=data();}catch(err){console.warn('Falha ao sincronizar Supabase:',err.message);}
     }
-
-    const alunos=st.alunos||[];
-    const treinos=st.treinos||[];
-    const exercicios=st.exercicios||[];
-
-    const selectedId=selectedAlunoId || window.HERO_SELECTED_ALUNO_ID || alunos[0]?.id || null;
-    const selected=alunos.find(a=>String(a.id)===String(selectedId)) || alunos[0] || null;
-
-    if(selected){
-      window.HERO_SELECTED_ALUNO_ID=selected.id;
-    }
-
-    const selectedTreinos=selected ? treinos.filter(t=>String(t.alunoId)===String(selected.id)) : [];
+    const alunos=st.alunos||[],treinos=st.treinos||[],exercicios=st.exercicios||[];
+    const selectedId=selectedAlunoId||window.HERO_SELECTED_ALUNO_ID||alunos[0]?.id||null;
+    const selected=alunos.find(a=>String(a.id)===String(selectedId))||alunos[0]||null;
+    if(selected)window.HERO_SELECTED_ALUNO_ID=selected.id;
+    const selectedTreinos=selected?treinos.filter(t=>String(t.alunoId)===String(selected.id)):[];
     const selectedExCount=selectedTreinos.reduce((total,t)=>total+exercicios.filter(e=>String(e.treinoId)===String(t.id)).length,0);
-
-    const studentList = alunos.length ? alunos.map(a=>{
+    const studentList=alunos.length?alunos.map(a=>{
       const active=selected&&String(a.id)===String(selected.id);
-      return `<button type="button" class="student-list-card ${active?'active':''}" onclick="HERO.admin('${a.id}')">
-        <strong>${esc(a.nome||'Aluna')}</strong>
-        <span>${esc(a.email||'sem e-mail')}</span>
-        <small>${esc(a.objetivo||'Objetivo não informado')}</small>
-      </button>`;
-    }).join('') : '<div class="empty">Nenhuma aluna cadastrada.</div>';
-
-    const detail = selected ? `<section class="panel selected-student-panel">
-      <div class="student-head">
-        <div>
-          <p class="eyebrow">aluna selecionada</p>
-          <h2>${esc(selected.nome||'Aluna')}</h2>
-          <p>${esc(selected.email||'sem e-mail')}</p>
-          <div><span class="status ${selected.status||'ativo'}">${esc(selected.status||'ativo')}</span></div>
-        </div>
-        <div class="toolbar">
-          <button class="btn ghost small" onclick="HERO.studentForm('${selected.id}')">Editar</button>
-          <button class="btn secondary small" onclick="HERO.toggleStudent('${selected.id}')">${selected.status==='ativo'?'Bloquear':'Liberar'}</button>
-          <button class="btn ghost small" onclick="HERO.gerarPrescricaoIA('${selected.id}')">Diagnóstico IA</button>
-          <button class="btn small" onclick="HERO.newWorkout('${selected.id}')">Novo protocolo</button>
-          <button class="btn danger small" onclick="HERO.deleteStudent('${selected.id}')">Excluir cadastro</button>
-        </div>
-      </div>
-
-      <div class="note operator-info-box">
-        <b>Objetivo:</b> ${esc(selected.objetivo||'Não informado')}<br>
-        <b>Plano:</b> ${esc(selected.plano||'HERO Aesthetic Performance')}<br>
-        <b>Protocolos:</b> ${selectedTreinos.length} · <b>Execuções:</b> ${selectedExCount}
-      </div>
-
-      <div class="cards">
-        ${selectedTreinos.length?selectedTreinos.map(t=>workoutCard(t)).join(''):'<div class="empty">Nenhum protocolo criado para esta aluna.</div>'}
-      </div>
-    </section>` : `<section class="panel selected-student-panel empty-panel">
-      <div class="empty">Selecione uma aluna para configurar sistema.</div>
-    </section>`;
-
+      return `<button type="button" class="student-row student-list-card ${active?'active':''}" onclick="HERO.admin('${a.id}')"><strong>${esc(a.nome||'Aluna')}</strong><small>${esc(a.email||'sem e-mail')}</small><small>${esc(a.objetivo||'Objetivo não informado')}</small></button>`;
+    }).join(''):'<div class="empty">Nenhuma aluna cadastrada.</div>';
+    const detail=selected?`<section class="panel selected-student-panel">
+      <div class="student-head"><div><p class="eyebrow">aluna selecionada</p><h2>${esc(selected.nome||'Aluna')}</h2><p>${esc(selected.email||'sem e-mail')}</p><div><span class="status ${selected.status||'ativo'}">${esc(selected.status||'ativo')}</span></div></div><div class="toolbar"><button class="btn ghost small" onclick="HERO.studentForm('${selected.id}')">Editar</button><button class="btn secondary small" onclick="HERO.toggleStudent('${selected.id}')">${selected.status==='ativo'?'Bloquear':'Liberar'}</button><button class="btn ghost small" onclick="HERO.gerarPrescricaoIA('${selected.id}')">Diagnóstico IA</button><button class="btn small" onclick="HERO.newWorkout('${selected.id}')">Novo protocolo</button><button class="btn danger small" onclick="HERO.deleteStudent('${selected.id}')">Excluir cadastro</button></div></div>
+      <div class="note operator-info-box"><b>Objetivo:</b> ${esc(selected.objetivo||'Não informado')}<br><b>Plano:</b> ${esc(selected.plano||'HERO Aesthetic Performance')}<br><b>Protocolos:</b> ${selectedTreinos.length} · <b>Execuções:</b> ${selectedExCount}</div>
+      <div class="cards">${selectedTreinos.length?selectedTreinos.map(t=>workoutCard(t)).join(''):'<div class="empty">Nenhum protocolo criado para esta aluna.</div>'}</div>
+    </section>`:`<section class="panel selected-student-panel empty-panel"><div class="empty">Selecione uma aluna para configurar sistema.</div></section>`;
     mount(`${top('Centro de controle',`<button class="btn small" onclick="HERO.studentForm()">Nova aluna</button><button class="btn secondary small hero-community-link" onclick="HERO.community()">Comunidade HERO</button>`)}
-      <main class="wrap">
-        <section class="hero">
-          <div>
-            <p class="eyebrow">painel treinador</p>
-            <h1>Centro de controle HERO</h1>
-            <p>Gerencie alunas, protocolos, execuções, IA e evolução em um único ambiente.</p>
-          </div>
-        </section>
-
-        <section class="control-metrics">
-          <article class="metric-card"><span>Alunas</span><strong>${alunos.length}</strong><small>cadastros no sistema</small></article>
-          <article class="metric-card"><span>Protocolos</span><strong>${treinos.length}</strong><small>sistemas criados</small></article>
-          <article class="metric-card"><span>Execuções</span><strong>${exercicios.length}</strong><small>movimentos cadastrados</small></article>
-        </section>
-
-        <section class="admin-grid-fixed">
-          <aside class="panel students-panel">
-            <h2>Alunas</h2>
-            <p class="muted">Selecione para configurar sistema.</p>
-            <div class="student-list">
-              ${studentList}
-            </div>
-          </aside>
-          ${detail}
-        </section>
-      </main>`);
+      <main class="wrap"><section class="hero"><div><p class="eyebrow">painel treinador</p><h1>Centro de controle HERO</h1><p>Gerencie alunas, protocolos, execuções, IA, comunidade e evolução em um único ambiente.</p></div></section>
+      <section class="control-metrics"><article class="metric-card"><span>Alunas</span><strong>${alunos.length}</strong><small>cadastros no sistema</small></article><article class="metric-card"><span>Protocolos</span><strong>${treinos.length}</strong><small>sistemas criados</small></article><article class="metric-card"><span>Execuções</span><strong>${exercicios.length}</strong><small>movimentos cadastrados</small></article></section>
+      <section class="admin-grid admin-grid-fixed"><aside class="panel students-panel"><h2>Alunas</h2><p class="muted">Selecione para configurar sistema.</p><div id="studentList" class="student-list">${studentList}</div></aside>${detail}</section></main>`);
   }
   function drawStudents(selectedId){const st=data(); $('studentList').innerHTML=st.alunos.map(a=>`<button class="student-row ${a.id===selectedId?'active':''}" onclick="HERO.admin('${a.id}')"><strong>${esc(a.nome)}</strong><small>${esc(a.email)}</small><small>${esc(a.objetivo||'Sem objetivo definido')}</small></button>`).join('');}
   function drawDetail(alunoId){const st=data(); const a=st.alunos.find(x=>x.id===alunoId); const el=$('adminDetail'); if(!a){el.innerHTML='<div class="empty">Cadastre uma aluna para iniciar a prescrição.</div>'; return;} const ts=st.treinos.filter(t=>t.alunoId===a.id); el.innerHTML=`<div class="student-head"><div><p class="eyebrow">aluna selecionada</p><h2>${esc(a.nome)}</h2><p>${esc(a.email)}</p><div><span class="status ${a.status}">${esc(a.status)}</span></div></div><div class="toolbar"><button class="btn ghost small" onclick="HERO.studentForm('${a.id}')">Editar</button><button class="btn secondary small" onclick="HERO.toggleStudent('${a.id}')">${a.status==='ativo'?'Bloquear':'Liberar'}</button><button class="btn ghost small" onclick="HERO.gerarPrescricaoIA('${a.id}')">Diagnóstico IA</button><button class="btn small" onclick="HERO.newWorkout('${a.id}')">Novo protocolo</button><button class="btn danger small" onclick="HERO.deleteStudent('${a.id}')">Excluir cadastro</button></div></div><div class="note"><b>Objetivo:</b> ${esc(a.objetivo||'Não informado')}<br><b>Plano:</b> ${esc(a.plano||'HERO Aesthetic Performance')}</div>${full&&ts.length?heroRenderProtocolByDay(ts[0].id):''}<div class="cards">${!full&&ts.length?ts.map(t=>workoutCard(t)).join(''):(!full?'<div class="empty">Nenhum treino criado para esta aluna.</div>':'')}</div>`;}
