@@ -5252,6 +5252,202 @@ html[data-hero-os-visual="premium-v2"] .student-list-card span{
   }
 }
 
+
+/* HERO OS V2.4 NAV CLEAN HEADERS
+   Base: V2.1 estável. Ajuste visual e navegação, sem alterar Supabase, auth, banco, APIs ou lógica.
+*/
+
+/* Topbar sempre visível e navegável */
+html[data-hero-os-visual="premium-v2"] .topbar,
+html[data-hero-os-visual="premium-v2"] header,
+html[data-hero-os-visual="premium-v2"] .appbar{
+  position:sticky!important;
+  top:0!important;
+  z-index:9000!important;
+  background:rgba(2,6,23,.80)!important;
+  border-bottom:1px solid rgba(148,163,184,.12)!important;
+  backdrop-filter:blur(18px)!important;
+  -webkit-backdrop-filter:blur(18px)!important;
+}
+html[data-hero-os-visual="premium-v2"] .topbar nav,
+html[data-hero-os-visual="premium-v2"] header nav{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:10px!important;
+  flex-wrap:wrap!important;
+}
+html[data-hero-os-visual="premium-v2"] .hero-nav-return{
+  min-height:36px!important;
+  border-radius:12px!important;
+}
+
+/* Comunidade sem "quadrado" pesado atrás do título */
+html[data-hero-os-visual="premium-v2"] .community-v3-hero,
+html[data-hero-os-visual="premium-v2"] .community-v2-hero,
+html[data-hero-os-visual="premium-v2"] .community-hero{
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  padding:clamp(18px,3vw,30px) 0!important;
+  margin-bottom:16px!important;
+  border-radius:0!important;
+}
+html[data-hero-os-visual="premium-v2"] .community-v3-hero::before,
+html[data-hero-os-visual="premium-v2"] .community-v3-hero::after,
+html[data-hero-os-visual="premium-v2"] .community-v2-hero::before,
+html[data-hero-os-visual="premium-v2"] .community-v2-hero::after,
+html[data-hero-os-visual="premium-v2"] .community-hero::before,
+html[data-hero-os-visual="premium-v2"] .community-hero::after{
+  display:none!important;
+}
+html[data-hero-os-visual="premium-v2"] .community-v3-hero h1,
+html[data-hero-os-visual="premium-v2"] .community-v2-hero h1,
+html[data-hero-os-visual="premium-v2"] .community-hero h1{
+  max-width:760px!important;
+}
+html[data-hero-os-visual="premium-v2"] .community-v3-version{
+  margin-bottom:12px!important;
+}
+
+/* Cabeçalho da aluna mais premium, sem caixa pesada atrás do nome/foto */
+html[data-hero-os-visual="premium-v2"] .student-head,
+html[data-hero-os-visual="premium-v2"] .student-profile,
+html[data-hero-os-visual="premium-v2"] .student-hero,
+html[data-hero-os-visual="premium-v2"] .profile-head,
+html[data-hero-os-visual="premium-v2"] .selected-student-panel .student-head{
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  padding:0 0 18px!important;
+  margin:0 0 18px!important;
+  border-radius:0!important;
+}
+html[data-hero-os-visual="premium-v2"] .student-head::before,
+html[data-hero-os-visual="premium-v2"] .student-head::after,
+html[data-hero-os-visual="premium-v2"] .student-profile::before,
+html[data-hero-os-visual="premium-v2"] .student-profile::after,
+html[data-hero-os-visual="premium-v2"] .student-hero::before,
+html[data-hero-os-visual="premium-v2"] .student-hero::after,
+html[data-hero-os-visual="premium-v2"] .profile-head::before,
+html[data-hero-os-visual="premium-v2"] .profile-head::after{
+  display:none!important;
+}
+html[data-hero-os-visual="premium-v2"] .student-head h1,
+html[data-hero-os-visual="premium-v2"] .student-head h2,
+html[data-hero-os-visual="premium-v2"] .student-profile h1,
+html[data-hero-os-visual="premium-v2"] .student-profile h2,
+html[data-hero-os-visual="premium-v2"] .student-hero h1,
+html[data-hero-os-visual="premium-v2"] .student-hero h2,
+html[data-hero-os-visual="premium-v2"] .profile-head h1,
+html[data-hero-os-visual="premium-v2"] .profile-head h2{
+  margin-bottom:6px!important;
+  letter-spacing:-.045em!important;
+}
+html[data-hero-os-visual="premium-v2"] .student-head img,
+html[data-hero-os-visual="premium-v2"] .student-profile img,
+html[data-hero-os-visual="premium-v2"] .profile-head img,
+html[data-hero-os-visual="premium-v2"] .student-avatar,
+html[data-hero-os-visual="premium-v2"] .avatar{
+  border-radius:22px!important;
+  border:1px solid rgba(148,163,184,.14)!important;
+  box-shadow:none!important;
+  background:rgba(15,23,42,.44)!important;
+}
+
+/* Detalhe da aluna continua em painel, mas o bloco do nome fica limpo */
+html[data-hero-os-visual="premium-v2"] .selected-student-panel{
+  overflow:visible!important;
+}
+html[data-hero-os-visual="premium-v2"] .selected-student-panel > .student-head:first-child{
+  border-bottom:1px solid rgba(148,163,184,.10)!important;
+}
+
+/* Cards das alunas: manter moderno, sem quebrar nome/sobrenome */
+html[data-hero-os-visual="premium-v2"] .student-row strong,
+html[data-hero-os-visual="premium-v2"] .student-list-card strong{
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  hyphens:none!important;
+}
+html[data-hero-os-visual="premium-v2"] .student-row small,
+html[data-hero-os-visual="premium-v2"] .student-row span,
+html[data-hero-os-visual="premium-v2"] .student-list-card small,
+html[data-hero-os-visual="premium-v2"] .student-list-card span{
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  hyphens:none!important;
+}
+
+/* Navegação contextual da comunidade */
+html[data-hero-os-visual="premium-v2"] .community-context-bar{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:12px!important;
+  flex-wrap:wrap!important;
+  padding:12px 0 18px!important;
+  margin-bottom:4px!important;
+  border-bottom:1px solid rgba(148,163,184,.10)!important;
+}
+html[data-hero-os-visual="premium-v2"] .community-context-bar .context-actions{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:10px!important;
+  flex-wrap:wrap!important;
+}
+html[data-hero-os-visual="premium-v2"] .community-context-kicker{
+  display:block!important;
+  color:#93c5fd!important;
+  font-size:.66rem!important;
+  font-weight:950!important;
+  letter-spacing:.09em!important;
+  text-transform:uppercase!important;
+}
+html[data-hero-os-visual="premium-v2"] .community-context-title{
+  margin:4px 0 0!important;
+  color:#f8fafc!important;
+  font-size:1rem!important;
+  font-weight:850!important;
+  letter-spacing:-.025em!important;
+}
+
+/* Mobile */
+@media(max-width:760px){
+  html[data-hero-os-visual="premium-v2"] .community-context-bar{
+    align-items:flex-start!important;
+    flex-direction:column!important;
+  }
+  html[data-hero-os-visual="premium-v2"] .community-context-bar .context-actions,
+  html[data-hero-os-visual="premium-v2"] .community-context-bar .btn,
+  html[data-hero-os-visual="premium-v2"] .community-context-bar button{
+    width:100%!important;
+  }
+  html[data-hero-os-visual="premium-v2"] .community-context-bar .context-actions{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+  }
+  html[data-hero-os-visual="premium-v2"] .community-v3-hero,
+  html[data-hero-os-visual="premium-v2"] .community-v2-hero,
+  html[data-hero-os-visual="premium-v2"] .community-hero{
+    padding:18px 0 10px!important;
+  }
+  html[data-hero-os-visual="premium-v2"] .student-head,
+  html[data-hero-os-visual="premium-v2"] .student-profile,
+  html[data-hero-os-visual="premium-v2"] .student-hero,
+  html[data-hero-os-visual="premium-v2"] .profile-head{
+    padding-bottom:14px!important;
+    margin-bottom:14px!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -10351,6 +10547,98 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
   if(window.HERO && window.HERO.community){
     window.community = window.HERO.community;
   }
+})();
+</script>
+
+
+<script>
+/* HERO OS V2.4 NAV CLEAN HEADERS MARKER */
+(function(){
+  function applyPatch(){
+    document.documentElement.setAttribute('data-hero-os-visual','premium-v2');
+    document.documentElement.setAttribute('data-hero-os-patch','nav-clean-headers-v24');
+    document.documentElement.classList.add('hero-os-v24-ready');
+  }
+  applyPatch();
+
+  if(!window.HERO){ window.HERO = {}; }
+
+  function currentUserV24(){
+    try{
+      var raw=sessionStorage.getItem('hero_session');
+      var u=raw?JSON.parse(raw):{};
+      var st=typeof data==='function'?data():{};
+      var aluno=(st.alunos||[]).find(function(a){
+        return String(a.id)===String(u.alunoId)||String(a.email||'').toLowerCase()===String(u.email||'').toLowerCase();
+      });
+      return {
+        id:u.alunoId||u.id||u.email||(aluno&&aluno.id)||'local-user',
+        name:u.nome||u.name||(aluno&&aluno.nome)||u.email||'Usuário HERO',
+        role:u.role||(aluno&&aluno.role)||'aluna',
+        email:u.email||(aluno&&aluno.email)||''
+      };
+    }catch(e){
+      return {id:'local-user',name:'Usuário HERO',role:'aluna',email:''};
+    }
+  }
+
+  function safeEscV24(v){
+    if(typeof esc==='function') return esc(v);
+    return String(v??'').replace(/[&<>"']/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]});
+  }
+
+  var previousCommunity = window.HERO.community || window.community;
+
+  window.HERO.heroCommunityBack = function(){
+    var u=currentUserV24();
+    if(u.role==='admin' && typeof admin==='function') return admin();
+    if(u.id && u.id!=='local-user' && typeof student==='function') return student(u.id,false);
+    if(typeof login==='function') return login();
+  };
+
+  window.HERO.heroCommunityContextBar = function(){
+    var u=currentUserV24();
+    var adminBtn = u.role==='admin'
+      ? '<button class="btn ghost small" onclick="HERO.admin ? HERO.admin() : admin()">Centro de controle</button>'
+      : '<button class="btn ghost small" onclick="HERO.heroCommunityBack()">Meu protocolo</button>';
+    var chatBtn = (typeof abrirChatIA==='function' || (window.HERO && window.HERO.abrirChatIA))
+      ? '<button class="btn ghost small" onclick="HERO.abrirChatIA ? HERO.abrirChatIA() : abrirChatIA()">Chat HERO</button>'
+      : '';
+    return '<div class="community-context-bar"><div><span class="community-context-kicker">navegação</span><h2 class="community-context-title">Comunidade HERO</h2></div><div class="context-actions"><button class="btn secondary small" onclick="HERO.heroCommunityBack()">Voltar</button>'+adminBtn+chatBtn+'</div></div>';
+  };
+
+  function injectCommunityContext(){
+    try{
+      var app=document.getElementById('app') || document.body;
+      if(!app || document.querySelector('.community-context-bar')) return;
+      var main=document.querySelector('main.wrap');
+      if(!main) return;
+      var wrap=document.createElement('div');
+      wrap.innerHTML=window.HERO.heroCommunityContextBar();
+      main.insertBefore(wrap.firstElementChild, main.firstElementChild);
+    }catch(e){ console.warn('Context bar comunidade:', e.message); }
+  }
+
+  if(previousCommunity){
+    window.HERO.community = async function(){
+      var result = await previousCommunity.apply(this, arguments);
+      setTimeout(injectCommunityContext,40);
+      setTimeout(injectCommunityContext,180);
+      return result;
+    };
+    window.community = window.HERO.community;
+  }
+
+  window.addEventListener('hashchange', function(){
+    if(location.hash==='#comunidade'){
+      setTimeout(injectCommunityContext,120);
+    }
+  });
+
+  setTimeout(function(){
+    applyPatch();
+    if(location.hash==='#comunidade') injectCommunityContext();
+  },300);
 })();
 </script>
 
