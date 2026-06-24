@@ -5860,21 +5860,54 @@ html[data-hero-os-visual="premium-v2"] #heroCommunityAccessFixed{
 }
 
 
-
-/* HERO OS V4.1 STUDENT CHAT PERMISSIONS
-   Remove acesso da aluna ao Chat HERO do treinador. Aluna usa apenas a IA inferior direita.
-*/
-html[data-hero-student-role="aluna"] #heroChatAccessTop,
-html[data-hero-student-role="aluna"] #communityChatDirect,
-html[data-hero-student-role="aluna"] #communityChatDirectLegacy,
-html[data-hero-student-role="aluna"] [data-nav-v28="chat"],
-html[data-hero-student-role="aluna"] [data-hero-v27-action="chat"]{
+/* HERO OS V4.2 ROLE CLEANUP AND NAV AUDIT */
+html[data-hero-role="student"] #coachDashboard,
+html[data-hero-role="student"] .coach-dashboard{
   display:none!important;
   pointer-events:none!important;
   opacity:0!important;
 }
-html[data-hero-student-role="aluna"] .student-ai-float{
+html[data-hero-role="student"] #communityChatDirect,
+html[data-hero-role="student"] #communityChatDirectLegacy,
+html[data-hero-role="student"] #heroChatAccessTop,
+html[data-hero-role="student"] .hero-chat-access-top,
+html[data-hero-role="student"] [data-nav-v28="chat"],
+html[data-hero-role="student"] [data-hero-v27-action="chat"]{
+  display:none!important;
+  pointer-events:none!important;
+  opacity:0!important;
+}
+html[data-hero-role="student"] .student-ai-float{
   display:grid!important;
+  right:18px!important;
+  bottom:18px!important;
+  z-index:99990!important;
+}
+html[data-hero-role="student"] .student-ai-panel{
+  z-index:99999!important;
+}
+html[data-hero-role="student"] #heroCommunityAccessFixed{
+  top:92px!important;
+  right:18px!important;
+  bottom:auto!important;
+  z-index:99970!important;
+}
+html[data-hero-role="student"] .hero-load-box{
+  display:grid!important;
+}
+html[data-hero-role="trainer"] .coach-dashboard{
+  display:grid!important;
+}
+@media(max-width:760px){
+  html[data-hero-role="student"] #heroCommunityAccessFixed{
+    top:76px!important;
+    right:12px!important;
+  }
+  html[data-hero-role="student"] .student-ai-float{
+    left:12px!important;
+    right:12px!important;
+    bottom:12px!important;
+  }
 }
 
 </style>
@@ -10935,7 +10968,7 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
   async function fetchCommunity(){var st=localState();if(typeof supabaseAvailable!=='function'||!supabaseAvailable()||typeof supabaseClient!=='function')return st;var client=supabaseClient();try{var r=await Promise.all([client.from('community_posts').select('*').eq('is_active',true).order('is_pinned',{ascending:false}).order('created_at',{ascending:false}).limit(80),client.from('community_comments').select('*').order('created_at',{ascending:true}).limit(300),client.from('community_likes').select('*').limit(500)]);if(r[0].error)throw r[0].error;if(r[1].error)throw r[1].error;if(r[2].error)throw r[2].error;st.communityPosts=(r[0].data||[]).map(function(p){return {id:p.id,authorId:p.author_id,authorName:p.author_name,authorRole:p.author_role,content:p.content,imageUrl:p.image_url,category:p.category,pinned:!!p.is_pinned,active:p.is_active!==false,createdAt:p.created_at};});st.communityComments=(r[1].data||[]).map(function(c){return {id:c.id,postId:c.post_id,authorId:c.author_id,authorName:c.author_name,authorRole:c.author_role,content:c.content,createdAt:c.created_at};});st.communityLikes=(r[2].data||[]).map(function(l){return {id:l.id,postId:l.post_id,userId:l.user_id,createdAt:l.created_at};});if(typeof save==='function')save(st);}catch(e){console.warn('Comunidade HERO em modo local:',e.message);}return st;}
   function postCard(post,comments,likes,user,isAdmin){var pc=comments.filter(function(c){return String(c.postId)===String(post.id)});var pl=likes.filter(function(l){return String(l.postId)===String(post.id)});var liked=pl.some(function(l){return String(l.userId)===String(user.id)});return '<article class="community-v3-post '+(post.pinned?'is-pinned':'')+'"><div class="community-v3-post-head"><div class="community-v3-author"><strong>'+safeEsc(post.authorName||'HERO')+'</strong><span>'+safeEsc(post.authorRole||'aluna')+' · '+(post.createdAt?new Date(post.createdAt).toLocaleString('pt-BR'):'')+'</span></div><div class="community-v3-category">'+(post.pinned?'fixado · ':'')+safeEsc(post.category||'geral')+'</div></div>'+(post.content?'<div class="community-v3-content">'+safeEsc(post.content)+'</div>':'')+(post.imageUrl?'<img class="community-v3-image" src="'+safeEsc(post.imageUrl)+'" alt="Imagem da comunidade HERO">':'')+'<div class="community-v3-actions"><button class="btn ghost small" onclick="HERO.communityLike(\''+post.id+'\')">'+(liked?'Curtido':'Curtir')+' · '+pl.length+'</button>'+(isAdmin?'<button class="btn secondary small" onclick="HERO.communityTogglePin(\''+post.id+'\')">'+(post.pinned?'Desfixar':'Fixar')+'</button><button class="btn danger small" onclick="HERO.communityDeletePost(\''+post.id+'\')">Excluir</button>':'')+'</div><div class="community-v3-comments">'+(pc.length?pc.map(function(c){return '<div class="community-v3-comment"><strong>'+safeEsc(c.authorName||'Usuário')+'</strong><p>'+safeEsc(c.content)+'</p></div>'}).join(''):'<div class="muted">Sem comentários ainda.</div>')+'<form class="community-v3-comment-form" onsubmit="HERO.communityAddComment(event,\''+post.id+'\')"><input name="content" placeholder="Comente com orientação, dúvida ou incentivo..." required><button class="btn secondary small">Comentar</button></form></div></article>';}
   window.HERO.communityUsePrompt=function(kind){var form=document.getElementById('communityForm');if(!form)return;var textarea=form.querySelector('textarea[name="content"]');var select=form.querySelector('select[name="category"]');var prompts={checkin:{cat:'Check-in',text:'Check-in do dia:\n\nTreino concluído.\nHoje eu senti mais dificuldade em:\nMinha maior vitória de hoje foi:'},duvida:{cat:'Dúvida',text:'Dúvida rápida:\n\nEstou com dificuldade em:\nO que eu senti durante a execução foi:\nQuero entender melhor:'},resultado:{cat:'Resultado',text:'Evolução registrada:\n\nHoje percebi melhora em:\nAntes eu tinha dificuldade com:\nAgora consegui:'},execucao:{cat:'Execução',text:'Análise de execução:\n\nExercício:\nO que quero que o treinador avalie:\nSensação durante a série:'}};var item=prompts[kind]||prompts.checkin;if(textarea){textarea.value=item.text;textarea.focus();textarea.selectionStart=textarea.value.length;textarea.selectionEnd=textarea.value.length;}if(select)select.value=item.cat;};
-  window.HERO.community=async function(){location.hash='comunidade';var user=currentUser();var isAdmin=user.role==='admin';var st=await fetchCommunity();var posts=(st.communityPosts||[]).filter(function(p){return p.active!==false});var comments=st.communityComments||[];var likes=st.communityLikes||[];var pinned=posts.filter(function(p){return p.pinned}).length;var checkins=posts.filter(function(p){return String(p.category||'').toLowerCase().indexOf('check')>-1}).length;var results=posts.filter(function(p){return String(p.category||'').toLowerCase().indexOf('resultado')>-1}).length;var back='<button type="button" class="btn secondary small" id="communityBackDirect">Voltar</button>'+(isAdmin?'<button type="button" class="btn ghost small" id="communityCenterDirect">Centro de controle</button>':'<button type="button" class="btn ghost small" id="communityProtocolDirect">Meu protocolo</button>')+(isAdmin?'<button type="button" class="btn ghost small" id="communityChatDirect">Chat HERO</button>':'');var html='<main class="wrap community-v3-wrap"><div class="community-context-bar" data-hero-nav-bar="community-definitive"><div><span class="community-context-kicker">navegação</span><h2 class="community-context-title">Comunidade HERO</h2></div><div class="context-actions">'+back+'</div></div><section class="hero community-v3-hero"><p class="eyebrow">mural privado</p><h1>Comunidade HERO</h1><p>Compartilhe evolução, tire dúvidas, acompanhe avisos e mantenha a execução no padrão certo.</p><div class="community-v3-pills"><span>check-ins</span><span>dúvidas</span><span>avisos</span><span>resultados</span></div></section><section class="community-v3-stats"><div class="community-v3-stat"><span>Publicações</span><strong>'+posts.length+'</strong></div><div class="community-v3-stat"><span>Check-ins</span><strong>'+checkins+'</strong></div><div class="community-v3-stat"><span>Resultados</span><strong>'+results+'</strong></div><div class="community-v3-stat"><span>Comentários</span><strong>'+comments.length+'</strong></div></section><section class="community-v3-board"><div><form id="communityForm" class="community-v3-composer"><div class="community-v3-card feature"><small>postagem guiada</small><h3>Escolha um modelo rápido</h3><p>Quanto menor o atrito, maior a chance da aluna postar.</p><div class="community-v3-template-grid"><button type="button" onclick="HERO.communityUsePrompt(\'checkin\')">Check-in</button><button type="button" onclick="HERO.communityUsePrompt(\'duvida\')">Dúvida</button><button type="button" onclick="HERO.communityUsePrompt(\'resultado\')">Resultado</button><button type="button" onclick="HERO.communityUsePrompt(\'execucao\')">Execução</button></div></div><label>Publicação<textarea name="content" placeholder="Compartilhe uma evolução, dúvida, aviso ou check-in..." required></textarea></label><div class="community-v3-form-row"><label>Categoria<select name="category"><option>Check-in</option><option>Dúvida</option><option>Resultado</option><option>Aviso</option><option>Execução</option><option>Motivação</option></select></label><label class="community-v3-file">Imagem opcional<input type="file" name="image" accept="image/*"></label></div><button class="btn community-v3-publish">Publicar atualização</button><div id="communityMsg" class="msg"></div></form><div class="community-v3-feed">'+(posts.length?posts.map(function(p){return postCard(p,comments,likes,user,isAdmin)}).join(''):'<div class="community-v3-empty">Ainda não há publicações. Publique o primeiro check-in ou aviso.</div>')+'</div></div><aside class="community-v3-side"><div class="community-v3-card feature"><small>desafio da semana</small><h3>4 check-ins HERO</h3><p>Publique 4 check-ins nesta semana: treino feito, dúvida, evolução ou ajuste de execução.</p><button class="btn secondary small" onclick="HERO.communityUsePrompt(\'checkin\')">Fazer check-in</button></div><div class="community-v3-card"><h3>Como usar</h3><ul><li>poste check-ins objetivos;</li><li>comente nos posts de outras alunas;</li><li>registre evolução com foto;</li><li>tire dúvidas de execução.</li></ul></div><div class="community-v3-card"><h3>Movimento</h3><p>'+pinned+' aviso(s) fixado(s), '+likes.length+' curtida(s) e '+comments.length+' comentário(s).</p></div></aside></section></main>';if(typeof mount==='function')mount(html);else document.body.innerHTML=html;var form=document.getElementById('communityForm');if(form)form.onsubmit=window.HERO.communityCreatePost;
+  window.HERO.community=async function(){location.hash='comunidade';var user=currentUser();var isAdmin=user.role==='admin';var st=await fetchCommunity();var posts=(st.communityPosts||[]).filter(function(p){return p.active!==false});var comments=st.communityComments||[];var likes=st.communityLikes||[];var pinned=posts.filter(function(p){return p.pinned}).length;var checkins=posts.filter(function(p){return String(p.category||'').toLowerCase().indexOf('check')>-1}).length;var results=posts.filter(function(p){return String(p.category||'').toLowerCase().indexOf('resultado')>-1}).length;var back='<button type="button" class="btn secondary small" id="communityBackDirect">Voltar</button>'+(isAdmin?'<button type="button" class="btn ghost small" id="communityCenterDirect">Centro de controle</button>':'<button type="button" class="btn ghost small" id="communityProtocolDirect">Meu protocolo</button>')+'<button type="button" class="btn ghost small" id="communityChatDirect">Chat HERO</button>';var html='<main class="wrap community-v3-wrap"><div class="community-context-bar" data-hero-nav-bar="community-definitive"><div><span class="community-context-kicker">navegação</span><h2 class="community-context-title">Comunidade HERO</h2></div><div class="context-actions">'+back+'</div></div><section class="hero community-v3-hero"><p class="eyebrow">mural privado</p><h1>Comunidade HERO</h1><p>Compartilhe evolução, tire dúvidas, acompanhe avisos e mantenha a execução no padrão certo.</p><div class="community-v3-pills"><span>check-ins</span><span>dúvidas</span><span>avisos</span><span>resultados</span></div></section><section class="community-v3-stats"><div class="community-v3-stat"><span>Publicações</span><strong>'+posts.length+'</strong></div><div class="community-v3-stat"><span>Check-ins</span><strong>'+checkins+'</strong></div><div class="community-v3-stat"><span>Resultados</span><strong>'+results+'</strong></div><div class="community-v3-stat"><span>Comentários</span><strong>'+comments.length+'</strong></div></section><section class="community-v3-board"><div><form id="communityForm" class="community-v3-composer"><div class="community-v3-card feature"><small>postagem guiada</small><h3>Escolha um modelo rápido</h3><p>Quanto menor o atrito, maior a chance da aluna postar.</p><div class="community-v3-template-grid"><button type="button" onclick="HERO.communityUsePrompt(\'checkin\')">Check-in</button><button type="button" onclick="HERO.communityUsePrompt(\'duvida\')">Dúvida</button><button type="button" onclick="HERO.communityUsePrompt(\'resultado\')">Resultado</button><button type="button" onclick="HERO.communityUsePrompt(\'execucao\')">Execução</button></div></div><label>Publicação<textarea name="content" placeholder="Compartilhe uma evolução, dúvida, aviso ou check-in..." required></textarea></label><div class="community-v3-form-row"><label>Categoria<select name="category"><option>Check-in</option><option>Dúvida</option><option>Resultado</option><option>Aviso</option><option>Execução</option><option>Motivação</option></select></label><label class="community-v3-file">Imagem opcional<input type="file" name="image" accept="image/*"></label></div><button class="btn community-v3-publish">Publicar atualização</button><div id="communityMsg" class="msg"></div></form><div class="community-v3-feed">'+(posts.length?posts.map(function(p){return postCard(p,comments,likes,user,isAdmin)}).join(''):'<div class="community-v3-empty">Ainda não há publicações. Publique o primeiro check-in ou aviso.</div>')+'</div></div><aside class="community-v3-side"><div class="community-v3-card feature"><small>desafio da semana</small><h3>4 check-ins HERO</h3><p>Publique 4 check-ins nesta semana: treino feito, dúvida, evolução ou ajuste de execução.</p><button class="btn secondary small" onclick="HERO.communityUsePrompt(\'checkin\')">Fazer check-in</button></div><div class="community-v3-card"><h3>Como usar</h3><ul><li>poste check-ins objetivos;</li><li>comente nos posts de outras alunas;</li><li>registre evolução com foto;</li><li>tire dúvidas de execução.</li></ul></div><div class="community-v3-card"><h3>Movimento</h3><p>'+pinned+' aviso(s) fixado(s), '+likes.length+' curtida(s) e '+comments.length+' comentário(s).</p></div></aside></section></main>';if(typeof mount==='function')mount(html);else document.body.innerHTML=html;var form=document.getElementById('communityForm');if(form)form.onsubmit=window.HERO.communityCreatePost;
 var backBtn=document.getElementById('communityBackDirect');
 if(backBtn)backBtn.onclick=function(ev){ev.preventDefault();ev.stopPropagation();location.hash='';if(isAdmin&&window.HERO&&typeof window.HERO.admin==='function')return window.HERO.admin();if(user&&user.id&&user.id!=='local-user'&&window.HERO&&typeof window.HERO.student==='function')return window.HERO.student(user.id,false);if(window.HERO&&typeof window.HERO.login==='function')return window.HERO.login();};
 var protocolBtn=document.getElementById('communityProtocolDirect');
@@ -11128,7 +11161,17 @@ if(window.HERO.heroCommunityScheduleButton)window.HERO.heroCommunityScheduleButt
     return '<section class="coach-dashboard" id="coachDashboard"><div class="coach-dashboard-head"><div><span class="eyebrow">painel estratégico</span><h2>Performance das alunas hoje</h2><p>Resumo para acompanhar presença, cargas e exercícios com maior progressão.</p></div><button class="btn ghost small" onclick="HERO.refreshCoachDashboard&&HERO.refreshCoachDashboard()">Atualizar</button></div><div class="coach-kpi-grid"><div class="coach-kpi"><span>alunas cadastradas</span><strong>'+alunos.length+'</strong></div><div class="coach-kpi"><span>treinaram hoje</span><strong>'+trainedCount+'</strong></div><div class="coach-kpi"><span>séries com carga</span><strong>'+todayRecords.length+'</strong></div><div class="coach-kpi"><span>maior carga do dia</span><strong>'+(maxRec?max+' kg':'--')+'</strong></div></div><div class="coach-dashboard-list">'+list+'</div></section>';
   }
 
+  
+function heroV42Session(){
+  try{return JSON.parse(sessionStorage.getItem('hero_session')||'{}');}catch(e){return {};}
+}
+function heroV42IsAdmin(){
+  var s=heroV42Session();
+  return s.role==='admin'||s.tipo==='admin'||s.admin===true||String(s.email||'').toLowerCase()==='marcosestevees@icloud.com';
+}
+
   function injectDashboard(){
+    if(typeof heroV42IsAdmin==='function'&&!heroV42IsAdmin()){var old=document.getElementById('coachDashboard');if(old)old.remove();return;}
     var main=document.querySelector('main.wrap'); if(!main)return;
     var old=document.getElementById('coachDashboard'); if(old)old.remove();
     var box=document.createElement('div'); box.innerHTML=dashboardHTML();
@@ -11156,7 +11199,7 @@ if(window.HERO.heroCommunityScheduleButton)window.HERO.heroCommunityScheduleButt
 
   document.documentElement.setAttribute('data-hero-os-patch','load-tracker-dashboard-v33');
   setTimeout(enhanceExerciseCards,900);
-  setTimeout(injectDashboard,1100);
+  setTimeout(function(){if(typeof heroV42IsAdmin==='function'&&heroV42IsAdmin())injectDashboard();},1100);
 })();
 </script>
 
@@ -11961,9 +12004,8 @@ if(window.HERO.heroCommunityScheduleButton)window.HERO.heroCommunityScheduleButt
 </script>
 
 
-
 <script>
-/* HERO OS V4.1 STUDENT CHAT PERMISSIONS */
+/* HERO OS V4.2 ROLE CLEANUP AND NAV AUDIT */
 (function(){
   if(!window.HERO){window.HERO={};}
 
@@ -11971,89 +12013,194 @@ if(window.HERO.heroCommunityScheduleButton)window.HERO.heroCommunityScheduleButt
     try{return JSON.parse(sessionStorage.getItem('hero_session')||'{}');}catch(e){return {};}
   }
 
-  function isAdmin(){
+  function stateData(){
+    try{return typeof data==='function'?data():{};}catch(e){return {};}
+  }
+
+  function isTrainer(){
     var s=readSession();
-    return s.role==='admin'||s.tipo==='admin'||s.admin===true;
+    return s.role==='admin'||s.tipo==='admin'||s.admin===true||String(s.email||'').toLowerCase()==='marcosestevees@icloud.com';
   }
 
   function markRole(){
-    document.documentElement.setAttribute('data-hero-student-role', isAdmin()?'admin':'aluna');
+    document.documentElement.setAttribute('data-hero-role', isTrainer()?'trainer':'student');
   }
 
-  function removeStudentTrainerChatAccess(){
+  function currentStudentId(){
+    var s=readSession();
+    var st=stateData();
+    var alunos=st.alunos||[];
+    var aluno=alunos.find(function(a){
+      return String(a.id)===String(s.alunoId||s.id) || String(a.email||'').toLowerCase()===String(s.email||'').toLowerCase();
+    });
+    return s.alunoId||s.id||(aluno&&aluno.id)||s.email||'';
+  }
+
+  function goTrainer(){
     markRole();
+    try{location.hash='';}catch(e){}
+    if(window.HERO&&typeof window.HERO.admin==='function'){window.HERO.admin();return true;}
+    try{if(typeof admin==='function'){admin();return true;}}catch(e){}
+    return false;
+  }
 
-    if(isAdmin())return;
+  function goStudentProtocol(){
+    markRole();
+    try{location.hash='';}catch(e){}
+    var id=currentStudentId();
+    if(id&&window.HERO&&typeof window.HERO.student==='function'){window.HERO.student(id,false);return true;}
+    try{if(id&&typeof student==='function'){student(id,false);return true;}}catch(e){}
+    if(window.HERO&&typeof window.HERO.login==='function'){window.HERO.login();return true;}
+    try{if(typeof login==='function'){login();return true;}}catch(e){}
+    return false;
+  }
 
-    // Remove botão superior Chat HERO da V4.0, se existir
-    document.querySelectorAll('#heroChatAccessTop,.hero-chat-access-top').forEach(function(el){el.remove();});
+  function goCommunityBack(){
+    return isTrainer()?goTrainer():goStudentProtocol();
+  }
 
-    // Remove Chat HERO do contexto da comunidade para aluna
-    document.querySelectorAll('#communityChatDirect,#communityChatDirectLegacy,[data-nav-v28="chat"],[data-hero-v27-action="chat"]').forEach(function(el){
+  function removeStudentLeaks(){
+    markRole();
+    if(isTrainer())return;
+
+    document.querySelectorAll('#coachDashboard,.coach-dashboard').forEach(function(el){el.remove();});
+
+    document.querySelectorAll('#heroChatAccessTop,.hero-chat-access-top,#communityChatDirect,#communityChatDirectLegacy,[data-nav-v28="chat"],[data-hero-v27-action="chat"]').forEach(function(el){
       if(el.closest&&el.closest('.student-ai-panel'))return;
       el.remove();
     });
 
-    // Remove botões de texto Chat HERO fora do painel da IA da aluna, exceto em telas/admin/contextos do treinador
     Array.from(document.querySelectorAll('button,a,.btn')).forEach(function(el){
       if(el.closest&&el.closest('.student-ai-panel'))return;
       if(el.id==='studentAiOpen')return;
       if(el.classList&&el.classList.contains('student-ai-button'))return;
+      if(el.id==='heroCommunityAccessFixed')return;
       var txt=String(el.textContent||'').trim().toLowerCase();
       var onclick=String(el.getAttribute&&el.getAttribute('onclick')||'').toLowerCase();
-      var isTrainerChat=(txt==='chat hero'||txt.includes('chat hero')) || onclick.includes('abrirchatia');
-      if(isTrainerChat){
+      if(txt==='chat hero'||txt.includes('chat hero')||onclick.includes('abrirchatia')){
         el.remove();
       }
     });
   }
 
-  // Garante que a aluna sempre tenha só a IA inferior direita
-  function ensureStudentSupportOnly(){
-    if(isAdmin())return;
-    removeStudentTrainerChatAccess();
+  function ensureStudentSupport(){
+    if(isTrainer())return;
+    var studentArea=!!document.querySelector('.hero-load-box,.student-ex,.workout-card,.protocol-exercise,.today-panel');
+    if(!studentArea)return;
 
     var float=document.querySelector('.student-ai-float');
-    if(float)float.classList.remove('is-hidden');
+    if(float){
+      float.classList.remove('is-hidden');
+      float.style.display='grid';
+      return;
+    }
 
-    // Não cria botão superior novo. Apenas preserva o inferior já existente.
+    var panel=document.getElementById('studentAiPanel');
+    if(!panel){
+      panel=document.createElement('div');
+      panel.className='student-ai-panel is-hidden';
+      panel.id='studentAiPanel';
+      panel.innerHTML='<div class="student-ai-header"><div><strong>IA HERO da aluna</strong><span>Ajuda direta sobre treino, execução, protocolo e cargas.</span></div><button type="button" class="student-ai-close" id="studentAiClose">×</button></div><div class="student-ai-messages" id="studentAiMessages"><div class="student-ai-msg bot">Estou aqui para te ajudar com seu treino e suas cargas.</div></div><form class="student-ai-form" id="studentAiForm"><input id="studentAiInput" placeholder="Pergunte sobre seu treino ou carga..." autocomplete="off"><button type="submit" class="btn secondary small">Enviar</button></form>';
+      document.body.appendChild(panel);
+    }
+
+    float=document.createElement('div');
+    float.className='student-ai-float';
+    float.innerHTML='<div class="student-ai-hint">Olá, como eu posso te ajudar hoje, guerreira?</div><button type="button" class="student-ai-button" id="studentAiOpen">Suporte IA HERO</button>';
+    document.body.appendChild(float);
+
+    var open=document.getElementById('studentAiOpen');
+    var close=document.getElementById('studentAiClose');
+    if(open)open.onclick=function(ev){ev.preventDefault();ev.stopPropagation();window.__heroStudentAiForceOpen=true;panel.classList.remove('is-hidden');};
+    if(close)close.onclick=function(ev){ev.preventDefault();window.__heroStudentAiForceOpen=false;panel.classList.add('is-hidden');};
   }
 
-  var oldCommunity=window.HERO.community;
-  if(typeof oldCommunity==='function'&&!oldCommunity.__heroStudentChatPermV41){
-    var patchedCommunity=function(){
-      var r=oldCommunity.apply(this,arguments);
-      setTimeout(removeStudentTrainerChatAccess,60);
-      setTimeout(removeStudentTrainerChatAccess,240);
-      setTimeout(removeStudentTrainerChatAccess,600);
+  function bindCommunityNav(){
+    var pairs=[
+      ['communityBackDirect',goCommunityBack],
+      ['communityBackDirectLegacy',goCommunityBack],
+      ['communityProtocolDirect',goStudentProtocol],
+      ['communityProtocolDirectLegacy',goStudentProtocol],
+      ['communityCenterDirect',goTrainer],
+      ['communityCenterDirectLegacy',goTrainer]
+    ];
+    pairs.forEach(function(pair){
+      var el=document.getElementById(pair[0]);
+      if(el&&!el.__heroV42Bound){
+        el.__heroV42Bound=true;
+        el.onclick=function(ev){
+          ev.preventDefault();
+          ev.stopPropagation();
+          if(ev.stopImmediatePropagation)ev.stopImmediatePropagation();
+          return pair[1]();
+        };
+      }
+    });
+  }
+
+  function cleanup(){
+    markRole();
+    removeStudentLeaks();
+    ensureStudentSupport();
+    bindCommunityNav();
+  }
+
+  window.HERO.goCommunityBack=goCommunityBack;
+  window.HERO.goStudentProtocol=goStudentProtocol;
+  window.HERO.goTrainerCenter=goTrainer;
+
+  var oldAdmin=window.HERO.admin;
+  if(typeof oldAdmin==='function'&&!oldAdmin.__heroV42Role){
+    var patchedAdmin=function(){
+      var r=oldAdmin.apply(this,arguments);
+      setTimeout(function(){markRole();},60);
+      setTimeout(function(){markRole();},250);
       return r;
     };
-    patchedCommunity.__heroStudentChatPermV41=true;
+    patchedAdmin.__heroV42Role=true;
+    window.HERO.admin=patchedAdmin;
+  }
+
+  var oldStudent=window.HERO.student;
+  if(typeof oldStudent==='function'&&!oldStudent.__heroV42CleanStudent){
+    var patchedStudent=function(){
+      var r=oldStudent.apply(this,arguments);
+      setTimeout(cleanup,100);
+      setTimeout(cleanup,450);
+      setTimeout(cleanup,1000);
+      return r;
+    };
+    patchedStudent.__heroV42CleanStudent=true;
+    window.HERO.student=patchedStudent;
+  }
+
+  var oldCommunity=window.HERO.community||window.community;
+  if(typeof oldCommunity==='function'&&!oldCommunity.__heroV42CommunityNav){
+    var patchedCommunity=function(){
+      var r=oldCommunity.apply(this,arguments);
+      setTimeout(cleanup,80);
+      setTimeout(bindCommunityNav,220);
+      setTimeout(cleanup,620);
+      return r;
+    };
+    patchedCommunity.__heroV42CommunityNav=true;
     window.HERO.community=patchedCommunity;
     window.community=patchedCommunity;
   }
 
-  var oldStudent=window.HERO.student;
-  if(typeof oldStudent==='function'&&!oldStudent.__heroStudentSupportOnlyV41){
-    var patchedStudent=function(){
-      var r=oldStudent.apply(this,arguments);
-      setTimeout(ensureStudentSupportOnly,120);
-      setTimeout(ensureStudentSupportOnly,500);
-      return r;
-    };
-    patchedStudent.__heroStudentSupportOnlyV41=true;
-    window.HERO.student=patchedStudent;
-  }
-
-  document.addEventListener('click',function(){
-    setTimeout(removeStudentTrainerChatAccess,180);
+  document.addEventListener('click',function(ev){
+    var id=ev.target&&ev.target.id;
+    if(id==='communityBackDirect'||id==='communityBackDirectLegacy'){ev.preventDefault();ev.stopPropagation();return goCommunityBack();}
+    if(id==='communityProtocolDirect'||id==='communityProtocolDirectLegacy'){ev.preventDefault();ev.stopPropagation();return goStudentProtocol();}
+    if(id==='communityCenterDirect'||id==='communityCenterDirectLegacy'){ev.preventDefault();ev.stopPropagation();return goTrainer();}
+    setTimeout(cleanup,180);
   },true);
 
-  setTimeout(markRole,100);
-  setTimeout(removeStudentTrainerChatAccess,500);
-  setInterval(removeStudentTrainerChatAccess,1500);
+  setTimeout(cleanup,250);
+  setTimeout(cleanup,900);
+  setInterval(cleanup,1600);
 
-  document.documentElement.setAttribute('data-hero-os-patch','student-chat-permissions-v41');
+  document.documentElement.setAttribute('data-hero-os-patch','role-cleanup-nav-audit-v42');
 })();
 </script>
 
