@@ -5800,6 +5800,83 @@ html[data-hero-os-visual="premium-v2"] .student-ai-float ~ #communityFab{
   }
 }
 
+
+/* HERO OS V3.8 STUDENT AI PANEL STABILITY */
+html[data-hero-os-visual="premium-v2"] .student-ai-panel:not(.is-hidden){
+  display:grid!important;
+}
+html[data-hero-os-visual="premium-v2"] .student-ai-panel{
+  pointer-events:auto!important;
+}
+html[data-hero-os-visual="premium-v2"] .student-ai-float{
+  pointer-events:auto!important;
+}
+
+
+/* HERO OS V3.9 SINGLE COMMUNITY BUTTON
+   Mantém apenas um botão Comunidade HERO. Remove duplicidade visual.
+*/
+html[data-hero-os-visual="premium-v2"] .hero-community-fab:not(#heroCommunityAccessFixed),
+html[data-hero-os-visual="premium-v2"] .community-fab:not(#heroCommunityAccessFixed),
+html[data-hero-os-visual="premium-v2"] #communityFab:not(#heroCommunityAccessFixed),
+html[data-hero-os-visual="premium-v2"] [data-community-fab]:not(#heroCommunityAccessFixed){
+  display:none!important;
+  opacity:0!important;
+  pointer-events:none!important;
+}
+
+html[data-hero-os-visual="premium-v2"] #heroCommunityAccessFixed{
+  position:fixed!important;
+  right:18px!important;
+  top:92px!important;
+  bottom:auto!important;
+  z-index:99970!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:8px!important;
+  min-height:42px!important;
+  padding:0 14px!important;
+  border-radius:999px!important;
+  border:1px solid rgba(96,165,250,.28)!important;
+  background:rgba(2,6,23,.78)!important;
+  color:#e0f2fe!important;
+  font-size:.78rem!important;
+  font-weight:900!important;
+  letter-spacing:-.01em!important;
+  box-shadow:0 16px 44px rgba(0,0,0,.34)!important;
+  backdrop-filter:blur(18px)!important;
+}
+
+@media(max-width:760px){
+  html[data-hero-os-visual="premium-v2"] #heroCommunityAccessFixed{
+    top:76px!important;
+    right:12px!important;
+    max-width:170px!important;
+    min-height:38px!important;
+    padding:0 12px!important;
+    font-size:.72rem!important;
+  }
+}
+
+
+
+/* HERO OS V4.1 STUDENT CHAT PERMISSIONS
+   Remove acesso da aluna ao Chat HERO do treinador. Aluna usa apenas a IA inferior direita.
+*/
+html[data-hero-student-role="aluna"] #heroChatAccessTop,
+html[data-hero-student-role="aluna"] #communityChatDirect,
+html[data-hero-student-role="aluna"] #communityChatDirectLegacy,
+html[data-hero-student-role="aluna"] [data-nav-v28="chat"],
+html[data-hero-student-role="aluna"] [data-hero-v27-action="chat"]{
+  display:none!important;
+  pointer-events:none!important;
+  opacity:0!important;
+}
+html[data-hero-student-role="aluna"] .student-ai-float{
+  display:grid!important;
+}
+
 </style>
 </head>
 <body>
@@ -10858,7 +10935,7 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
   async function fetchCommunity(){var st=localState();if(typeof supabaseAvailable!=='function'||!supabaseAvailable()||typeof supabaseClient!=='function')return st;var client=supabaseClient();try{var r=await Promise.all([client.from('community_posts').select('*').eq('is_active',true).order('is_pinned',{ascending:false}).order('created_at',{ascending:false}).limit(80),client.from('community_comments').select('*').order('created_at',{ascending:true}).limit(300),client.from('community_likes').select('*').limit(500)]);if(r[0].error)throw r[0].error;if(r[1].error)throw r[1].error;if(r[2].error)throw r[2].error;st.communityPosts=(r[0].data||[]).map(function(p){return {id:p.id,authorId:p.author_id,authorName:p.author_name,authorRole:p.author_role,content:p.content,imageUrl:p.image_url,category:p.category,pinned:!!p.is_pinned,active:p.is_active!==false,createdAt:p.created_at};});st.communityComments=(r[1].data||[]).map(function(c){return {id:c.id,postId:c.post_id,authorId:c.author_id,authorName:c.author_name,authorRole:c.author_role,content:c.content,createdAt:c.created_at};});st.communityLikes=(r[2].data||[]).map(function(l){return {id:l.id,postId:l.post_id,userId:l.user_id,createdAt:l.created_at};});if(typeof save==='function')save(st);}catch(e){console.warn('Comunidade HERO em modo local:',e.message);}return st;}
   function postCard(post,comments,likes,user,isAdmin){var pc=comments.filter(function(c){return String(c.postId)===String(post.id)});var pl=likes.filter(function(l){return String(l.postId)===String(post.id)});var liked=pl.some(function(l){return String(l.userId)===String(user.id)});return '<article class="community-v3-post '+(post.pinned?'is-pinned':'')+'"><div class="community-v3-post-head"><div class="community-v3-author"><strong>'+safeEsc(post.authorName||'HERO')+'</strong><span>'+safeEsc(post.authorRole||'aluna')+' · '+(post.createdAt?new Date(post.createdAt).toLocaleString('pt-BR'):'')+'</span></div><div class="community-v3-category">'+(post.pinned?'fixado · ':'')+safeEsc(post.category||'geral')+'</div></div>'+(post.content?'<div class="community-v3-content">'+safeEsc(post.content)+'</div>':'')+(post.imageUrl?'<img class="community-v3-image" src="'+safeEsc(post.imageUrl)+'" alt="Imagem da comunidade HERO">':'')+'<div class="community-v3-actions"><button class="btn ghost small" onclick="HERO.communityLike(\''+post.id+'\')">'+(liked?'Curtido':'Curtir')+' · '+pl.length+'</button>'+(isAdmin?'<button class="btn secondary small" onclick="HERO.communityTogglePin(\''+post.id+'\')">'+(post.pinned?'Desfixar':'Fixar')+'</button><button class="btn danger small" onclick="HERO.communityDeletePost(\''+post.id+'\')">Excluir</button>':'')+'</div><div class="community-v3-comments">'+(pc.length?pc.map(function(c){return '<div class="community-v3-comment"><strong>'+safeEsc(c.authorName||'Usuário')+'</strong><p>'+safeEsc(c.content)+'</p></div>'}).join(''):'<div class="muted">Sem comentários ainda.</div>')+'<form class="community-v3-comment-form" onsubmit="HERO.communityAddComment(event,\''+post.id+'\')"><input name="content" placeholder="Comente com orientação, dúvida ou incentivo..." required><button class="btn secondary small">Comentar</button></form></div></article>';}
   window.HERO.communityUsePrompt=function(kind){var form=document.getElementById('communityForm');if(!form)return;var textarea=form.querySelector('textarea[name="content"]');var select=form.querySelector('select[name="category"]');var prompts={checkin:{cat:'Check-in',text:'Check-in do dia:\n\nTreino concluído.\nHoje eu senti mais dificuldade em:\nMinha maior vitória de hoje foi:'},duvida:{cat:'Dúvida',text:'Dúvida rápida:\n\nEstou com dificuldade em:\nO que eu senti durante a execução foi:\nQuero entender melhor:'},resultado:{cat:'Resultado',text:'Evolução registrada:\n\nHoje percebi melhora em:\nAntes eu tinha dificuldade com:\nAgora consegui:'},execucao:{cat:'Execução',text:'Análise de execução:\n\nExercício:\nO que quero que o treinador avalie:\nSensação durante a série:'}};var item=prompts[kind]||prompts.checkin;if(textarea){textarea.value=item.text;textarea.focus();textarea.selectionStart=textarea.value.length;textarea.selectionEnd=textarea.value.length;}if(select)select.value=item.cat;};
-  window.HERO.community=async function(){location.hash='comunidade';var user=currentUser();var isAdmin=user.role==='admin';var st=await fetchCommunity();var posts=(st.communityPosts||[]).filter(function(p){return p.active!==false});var comments=st.communityComments||[];var likes=st.communityLikes||[];var pinned=posts.filter(function(p){return p.pinned}).length;var checkins=posts.filter(function(p){return String(p.category||'').toLowerCase().indexOf('check')>-1}).length;var results=posts.filter(function(p){return String(p.category||'').toLowerCase().indexOf('resultado')>-1}).length;var back='<button type="button" class="btn secondary small" id="communityBackDirect">Voltar</button>'+(isAdmin?'<button type="button" class="btn ghost small" id="communityCenterDirect">Centro de controle</button>':'<button type="button" class="btn ghost small" id="communityProtocolDirect">Meu protocolo</button>')+'<button type="button" class="btn ghost small" id="communityChatDirect">Chat HERO</button>';var html='<main class="wrap community-v3-wrap"><div class="community-context-bar" data-hero-nav-bar="community-definitive"><div><span class="community-context-kicker">navegação</span><h2 class="community-context-title">Comunidade HERO</h2></div><div class="context-actions">'+back+'</div></div><section class="hero community-v3-hero"><p class="eyebrow">mural privado</p><h1>Comunidade HERO</h1><p>Compartilhe evolução, tire dúvidas, acompanhe avisos e mantenha a execução no padrão certo.</p><div class="community-v3-pills"><span>check-ins</span><span>dúvidas</span><span>avisos</span><span>resultados</span></div></section><section class="community-v3-stats"><div class="community-v3-stat"><span>Publicações</span><strong>'+posts.length+'</strong></div><div class="community-v3-stat"><span>Check-ins</span><strong>'+checkins+'</strong></div><div class="community-v3-stat"><span>Resultados</span><strong>'+results+'</strong></div><div class="community-v3-stat"><span>Comentários</span><strong>'+comments.length+'</strong></div></section><section class="community-v3-board"><div><form id="communityForm" class="community-v3-composer"><div class="community-v3-card feature"><small>postagem guiada</small><h3>Escolha um modelo rápido</h3><p>Quanto menor o atrito, maior a chance da aluna postar.</p><div class="community-v3-template-grid"><button type="button" onclick="HERO.communityUsePrompt(\'checkin\')">Check-in</button><button type="button" onclick="HERO.communityUsePrompt(\'duvida\')">Dúvida</button><button type="button" onclick="HERO.communityUsePrompt(\'resultado\')">Resultado</button><button type="button" onclick="HERO.communityUsePrompt(\'execucao\')">Execução</button></div></div><label>Publicação<textarea name="content" placeholder="Compartilhe uma evolução, dúvida, aviso ou check-in..." required></textarea></label><div class="community-v3-form-row"><label>Categoria<select name="category"><option>Check-in</option><option>Dúvida</option><option>Resultado</option><option>Aviso</option><option>Execução</option><option>Motivação</option></select></label><label class="community-v3-file">Imagem opcional<input type="file" name="image" accept="image/*"></label></div><button class="btn community-v3-publish">Publicar atualização</button><div id="communityMsg" class="msg"></div></form><div class="community-v3-feed">'+(posts.length?posts.map(function(p){return postCard(p,comments,likes,user,isAdmin)}).join(''):'<div class="community-v3-empty">Ainda não há publicações. Publique o primeiro check-in ou aviso.</div>')+'</div></div><aside class="community-v3-side"><div class="community-v3-card feature"><small>desafio da semana</small><h3>4 check-ins HERO</h3><p>Publique 4 check-ins nesta semana: treino feito, dúvida, evolução ou ajuste de execução.</p><button class="btn secondary small" onclick="HERO.communityUsePrompt(\'checkin\')">Fazer check-in</button></div><div class="community-v3-card"><h3>Como usar</h3><ul><li>poste check-ins objetivos;</li><li>comente nos posts de outras alunas;</li><li>registre evolução com foto;</li><li>tire dúvidas de execução.</li></ul></div><div class="community-v3-card"><h3>Movimento</h3><p>'+pinned+' aviso(s) fixado(s), '+likes.length+' curtida(s) e '+comments.length+' comentário(s).</p></div></aside></section></main>';if(typeof mount==='function')mount(html);else document.body.innerHTML=html;var form=document.getElementById('communityForm');if(form)form.onsubmit=window.HERO.communityCreatePost;
+  window.HERO.community=async function(){location.hash='comunidade';var user=currentUser();var isAdmin=user.role==='admin';var st=await fetchCommunity();var posts=(st.communityPosts||[]).filter(function(p){return p.active!==false});var comments=st.communityComments||[];var likes=st.communityLikes||[];var pinned=posts.filter(function(p){return p.pinned}).length;var checkins=posts.filter(function(p){return String(p.category||'').toLowerCase().indexOf('check')>-1}).length;var results=posts.filter(function(p){return String(p.category||'').toLowerCase().indexOf('resultado')>-1}).length;var back='<button type="button" class="btn secondary small" id="communityBackDirect">Voltar</button>'+(isAdmin?'<button type="button" class="btn ghost small" id="communityCenterDirect">Centro de controle</button>':'<button type="button" class="btn ghost small" id="communityProtocolDirect">Meu protocolo</button>')+(isAdmin?'<button type="button" class="btn ghost small" id="communityChatDirect">Chat HERO</button>':'');var html='<main class="wrap community-v3-wrap"><div class="community-context-bar" data-hero-nav-bar="community-definitive"><div><span class="community-context-kicker">navegação</span><h2 class="community-context-title">Comunidade HERO</h2></div><div class="context-actions">'+back+'</div></div><section class="hero community-v3-hero"><p class="eyebrow">mural privado</p><h1>Comunidade HERO</h1><p>Compartilhe evolução, tire dúvidas, acompanhe avisos e mantenha a execução no padrão certo.</p><div class="community-v3-pills"><span>check-ins</span><span>dúvidas</span><span>avisos</span><span>resultados</span></div></section><section class="community-v3-stats"><div class="community-v3-stat"><span>Publicações</span><strong>'+posts.length+'</strong></div><div class="community-v3-stat"><span>Check-ins</span><strong>'+checkins+'</strong></div><div class="community-v3-stat"><span>Resultados</span><strong>'+results+'</strong></div><div class="community-v3-stat"><span>Comentários</span><strong>'+comments.length+'</strong></div></section><section class="community-v3-board"><div><form id="communityForm" class="community-v3-composer"><div class="community-v3-card feature"><small>postagem guiada</small><h3>Escolha um modelo rápido</h3><p>Quanto menor o atrito, maior a chance da aluna postar.</p><div class="community-v3-template-grid"><button type="button" onclick="HERO.communityUsePrompt(\'checkin\')">Check-in</button><button type="button" onclick="HERO.communityUsePrompt(\'duvida\')">Dúvida</button><button type="button" onclick="HERO.communityUsePrompt(\'resultado\')">Resultado</button><button type="button" onclick="HERO.communityUsePrompt(\'execucao\')">Execução</button></div></div><label>Publicação<textarea name="content" placeholder="Compartilhe uma evolução, dúvida, aviso ou check-in..." required></textarea></label><div class="community-v3-form-row"><label>Categoria<select name="category"><option>Check-in</option><option>Dúvida</option><option>Resultado</option><option>Aviso</option><option>Execução</option><option>Motivação</option></select></label><label class="community-v3-file">Imagem opcional<input type="file" name="image" accept="image/*"></label></div><button class="btn community-v3-publish">Publicar atualização</button><div id="communityMsg" class="msg"></div></form><div class="community-v3-feed">'+(posts.length?posts.map(function(p){return postCard(p,comments,likes,user,isAdmin)}).join(''):'<div class="community-v3-empty">Ainda não há publicações. Publique o primeiro check-in ou aviso.</div>')+'</div></div><aside class="community-v3-side"><div class="community-v3-card feature"><small>desafio da semana</small><h3>4 check-ins HERO</h3><p>Publique 4 check-ins nesta semana: treino feito, dúvida, evolução ou ajuste de execução.</p><button class="btn secondary small" onclick="HERO.communityUsePrompt(\'checkin\')">Fazer check-in</button></div><div class="community-v3-card"><h3>Como usar</h3><ul><li>poste check-ins objetivos;</li><li>comente nos posts de outras alunas;</li><li>registre evolução com foto;</li><li>tire dúvidas de execução.</li></ul></div><div class="community-v3-card"><h3>Movimento</h3><p>'+pinned+' aviso(s) fixado(s), '+likes.length+' curtida(s) e '+comments.length+' comentário(s).</p></div></aside></section></main>';if(typeof mount==='function')mount(html);else document.body.innerHTML=html;var form=document.getElementById('communityForm');if(form)form.onsubmit=window.HERO.communityCreatePost;
 var backBtn=document.getElementById('communityBackDirect');
 if(backBtn)backBtn.onclick=function(ev){ev.preventDefault();ev.stopPropagation();location.hash='';if(isAdmin&&window.HERO&&typeof window.HERO.admin==='function')return window.HERO.admin();if(user&&user.id&&user.id!=='local-user'&&window.HERO&&typeof window.HERO.student==='function')return window.HERO.student(user.id,false);if(window.HERO&&typeof window.HERO.login==='function')return window.HERO.login();};
 var protocolBtn=document.getElementById('communityProtocolDirect');
@@ -11415,6 +11492,11 @@ if(window.HERO.heroCommunityScheduleButton)window.HERO.heroCommunityScheduleButt
     var isStudentPage=!!document.querySelector('.hero-load-box,.student-ex,.workout-card,.protocol-exercise,.today-panel');
     if(!isStudentPage)return;
 
+    var existingPanel=document.getElementById('studentAiPanel');
+    var existingFloat=document.querySelector('.student-ai-float');
+    if(existingPanel&&existingFloat){
+      return;
+    }
     document.querySelectorAll('.student-ai-float,.student-ai-panel').forEach(function(el){el.remove();});
 
     var float=document.createElement('div');
@@ -11465,7 +11547,8 @@ if(window.HERO.heroCommunityScheduleButton)window.HERO.heroCommunityScheduleButt
     window.HERO.student=patchedStudent;
   }
 
-  document.addEventListener('click',function(){
+  document.addEventListener('click',function(ev){
+    if(ev.target&&ev.target.closest&&ev.target.closest('.student-ai-float,.student-ai-panel'))return;
     setTimeout(installStudentAI,260);
   },true);
 
@@ -11688,6 +11771,289 @@ if(window.HERO.heroCommunityScheduleButton)window.HERO.heroCommunityScheduleButt
   setTimeout(installCommunityAccess,600);
   setTimeout(installCommunityAccess,1400);
   document.documentElement.setAttribute('data-hero-os-patch','community-float-reposition-v37');
+})();
+</script>
+
+
+<script>
+/* HERO OS V3.8 STUDENT AI PANEL STABILITY */
+(function(){
+  function panelOpen(){
+    var panel=document.getElementById('studentAiPanel');
+    return !!(panel && !panel.classList.contains('is-hidden'));
+  }
+
+  function bindStableOpen(){
+    var open=document.getElementById('studentAiOpen');
+    var panel=document.getElementById('studentAiPanel');
+    if(open && panel && !open.__heroStableOpen){
+      open.__heroStableOpen=true;
+      open.addEventListener('click',function(ev){
+        ev.preventDefault();
+        ev.stopPropagation();
+        if(ev.stopImmediatePropagation)ev.stopImmediatePropagation();
+        panel.classList.remove('is-hidden');
+        var input=document.getElementById('studentAiInput');
+        if(input)setTimeout(function(){input.focus();},80);
+        return false;
+      },true);
+    }
+
+    var aiRoot=document.querySelector('.student-ai-panel');
+    if(aiRoot && !aiRoot.__heroAiStopBubble){
+      aiRoot.__heroAiStopBubble=true;
+      aiRoot.addEventListener('click',function(ev){
+        ev.stopPropagation();
+      },true);
+    }
+
+    var float=document.querySelector('.student-ai-float');
+    if(float && !float.__heroAiFloatStopBubble){
+      float.__heroAiFloatStopBubble=true;
+      float.addEventListener('click',function(ev){
+        ev.stopPropagation();
+      },true);
+    }
+  }
+
+  // Proteção contra qualquer script antigo que tente recriar o painel logo após abrir.
+  var observer=new MutationObserver(function(){
+    bindStableOpen();
+  });
+
+  try{
+    observer.observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
+  }catch(e){}
+
+  // Enquanto o painel estiver aberto, mantém aberto. Sem esse guarda-costas, o painel volta a fechar por reinstalação antiga.
+  setInterval(function(){
+    bindStableOpen();
+    if(window.__heroStudentAiForceOpen){
+      var panel=document.getElementById('studentAiPanel');
+      if(panel)panel.classList.remove('is-hidden');
+    }
+  },250);
+
+  document.addEventListener('click',function(ev){
+    var open=ev.target&&ev.target.closest?ev.target.closest('#studentAiOpen,.student-ai-button'):null;
+    var close=ev.target&&ev.target.closest?ev.target.closest('#studentAiClose,.student-ai-close'):null;
+    if(open){
+      window.__heroStudentAiForceOpen=true;
+      setTimeout(function(){
+        var panel=document.getElementById('studentAiPanel');
+        if(panel)panel.classList.remove('is-hidden');
+      },40);
+      setTimeout(function(){
+        var panel=document.getElementById('studentAiPanel');
+        if(panel)panel.classList.remove('is-hidden');
+      },320);
+    }
+    if(close){
+      window.__heroStudentAiForceOpen=false;
+    }
+  },true);
+
+  setTimeout(bindStableOpen,300);
+  setTimeout(bindStableOpen,900);
+  document.documentElement.setAttribute('data-hero-os-patch','student-ai-panel-stability-v38');
+})();
+</script>
+
+
+<script>
+/* HERO OS V3.9 SINGLE COMMUNITY BUTTON */
+(function(){
+  if(!window.HERO){window.HERO={};}
+
+  function isCommunityButton(el){
+    if(!el)return false;
+    if(el.id==='heroCommunityAccessFixed')return false;
+    if(el.closest && el.closest('.community-context-bar'))return false;
+    var txt=String(el.textContent||'').trim().toLowerCase();
+    var onclick=String(el.getAttribute&&el.getAttribute('onclick')||'').toLowerCase();
+    var className=String(el.className||'').toLowerCase();
+    return (
+      txt==='comunidade hero' ||
+      txt==='comunidade' ||
+      txt.includes('comunidade hero') ||
+      onclick.includes('community') ||
+      className.includes('community-fab') ||
+      el.hasAttribute && el.hasAttribute('data-community-fab')
+    );
+  }
+
+  function cleanupDuplicateCommunityButtons(){
+    var official=document.getElementById('heroCommunityAccessFixed');
+    var nodes=Array.from(document.querySelectorAll('button,a,.btn,[data-community-fab],.community-fab,.hero-community-fab,#communityFab'));
+    nodes.forEach(function(el){
+      if(el===official)return;
+      if(isCommunityButton(el)){
+        el.remove();
+      }
+    });
+
+    // Se por algum motivo houver mais de um botão oficial, mantém só o primeiro.
+    var officials=Array.from(document.querySelectorAll('#heroCommunityAccessFixed'));
+    officials.slice(1).forEach(function(el){el.remove();});
+  }
+
+  function ensureOfficialCommunityButton(){
+    cleanupDuplicateCommunityButtons();
+
+    var shouldShow=!!document.querySelector('.student-ai-float,.student-ai-panel,.hero-load-box,.student-ex,.workout-card,.protocol-exercise,.today-panel');
+    if(!shouldShow)return;
+
+    var official=document.getElementById('heroCommunityAccessFixed');
+    if(!official){
+      official=document.createElement('button');
+      official.type='button';
+      official.id='heroCommunityAccessFixed';
+      official.className='hero-community-access-fixed';
+      official.textContent='Comunidade HERO';
+      document.body.appendChild(official);
+    }
+
+    official.onclick=function(ev){
+      ev.preventDefault();
+      ev.stopPropagation();
+      if(window.HERO && typeof window.HERO.community==='function')return window.HERO.community();
+      try{if(typeof community==='function')return community();}catch(e){}
+    };
+  }
+
+  // Reaplica depois de scripts antigos tentarem recriar botões.
+  setTimeout(ensureOfficialCommunityButton,100);
+  setTimeout(ensureOfficialCommunityButton,500);
+  setTimeout(ensureOfficialCommunityButton,1200);
+  setInterval(ensureOfficialCommunityButton,1500);
+
+  document.addEventListener('click',function(){
+    setTimeout(ensureOfficialCommunityButton,180);
+  },true);
+
+  var oldStudent=window.HERO.student;
+  if(typeof oldStudent==='function'&&!oldStudent.__heroSingleCommunityV39){
+    var patchedStudent=function(){
+      var r=oldStudent.apply(this,arguments);
+      setTimeout(ensureOfficialCommunityButton,160);
+      setTimeout(ensureOfficialCommunityButton,700);
+      return r;
+    };
+    patchedStudent.__heroSingleCommunityV39=true;
+    window.HERO.student=patchedStudent;
+  }
+
+  var oldCommunity=window.HERO.community;
+  if(typeof oldCommunity==='function'&&!oldCommunity.__heroSingleCommunityCleanV39){
+    var patchedCommunity=function(){
+      cleanupDuplicateCommunityButtons();
+      var official=document.getElementById('heroCommunityAccessFixed');
+      if(official)official.remove();
+      return oldCommunity.apply(this,arguments);
+    };
+    patchedCommunity.__heroSingleCommunityCleanV39=true;
+    window.HERO.community=patchedCommunity;
+    window.community=patchedCommunity;
+  }
+
+  document.documentElement.setAttribute('data-hero-os-patch','single-community-button-v39');
+})();
+</script>
+
+
+
+<script>
+/* HERO OS V4.1 STUDENT CHAT PERMISSIONS */
+(function(){
+  if(!window.HERO){window.HERO={};}
+
+  function readSession(){
+    try{return JSON.parse(sessionStorage.getItem('hero_session')||'{}');}catch(e){return {};}
+  }
+
+  function isAdmin(){
+    var s=readSession();
+    return s.role==='admin'||s.tipo==='admin'||s.admin===true;
+  }
+
+  function markRole(){
+    document.documentElement.setAttribute('data-hero-student-role', isAdmin()?'admin':'aluna');
+  }
+
+  function removeStudentTrainerChatAccess(){
+    markRole();
+
+    if(isAdmin())return;
+
+    // Remove botão superior Chat HERO da V4.0, se existir
+    document.querySelectorAll('#heroChatAccessTop,.hero-chat-access-top').forEach(function(el){el.remove();});
+
+    // Remove Chat HERO do contexto da comunidade para aluna
+    document.querySelectorAll('#communityChatDirect,#communityChatDirectLegacy,[data-nav-v28="chat"],[data-hero-v27-action="chat"]').forEach(function(el){
+      if(el.closest&&el.closest('.student-ai-panel'))return;
+      el.remove();
+    });
+
+    // Remove botões de texto Chat HERO fora do painel da IA da aluna, exceto em telas/admin/contextos do treinador
+    Array.from(document.querySelectorAll('button,a,.btn')).forEach(function(el){
+      if(el.closest&&el.closest('.student-ai-panel'))return;
+      if(el.id==='studentAiOpen')return;
+      if(el.classList&&el.classList.contains('student-ai-button'))return;
+      var txt=String(el.textContent||'').trim().toLowerCase();
+      var onclick=String(el.getAttribute&&el.getAttribute('onclick')||'').toLowerCase();
+      var isTrainerChat=(txt==='chat hero'||txt.includes('chat hero')) || onclick.includes('abrirchatia');
+      if(isTrainerChat){
+        el.remove();
+      }
+    });
+  }
+
+  // Garante que a aluna sempre tenha só a IA inferior direita
+  function ensureStudentSupportOnly(){
+    if(isAdmin())return;
+    removeStudentTrainerChatAccess();
+
+    var float=document.querySelector('.student-ai-float');
+    if(float)float.classList.remove('is-hidden');
+
+    // Não cria botão superior novo. Apenas preserva o inferior já existente.
+  }
+
+  var oldCommunity=window.HERO.community;
+  if(typeof oldCommunity==='function'&&!oldCommunity.__heroStudentChatPermV41){
+    var patchedCommunity=function(){
+      var r=oldCommunity.apply(this,arguments);
+      setTimeout(removeStudentTrainerChatAccess,60);
+      setTimeout(removeStudentTrainerChatAccess,240);
+      setTimeout(removeStudentTrainerChatAccess,600);
+      return r;
+    };
+    patchedCommunity.__heroStudentChatPermV41=true;
+    window.HERO.community=patchedCommunity;
+    window.community=patchedCommunity;
+  }
+
+  var oldStudent=window.HERO.student;
+  if(typeof oldStudent==='function'&&!oldStudent.__heroStudentSupportOnlyV41){
+    var patchedStudent=function(){
+      var r=oldStudent.apply(this,arguments);
+      setTimeout(ensureStudentSupportOnly,120);
+      setTimeout(ensureStudentSupportOnly,500);
+      return r;
+    };
+    patchedStudent.__heroStudentSupportOnlyV41=true;
+    window.HERO.student=patchedStudent;
+  }
+
+  document.addEventListener('click',function(){
+    setTimeout(removeStudentTrainerChatAccess,180);
+  },true);
+
+  setTimeout(markRole,100);
+  setTimeout(removeStudentTrainerChatAccess,500);
+  setInterval(removeStudentTrainerChatAccess,1500);
+
+  document.documentElement.setAttribute('data-hero-os-patch','student-chat-permissions-v41');
 })();
 </script>
 
