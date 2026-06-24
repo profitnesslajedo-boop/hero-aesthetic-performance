@@ -2921,410 +2921,233 @@ dialog,
 }
 
 
-/* CORREÇÃO IA + LAYOUT: nomes, sidebar e ações do treinador */
-.sidebar,
-.students-sidebar,
-.aside,
-.side-panel,
-.student-list,
-.students-list,
-.alunos-list{
-  min-width:0!important;
-  overflow:hidden!important;
-}
-.student-list,
-.students-list,
-.alunos-list{
-  display:grid!important;
-  gap:10px!important;
-}
-.student-item,
-.aluno-item,
-.student-row,
-.aluno-row,
-[class*="student-item"],
-[class*="aluno-item"]{
-  width:100%!important;
-  min-width:0!important;
-  display:grid!important;
-  grid-template-columns:minmax(0,1fr)!important;
-  align-items:start!important;
-  gap:8px!important;
-  padding:14px!important;
-  border-radius:16px!important;
-  overflow:hidden!important;
-}
-.student-item h3,.student-item h4,.student-item strong,
-.aluno-item h3,.aluno-item h4,.aluno-item strong,
-.student-row h3,.student-row h4,.student-row strong,
-.aluno-row h3,.aluno-row h4,.aluno-row strong{
-  min-width:0!important;
-  max-width:100%!important;
-  overflow:hidden!important;
-  text-overflow:ellipsis!important;
-  white-space:nowrap!important;
-  line-height:1.25!important;
-}
-.student-item p,.student-item small,
-.aluno-item p,.aluno-item small,
-.student-row p,.student-row small,
-.aluno-row p,.aluno-row small{
-  min-width:0!important;
-  max-width:100%!important;
-  overflow:hidden!important;
-  text-overflow:ellipsis!important;
-  white-space:nowrap!important;
-}
-.student-head{
-  display:grid!important;
-  grid-template-columns:minmax(0,1fr) auto!important;
-  gap:18px!important;
-  align-items:start!important;
-}
-.student-head > div:first-child{
-  min-width:0!important;
-}
-.student-head h2,
-.student-head p{
-  min-width:0!important;
-  max-width:100%!important;
-  overflow-wrap:anywhere!important;
-}
-.student-head .toolbar{
-  justify-content:flex-end!important;
-  align-items:center!important;
-  gap:10px!important;
-  max-width:100%!important;
-}
-.student-head .toolbar button,
-.student-head .toolbar .btn{
-  min-width:118px!important;
-}
-@media(max-width:980px){
-  .student-head{
-    grid-template-columns:1fr!important;
-  }
-  .student-head .toolbar{
-    justify-content:flex-start!important;
-    width:100%!important;
-  }
-}
-@media(max-width:640px){
-  .student-head .toolbar{
-    display:grid!important;
-    grid-template-columns:1fr!important;
-  }
-  .student-head .toolbar button,
-  .student-head .toolbar .btn{
-    width:100%!important;
-    min-width:0!important;
-  }
-}
-
-
-/* PROTOCOLO POR DIAS: navegação semanal premium */
-.hero-week-tabs{
+/* COMUNIDADE HERO: módulo social premium */
+.community-shell{
   display:grid;
-  grid-template-columns:repeat(7,minmax(0,1fr));
-  gap:8px;
-  margin:18px 0 18px;
-  padding:8px;
-  border-radius:18px;
-  border:1px solid rgba(148,163,184,.14);
-  background:rgba(2,6,23,.26);
+  grid-template-columns:minmax(0,1fr) 320px;
+  gap:20px;
+  align-items:start;
 }
-.hero-day-tab{
-  min-height:42px!important;
-  height:auto!important;
-  padding:0 10px!important;
-  border-radius:12px!important;
-  border:1px solid rgba(148,163,184,.14)!important;
-  background:rgba(15,23,42,.42)!important;
-  color:rgba(203,213,225,.86)!important;
-  font-size:.72rem!important;
-  font-weight:650!important;
-  letter-spacing:.02em!important;
-  box-shadow:none!important;
+.community-hero{
+  position:relative;
+  overflow:hidden;
 }
-.hero-day-tab:hover{
-  border-color:rgba(96,165,250,.28)!important;
-  background:rgba(15,23,42,.60)!important;
-  transform:translateY(-1px)!important;
-}
-.hero-day-tab.active{
-  border-color:rgba(96,165,250,.48)!important;
-  background:rgba(37,99,235,.18)!important;
-  color:#f8fafc!important;
-}
-.hero-day-tab.has-training::before{
+.community-hero::after{
   content:"";
-  width:6px;
-  height:6px;
+  position:absolute;
+  inset:auto -120px -140px auto;
+  width:280px;
+  height:280px;
   border-radius:999px;
-  background:#60a5fa;
-  display:inline-block;
-  margin-right:6px;
-  opacity:.88;
+  background:radial-gradient(circle,rgba(37,99,235,.18),transparent 68%);
+  pointer-events:none;
 }
-.hero-day-section{
-  margin-top:16px;
+.community-composer,
+.community-post,
+.community-side-card{
+  border:1px solid rgba(148,163,184,.15);
+  background:rgba(15,23,42,.66);
+  border-radius:22px;
+  padding:18px;
+  box-shadow:none;
 }
-.hero-day-heading{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+.community-composer{
+  margin-bottom:18px;
+}
+.community-composer textarea{
+  min-height:112px!important;
+}
+.community-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
   gap:12px;
-  margin:0 0 14px;
-  padding:13px 16px;
-  border-radius:16px;
-  border:1px solid rgba(96,165,250,.20);
-  background:linear-gradient(90deg,rgba(37,99,235,.18),rgba(15,23,42,.34));
+  align-items:end;
 }
-.hero-day-heading strong{
+.community-feed{
+  display:grid;
+  gap:16px;
+}
+.community-post{
+  display:grid;
+  gap:14px;
+}
+.community-post.pinned{
+  border-color:rgba(96,165,250,.34);
+  background:linear-gradient(180deg,rgba(37,99,235,.12),rgba(15,23,42,.66));
+}
+.community-post-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+}
+.community-author{
+  display:grid;
+  gap:3px;
+  min-width:0;
+}
+.community-author strong{
   color:#f8fafc;
-  font-size:.92rem;
-  letter-spacing:.01em;
+  font-size:.96rem;
+  line-height:1.2;
 }
-.hero-day-heading span{
-  color:rgba(148,163,184,.86);
+.community-author span{
+  color:rgba(148,163,184,.88);
   font-size:.72rem;
   font-weight:700;
-  letter-spacing:.08em;
+  letter-spacing:.04em;
   text-transform:uppercase;
 }
-.exercise .meta,
-.exercise .ex-meta,
-.exercise .exercise-details{
-  display:flex!important;
-  flex-wrap:wrap!important;
-  gap:8px!important;
-  margin:12px 0!important;
-}
-.exercise .meta span,
-.exercise .ex-meta span,
-.exercise .exercise-details span,
-.exercise-detail-pill{
-  display:inline-flex!important;
-  align-items:center!important;
-  min-height:28px!important;
-  padding:0 10px!important;
-  border-radius:999px!important;
-  border:1px solid rgba(148,163,184,.15)!important;
-  background:rgba(15,23,42,.42)!important;
-  color:rgba(226,232,240,.88)!important;
-  font-size:.7rem!important;
-  font-weight:700!important;
-  line-height:1!important;
-}
-.exercise-detail-pill b{
-  color:#93c5fd;
+.community-category{
+  display:inline-flex;
+  align-items:center;
+  width:max-content;
+  min-height:26px;
+  padding:0 9px;
+  border-radius:999px;
+  border:1px solid rgba(96,165,250,.20);
+  background:rgba(37,99,235,.12);
+  color:#bfdbfe;
+  font-size:.68rem;
   font-weight:800;
-  margin-right:4px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  white-space:nowrap;
 }
-@media(max-width:860px){
-  .hero-week-tabs{
-    grid-template-columns:repeat(4,minmax(0,1fr));
-  }
+.community-content{
+  color:rgba(226,232,240,.95);
+  line-height:1.58;
+  white-space:pre-wrap;
 }
-@media(max-width:520px){
-  .hero-week-tabs{
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:7px;
-    padding:7px;
-  }
-  .hero-day-tab{
-    min-height:40px!important;
-    font-size:.68rem!important;
-  }
-  .hero-day-heading{
-    align-items:flex-start;
-    flex-direction:column;
-  }
+.community-image{
+  width:100%;
+  max-height:460px;
+  object-fit:cover;
+  border-radius:18px;
+  border:1px solid rgba(148,163,184,.13);
+  background:#020617;
 }
-
-
-/* PROTOCOLO SEMANAL FINAL: dias clicáveis e detalhes completos */
-.day-tabs,
-.hero-week-tabs{
-  display:grid!important;
-  grid-template-columns:repeat(7,minmax(0,1fr))!important;
-  gap:8px!important;
-  margin:18px 0!important;
-  padding:8px!important;
-  border-radius:18px!important;
-  border:1px solid rgba(148,163,184,.14)!important;
-  background:rgba(2,6,23,.28)!important;
+.community-actions{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px;
+  padding-top:4px;
 }
-.day-pill,
-.hero-day-tab{
+.community-actions .btn,
+.community-actions button{
+  min-height:38px!important;
+  padding:0 12px!important;
+  border-radius:10px!important;
+  font-size:.74rem!important;
+}
+.community-comments{
+  display:grid;
+  gap:10px;
+  margin-top:4px;
+  padding-top:12px;
+  border-top:1px solid rgba(148,163,184,.10);
+}
+.community-comment{
+  padding:11px 12px;
+  border-radius:14px;
+  border:1px solid rgba(148,163,184,.10);
+  background:rgba(2,6,23,.28);
+}
+.community-comment strong{
+  color:#e2e8f0;
+  font-size:.78rem;
+}
+.community-comment p{
+  margin:4px 0 0;
+  color:rgba(203,213,225,.90);
+  font-size:.84rem;
+  line-height:1.45;
+}
+.community-comment-form{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+.community-comment-form input{
   min-height:42px!important;
-  height:auto!important;
-  display:inline-flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  gap:7px!important;
-  padding:0 10px!important;
-  border-radius:12px!important;
-  border:1px solid rgba(148,163,184,.15)!important;
-  background:rgba(15,23,42,.44)!important;
-  color:rgba(203,213,225,.86)!important;
-  box-shadow:none!important;
-  font-size:.72rem!important;
-  line-height:1!important;
-  font-weight:650!important;
-  letter-spacing:.01em!important;
-  text-decoration:none!important;
-  cursor:pointer!important;
-  transition:180ms ease!important;
 }
-.day-pill:hover,
-.hero-day-tab:hover{
-  transform:translateY(-1px)!important;
-  border-color:rgba(96,165,250,.30)!important;
-  background:rgba(15,23,42,.64)!important;
+.community-comment-form button{
+  min-height:42px!important;
+  flex:0 0 auto;
 }
-.day-pill.active,
-.hero-day-tab.active{
-  border-color:rgba(96,165,250,.50)!important;
-  background:rgba(37,99,235,.20)!important;
-  color:#f8fafc!important;
+.community-empty{
+  padding:24px;
+  border-radius:20px;
+  border:1px solid rgba(148,163,184,.12);
+  background:rgba(15,23,42,.38);
+  color:rgba(203,213,225,.82);
 }
-.day-pill.has-training::before,
-.hero-day-tab.has-training::before{
-  content:""!important;
-  width:6px!important;
-  height:6px!important;
-  border-radius:999px!important;
-  background:#60a5fa!important;
-  box-shadow:none!important;
-  opacity:.9!important;
+.community-side{
+  display:grid;
+  gap:14px;
+  position:sticky;
+  top:92px;
 }
-.student-day-title{
-  display:flex!important;
-  align-items:center!important;
-  justify-content:space-between!important;
-  gap:12px!important;
-  margin:14px 0!important;
-  padding:13px 16px!important;
-  border-radius:16px!important;
-  border:1px solid rgba(96,165,250,.20)!important;
-  background:linear-gradient(90deg,rgba(37,99,235,.18),rgba(15,23,42,.34))!important;
+.community-side-card h3{
+  margin:0 0 8px;
+  color:#f8fafc;
 }
-.student-day-title strong{
-  color:#f8fafc!important;
-  font-size:.94rem!important;
+.community-side-card p,
+.community-side-card li{
+  color:rgba(203,213,225,.82);
+  font-size:.86rem;
+  line-height:1.45;
 }
-.student-day-title span{
-  color:rgba(148,163,184,.88)!important;
-  font-size:.72rem!important;
-  font-weight:800!important;
-  letter-spacing:.08em!important;
-  text-transform:uppercase!important;
+.community-side-card ul{
+  margin:0;
+  padding-left:18px;
 }
-.student-ex .mini-grid span b{
-  color:#f8fafc!important;
+.community-file{
+  display:grid;
+  gap:8px;
 }
-@media(max-width:860px){
-  .day-tabs,
-  .hero-week-tabs{
-    grid-template-columns:repeat(4,minmax(0,1fr))!important;
-  }
-}
-@media(max-width:520px){
-  .day-tabs,
-  .hero-week-tabs{
-    grid-template-columns:repeat(2,minmax(0,1fr))!important;
-    gap:7px!important;
-    padding:7px!important;
-  }
-  .day-pill,
-  .hero-day-tab{
-    min-height:40px!important;
-    font-size:.68rem!important;
-  }
-  .student-day-title{
-    flex-direction:column!important;
-    align-items:flex-start!important;
-  }
-}
-
-
-/* RESTAURAÇÃO PAINEL TREINADOR: lista e detalhes da aluna */
-.admin-grid-fixed{
-  display:grid!important;
-  grid-template-columns:minmax(280px,360px) minmax(0,1fr)!important;
-  gap:20px!important;
-  align-items:start!important;
-}
-.students-panel{
-  min-width:0!important;
-  overflow:hidden!important;
-}
-.student-list{
-  display:grid!important;
-  gap:10px!important;
-  margin-top:16px!important;
-}
-.student-list-card{
-  width:100%!important;
+.community-file input[type="file"]{
+  padding:12px!important;
   min-height:auto!important;
-  display:grid!important;
-  grid-template-columns:1fr!important;
-  gap:5px!important;
-  justify-items:start!important;
-  text-align:left!important;
-  padding:16px!important;
-  border-radius:16px!important;
-  border:1px solid rgba(148,163,184,.16)!important;
-  background:rgba(15,23,42,.46)!important;
-  color:#e2e8f0!important;
-  box-shadow:none!important;
 }
-.student-list-card:hover{
-  border-color:rgba(96,165,250,.30)!important;
-  background:rgba(15,23,42,.64)!important;
+.community-badge-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:14px;
 }
-.student-list-card.active{
-  border-color:rgba(96,165,250,.52)!important;
-  background:rgba(37,99,235,.16)!important;
-}
-.student-list-card strong,
-.student-list-card span,
-.student-list-card small{
-  max-width:100%!important;
-  overflow:hidden!important;
-  text-overflow:ellipsis!important;
-  white-space:nowrap!important;
-}
-.student-list-card strong{
-  font-size:.96rem!important;
-  font-weight:750!important;
-  color:#f8fafc!important;
-}
-.student-list-card span{
-  font-size:.76rem!important;
-  color:rgba(203,213,225,.78)!important;
-}
-.student-list-card small{
-  font-size:.72rem!important;
-  color:rgba(148,163,184,.80)!important;
-}
-.selected-student-panel{
-  min-width:0!important;
-  overflow:hidden!important;
-}
-.selected-student-panel .cards{
-  margin-top:18px!important;
-}
-.empty-panel{
-  min-height:360px!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
+.community-badge-row span{
+  min-height:28px;
+  display:inline-flex;
+  align-items:center;
+  padding:0 10px;
+  border-radius:999px;
+  border:1px solid rgba(148,163,184,.14);
+  background:rgba(2,6,23,.28);
+  color:rgba(203,213,225,.84);
+  font-size:.68rem;
+  font-weight:800;
+  letter-spacing:.06em;
+  text-transform:uppercase;
 }
 @media(max-width:980px){
-  .admin-grid-fixed{
-    grid-template-columns:1fr!important;
+  .community-shell{
+    grid-template-columns:1fr;
+  }
+  .community-side{
+    position:static;
+  }
+}
+@media(max-width:620px){
+  .community-row{
+    grid-template-columns:1fr;
+  }
+  .community-comment-form{
+    display:grid;
+  }
+  .community-comment-form button{
+    width:100%!important;
   }
 }
 
@@ -3372,69 +3195,6 @@ dialog,
     const direct=ex?.video||ex?.video_url||ex?.youtube||ex?.youtube_url||'';
     if(direct&&/^https?:\/\//i.test(direct))return direct;
     return heroYoutubeExerciseUrl(ex?.nome||ex?.exercicio||'execução');
-  }
-
-
-  const HERO_WEEK_DAYS=[
-    'segunda-feira',
-    'terça-feira',
-    'quarta-feira',
-    'quinta-feira',
-    'sexta-feira',
-    'sábado',
-    'domingo'
-  ];
-
-  function heroDayLabel(day){
-    const d=normalizeDayName(day||'',0);
-    return d.charAt(0).toUpperCase()+d.slice(1);
-  }
-
-  function heroGetSelectedDay(treinoId){
-    const key='hero_selected_day_'+String(treinoId||'default');
-    const saved=sessionStorage.getItem(key);
-    return saved||HERO_WEEK_DAYS[new Date().getDay()===0?6:new Date().getDay()-1]||'segunda-feira';
-  }
-
-  function heroSetSelectedDay(treinoId,day){
-    const normalized=normalizeDayName(day,0);
-    sessionStorage.setItem('hero_selected_day_'+String(treinoId||'default'),normalized);
-    window.HERO_SELECTED_DAY=normalized;
-    return normalized;
-  }
-
-  function heroExerciseDetailPills(e){
-    const reps=e.repeticoes||e.reps||e.rep||e.repeticao||'8 a 12';
-    const series=e.series||e.serie||'3';
-    const carga=e.carga||'RIR 1-3';
-    const descanso=e.descanso||'60 a 90s';
-    const cadencia=e.cadencia||'2-0-2';
-    return `<div class="exercise-details">
-      <span class="exercise-detail-pill"><b>Séries</b>${esc(series)}</span>
-      <span class="exercise-detail-pill"><b>Reps</b>${esc(reps)}</span>
-      <span class="exercise-detail-pill"><b>Carga</b>${esc(carga)}</span>
-      <span class="exercise-detail-pill"><b>Descanso</b>${esc(descanso)}</span>
-      <span class="exercise-detail-pill"><b>Cadência</b>${esc(cadencia)}</span>
-    </div>`;
-  }
-
-  function heroWeekTabs(treinoId,exercicios){
-    const selected=heroGetSelectedDay(treinoId);
-    const available=new Set((exercicios||[]).map(e=>normalizeDayName(e.dia||e.dia_da_semana||e.diaSemana||e.dia_semana||'',0)));
-    return `<div class="hero-week-tabs" role="tablist" aria-label="Dias do protocolo">
-      ${HERO_WEEK_DAYS.map(day=>`<button type="button" class="hero-day-tab ${day===selected?'active':''} ${available.has(day)?'has-training':''}" onclick="HERO.selectProtocolDay('${esc(treinoId)}','${esc(day)}')">${heroDayLabel(day)}</button>`).join('')}
-    </div>`;
-  }
-
-  function selectProtocolDay(treinoId,day){
-    heroSetSelectedDay(treinoId,day);
-    const st=data();
-    const treino=(st.treinos||[]).find(t=>String(t.id)===String(treinoId));
-    if(treino?.alunoId){
-      student(treino.alunoId,true);
-    }else if(treinoId&&typeof editWorkout==='function'){
-      editWorkout(treinoId);
-    }
   }
 
   function heroVideoButton(ex){
@@ -7132,101 +6892,9 @@ dialog,
 </div></form></section><section class="login-visual" style=\"--hero-bg-image:url('${heroPortraitImg}')\"><div class="visual-copy"><p class="eyebrow">HERO</p><h2>Sistema operacional de performance humana</h2><p><b>Diagnóstico, execução. evolução.</b><br>Seu protocolo personalizado está pronto para operação.</p><p class="hero-login-headline">O lugar da performance física e mental. Vença as guerras internas, supere os desafios.</p><div class="visual-mini"><i></i><span>Ambiente exclusivo HERO. Método, disciplina e performance em uma experiência premium.</span></div></div><div class="visual-cards"><div class="visual-card"><b>Prescrição individual</b><span>Protocolos liberados por operador, com estrutura clara, progressão de carga e execução orientada.</span></div><div class="visual-card"><b>Status operacional</b><span>Diagnóstico, execução e relatório de performance em um ambiente tecnológico e minimalista.</span></div></div></section></div></main>`); $('loginForm').onsubmit=async e=>{e.preventDefault(); const f=Object.fromEntries(new FormData(e.target)); const msg=$('loginMsg'); msg.textContent='Conectando...'; try{const supa=await supabaseLogin(f.email,f.password); if(supa&&supa.error){msg.textContent=supa.error;return;} if(supa&&supa.profile){const u={email:f.email,role:supa.profile.role,alunoId:supa.aluno?.id||null,supabase:true}; sessionStorage.setItem('hero_session',JSON.stringify(u)); render(); return;}}catch(err){console.warn('Falha Supabase, tentando modo local:',err);} const st=data(); const u=st.users.find(x=>x.email.toLowerCase()===f.email.toLowerCase()&&(x.password===f.password||!x.password)); if(!u){msg.textContent='Acesso não autorizado. Sua missão ainda não foi liberada.';return;} const a=u.alunoId?st.alunos.find(x=>x.id===u.alunoId):null; if(a&&a.status!=='ativo'){msg.textContent='Acesso bloqueado. Fale com o treinador.';return;} sessionStorage.setItem('hero_session',JSON.stringify(u)); render();};}
   function render(){const s=sessionStorage.getItem('hero_session'); if(!s)return login(); const u=JSON.parse(s); if(u.role==='admin') admin(); else student(u.alunoId,false);}
   async function logout(){await supabaseLogout(); sessionStorage.removeItem('hero_session'); login();}
-  async function admin(selectedAlunoId=null){
-    let st=data();
-
-    if(supabaseAvailable()){
-      try{
-        await syncFromSupabase();
-        st=data();
-      }catch(err){
-        console.warn('Falha ao sincronizar Supabase no painel treinador:',err.message);
-      }
-    }
-
-    const alunos=st.alunos||[];
-    const treinos=st.treinos||[];
-    const exercicios=st.exercicios||[];
-
-    const selectedId=selectedAlunoId || window.HERO_SELECTED_ALUNO_ID || alunos[0]?.id || null;
-    const selected=alunos.find(a=>String(a.id)===String(selectedId)) || alunos[0] || null;
-
-    if(selected){
-      window.HERO_SELECTED_ALUNO_ID=selected.id;
-    }
-
-    const selectedTreinos=selected ? treinos.filter(t=>String(t.alunoId)===String(selected.id)) : [];
-    const selectedExCount=selectedTreinos.reduce((total,t)=>total+exercicios.filter(e=>String(e.treinoId)===String(t.id)).length,0);
-
-    const studentList = alunos.length ? alunos.map(a=>{
-      const active=selected&&String(a.id)===String(selected.id);
-      return `<button type="button" class="student-list-card ${active?'active':''}" onclick="HERO.admin('${a.id}')">
-        <strong>${esc(a.nome||'Aluna')}</strong>
-        <span>${esc(a.email||'sem e-mail')}</span>
-        <small>${esc(a.objetivo||'Objetivo não informado')}</small>
-      </button>`;
-    }).join('') : '<div class="empty">Nenhuma aluna cadastrada.</div>';
-
-    const detail = selected ? `<section class="panel selected-student-panel">
-      <div class="student-head">
-        <div>
-          <p class="eyebrow">aluna selecionada</p>
-          <h2>${esc(selected.nome||'Aluna')}</h2>
-          <p>${esc(selected.email||'sem e-mail')}</p>
-          <div><span class="status ${selected.status||'ativo'}">${esc(selected.status||'ativo')}</span></div>
-        </div>
-        <div class="toolbar">
-          <button class="btn ghost small" onclick="HERO.studentForm('${selected.id}')">Editar</button>
-          <button class="btn secondary small" onclick="HERO.toggleStudent('${selected.id}')">${selected.status==='ativo'?'Bloquear':'Liberar'}</button>
-          <button class="btn ghost small" onclick="HERO.gerarPrescricaoIA('${selected.id}')">Diagnóstico IA</button>
-          <button class="btn small" onclick="HERO.newWorkout('${selected.id}')">Novo protocolo</button>
-          <button class="btn danger small" onclick="HERO.deleteStudent('${selected.id}')">Excluir cadastro</button>
-        </div>
-      </div>
-
-      <div class="note operator-info-box">
-        <b>Objetivo:</b> ${esc(selected.objetivo||'Não informado')}<br>
-        <b>Plano:</b> ${esc(selected.plano||'HERO Aesthetic Performance')}<br>
-        <b>Protocolos:</b> ${selectedTreinos.length} · <b>Execuções:</b> ${selectedExCount}
-      </div>
-
-      <div class="cards">
-        ${selectedTreinos.length?selectedTreinos.map(t=>workoutCard(t)).join(''):'<div class="empty">Nenhum protocolo criado para esta aluna.</div>'}
-      </div>
-    </section>` : `<section class="panel selected-student-panel empty-panel">
-      <div class="empty">Selecione uma aluna para configurar sistema.</div>
-    </section>`;
-
-    mount(`${top('Centro de controle',`<button class="btn small" onclick="HERO.studentForm()">Nova aluna</button>`)}
-      <main class="wrap">
-        <section class="hero">
-          <div>
-            <p class="eyebrow">painel treinador</p>
-            <h1>Centro de controle HERO</h1>
-            <p>Gerencie alunas, protocolos, execuções, IA e evolução em um único ambiente.</p>
-          </div>
-        </section>
-
-        <section class="control-metrics">
-          <article class="metric-card"><span>Alunas</span><strong>${alunos.length}</strong><small>cadastros no sistema</small></article>
-          <article class="metric-card"><span>Protocolos</span><strong>${treinos.length}</strong><small>sistemas criados</small></article>
-          <article class="metric-card"><span>Execuções</span><strong>${exercicios.length}</strong><small>movimentos cadastrados</small></article>
-        </section>
-
-        <section class="admin-grid-fixed">
-          <aside class="panel students-panel">
-            <h2>Alunas</h2>
-            <p class="muted">Selecione para configurar sistema.</p>
-            <div class="student-list">
-              ${studentList}
-            </div>
-          </aside>
-          ${detail}
-        </section>
-      </main>`);
-  }
+  function admin(selectedId){const st=data(); const selected=st.alunos.find(a=>a.id===(selectedId||st.alunos[0]?.id)); window.HERO_SELECTED_ALUNO_ID=selected?.id||null; window.HERO_SELECTED_TREINO_ID=st.treinos.find(t=>t.alunoId===window.HERO_SELECTED_ALUNO_ID)?.id||null; mount(`${top('Central de prescrição HERO',`<button class="btn small" id="addStudent">Cadastrar aluna</button><button class="btn ghost small" id="openLib">Biblioteca de execuções HERO</button>`)}<main class="wrap"><section class="hero"><p class="eyebrow">centro de controle do treinador</p><h1>Central de prescrição HERO</h1><p>Cadastre alunos, monte treinos, salve protocolos e libere missões individuais.</p><div class="stats"><div><b>${st.alunos.length}</b><span>alunas</span></div><div><b>${st.treinos.length}</b><span>protocolos</span></div><div><b>${st.exercicios.length}</b><span>exercícios</span></div><div><b>${st.alunos.filter(a=>a.status==='ativo').length}</b><span>ativos</span></div></div></section><section class="admin-grid"><aside class="panel"><div class="panel-title"><div><h2>Alunas</h2><p>Selecione para configurar sistema.</p></div></div><div id="studentList"></div></aside><section id="adminDetail" class="panel"></section></section></main>`); $('addStudent').onclick=()=>studentForm(); $('openLib').onclick=()=>library(); drawStudents(selected?.id); drawDetail(selected?.id);}
   function drawStudents(selectedId){const st=data(); $('studentList').innerHTML=st.alunos.map(a=>`<button class="student-row ${a.id===selectedId?'active':''}" onclick="HERO.admin('${a.id}')"><strong>${esc(a.nome)}</strong><small>${esc(a.email)}</small><small>${esc(a.objetivo||'Sem objetivo definido')}</small></button>`).join('');}
-  function drawDetail(alunoId){const st=data(); const a=st.alunos.find(x=>x.id===alunoId); const el=$('adminDetail'); if(!a){el.innerHTML='<div class="empty">Cadastre uma aluna para iniciar a prescrição.</div>'; return;} const ts=st.treinos.filter(t=>t.alunoId===a.id); el.innerHTML=`<div class="student-head"><div><p class="eyebrow">aluna selecionada</p><h2>${esc(a.nome)}</h2><p>${esc(a.email)}</p><div><span class="status ${a.status}">${esc(a.status)}</span></div></div><div class="toolbar"><button class="btn ghost small" onclick="HERO.studentForm('${a.id}')">Editar</button><button class="btn secondary small" onclick="HERO.toggleStudent('${a.id}')">${a.status==='ativo'?'Bloquear':'Liberar'}</button><button class="btn ghost small" onclick="HERO.gerarPrescricaoIA('${a.id}')">Diagnóstico IA</button><button class="btn small" onclick="HERO.newWorkout('${a.id}')">Novo protocolo</button><button class="btn danger small" onclick="HERO.deleteStudent('${a.id}')">Excluir cadastro</button></div></div><div class="note"><b>Objetivo:</b> ${esc(a.objetivo||'Não informado')}<br><b>Plano:</b> ${esc(a.plano||'HERO Aesthetic Performance')}</div>${full&&ts.length?heroRenderProtocolByDay(ts[0].id):''}<div class="cards">${!full&&ts.length?ts.map(t=>workoutCard(t)).join(''):(!full?'<div class="empty">Nenhum treino criado para esta aluna.</div>':'')}</div>`;}
+  function drawDetail(alunoId){const st=data(); const a=st.alunos.find(x=>x.id===alunoId); const el=$('adminDetail'); if(!a){el.innerHTML='<div class="empty">Cadastre uma aluna para iniciar a prescrição.</div>'; return;} const ts=st.treinos.filter(t=>t.alunoId===a.id); el.innerHTML=`<div class="student-head"><div><p class="eyebrow">aluna selecionada</p><h2>${esc(a.nome)}</h2><p>${esc(a.email)}</p><div><span class="status ${a.status}">${esc(a.status)}</span></div></div><div class="toolbar"><button class="btn ghost small" onclick="HERO.studentForm('${a.id}')">Editar</button><button class="btn secondary small" onclick="HERO.toggleStudent('${a.id}')">${a.status==='ativo'?'Bloquear':'Liberar'}</button><button class="btn ghost small" onclick="HERO.gerarPrescricaoIA('${a.id}')">Diagnóstico IA</button><button class="btn small" onclick="HERO.newWorkout('${a.id}')">Novo protocolo</button><button class="btn danger small" onclick="HERO.deleteStudent('${a.id}')">Excluir cadastro</button></div></div><div class="note"><b>Objetivo:</b> ${esc(a.objetivo||'Não informado')}<br><b>Plano:</b> ${esc(a.plano||'HERO Aesthetic Performance')}</div><div class="cards">${ts.length?ts.map(t=>workoutCard(t)).join(''):'<div class="empty">Nenhum treino criado para esta aluna.</div>'}</div>`;}
   function workoutCard(t){const count=data().exercicios.filter(e=>e.treinoId===t.id).length; return `<article class="workout-card"><div><span class="badge">${t.liberado?'liberado':'bloqueado'}</span><h3>${esc(t.nome)}</h3><p>${esc(t.objetivo)}</p><small>${count} execuções cadastradas</small></div><div class="toolbar"><button class="btn small" onclick="HERO.editWorkout('${t.id}')">Configurar sistema</button><button class="btn ghost small" onclick="HERO.student('${t.alunoId}',true)">Visualizar</button><button class="btn secondary small" onclick="HERO.toggleWorkout('${t.id}')">${t.liberado?'Bloquear':'Liberar'}</button><button class="btn ghost small" onclick="HERO.duplicateWorkout('${t.id}')">Duplicar</button></div></article>`;}
 
 
@@ -7245,14 +6913,12 @@ dialog,
     st.exercicios=st.exercicios.filter(e=>e.treinoId!==treinoId);
     for(let i=0;i<rows.length;i++){
       const r=rows[i];
-      const normalizedDia=normalizeDayName(r.dia||r.dia_da_semana||r.dia_semana||r.diaSemana, Math.floor(i/6));
+      const normalizedDia=normalizeDayName(r.dia, Math.floor(i/6));
       st.exercicios.push({
         id:r.id,
         treinoId:r.treino_id,
         alunoId:r.aluno_id||alunoId||'',
         dia:normalizedDia,
-        dia_da_semana:normalizedDia,
-        dia_semana:normalizedDia,
         bloco:r.categoria||'HERO IA',
         ordem:r.ordem||1,
         nome:r.nome||'Exercício',
@@ -7261,10 +6927,10 @@ dialog,
         categoria:r.categoria||'HERO - IA',
         execucao:r.execucao||'',
         series:r.series||'',
-        reps:r.repeticoes||r.reps||r.repeticao||'8 a 12',
+        reps:r.repeticoes||'',
         carga:r.carga||'',
         descanso:r.descanso||'',
-        cadencia:r.cadencia||'2-0-2, execução controlada',
+        cadencia:'',
         metodo:r.metodo||'',
         metodoDescricao:r.metodo||'',
         progressaoAtiva:false,
@@ -7278,92 +6944,15 @@ dialog,
 
 
 
-
-  function heroFindAlunoLocal(alunoId){
-    const st=data();
-    const list=st.alunos||[];
-    if(alunoId){
-      const id=String(alunoId);
-      const found=list.find(a=>String(a.id)===id||String(a.user_id||'')===id||String(a.auth_user_id||'')===id);
-      if(found)return found;
-    }
-    if(window.HERO_SELECTED_ALUNO_ID){
-      const id=String(window.HERO_SELECTED_ALUNO_ID);
-      const found=list.find(a=>String(a.id)===id||String(a.user_id||'')===id||String(a.auth_user_id||'')===id);
-      if(found)return found;
-    }
-    try{
-      const raw=sessionStorage.getItem('hero_session');
-      const u=raw?JSON.parse(raw):null;
-      if(u?.alunoId){
-        const found=list.find(a=>String(a.id)===String(u.alunoId)||String(a.user_id||'')===String(u.alunoId));
-        if(found)return found;
-      }
-      if(u?.email){
-        const found=list.find(a=>String(a.email||'').toLowerCase()===String(u.email).toLowerCase());
-        if(found)return found;
-      }
-    }catch(_e){}
-    return list[0]||null;
-  }
-
-  function heroFindTreinoLocal(alunoId,treinoId){
-    const st=data();
-    if(treinoId){
-      const found=(st.treinos||[]).find(t=>String(t.id)===String(treinoId));
-      if(found)return found;
-    }
-    const aluno=heroFindAlunoLocal(alunoId);
-    const aid=aluno?.id||alunoId||window.HERO_SELECTED_ALUNO_ID;
-    return (st.treinos||[]).find(t=>String(t.alunoId)===String(aid)) || (st.treinos||[])[0] || null;
-  }
-
-  async function heroEnsureAlunoContext(alunoId){
-    let aluno=heroFindAlunoLocal(alunoId);
-    if(aluno)return aluno;
-    if(!supabaseAvailable())return null;
-    try{
-      const client=supabaseClient();
-      const {data:{session}}=await client.auth.getSession();
-      if(!session)return null;
-      const {data:rows,error}=await client.from('alunos').select('*').limit(100);
-      if(error)throw error;
-      if(Array.isArray(rows)){
-        rows.forEach(r=>syncAlunoLocal(r));
-        aluno=heroFindAlunoLocal(alunoId);
-      }
-    }catch(err){
-      console.warn('Falha ao sincronizar alunas:',err.message);
-    }
-    return aluno;
-  }
-
-  async function heroEdgePost(functionName,payload){
-    const client=supabaseClient();
-    if(!client)throw new Error('Supabase não configurado.');
-    const {data:{session}}=await client.auth.getSession();
-    if(!session)throw new Error('Faça login como treinador antes de usar a IA.');
-    const response=await fetch(`${window.HERO_SUPABASE_CONFIG.url}/functions/v1/${functionName}`,{
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json',
-        Authorization:`Bearer ${session.access_token}`
-      },
-      body:JSON.stringify(payload||{})
-    });
-    const raw=await response.text();
-    let result={};
-    try{result=raw?JSON.parse(raw):{};}catch(_e){result={error:raw||'Resposta inválida da função.'};}
-    if(!response.ok||result.error){
-      throw new Error(result.error||result.message||`Erro HTTP ${response.status}`);
-    }
-    return result;
-  }
-
   function currentTrainerContext(){
-    const aluno=heroFindAlunoLocal(window.HERO_SELECTED_ALUNO_ID);
-    const treino=heroFindTreinoLocal(aluno?.id,window.HERO_SELECTED_TREINO_ID);
-    return {alunoId:aluno?.id||null,treinoId:treino?.id||null,aluno,treino};
+    const s=sessionStorage.getItem('hero_session');
+    if(!s)return {alunoId:null,treinoId:null};
+    const st=data();
+    const alunos=st.alunos||[];
+    const treinos=st.treinos||[];
+    const selectedAluno=window.HERO_SELECTED_ALUNO_ID||alunos[0]?.id||null;
+    const selectedTreino=window.HERO_SELECTED_TREINO_ID||treinos.find(t=>t.alunoId===selectedAluno)?.id||null;
+    return {alunoId:selectedAluno,treinoId:selectedTreino};
   }
   function floatingAIButton(){
     const s=sessionStorage.getItem('hero_session');
@@ -7383,20 +6972,14 @@ dialog,
 
     const client=supabaseClient();
     if(!client){alert('Supabase não configurado. Verifique o arquivo supabase-config.js.');return;}
+    if(!alunoId){alert('Selecione ou cadastre uma aluna antes de usar o Chat HERO.');return;}
+
     const {data:{session}}=await client.auth.getSession();
     if(!session){alert('Faça login como treinador antes de usar o chat com IA.');return;}
 
-    const alunoCtx=await heroEnsureAlunoContext(alunoId);
-    if(!alunoCtx){alert('Nenhuma aluna encontrada. Cadastre ou selecione uma aluna antes de abrir o Chat HERO.');return;}
-    alunoId=alunoCtx.id;
-    const treinoCtx=heroFindTreinoLocal(alunoId,treinoId);
-    treinoId=treinoCtx?.id||treinoId||null;
-    window.HERO_SELECTED_ALUNO_ID=alunoId;
-    if(treinoId)window.HERO_SELECTED_TREINO_ID=treinoId;
-
     const st=data();
-    const aluno=st.alunos.find(a=>a.id===alunoId)||alunoCtx||{};
-    const treino=st.treinos.find(t=>t.id===treinoId)||treinoCtx||{};
+    const aluno=st.alunos.find(a=>a.id===alunoId)||{};
+    const treino=st.treinos.find(t=>t.id===treinoId)||{};
 
     let drawer=document.getElementById('heroAiDrawer');
     if(!drawer){
@@ -7453,7 +7036,20 @@ dialog,
       msgEl.scrollTop=msgEl.scrollHeight;
 
       try{
-        const result=await heroEdgePost('hero-ai-chat',{aluno_id:currentAlunoId,treino_id:currentTreinoId,pergunta});
+        const response=await fetch(`${window.HERO_SUPABASE_CONFIG.url}/functions/v1/hero-ai-chat`,{
+          method:'POST',
+          headers:{
+            'Content-Type':'application/json',
+            Authorization:`Bearer ${session.access_token}`
+          },
+          body:JSON.stringify({
+            aluno_id:currentAlunoId,
+            treino_id:currentTreinoId,
+            pergunta
+          })
+        });
+        const result=await response.json().catch(()=>({error:'Resposta inválida da função.'}));
+        if(!response.ok||result.error)throw new Error(result.error||'Erro ao consultar IA.');
         msgEl.insertAdjacentHTML('beforeend',`<div class="hero-ai-msg assistant"><b>IA HERO</b><p>${esc(result.resposta||'Sem resposta.')}</p></div>`);
       }catch(err){
         msgEl.insertAdjacentHTML('beforeend',`<div class="hero-ai-msg error"><b>Erro</b><p>${esc(err.message)}</p></div>`);
@@ -7470,12 +7066,8 @@ dialog,
     if(!client){alert('Supabase não configurado. Verifique o arquivo supabase-config.js.');return;}
     const {data:{session}}=await client.auth.getSession();
     if(!session){alert('Faça login como treinador antes de usar a IA.');return;}
-    const alunoCtx=await heroEnsureAlunoContext(alunoId);
-    if(!alunoCtx){alert('Nenhuma aluna encontrada para gerar o protocolo. Cadastre ou selecione uma aluna antes.');return;}
-    alunoId=alunoCtx.id;
-    window.HERO_SELECTED_ALUNO_ID=alunoId;
     const st=data();
-    const aluno=st.alunos.find(a=>a.id===alunoId)||alunoCtx||{};
+    const aluno=st.alunos.find(a=>a.id===alunoId)||{};
     modal(`<h2>Gerar prescrição com IA</h2>
       <p class="muted">A IA cria uma sugestão técnica no método HERO. Você revisa antes de liberar para a aluna.</p>
       <form id="aiForm" class="form">
@@ -7496,9 +7088,7 @@ dialog,
               <option>4</option>
               <option selected>5</option>
               <option>6</option>
-                                       <option>7</option>
- <option>7</option>
-</select>
+            </select>
           </label>
           <label>Tempo por treino
             <input name="tempo_por_treino" value="50 a 60 minutos">
@@ -7530,17 +7120,26 @@ dialog,
       msg.textContent='A IA está montando a prescrição. Aguarde.';
       const f=Object.fromEntries(new FormData(e.target));
       try{
-        const result=await heroEdgePost('generate-prescription',{
-          aluno_id:alunoId,
-          objetivo:f.objetivo,
-          nivel:f.nivel,
-          dias_semana:Number(f.dias_semana),
-          tempo_por_treino:f.tempo_por_treino,
-          foco:f.foco,
-          restricoes:f.restricoes,
-          observacoes:f.observacoes,
-          salvar:!!f.salvar
+        const response=await fetch(`${window.HERO_SUPABASE_CONFIG.url}/functions/v1/generate-prescription`,{
+          method:'POST',
+          headers:{
+            'Content-Type':'application/json',
+            Authorization:`Bearer ${session.access_token}`
+          },
+          body:JSON.stringify({
+            aluno_id:alunoId,
+            objetivo:f.objetivo,
+            nivel:f.nivel,
+            dias_semana:Number(f.dias_semana),
+            tempo_por_treino:f.tempo_por_treino,
+            foco:f.foco,
+            restricoes:f.restricoes,
+            observacoes:f.observacoes,
+            salvar:!!f.salvar
+          })
         });
+        const result=await response.json().catch(()=>({error:'Resposta inválida da função.'}));
+        if(!response.ok||result.error){throw new Error(result.error||'Erro ao gerar prescrição.');}
         if(result.treino){syncTreinoLocal(result.treino,alunoId);}
         if(result.prescription&&Array.isArray(result.prescription.dias)){
           const st2=data();
@@ -7562,7 +7161,7 @@ dialog,
                 st2.exercicios.push({
                   id:uid(),treinoId,dia:dia.dia,ordem:ex.ordem||1,
                   nome:ex.nome||'Exercício',traducao:ex.traducao||'',grupo:ex.grupo||'',
-                  categoria:ex.categoria||'HERO - IA',series:ex.series||'',reps:ex.repeticoes||ex.reps||'8 a 12',repeticoes:ex.repeticoes||ex.reps||'8 a 12',
+                  categoria:ex.categoria||'HERO - IA',series:ex.series||'',repeticoes:ex.repeticoes||'',
                   carga:ex.carga||'',descanso:ex.descanso||'',metodo:ex.metodo||'',
                   execucao:ex.execucao||'',observacoes:ex.observacoes||''
                 });
@@ -7574,38 +7173,13 @@ dialog,
         msg.textContent='Prescrição gerada com sucesso. Revise antes de liberar.';
         setTimeout(()=>{closeModal(); admin(alunoId);},700);
       }catch(err){
-        msg.textContent='Erro ao gerar protocolo HERO: '+err.message+' | Verifique se a Edge Function generate-prescription está implantada e se OPENAI_API_KEY está nos Secrets do Supabase.';
+        msg.textContent='Erro ao gerar prescrição com IA: '+err.message;
         btn.disabled=false;
         btn.textContent=old;
       }
     };
   }
 
-
-
-  function heroRenderProtocolByDay(treinoId){
-    const st=data();
-    const treino=(st.treinos||[]).find(t=>String(t.id)===String(treinoId));
-    if(!treino)return '<div class="empty">Protocolo não encontrado.</div>';
-    const all=(st.exercicios||[])
-      .filter(e=>String(e.treinoId)===String(treinoId))
-      .map((e,i)=>({...e,dia:normalizeDayName(e.dia||e.dia_da_semana||e.diaSemana||e.dia_semana||'',i)}))
-      .sort((a,b)=>(HERO_WEEK_DAYS.indexOf(a.dia)-HERO_WEEK_DAYS.indexOf(b.dia))||Number(a.ordem||0)-Number(b.ordem||0));
-
-    const selected=heroGetSelectedDay(treinoId);
-    const dayExercises=all.filter(e=>normalizeDayName(e.dia,0)===selected);
-
-    return `${heroWeekTabs(treinoId,all)}
-      <section class="hero-day-section">
-        <div class="hero-day-heading"><strong>${heroDayLabel(selected)}</strong><span>${dayExercises.length} execuções</span></div>
-        ${dayExercises.length?dayExercises.map(e=>`<article class="exercise">
-          <div class="ex-head"><h3>${esc(e.nome||'Execução HERO')}</h3>${typeof heroVideoButton==='function'?heroVideoButton(e):''}</div>
-          ${heroExerciseDetailPills(e)}
-          ${e.execucao?`<p>${esc(e.execucao)}</p>`:''}
-          ${e.metodo?`<small>${esc(e.metodo)}</small>`:''}
-        </article>`).join(''):'<div class="empty">Nenhuma execução cadastrada para este dia.</div>'}
-      </section>`;
-  }
 
   function heroControlMetrics(alunoId){
     const st=data();
@@ -7689,115 +7263,15 @@ dialog,
   function currentDay(){return days[(new Date().getDay()+6)%7];}
   function completionKey(alunoId,day){const now=new Date(); return alunoId+'_'+day+'_'+now.toISOString().slice(0,10);}
   function timerKey(alunoId){return 'hero_timer_'+alunoId;}
-  
-  const HERO_WEEK_DAYS_FULL=[
-    'segunda-feira',
-    'terça-feira',
-    'quarta-feira',
-    'quinta-feira',
-    'sexta-feira',
-    'sábado',
-    'domingo'
-  ];
-
-  function heroTodayDay(){
-    const index=new Date().getDay();
-    return index===0?'domingo':HERO_WEEK_DAYS_FULL[index-1]||'segunda-feira';
-  }
-
-  function heroDayFullLabel(day){
-    const d=normalizeDayName(day||'',0);
-    return d.charAt(0).toUpperCase()+d.slice(1);
-  }
-
-  function heroSelectedStudentDay(alunoId){
-    return sessionStorage.getItem('hero_student_selected_day_'+String(alunoId||'default'))||heroTodayDay();
-  }
-
-  function heroSetStudentDay(alunoId,day){
-    const normalized=normalizeDayName(day,0);
-    sessionStorage.setItem('hero_student_selected_day_'+String(alunoId||'default'),normalized);
-    window.HERO_SELECTED_DAY=normalized;
-    return normalized;
-  }
-
-  function selectStudentDay(alunoId,day,preview){
-    heroSetStudentDay(alunoId,day);
-    student(alunoId,preview===true||preview==='true');
-  }
-
-  function heroExDay(e,index=0){
-    return normalizeDayName(e?.dia||e?.dia_da_semana||e?.dia_semana||e?.diaSemana||'',index);
-  }
-
-  function heroExReps(e){
-    return e?.reps||e?.repeticoes||e?.repetição||e?.repeticao||e?.repetições||'8 a 12';
-  }
-
-async function student(alunoId,preview=false){let d=data(); const a=d.alunos.find(x=>x.id===alunoId); if(!a)return login(); let ts=d.treinos.filter(t=>t.alunoId===alunoId&&(preview||t.liberado)); if(supabaseAvailable()){for(const t of ts){await syncExerciciosPrescritosSupabase(t.id,alunoId);} d=data(); ts=d.treinos.filter(t=>t.alunoId===alunoId&&(preview||t.liberado));} mount(`${top(preview?'Visualização do aluno':'Área individual do aluno',preview?`<button class="btn secondary small" id="backPrev">Voltar ao centro de controle</button>`:`<button class="btn small" onclick="window.print()">Imprimir minha missão</button>`)}<main class="wrap student-view"><section class="hero print-head"><div class="student-profile"><div class="avatar-wrap">${a.foto?`<img src="${a.foto}" alt="Foto de ${esc(a.nome)}">`:`<div class="avatar-placeholder">H</div>`}</div><div><p class="eyebrow">Protocolo liberado</p><h1>${esc(a.nome)}</h1><p>Seu treino foi criado para estética, força, resistência e evolução real.</p><div class="mission-ribbon no-print">Área exclusiva HERO liberada</div><div class="toolbar no-print">${preview?'':`<button class="btn small" id="photoBtn">${a.foto?'Alterar foto':'Adicionar foto'}</button>`}<button class="btn" onclick="window.print()">Imprimir minha missão</button></div></div></div></section>${heroControlMetrics(a.id)}<section class="print-area">${ts.length?studentToday(alunoId,ts,preview)+ts.map(t=>studentWorkout(t,alunoId,preview)).join(''):'<div class="empty">Sua missão ainda não foi liberada.</div>'}</section></main>`); const b=$('backPrev'); if(b)b.onclick=()=>admin(alunoId); const pb=$('photoBtn'); if(pb)pb.onclick=()=>photoEditor(alunoId); if(!preview) initTimer(alunoId);}
-  function studentToday(alunoId,ts,preview){
-    const d=data();
-    const selected=heroSelectedStudentDay(alunoId);
-    const all=ts.flatMap(t=>d.exercicios
-      .filter(e=>e.treinoId===t.id)
-      .map((e,i)=>({...e,dia:heroExDay(e,i),protocolo:t.nome}))
-    );
-    const available=new Set(all.map(e=>heroExDay(e)));
-    const arr=all
-      .filter(e=>heroExDay(e)===selected)
-      .sort((a,b)=>Number(a.ordem||0)-Number(b.ordem||0));
-
-    return `<article class="panel today-panel">
-      <p class="eyebrow">protocolo semanal</p>
-      <h2>Missão do dia · ${esc(heroDayFullLabel(selected))}</h2>
-      <p>Selecione o dia da semana para visualizar exatamente o protocolo correspondente.</p>
-      ${preview?'':timerBox(alunoId)}
-      <div class="day-tabs no-print" role="tablist" aria-label="Dias do protocolo">
-        ${HERO_WEEK_DAYS_FULL.map(day=>`<button type="button" class="day-pill ${day===selected?'active':''} ${available.has(day)?'has-training':''}" onclick="HERO.selectStudentDay('${esc(alunoId)}','${esc(day)}',${preview?'true':'false'})">${esc(heroDayFullLabel(day))}</button>`).join('')}
-      </div>
-      <div class="student-day-title"><strong>${esc(heroDayFullLabel(selected))}</strong><span>${arr.length} execuções</span></div>
-      ${arr.length?arr.map(e=>studentEx(e,alunoId,preview,true,selected)).join('')+(!preview?finishDayBox(alunoId,selected,arr):''):'<div class="empty">Nenhuma execução cadastrada para este dia.</div>'}
-    </article>`;
-  }
+  async function student(alunoId,preview=false){let d=data(); const a=d.alunos.find(x=>x.id===alunoId); if(!a)return login(); let ts=d.treinos.filter(t=>t.alunoId===alunoId&&(preview||t.liberado)); if(supabaseAvailable()){for(const t of ts){await syncExerciciosPrescritosSupabase(t.id,alunoId);} d=data(); ts=d.treinos.filter(t=>t.alunoId===alunoId&&(preview||t.liberado));} mount(`${top(preview?'Visualização do aluno':'Área individual do aluno',preview?`<button class="btn secondary small" id="backPrev">Voltar ao centro de controle</button>`:`<button class="btn small" onclick="window.print()">Imprimir minha missão</button>`)}<main class="wrap student-view"><section class="hero print-head"><div class="student-profile"><div class="avatar-wrap">${a.foto?`<img src="${a.foto}" alt="Foto de ${esc(a.nome)}">`:`<div class="avatar-placeholder">H</div>`}</div><div><p class="eyebrow">Protocolo liberado</p><h1>${esc(a.nome)}</h1><p>Seu treino foi criado para estética, força, resistência e evolução real.</p><div class="mission-ribbon no-print">Área exclusiva HERO liberada</div><div class="toolbar no-print">${preview?'':`<button class="btn small" id="photoBtn">${a.foto?'Alterar foto':'Adicionar foto'}</button>`}<button class="btn secondary" onclick="HERO.community()">Comunidade HERO</button><button class="btn" onclick="window.print()">Imprimir minha missão</button></div></div></div></section>${heroControlMetrics(a.id)}<section class="print-area">${ts.length?studentToday(alunoId,ts,preview)+ts.map(t=>studentWorkout(t,alunoId,preview)).join(''):'<div class="empty">Sua missão ainda não foi liberada.</div>'}</section></main>`); const b=$('backPrev'); if(b)b.onclick=()=>admin(alunoId); const pb=$('photoBtn'); if(pb)pb.onclick=()=>photoEditor(alunoId); if(!preview) initTimer(alunoId);}
+  function studentToday(alunoId,ts,preview){const d=data(), dia=currentDay(); const arr=ts.flatMap(t=>d.exercicios.filter(e=>e.treinoId===t.id&&normalizeDayName(e.dia)===dia).map(e=>({...e,protocolo:t.nome}))).sort((a,b)=>Number(a.ordem)-Number(b.ordem)); return `<article class="panel today-panel"><p class="eyebrow">protocolo do dia</p><h2>Missão de hoje · ${esc(dia)}</h2><p>Execute o treino liberado para hoje. Sem improviso, porque improviso em treino costuma ser só bagunça com halter.</p>${preview?'':timerBox(alunoId)}<div class="day-tabs no-print">${days.map(x=>`<span class="day-pill ${x===dia?'active':''}">${esc(x.slice(0,3))}</span>`).join('')}</div>${arr.length?arr.map(e=>studentEx(e,alunoId,preview,true)).join('')+(!preview?finishDayBox(alunoId,dia,arr):''):'<div class="empty">Nenhum exercício prescrito para hoje. Confira a divisão semanal completa abaixo.</div>'}</article>`;}
   function timerBox(alunoId){return `<div class="timer-box no-print"><div><b>Cronômetro do treino completo</b><div id="timerDisplay" class="timer-time">00:00:00</div><small class="muted">Use para controlar a missão do início ao fim.</small></div><div class="toolbar"><button class="btn small" id="startTimer">Iniciar</button><button class="btn secondary small" id="pauseTimer">Pausar</button><button class="btn ghost small" id="resetTimer">Zerar</button></div></div>`;}
   function initTimer(alunoId){const key=timerKey(alunoId); let st=JSON.parse(localStorage.getItem(key)||'{"elapsed":0,"running":false,"startedAt":0}'); const disp=$('timerDisplay'); if(!disp)return; function total(){return st.elapsed+(st.running?Date.now()-st.startedAt:0);} function fmt(ms){const s=Math.floor(ms/1000),h=String(Math.floor(s/3600)).padStart(2,'0'),m=String(Math.floor((s%3600)/60)).padStart(2,'0'),sec=String(s%60).padStart(2,'0'); return `${h}:${m}:${sec}`;} function tick(){disp.textContent=fmt(total());} setInterval(tick,1000); tick(); $('startTimer').onclick=()=>{if(!st.running){st.running=true;st.startedAt=Date.now();localStorage.setItem(key,JSON.stringify(st));tick();}}; $('pauseTimer').onclick=()=>{if(st.running){st.elapsed=total();st.running=false;st.startedAt=0;localStorage.setItem(key,JSON.stringify(st));tick();}}; $('resetTimer').onclick=()=>{st={elapsed:0,running:false,startedAt:0};localStorage.setItem(key,JSON.stringify(st));tick();};}
   function finishDayBox(alunoId,dia,arr){const st=data(); const done=(st.completions[completionKey(alunoId,dia)]||{}); const total=arr.length, count=arr.filter(e=>done[e.id]).length; return `<div class="finish-box no-print"><b>Finalizar protocolo do dia</b><p>${count}/${total} exercícios marcados como finalizados.</p><div class="toolbar"><button class="btn" onclick="HERO.finishWorkout('${alunoId}','${dia}')">Finalizar treino e notificar treinador</button></div><small class="muted">A notificação abre WhatsApp e e-mail com mensagem pronta. Envio automático real exige backend, Supabase Edge Function ou serviço de e-mail.</small></div>`;}
   function toggleExerciseDone(alunoId,day,exId){const st=data(); const key=completionKey(alunoId,day); st.completions[key]=st.completions[key]||{}; st.completions[key][exId]=!st.completions[key][exId]; save(st); student(alunoId,false);}
   function finishWorkout(alunoId,dia){const st=data(); const a=st.alunos.find(x=>x.id===alunoId); const done=st.completions[completionKey(alunoId,dia)]||{}; const ts=st.treinos.filter(t=>t.alunoId===alunoId&&t.liberado); const arr=ts.flatMap(t=>st.exercicios.filter(e=>e.treinoId===t.id&&normalizeDayName(e.dia)===dia)); const count=arr.filter(e=>done[e.id]).length; const timer=JSON.parse(localStorage.getItem(timerKey(alunoId))||'{"elapsed":0,"running":false,"startedAt":0}'); const ms=timer.elapsed+(timer.running?Date.now()-timer.startedAt:0); const minutes=Math.floor(ms/60000), seconds=Math.floor((ms%60000)/1000); const text=`Treino finalizado - HERO Aesthetic Performance%0AAluna: ${encodeURIComponent(a.nome)}%0ADia: ${encodeURIComponent(dia)}%0AExercícios finalizados: ${count}/${arr.length}%0ATempo registrado: ${minutes}min ${seconds}s%0A%0AExecutei minha missão de hoje.`; modal(`<h2>Treino finalizado</h2><p class="muted">Sua missão foi registrada. Escolha como enviar a notificação ao treinador.</p><div class="note"><b>${esc(a.nome)}</b><br>${esc(dia)} · ${count}/${arr.length} exercícios finalizados · ${minutes}min ${seconds}s</div><div class="toolbar"><a class="btn" target="_blank" href="https://wa.me/${adminPhone}?text=${text}">Notificar no WhatsApp</a><a class="btn secondary" href="mailto:${adminEmail}?subject=Treino finalizado - HERO&body=${text}">Notificar por e-mail</a><button class="btn ghost" onclick="HERO.closeModal()">Fechar</button></div>`);}
-  function studentWorkout(t,alunoId,preview){const ex=data().exercicios.filter(e=>e.treinoId===t.id).map((e,i)=>({...e,dia:heroExDay(e,i)})).sort((a,b)=>days.indexOf(a.dia)-days.indexOf(b.dia)||Number(a.ordem)-Number(b.ordem)); return `<article class="panel protocol"><p class="eyebrow">${esc(t.fase)}</p><h2>${esc(t.nome)}</h2><p>${esc(t.objetivo)}</p>${t.observacoes?`<div class="note"><b>Observações do treinador:</b><br>${esc(t.observacoes)}</div>`:''}${days.map(day=>{const arr=ex.filter((e,i)=>heroExDay(e,i)===day); return arr.length?`<section class="day"><h3>${esc(day)}</h3>${arr.map(e=>studentEx(e,alunoId,preview,false,day)).join('')}${!preview?finishDayBox(alunoId,day,arr):''}</section>`:''}).join('')}</article>`;}
-  function studentEx(e,alunoId,preview,isToday,forcedDay){
-    const prog=e.progressaoAtiva&&Array.isArray(e.progressao)&&e.progressao.length;
-    const day=forcedDay||heroExDay(e)||currentDay();
-    const st=data();
-    const done=!!(st.completions[completionKey(alunoId,day)]||{})[e.id];
-    const series=e.series||e.serie||'3';
-    const reps=heroExReps(e);
-    const carga=e.carga||'RIR 1-3';
-    const descanso=e.descanso||'60 a 90s';
-    const cadencia=e.cadencia||'2-0-2';
-    const metodo=e.metodo||'técnica limpa';
-    return `<div class="student-ex ${done?'done':''}">
-      <div class="ex-title">
-        <div>
-          <h4>${esc(e.nome||'Execução HERO')}</h4>
-          ${e.traducao?`<small class="translation">${esc(e.traducao)}</small>`:''}
-        </div>
-        <span class="badge">${esc(e.categoria||e.grupo||'HERO')}</span>
-      </div>
-      ${e.execucao?`<p><b>Como executar:</b> ${esc(e.execucao)}</p>`:''}
-      <div class="mini-grid">
-        <span><b>${esc(series)}</b> séries</span>
-        <span><b>${esc(reps)}</b> repetições</span>
-        <span><b>${esc(carga)}</b> carga</span>
-        <span><b>${esc(descanso)}</b> descanso</span>
-        <span><b>${esc(cadencia)}</b> cadência</span>
-        <span><b>${esc(metodo)}</b> método</span>
-      </div>
-      ${e.metodoDescricao?`<p class="advanced-note"><b>Execução do método:</b> ${esc(e.metodoDescricao)}</p>`:''}
-      ${prog?`<div class="series-progression"><b>Progressão de carga série à série</b><table><thead><tr><th>Série</th><th>Repetições</th><th>Carga</th></tr></thead><tbody>${e.progressao.map(r=>`<tr><td>${esc(r.serie)}</td><td>${esc(r.reps)}</td><td>${esc(r.carga)}</td></tr>`).join('')}</tbody></table></div>`:''}
-      ${!preview?`<label class="complete-check no-print"><input type="checkbox" ${done?'checked':''} onchange="HERO.toggleExerciseDone('${alunoId}','${day}','${e.id}')"> marcar como concluído</label>`:''}
-    </div>`;
-  }
+  function studentWorkout(t,alunoId,preview){const ex=data().exercicios.filter(e=>e.treinoId===t.id).sort((a,b)=>days.indexOf(a.dia)-days.indexOf(b.dia)||Number(a.ordem)-Number(b.ordem)); return `<article class="panel protocol"><p class="eyebrow">${esc(t.fase)}</p><h2>${esc(t.nome)}</h2><p>${esc(t.objetivo)}</p>${t.observacoes?`<div class="note"><b>Observações do treinador:</b><br>${esc(t.observacoes)}</div>`:''}${days.map(day=>{const arr=ex.filter(e=>normalizeDayName(e.dia)===day); return arr.length?`<section class="day"><h3>${esc(day)}</h3>${arr.map(e=>studentEx(e,alunoId,preview,false,day)).join('')}${!preview?finishDayBox(alunoId,day,arr):''}</section>`:''}).join('')}</article>`;}
+  function studentEx(e,alunoId,preview,isToday,forcedDay){const prog=e.progressaoAtiva&&Array.isArray(e.progressao)&&e.progressao.length; const day=forcedDay||e.dia||currentDay(); const st=data(); const done=!!(st.completions[completionKey(alunoId,day)]||{})[e.id]; return `<div class="student-ex ${done?'done':''}"><div class="ex-title"><div><h4>${esc(e.nome)}</h4>${e.traducao?`<small class="translation">${esc(e.traducao)}</small>`:''}</div><span class="badge">${esc(e.categoria)}</span></div>${e.execucao?`<p><b>Como executar:</b> ${esc(e.execucao)}</p>`:''}<div class="mini-grid"><span><b>${esc(e.series)}</b> séries</span><span><b>${esc(e.reps)}</b> reps</span><span><b>${esc(e.carga)}</b> carga</span><span><b>${esc(e.descanso)}</b> descanso</span><span><b>${esc(e.cadencia)}</b> cadência</span><span><b>${esc(e.metodo)}</b> método</span></div>${e.metodoDescricao?`<p class="advanced-note"><b>Execução do método:</b> ${esc(e.metodoDescricao)}</p>`:''}${prog?`<div class="series-progression"><b>Progressão de carga série à série</b><table><thead><tr><th>Série</th><th>Repetições</th><th>Carga</th></tr></thead><tbody>${e.progressao.map(r=>`<tr><td>${esc(r.serie)}</td><td>${esc(r.reps)}</td><td>${esc(r.carga)}</td></tr>`).join('')}</tbody></table></div>`:''}${e.obs?`<p class="muted"><b>Obs.:</b> ${esc(e.obs)}</p>`:''}${preview?'':`<label class="complete-check ${done?'done':''}"><input type="checkbox" ${done?'checked':''} onchange="HERO.toggleExerciseDone('${alunoId}','${day}','${e.id}')">${done?'Exercício finalizado':'Finalizar este exercício'}</label>`}</div>`;}
   function photoEditor(alunoId){modal(`<h2>Adicionar foto da aluna</h2><p class="muted">Envie a foto, ajuste o enquadramento e salve no perfil da área individual.</p><div class="crop-stage"><input id="photoInput" type="file" accept="image/*"><div class="crop-preview"><canvas id="cropCanvas" width="700" height="700"></canvas></div><div class="range-grid"><label>Zoom<input id="zoomRange" type="range" min="1" max="3" step="0.01" value="1"></label><label>Horizontal<input id="xRange" type="range" min="-300" max="300" step="1" value="0"></label><label>Vertical<input id="yRange" type="range" min="-300" max="300" step="1" value="0"></label></div><div class="toolbar"><button class="btn" id="savePhoto">Salvar foto</button><button class="btn secondary" onclick="HERO.closeModal()">Cancelar</button></div></div>`); const input=$('photoInput'), canvas=$('cropCanvas'), ctx=canvas.getContext('2d'), zoom=$('zoomRange'), xr=$('xRange'), yr=$('yRange'); let img=new Image(); function draw(){ctx.clearRect(0,0,700,700); ctx.fillStyle='#020617'; ctx.fillRect(0,0,700,700); if(!img.src){ctx.fillStyle='#93c5fd';ctx.font='700 28px Inter, Arial';ctx.textAlign='center';ctx.fillText('Escolha uma foto',350,350);return;} const scale=Math.max(700/img.width,700/img.height)*Number(zoom.value); const w=img.width*scale,h=img.height*scale,x=(700-w)/2+Number(xr.value),y=(700-h)/2+Number(yr.value); ctx.drawImage(img,x,y,w,h);} draw(); input.onchange=e=>{const file=e.target.files&&e.target.files[0]; if(!file)return; const r=new FileReader(); r.onload=ev=>{img=new Image(); img.onload=draw; img.src=ev.target.result;}; r.readAsDataURL(file);}; [zoom,xr,yr].forEach(el=>el.oninput=draw); $('savePhoto').onclick=()=>{if(!img.src){alert('Selecione uma foto antes de salvar.');return;} const st=data(); const a=st.alunos.find(x=>x.id===alunoId); a.foto=canvas.toDataURL('image/jpeg',0.9); save(st); closeModal(); student(alunoId,false);};}
 
   async function syncWorkoutFromSupabase(treinoId){
@@ -8053,11 +7527,327 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
     }
   });
 
+
+  function heroCurrentUser(){
+    try{
+      const raw=sessionStorage.getItem('hero_session');
+      const u=raw?JSON.parse(raw):{};
+      const st=data();
+      const aluno=(st.alunos||[]).find(a=>String(a.id)===String(u.alunoId)||String(a.email||'').toLowerCase()===String(u.email||'').toLowerCase());
+      return {
+        id:u.alunoId||u.id||u.email||aluno?.id||'local-user',
+        name:u.nome||u.name||aluno?.nome||u.email||'Usuário HERO',
+        role:u.role||aluno?.role||'aluna',
+        email:u.email||aluno?.email||''
+      };
+    }catch(_e){
+      return {id:'local-user',name:'Usuário HERO',role:'aluna',email:''};
+    }
+  }
+
+  function heroCommunityLocal(){
+    const st=data();
+    st.communityPosts=st.communityPosts||[];
+    st.communityComments=st.communityComments||[];
+    st.communityLikes=st.communityLikes||[];
+    save(st);
+    return st;
+  }
+
+  async function heroCommunityUploadImage(file){
+    if(!file)return '';
+    const client=supabaseClient();
+    if(!client||!supabaseAvailable())return '';
+    const ext=(file.name.split('.').pop()||'jpg').toLowerCase();
+    const path=`posts/${Date.now()}-${uid()}.${ext}`;
+    const {error}=await client.storage.from('community-media').upload(path,file,{cacheControl:'3600',upsert:false});
+    if(error)throw new Error('Erro ao enviar imagem: '+error.message);
+    const {data:publicUrl}=client.storage.from('community-media').getPublicUrl(path);
+    return publicUrl?.publicUrl||'';
+  }
+
+  async function heroCommunityFetch(){
+    const st=heroCommunityLocal();
+    if(!supabaseAvailable())return st;
+    const client=supabaseClient();
+    try{
+      const [{data:posts,error:postError},{data:comments,error:commentError},{data:likes,error:likeError}] = await Promise.all([
+        client.from('community_posts').select('*').eq('is_active',true).order('is_pinned',{ascending:false}).order('created_at',{ascending:false}).limit(80),
+        client.from('community_comments').select('*').order('created_at',{ascending:true}).limit(300),
+        client.from('community_likes').select('*').limit(500)
+      ]);
+      if(postError)throw postError;
+      if(commentError)throw commentError;
+      if(likeError)throw likeError;
+      st.communityPosts=(posts||[]).map(p=>({
+        id:p.id,
+        authorId:p.author_id,
+        authorName:p.author_name,
+        authorRole:p.author_role,
+        content:p.content,
+        imageUrl:p.image_url,
+        category:p.category,
+        pinned:!!p.is_pinned,
+        active:p.is_active!==false,
+        createdAt:p.created_at
+      }));
+      st.communityComments=(comments||[]).map(c=>({
+        id:c.id,
+        postId:c.post_id,
+        authorId:c.author_id,
+        authorName:c.author_name,
+        authorRole:c.author_role,
+        content:c.content,
+        createdAt:c.created_at
+      }));
+      st.communityLikes=(likes||[]).map(l=>({
+        id:l.id,
+        postId:l.post_id,
+        userId:l.user_id,
+        createdAt:l.created_at
+      }));
+      save(st);
+    }catch(err){
+      console.warn('Comunidade usando fallback local:',err.message);
+    }
+    return st;
+  }
+
+  function heroCommunityPostCard(post,comments,likes,user,isAdmin){
+    const postComments=comments.filter(c=>String(c.postId)===String(post.id));
+    const postLikes=likes.filter(l=>String(l.postId)===String(post.id));
+    const liked=postLikes.some(l=>String(l.userId)===String(user.id));
+    return `<article class="community-post ${post.pinned?'pinned':''}">
+      <div class="community-post-head">
+        <div class="community-author">
+          <strong>${esc(post.authorName||'HERO')}</strong>
+          <span>${esc(post.authorRole||'aluna')} · ${post.createdAt?new Date(post.createdAt).toLocaleString('pt-BR'):''}</span>
+        </div>
+        <div class="community-category">${post.pinned?'fixado · ':''}${esc(post.category||'geral')}</div>
+      </div>
+      ${post.content?`<div class="community-content">${esc(post.content)}</div>`:''}
+      ${post.imageUrl?`<img class="community-image" src="${esc(post.imageUrl)}" alt="Imagem da comunidade HERO">`:''}
+      <div class="community-actions">
+        <button class="btn ghost small" onclick="HERO.communityLike('${post.id}')">${liked?'Curtido':'Curtir'} · ${postLikes.length}</button>
+        ${isAdmin?`<button class="btn secondary small" onclick="HERO.communityTogglePin('${post.id}')">${post.pinned?'Desfixar':'Fixar'}</button><button class="btn danger small" onclick="HERO.communityDeletePost('${post.id}')">Excluir</button>`:''}
+      </div>
+      <div class="community-comments">
+        ${postComments.length?postComments.map(c=>`<div class="community-comment"><strong>${esc(c.authorName||'Usuário')}</strong><p>${esc(c.content)}</p></div>`).join(''):'<div class="muted">Sem comentários ainda.</div>'}
+        <form class="community-comment-form" onsubmit="HERO.communityAddComment(event,'${post.id}')">
+          <input name="content" placeholder="Comente com orientação, dúvida ou incentivo..." required>
+          <button class="btn secondary small">Comentar</button>
+        </form>
+      </div>
+    </article>`;
+  }
+
+  async function community(){
+    const user=heroCurrentUser();
+    const isAdmin=user.role==='admin';
+    const st=await heroCommunityFetch();
+    const posts=(st.communityPosts||[]).filter(p=>p.active!==false);
+    const comments=st.communityComments||[];
+    const likes=st.communityLikes||[];
+    const backAction=isAdmin?`<button class="btn secondary small" onclick="HERO.admin()">Voltar ao centro</button>`:`<button class="btn secondary small" onclick="HERO.student('${user.id}',false)">Voltar</button>`;
+
+    mount(`${top('Comunidade HERO',backAction)}
+      <main class="wrap">
+        <section class="hero community-hero">
+          <p class="eyebrow">mural privado</p>
+          <h1>Comunidade HERO</h1>
+          <p>Compartilhe evolução, tire dúvidas, acompanhe avisos e mantenha a execução no padrão certo.</p>
+          <div class="community-badge-row"><span>check-ins</span><span>dúvidas</span><span>avisos</span><span>resultados</span></div>
+        </section>
+        <section class="community-shell">
+          <div>
+            <form id="communityForm" class="community-composer">
+              <label>Publicação
+                <textarea name="content" placeholder="Compartilhe uma evolução, dúvida, aviso ou check-in..." required></textarea>
+              </label>
+              <div class="community-row">
+                <label>Categoria
+                  <select name="category">
+                    <option>Check-in</option>
+                    <option>Dúvida</option>
+                    <option>Resultado</option>
+                    <option>Aviso</option>
+                    <option>Execução</option>
+                    <option>Motivação</option>
+                  </select>
+                </label>
+                <label class="community-file">Imagem opcional
+                  <input type="file" name="image" accept="image/*">
+                </label>
+              </div>
+              <button class="btn full">Publicar atualização</button>
+              <div id="communityMsg" class="msg"></div>
+            </form>
+            <div class="community-feed">
+              ${posts.length?posts.map(p=>heroCommunityPostCard(p,comments,likes,user,isAdmin)).join(''):'<div class="community-empty">Ainda não há publicações. Publique o primeiro check-in ou aviso.</div>'}
+            </div>
+          </div>
+          <aside class="community-side">
+            <div class="community-side-card">
+              <h3>Como usar</h3>
+              <ul>
+                <li>poste check-ins e dúvidas objetivas;</li>
+                <li>registre evolução com foto quando fizer sentido;</li>
+                <li>mantenha respeito e foco no processo;</li>
+                <li>o treinador pode fixar avisos importantes.</li>
+              </ul>
+            </div>
+            <div class="community-side-card">
+              <h3>Categorias</h3>
+              <p>Check-in, dúvida, resultado, aviso, execução e motivação.</p>
+            </div>
+          </aside>
+        </section>
+      </main>`);
+    const form=$('communityForm');
+    if(form)form.onsubmit=communityCreatePost;
+  }
+
+  async function communityCreatePost(ev){
+    ev.preventDefault();
+    const form=ev.target;
+    const msg=$('communityMsg');
+    const btn=form.querySelector('button');
+    const old=btn.textContent;
+    btn.disabled=true;
+    btn.textContent='Publicando...';
+    msg.textContent='';
+    const user=heroCurrentUser();
+    const fd=new FormData(form);
+    const content=String(fd.get('content')||'').trim();
+    const category=String(fd.get('category')||'geral');
+    const file=fd.get('image');
+    try{
+      let imageUrl='';
+      if(file&&file.name)imageUrl=await heroCommunityUploadImage(file);
+      if(supabaseAvailable()){
+        const client=supabaseClient();
+        const {error}=await client.from('community_posts').insert({
+          author_id:String(user.id),
+          author_name:user.name,
+          author_role:user.role,
+          content,
+          image_url:imageUrl,
+          category,
+          is_pinned:false,
+          is_active:true
+        });
+        if(error)throw error;
+      }else{
+        const st=heroCommunityLocal();
+        st.communityPosts.unshift({id:uid(),authorId:user.id,authorName:user.name,authorRole:user.role,content,imageUrl,category,pinned:false,active:true,createdAt:new Date().toISOString()});
+        save(st);
+      }
+      form.reset();
+      await community();
+    }catch(err){
+      msg.textContent='Erro ao publicar: '+err.message;
+      btn.disabled=false;
+      btn.textContent=old;
+    }
+  }
+
+  async function communityLike(postId){
+    const user=heroCurrentUser();
+    const st=heroCommunityLocal();
+    const existing=(st.communityLikes||[]).find(l=>String(l.postId)===String(postId)&&String(l.userId)===String(user.id));
+    try{
+      if(supabaseAvailable()){
+        const client=supabaseClient();
+        if(existing){
+          await client.from('community_likes').delete().eq('post_id',postId).eq('user_id',String(user.id));
+        }else{
+          await client.from('community_likes').insert({post_id:postId,user_id:String(user.id)});
+        }
+      }else{
+        if(existing){
+          st.communityLikes=st.communityLikes.filter(l=>l!==existing);
+        }else{
+          st.communityLikes.push({id:uid(),postId,userId:user.id,createdAt:new Date().toISOString()});
+        }
+        save(st);
+      }
+    }catch(err){
+      alert('Erro ao curtir: '+err.message);
+    }
+    await community();
+  }
+
+  async function communityAddComment(ev,postId){
+    ev.preventDefault();
+    const user=heroCurrentUser();
+    const content=String(new FormData(ev.target).get('content')||'').trim();
+    if(!content)return;
+    try{
+      if(supabaseAvailable()){
+        const client=supabaseClient();
+        const {error}=await client.from('community_comments').insert({post_id:postId,author_id:String(user.id),author_name:user.name,author_role:user.role,content});
+        if(error)throw error;
+      }else{
+        const st=heroCommunityLocal();
+        st.communityComments.push({id:uid(),postId,authorId:user.id,authorName:user.name,authorRole:user.role,content,createdAt:new Date().toISOString()});
+        save(st);
+      }
+    }catch(err){
+      alert('Erro ao comentar: '+err.message);
+    }
+    await community();
+  }
+
+  async function communityTogglePin(postId){
+    const user=heroCurrentUser();
+    if(user.role!=='admin')return;
+    const st=heroCommunityLocal();
+    const post=st.communityPosts.find(p=>String(p.id)===String(postId));
+    const next=!post?.pinned;
+    try{
+      if(supabaseAvailable()){
+        const client=supabaseClient();
+        const {error}=await client.from('community_posts').update({is_pinned:next}).eq('id',postId);
+        if(error)throw error;
+      }else if(post){
+        post.pinned=next;
+        save(st);
+      }
+    }catch(err){
+      alert('Erro ao fixar: '+err.message);
+    }
+    await community();
+  }
+
+  async function communityDeletePost(postId){
+    const user=heroCurrentUser();
+    if(user.role!=='admin')return;
+    if(!confirm('Excluir esta publicação da comunidade?'))return;
+    try{
+      if(supabaseAvailable()){
+        const client=supabaseClient();
+        const {error}=await client.from('community_posts').update({is_active:false}).eq('id',postId);
+        if(error)throw error;
+      }else{
+        const st=heroCommunityLocal();
+        st.communityPosts=st.communityPosts.filter(p=>String(p.id)!==String(postId));
+        save(st);
+      }
+    }catch(err){
+      alert('Erro ao excluir: '+err.message);
+    }
+    await community();
+  }
+
   window.HERO={heroIniciarSessaoTreino,heroFinalizarSessaoTreino,heroCancelarSessaoTreino,heroRestaurarCronometro,deleteStudent,abrirChatIA,syncWorkoutFromSupabase,gerarPrescricaoIA,admin,studentForm,toggleStudent,newWorkout,editWorkout,duplicateWorkout,toggleWorkout,exerciseForm,deleteExercise,libraryForm,addFromLibrary,student,photoEditor,closeModal,logout,toggleExerciseDone,finishWorkout,quickAddFromLibrary,drawQuick,
     pickExercise,
     removeProg,
-    selectProtocolDay,
-    selectStudentDay};
+    community,
+    communityCreatePost,
+    communityLike,
+    communityAddComment,
+    communityTogglePin,
+    communityDeletePost};
   document.addEventListener('DOMContentLoaded',()=>{initSplash();render();});
 })();
 
