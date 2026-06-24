@@ -3248,6 +3248,86 @@ dialog,
   }
 }
 
+
+/* RESTAURAÇÃO PAINEL TREINADOR: lista e detalhes da aluna */
+.admin-grid-fixed{
+  display:grid!important;
+  grid-template-columns:minmax(280px,360px) minmax(0,1fr)!important;
+  gap:20px!important;
+  align-items:start!important;
+}
+.students-panel{
+  min-width:0!important;
+  overflow:hidden!important;
+}
+.student-list{
+  display:grid!important;
+  gap:10px!important;
+  margin-top:16px!important;
+}
+.student-list-card{
+  width:100%!important;
+  min-height:auto!important;
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:5px!important;
+  justify-items:start!important;
+  text-align:left!important;
+  padding:16px!important;
+  border-radius:16px!important;
+  border:1px solid rgba(148,163,184,.16)!important;
+  background:rgba(15,23,42,.46)!important;
+  color:#e2e8f0!important;
+  box-shadow:none!important;
+}
+.student-list-card:hover{
+  border-color:rgba(96,165,250,.30)!important;
+  background:rgba(15,23,42,.64)!important;
+}
+.student-list-card.active{
+  border-color:rgba(96,165,250,.52)!important;
+  background:rgba(37,99,235,.16)!important;
+}
+.student-list-card strong,
+.student-list-card span,
+.student-list-card small{
+  max-width:100%!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+}
+.student-list-card strong{
+  font-size:.96rem!important;
+  font-weight:750!important;
+  color:#f8fafc!important;
+}
+.student-list-card span{
+  font-size:.76rem!important;
+  color:rgba(203,213,225,.78)!important;
+}
+.student-list-card small{
+  font-size:.72rem!important;
+  color:rgba(148,163,184,.80)!important;
+}
+.selected-student-panel{
+  min-width:0!important;
+  overflow:hidden!important;
+}
+.selected-student-panel .cards{
+  margin-top:18px!important;
+}
+.empty-panel{
+  min-height:360px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+@media(max-width:980px){
+  .admin-grid-fixed{
+    grid-template-columns:1fr!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -7052,7 +7132,99 @@ dialog,
 </div></form></section><section class="login-visual" style=\"--hero-bg-image:url('${heroPortraitImg}')\"><div class="visual-copy"><p class="eyebrow">HERO</p><h2>Sistema operacional de performance humana</h2><p><b>Diagnóstico, execução. evolução.</b><br>Seu protocolo personalizado está pronto para operação.</p><p class="hero-login-headline">O lugar da performance física e mental. Vença as guerras internas, supere os desafios.</p><div class="visual-mini"><i></i><span>Ambiente exclusivo HERO. Método, disciplina e performance em uma experiência premium.</span></div></div><div class="visual-cards"><div class="visual-card"><b>Prescrição individual</b><span>Protocolos liberados por operador, com estrutura clara, progressão de carga e execução orientada.</span></div><div class="visual-card"><b>Status operacional</b><span>Diagnóstico, execução e relatório de performance em um ambiente tecnológico e minimalista.</span></div></div></section></div></main>`); $('loginForm').onsubmit=async e=>{e.preventDefault(); const f=Object.fromEntries(new FormData(e.target)); const msg=$('loginMsg'); msg.textContent='Conectando...'; try{const supa=await supabaseLogin(f.email,f.password); if(supa&&supa.error){msg.textContent=supa.error;return;} if(supa&&supa.profile){const u={email:f.email,role:supa.profile.role,alunoId:supa.aluno?.id||null,supabase:true}; sessionStorage.setItem('hero_session',JSON.stringify(u)); render(); return;}}catch(err){console.warn('Falha Supabase, tentando modo local:',err);} const st=data(); const u=st.users.find(x=>x.email.toLowerCase()===f.email.toLowerCase()&&(x.password===f.password||!x.password)); if(!u){msg.textContent='Acesso não autorizado. Sua missão ainda não foi liberada.';return;} const a=u.alunoId?st.alunos.find(x=>x.id===u.alunoId):null; if(a&&a.status!=='ativo'){msg.textContent='Acesso bloqueado. Fale com o treinador.';return;} sessionStorage.setItem('hero_session',JSON.stringify(u)); render();};}
   function render(){const s=sessionStorage.getItem('hero_session'); if(!s)return login(); const u=JSON.parse(s); if(u.role==='admin') admin(); else student(u.alunoId,false);}
   async function logout(){await supabaseLogout(); sessionStorage.removeItem('hero_session'); login();}
-  function admin(selectedId){const st=data(); const selected=st.alunos.find(a=>a.id===(selectedId||st.alunos[0]?.id)); window.HERO_SELECTED_ALUNO_ID=selected?.id||null; window.HERO_SELECTED_TREINO_ID=st.treinos.find(t=>t.alunoId===window.HERO_SELECTED_ALUNO_ID)?.id||null; mount(`${top('Central de prescrição HERO',`<button class="btn small" id="addStudent">Cadastrar aluna</button><button class="btn ghost small" id="openLib">Biblioteca de execuções HERO</button>`)}<main class="wrap"><section class="hero"><p class="eyebrow">centro de controle do treinador</p><h1>Central de prescrição HERO</h1><p>Cadastre alunos, monte treinos, salve protocolos e libere missões individuais.</p><div class="stats"><div><b>${st.alunos.length}</b><span>alunas</span></div><div><b>${st.treinos.length}</b><span>protocolos</span></div><div><b>${st.exercicios.length}</b><span>exercícios</span></div><div><b>${st.alunos.filter(a=>a.status==='ativo').length}</b><span>ativos</span></div></div></section><section class="admin-grid"><aside class="panel"><div class="panel-title"><div><h2>Alunas</h2><p>Selecione para configurar sistema.</p></div></div><div id="studentList"></div></aside><section id="adminDetail" class="panel"></section></section></main>`); $('addStudent').onclick=()=>studentForm(); $('openLib').onclick=()=>library(); drawStudents(selected?.id); drawDetail(selected?.id);}
+  async function admin(selectedAlunoId=null){
+    let st=data();
+
+    if(supabaseAvailable()){
+      try{
+        await syncFromSupabase();
+        st=data();
+      }catch(err){
+        console.warn('Falha ao sincronizar Supabase no painel treinador:',err.message);
+      }
+    }
+
+    const alunos=st.alunos||[];
+    const treinos=st.treinos||[];
+    const exercicios=st.exercicios||[];
+
+    const selectedId=selectedAlunoId || window.HERO_SELECTED_ALUNO_ID || alunos[0]?.id || null;
+    const selected=alunos.find(a=>String(a.id)===String(selectedId)) || alunos[0] || null;
+
+    if(selected){
+      window.HERO_SELECTED_ALUNO_ID=selected.id;
+    }
+
+    const selectedTreinos=selected ? treinos.filter(t=>String(t.alunoId)===String(selected.id)) : [];
+    const selectedExCount=selectedTreinos.reduce((total,t)=>total+exercicios.filter(e=>String(e.treinoId)===String(t.id)).length,0);
+
+    const studentList = alunos.length ? alunos.map(a=>{
+      const active=selected&&String(a.id)===String(selected.id);
+      return `<button type="button" class="student-list-card ${active?'active':''}" onclick="HERO.admin('${a.id}')">
+        <strong>${esc(a.nome||'Aluna')}</strong>
+        <span>${esc(a.email||'sem e-mail')}</span>
+        <small>${esc(a.objetivo||'Objetivo não informado')}</small>
+      </button>`;
+    }).join('') : '<div class="empty">Nenhuma aluna cadastrada.</div>';
+
+    const detail = selected ? `<section class="panel selected-student-panel">
+      <div class="student-head">
+        <div>
+          <p class="eyebrow">aluna selecionada</p>
+          <h2>${esc(selected.nome||'Aluna')}</h2>
+          <p>${esc(selected.email||'sem e-mail')}</p>
+          <div><span class="status ${selected.status||'ativo'}">${esc(selected.status||'ativo')}</span></div>
+        </div>
+        <div class="toolbar">
+          <button class="btn ghost small" onclick="HERO.studentForm('${selected.id}')">Editar</button>
+          <button class="btn secondary small" onclick="HERO.toggleStudent('${selected.id}')">${selected.status==='ativo'?'Bloquear':'Liberar'}</button>
+          <button class="btn ghost small" onclick="HERO.gerarPrescricaoIA('${selected.id}')">Diagnóstico IA</button>
+          <button class="btn small" onclick="HERO.newWorkout('${selected.id}')">Novo protocolo</button>
+          <button class="btn danger small" onclick="HERO.deleteStudent('${selected.id}')">Excluir cadastro</button>
+        </div>
+      </div>
+
+      <div class="note operator-info-box">
+        <b>Objetivo:</b> ${esc(selected.objetivo||'Não informado')}<br>
+        <b>Plano:</b> ${esc(selected.plano||'HERO Aesthetic Performance')}<br>
+        <b>Protocolos:</b> ${selectedTreinos.length} · <b>Execuções:</b> ${selectedExCount}
+      </div>
+
+      <div class="cards">
+        ${selectedTreinos.length?selectedTreinos.map(t=>workoutCard(t)).join(''):'<div class="empty">Nenhum protocolo criado para esta aluna.</div>'}
+      </div>
+    </section>` : `<section class="panel selected-student-panel empty-panel">
+      <div class="empty">Selecione uma aluna para configurar sistema.</div>
+    </section>`;
+
+    mount(`${top('Centro de controle',`<button class="btn small" onclick="HERO.studentForm()">Nova aluna</button>`)}
+      <main class="wrap">
+        <section class="hero">
+          <div>
+            <p class="eyebrow">painel treinador</p>
+            <h1>Centro de controle HERO</h1>
+            <p>Gerencie alunas, protocolos, execuções, IA e evolução em um único ambiente.</p>
+          </div>
+        </section>
+
+        <section class="control-metrics">
+          <article class="metric-card"><span>Alunas</span><strong>${alunos.length}</strong><small>cadastros no sistema</small></article>
+          <article class="metric-card"><span>Protocolos</span><strong>${treinos.length}</strong><small>sistemas criados</small></article>
+          <article class="metric-card"><span>Execuções</span><strong>${exercicios.length}</strong><small>movimentos cadastrados</small></article>
+        </section>
+
+        <section class="admin-grid-fixed">
+          <aside class="panel students-panel">
+            <h2>Alunas</h2>
+            <p class="muted">Selecione para configurar sistema.</p>
+            <div class="student-list">
+              ${studentList}
+            </div>
+          </aside>
+          ${detail}
+        </section>
+      </main>`);
+  }
   function drawStudents(selectedId){const st=data(); $('studentList').innerHTML=st.alunos.map(a=>`<button class="student-row ${a.id===selectedId?'active':''}" onclick="HERO.admin('${a.id}')"><strong>${esc(a.nome)}</strong><small>${esc(a.email)}</small><small>${esc(a.objetivo||'Sem objetivo definido')}</small></button>`).join('');}
   function drawDetail(alunoId){const st=data(); const a=st.alunos.find(x=>x.id===alunoId); const el=$('adminDetail'); if(!a){el.innerHTML='<div class="empty">Cadastre uma aluna para iniciar a prescrição.</div>'; return;} const ts=st.treinos.filter(t=>t.alunoId===a.id); el.innerHTML=`<div class="student-head"><div><p class="eyebrow">aluna selecionada</p><h2>${esc(a.nome)}</h2><p>${esc(a.email)}</p><div><span class="status ${a.status}">${esc(a.status)}</span></div></div><div class="toolbar"><button class="btn ghost small" onclick="HERO.studentForm('${a.id}')">Editar</button><button class="btn secondary small" onclick="HERO.toggleStudent('${a.id}')">${a.status==='ativo'?'Bloquear':'Liberar'}</button><button class="btn ghost small" onclick="HERO.gerarPrescricaoIA('${a.id}')">Diagnóstico IA</button><button class="btn small" onclick="HERO.newWorkout('${a.id}')">Novo protocolo</button><button class="btn danger small" onclick="HERO.deleteStudent('${a.id}')">Excluir cadastro</button></div></div><div class="note"><b>Objetivo:</b> ${esc(a.objetivo||'Não informado')}<br><b>Plano:</b> ${esc(a.plano||'HERO Aesthetic Performance')}</div>${full&&ts.length?heroRenderProtocolByDay(ts[0].id):''}<div class="cards">${!full&&ts.length?ts.map(t=>workoutCard(t)).join(''):(!full?'<div class="empty">Nenhum treino criado para esta aluna.</div>':'')}</div>`;}
   function workoutCard(t){const count=data().exercicios.filter(e=>e.treinoId===t.id).length; return `<article class="workout-card"><div><span class="badge">${t.liberado?'liberado':'bloqueado'}</span><h3>${esc(t.nome)}</h3><p>${esc(t.objetivo)}</p><small>${count} execuções cadastradas</small></div><div class="toolbar"><button class="btn small" onclick="HERO.editWorkout('${t.id}')">Configurar sistema</button><button class="btn ghost small" onclick="HERO.student('${t.alunoId}',true)">Visualizar</button><button class="btn secondary small" onclick="HERO.toggleWorkout('${t.id}')">${t.liberado?'Bloquear':'Liberar'}</button><button class="btn ghost small" onclick="HERO.duplicateWorkout('${t.id}')">Duplicar</button></div></article>`;}
