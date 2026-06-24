@@ -3329,7 +3329,33 @@ dialog,
 }
 
 
-/* COMUNIDADE HERO FINAL: feed privado premium e navegação visível */
+/* COMUNIDADE HERO INDEPENDENTE: sem alterar cards das alunas */
+.hero-community-floating{
+  position:fixed!important;
+  right:18px!important;
+  bottom:18px!important;
+  z-index:9999!important;
+  min-height:44px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:0 16px!important;
+  border-radius:14px!important;
+  border:1px solid rgba(96,165,250,.32)!important;
+  background:rgba(15,23,42,.88)!important;
+  color:#dbeafe!important;
+  font-size:.78rem!important;
+  font-weight:800!important;
+  letter-spacing:.01em!important;
+  box-shadow:0 18px 50px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.04)!important;
+  backdrop-filter:blur(16px)!important;
+  -webkit-backdrop-filter:blur(16px)!important;
+}
+.hero-community-floating:hover{
+  transform:translateY(-1px)!important;
+  background:rgba(30,41,59,.92)!important;
+  border-color:rgba(96,165,250,.50)!important;
+}
 .community-shell{
   display:grid;
   grid-template-columns:minmax(0,1fr) 320px;
@@ -3359,222 +3385,204 @@ dialog,
   padding:18px;
   box-shadow:none;
 }
-.community-composer{margin-bottom:18px}
-.community-composer textarea{min-height:112px!important}
-.community-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:end}
-.community-feed{display:grid;gap:16px}
-.community-post{display:grid;gap:14px}
+.community-composer{
+  margin-bottom:18px;
+}
+.community-composer textarea{
+  min-height:112px!important;
+}
+.community-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  align-items:end;
+}
+.community-feed{
+  display:grid;
+  gap:16px;
+}
+.community-post{
+  display:grid;
+  gap:14px;
+}
 .community-post.pinned{
   border-color:rgba(96,165,250,.34);
   background:linear-gradient(180deg,rgba(37,99,235,.12),rgba(15,23,42,.66));
 }
-.community-post-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-.community-author{display:grid;gap:3px;min-width:0}
-.community-author strong{color:#f8fafc;font-size:.96rem;line-height:1.2}
-.community-author span{color:rgba(148,163,184,.88);font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
-.community-category{
-  display:inline-flex;align-items:center;width:max-content;min-height:26px;padding:0 9px;border-radius:999px;
-  border:1px solid rgba(96,165,250,.20);background:rgba(37,99,235,.12);color:#bfdbfe;
-  font-size:.68rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;
+.community-post-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
 }
-.community-content{color:rgba(226,232,240,.95);line-height:1.58;white-space:pre-wrap}
-.community-image{
-  width:100%;max-height:460px;object-fit:cover;border-radius:18px;border:1px solid rgba(148,163,184,.13);background:#020617;
-}
-.community-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding-top:4px}
-.community-actions .btn,.community-actions button{min-height:38px!important;padding:0 12px!important;border-radius:10px!important;font-size:.74rem!important}
-.community-comments{display:grid;gap:10px;margin-top:4px;padding-top:12px;border-top:1px solid rgba(148,163,184,.10)}
-.community-comment{padding:11px 12px;border-radius:14px;border:1px solid rgba(148,163,184,.10);background:rgba(2,6,23,.28)}
-.community-comment strong{color:#e2e8f0;font-size:.78rem}
-.community-comment p{margin:4px 0 0;color:rgba(203,213,225,.90);font-size:.84rem;line-height:1.45}
-.community-comment-form{display:flex;gap:8px;align-items:center}
-.community-comment-form input{min-height:42px!important}
-.community-comment-form button{min-height:42px!important;flex:0 0 auto}
-.community-empty{padding:24px;border-radius:20px;border:1px solid rgba(148,163,184,.12);background:rgba(15,23,42,.38);color:rgba(203,213,225,.82)}
-.community-side{display:grid;gap:14px;position:sticky;top:92px}
-.community-side-card h3{margin:0 0 8px;color:#f8fafc}
-.community-side-card p,.community-side-card li{color:rgba(203,213,225,.82);font-size:.86rem;line-height:1.45}
-.community-side-card ul{margin:0;padding-left:18px}
-.community-file{display:grid;gap:8px}
-.community-file input[type="file"]{padding:12px!important;min-height:auto!important}
-.community-badge-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.community-badge-row span{
-  min-height:28px;display:inline-flex;align-items:center;padding:0 10px;border-radius:999px;
-  border:1px solid rgba(148,163,184,.14);background:rgba(2,6,23,.28);color:rgba(203,213,225,.84);
-  font-size:.68rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
-}
-.hero-community-link{
-  display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:40px!important;padding:0 14px!important;
-  border-radius:12px!important;border:1px solid rgba(96,165,250,.28)!important;background:rgba(37,99,235,.12)!important;
-  color:#dbeafe!important;font-size:.78rem!important;font-weight:700!important;box-shadow:none!important;
-}
-button,.btn,a.btn,input[type="button"],input[type="submit"]{border-radius:12px!important;box-shadow:none!important;font-family:inherit!important;transition:200ms ease!important}
-button:hover,.btn:hover,a.btn:hover{transform:translateY(-1px)!important}
-input,textarea,select{border-radius:12px!important;box-shadow:none!important}
-@media(max-width:980px){.community-shell{grid-template-columns:1fr}.community-side{position:static}}
-@media(max-width:620px){.community-row{grid-template-columns:1fr}.community-comment-form{display:grid}.community-comment-form button{width:100%!important}}
-
-
-/* CORREÇÃO DEFINITIVA: painel de alunas + comunidade visível */
-.admin-grid,
-.admin-grid-fixed{
-  display:grid!important;
-  grid-template-columns:minmax(300px,390px) minmax(0,1fr)!important;
-  gap:20px!important;
-  align-items:start!important;
-}
-#studentList,
-.student-list{
-  display:grid!important;
-  gap:12px!important;
-  margin-top:16px!important;
-  width:100%!important;
-}
-.student-row,
-.student-list-card{
-  width:100%!important;
-  min-height:88px!important;
-  height:auto!important;
-  display:flex!important;
-  flex-direction:column!important;
-  align-items:flex-start!important;
-  justify-content:center!important;
-  gap:6px!important;
-  padding:16px 18px!important;
-  border-radius:18px!important;
-  border:1px solid rgba(148,163,184,.16)!important;
-  background:rgba(15,23,42,.52)!important;
-  color:#e2e8f0!important;
-  box-shadow:none!important;
-  text-align:left!important;
-  overflow:visible!important;
-}
-.student-row:hover,
-.student-list-card:hover{
-  border-color:rgba(96,165,250,.34)!important;
-  background:rgba(15,23,42,.68)!important;
-}
-.student-row.active,
-.student-list-card.active{
-  border-color:rgba(96,165,250,.54)!important;
-  background:rgba(37,99,235,.16)!important;
-}
-.student-row strong,
-.student-list-card strong{
-  display:block!important;
-  width:100%!important;
-  max-width:100%!important;
-  min-width:0!important;
-  overflow:visible!important;
-  text-overflow:clip!important;
-  white-space:normal!important;
-  word-break:break-word!important;
-  line-height:1.22!important;
-  font-size:.98rem!important;
-  font-weight:800!important;
-  color:#f8fafc!important;
-}
-.student-row small,
-.student-row span,
-.student-list-card small,
-.student-list-card span{
-  display:block!important;
-  width:100%!important;
-  max-width:100%!important;
-  min-width:0!important;
-  overflow:visible!important;
-  text-overflow:clip!important;
-  white-space:normal!important;
-  word-break:break-word!important;
-  line-height:1.25!important;
-  font-size:.76rem!important;
-  color:rgba(203,213,225,.80)!important;
-}
-#adminDetail,
-.selected-student-panel{
-  min-width:0!important;
-  overflow:visible!important;
-}
-.hero-community-link{
-  display:inline-flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  min-height:40px!important;
-  padding:0 14px!important;
-  border-radius:12px!important;
-  border:1px solid rgba(96,165,250,.30)!important;
-  background:rgba(37,99,235,.14)!important;
-  color:#dbeafe!important;
-  font-size:.78rem!important;
-  font-weight:800!important;
-  letter-spacing:.01em!important;
-  box-shadow:none!important;
-}
-/* COMUNIDADE HERO DEFINITIVA */
-.community-shell{
+.community-author{
   display:grid;
-  grid-template-columns:minmax(0,1fr) 320px;
-  gap:20px;
-  align-items:start;
+  gap:3px;
+  min-width:0;
 }
-.community-hero{position:relative;overflow:hidden}
-.community-hero::after{
-  content:"";position:absolute;inset:auto -120px -140px auto;width:280px;height:280px;border-radius:999px;
-  background:radial-gradient(circle,rgba(37,99,235,.18),transparent 68%);pointer-events:none;
+.community-author strong{
+  color:#f8fafc;
+  font-size:.96rem;
+  line-height:1.2;
 }
-.community-composer,.community-post,.community-side-card{
-  border:1px solid rgba(148,163,184,.15);background:rgba(15,23,42,.66);border-radius:22px;padding:18px;box-shadow:none;
+.community-author span{
+  color:rgba(148,163,184,.88);
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.04em;
+  text-transform:uppercase;
 }
-.community-composer{margin-bottom:18px}
-.community-composer textarea{min-height:112px!important}
-.community-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:end}
-.community-feed{display:grid;gap:16px}
-.community-post{display:grid;gap:14px}
-.community-post.pinned{border-color:rgba(96,165,250,.34);background:linear-gradient(180deg,rgba(37,99,235,.12),rgba(15,23,42,.66))}
-.community-post-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-.community-author{display:grid;gap:3px;min-width:0}
-.community-author strong{color:#f8fafc;font-size:.96rem;line-height:1.2}
-.community-author span{color:rgba(148,163,184,.88);font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
 .community-category{
-  display:inline-flex;align-items:center;width:max-content;min-height:26px;padding:0 9px;border-radius:999px;
-  border:1px solid rgba(96,165,250,.20);background:rgba(37,99,235,.12);color:#bfdbfe;
-  font-size:.68rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;
+  display:inline-flex;
+  align-items:center;
+  width:max-content;
+  min-height:26px;
+  padding:0 9px;
+  border-radius:999px;
+  border:1px solid rgba(96,165,250,.20);
+  background:rgba(37,99,235,.12);
+  color:#bfdbfe;
+  font-size:.68rem;
+  font-weight:800;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  white-space:nowrap;
 }
-.community-content{color:rgba(226,232,240,.95);line-height:1.58;white-space:pre-wrap}
-.community-image{width:100%;max-height:460px;object-fit:cover;border-radius:18px;border:1px solid rgba(148,163,184,.13);background:#020617}
-.community-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding-top:4px}
-.community-actions .btn,.community-actions button{min-height:38px!important;padding:0 12px!important;border-radius:10px!important;font-size:.74rem!important}
-.community-comments{display:grid;gap:10px;margin-top:4px;padding-top:12px;border-top:1px solid rgba(148,163,184,.10)}
-.community-comment{padding:11px 12px;border-radius:14px;border:1px solid rgba(148,163,184,.10);background:rgba(2,6,23,.28)}
-.community-comment strong{color:#e2e8f0;font-size:.78rem}
-.community-comment p{margin:4px 0 0;color:rgba(203,213,225,.90);font-size:.84rem;line-height:1.45}
-.community-comment-form{display:flex;gap:8px;align-items:center}
-.community-comment-form input{min-height:42px!important}
-.community-comment-form button{min-height:42px!important;flex:0 0 auto}
-.community-empty{padding:24px;border-radius:20px;border:1px solid rgba(148,163,184,.12);background:rgba(15,23,42,.38);color:rgba(203,213,225,.82)}
-.community-side{display:grid;gap:14px;position:sticky;top:92px}
-.community-side-card h3{margin:0 0 8px;color:#f8fafc}
-.community-side-card p,.community-side-card li{color:rgba(203,213,225,.82);font-size:.86rem;line-height:1.45}
-.community-side-card ul{margin:0;padding-left:18px}
-.community-file{display:grid;gap:8px}
-.community-file input[type="file"]{padding:12px!important;min-height:auto!important}
-.community-badge-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.community-content{
+  color:rgba(226,232,240,.95);
+  line-height:1.58;
+  white-space:pre-wrap;
+}
+.community-image{
+  width:100%;
+  max-height:460px;
+  object-fit:cover;
+  border-radius:18px;
+  border:1px solid rgba(148,163,184,.13);
+  background:#020617;
+}
+.community-actions{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px;
+  padding-top:4px;
+}
+.community-actions .btn,
+.community-actions button{
+  min-height:38px!important;
+  padding:0 12px!important;
+  border-radius:10px!important;
+  font-size:.74rem!important;
+}
+.community-comments{
+  display:grid;
+  gap:10px;
+  margin-top:4px;
+  padding-top:12px;
+  border-top:1px solid rgba(148,163,184,.10);
+}
+.community-comment{
+  padding:11px 12px;
+  border-radius:14px;
+  border:1px solid rgba(148,163,184,.10);
+  background:rgba(2,6,23,.28);
+}
+.community-comment strong{
+  color:#e2e8f0;
+  font-size:.78rem;
+}
+.community-comment p{
+  margin:4px 0 0;
+  color:rgba(203,213,225,.90);
+  font-size:.84rem;
+  line-height:1.45;
+}
+.community-comment-form{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+.community-comment-form input{
+  min-height:42px!important;
+}
+.community-comment-form button{
+  min-height:42px!important;
+  flex:0 0 auto;
+}
+.community-empty{
+  padding:24px;
+  border-radius:20px;
+  border:1px solid rgba(148,163,184,.12);
+  background:rgba(15,23,42,.38);
+  color:rgba(203,213,225,.82);
+}
+.community-side{
+  display:grid;
+  gap:14px;
+  position:sticky;
+  top:92px;
+}
+.community-side-card h3{
+  margin:0 0 8px;
+  color:#f8fafc;
+}
+.community-side-card p,
+.community-side-card li{
+  color:rgba(203,213,225,.82);
+  font-size:.86rem;
+  line-height:1.45;
+}
+.community-side-card ul{
+  margin:0;
+  padding-left:18px;
+}
+.community-file{
+  display:grid;
+  gap:8px;
+}
+.community-file input[type="file"]{
+  padding:12px!important;
+  min-height:auto!important;
+}
+.community-badge-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:14px;
+}
 .community-badge-row span{
-  min-height:28px;display:inline-flex;align-items:center;padding:0 10px;border-radius:999px;
-  border:1px solid rgba(148,163,184,.14);background:rgba(2,6,23,.28);color:rgba(203,213,225,.84);
-  font-size:.68rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+  min-height:28px;
+  display:inline-flex;
+  align-items:center;
+  padding:0 10px;
+  border-radius:999px;
+  border:1px solid rgba(148,163,184,.14);
+  background:rgba(2,6,23,.28);
+  color:rgba(203,213,225,.84);
+  font-size:.68rem;
+  font-weight:800;
+  letter-spacing:.06em;
+  text-transform:uppercase;
 }
-button,.btn,a.btn,input[type="button"],input[type="submit"]{border-radius:12px!important;box-shadow:none!important;font-family:inherit!important;transition:200ms ease!important}
-button:hover,.btn:hover,a.btn:hover{transform:translateY(-1px)!important}
-input,textarea,select{border-radius:12px!important;box-shadow:none!important}
 @media(max-width:980px){
-  .admin-grid,.admin-grid-fixed,.community-shell{grid-template-columns:1fr!important}
-  .community-side{position:static}
+  .community-shell{
+    grid-template-columns:1fr;
+  }
+  .community-side{
+    position:static;
+  }
 }
 @media(max-width:620px){
-  .community-row{grid-template-columns:1fr}
-  .community-comment-form{display:grid}
-  .community-comment-form button{width:100%!important}
+  .community-row{
+    grid-template-columns:1fr;
+  }
+  .community-comment-form{
+    display:grid;
+  }
+  .community-comment-form button{
+    width:100%!important;
+  }
 }
 
 </style>
@@ -3596,6 +3604,10 @@ input,textarea,select{border-radius:12px!important;box-shadow:none!important}
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
   document.addEventListener('visibilitychange',()=>{if(!document.hidden&&document.getElementById('heroWorkoutTimer'))heroRestaurarCronometro(window.HERO_SELECTED_TREINO_ID||null);});
   setTimeout(()=>{if(document.getElementById('heroWorkoutTimer'))heroRestaurarCronometro(window.HERO_SELECTED_TREINO_ID||null);},800);
+
+
+  setTimeout(heroCommunityScheduleButton,500);
+  setTimeout(function(){if(location.hash==='#comunidade')community();},700);
 
 </script>
 <script src="./supabase-config.js">
@@ -7383,28 +7395,96 @@ input,textarea,select{border-radius:12px!important;box-shadow:none!important}
   async function logout(){await supabaseLogout(); sessionStorage.removeItem('hero_session'); login();}
   async function admin(selectedAlunoId=null){
     let st=data();
+
     if(supabaseAvailable()){
-      try{await syncFromSupabase();st=data();}catch(err){console.warn('Falha ao sincronizar Supabase:',err.message);}
+      try{
+        await syncFromSupabase();
+        st=data();
+      }catch(err){
+        console.warn('Falha ao sincronizar Supabase no painel treinador:',err.message);
+      }
     }
-    const alunos=st.alunos||[],treinos=st.treinos||[],exercicios=st.exercicios||[];
-    const selectedId=selectedAlunoId||window.HERO_SELECTED_ALUNO_ID||alunos[0]?.id||null;
-    const selected=alunos.find(a=>String(a.id)===String(selectedId))||alunos[0]||null;
-    if(selected)window.HERO_SELECTED_ALUNO_ID=selected.id;
-    const selectedTreinos=selected?treinos.filter(t=>String(t.alunoId)===String(selected.id)):[];
+
+    const alunos=st.alunos||[];
+    const treinos=st.treinos||[];
+    const exercicios=st.exercicios||[];
+
+    const selectedId=selectedAlunoId || window.HERO_SELECTED_ALUNO_ID || alunos[0]?.id || null;
+    const selected=alunos.find(a=>String(a.id)===String(selectedId)) || alunos[0] || null;
+
+    if(selected){
+      window.HERO_SELECTED_ALUNO_ID=selected.id;
+    }
+
+    const selectedTreinos=selected ? treinos.filter(t=>String(t.alunoId)===String(selected.id)) : [];
     const selectedExCount=selectedTreinos.reduce((total,t)=>total+exercicios.filter(e=>String(e.treinoId)===String(t.id)).length,0);
-    const studentList=alunos.length?alunos.map(a=>{
+
+    const studentList = alunos.length ? alunos.map(a=>{
       const active=selected&&String(a.id)===String(selected.id);
-      return `<button type="button" class="student-row student-list-card ${active?'active':''}" onclick="HERO.admin('${a.id}')"><strong>${esc(a.nome||'Aluna')}</strong><small>${esc(a.email||'sem e-mail')}</small><small>${esc(a.objetivo||'Objetivo não informado')}</small></button>`;
-    }).join(''):'<div class="empty">Nenhuma aluna cadastrada.</div>';
-    const detail=selected?`<section class="panel selected-student-panel">
-      <div class="student-head"><div><p class="eyebrow">aluna selecionada</p><h2>${esc(selected.nome||'Aluna')}</h2><p>${esc(selected.email||'sem e-mail')}</p><div><span class="status ${selected.status||'ativo'}">${esc(selected.status||'ativo')}</span></div></div><div class="toolbar"><button class="btn ghost small" onclick="HERO.studentForm('${selected.id}')">Editar</button><button class="btn secondary small" onclick="HERO.toggleStudent('${selected.id}')">${selected.status==='ativo'?'Bloquear':'Liberar'}</button><button class="btn ghost small" onclick="HERO.gerarPrescricaoIA('${selected.id}')">Diagnóstico IA</button><button class="btn small" onclick="HERO.newWorkout('${selected.id}')">Novo protocolo</button><button class="btn danger small" onclick="HERO.deleteStudent('${selected.id}')">Excluir cadastro</button></div></div>
-      <div class="note operator-info-box"><b>Objetivo:</b> ${esc(selected.objetivo||'Não informado')}<br><b>Plano:</b> ${esc(selected.plano||'HERO Aesthetic Performance')}<br><b>Protocolos:</b> ${selectedTreinos.length} · <b>Execuções:</b> ${selectedExCount}</div>
-      <div class="cards">${selectedTreinos.length?selectedTreinos.map(t=>workoutCard(t)).join(''):'<div class="empty">Nenhum protocolo criado para esta aluna.</div>'}</div>
-    </section>`:`<section class="panel selected-student-panel empty-panel"><div class="empty">Selecione uma aluna para configurar sistema.</div></section>`;
-    mount(`${top('Centro de controle',`<button class="btn small" onclick="HERO.studentForm()">Nova aluna</button><button class="btn secondary small hero-community-link" onclick="HERO.community()">Comunidade HERO</button>`)}
-      <main class="wrap"><section class="hero"><div><p class="eyebrow">painel treinador</p><h1>Centro de controle HERO</h1><p>Gerencie alunas, protocolos, execuções, IA, comunidade e evolução em um único ambiente.</p></div></section>
-      <section class="control-metrics"><article class="metric-card"><span>Alunas</span><strong>${alunos.length}</strong><small>cadastros no sistema</small></article><article class="metric-card"><span>Protocolos</span><strong>${treinos.length}</strong><small>sistemas criados</small></article><article class="metric-card"><span>Execuções</span><strong>${exercicios.length}</strong><small>movimentos cadastrados</small></article></section>
-      <section class="admin-grid admin-grid-fixed"><aside class="panel students-panel"><h2>Alunas</h2><p class="muted">Selecione para configurar sistema.</p><div id="studentList" class="student-list">${studentList}</div></aside>${detail}</section></main>`);
+      return `<button type="button" class="student-list-card ${active?'active':''}" onclick="HERO.admin('${a.id}')">
+        <strong>${esc(a.nome||'Aluna')}</strong>
+        <span>${esc(a.email||'sem e-mail')}</span>
+        <small>${esc(a.objetivo||'Objetivo não informado')}</small>
+      </button>`;
+    }).join('') : '<div class="empty">Nenhuma aluna cadastrada.</div>';
+
+    const detail = selected ? `<section class="panel selected-student-panel">
+      <div class="student-head">
+        <div>
+          <p class="eyebrow">aluna selecionada</p>
+          <h2>${esc(selected.nome||'Aluna')}</h2>
+          <p>${esc(selected.email||'sem e-mail')}</p>
+          <div><span class="status ${selected.status||'ativo'}">${esc(selected.status||'ativo')}</span></div>
+        </div>
+        <div class="toolbar">
+          <button class="btn ghost small" onclick="HERO.studentForm('${selected.id}')">Editar</button>
+          <button class="btn secondary small" onclick="HERO.toggleStudent('${selected.id}')">${selected.status==='ativo'?'Bloquear':'Liberar'}</button>
+          <button class="btn ghost small" onclick="HERO.gerarPrescricaoIA('${selected.id}')">Diagnóstico IA</button>
+          <button class="btn small" onclick="HERO.newWorkout('${selected.id}')">Novo protocolo</button>
+          <button class="btn danger small" onclick="HERO.deleteStudent('${selected.id}')">Excluir cadastro</button>
+        </div>
+      </div>
+
+      <div class="note operator-info-box">
+        <b>Objetivo:</b> ${esc(selected.objetivo||'Não informado')}<br>
+        <b>Plano:</b> ${esc(selected.plano||'HERO Aesthetic Performance')}<br>
+        <b>Protocolos:</b> ${selectedTreinos.length} · <b>Execuções:</b> ${selectedExCount}
+      </div>
+
+      <div class="cards">
+        ${selectedTreinos.length?selectedTreinos.map(t=>workoutCard(t)).join(''):'<div class="empty">Nenhum protocolo criado para esta aluna.</div>'}
+      </div>
+    </section>` : `<section class="panel selected-student-panel empty-panel">
+      <div class="empty">Selecione uma aluna para configurar sistema.</div>
+    </section>`;
+
+    mount(`${top('Centro de controle',`<button class="btn small" onclick="HERO.studentForm()">Nova aluna</button>`)}
+      <main class="wrap">
+        <section class="hero">
+          <div>
+            <p class="eyebrow">painel treinador</p>
+            <h1>Centro de controle HERO</h1>
+            <p>Gerencie alunas, protocolos, execuções, IA e evolução em um único ambiente.</p>
+          </div>
+        </section>
+
+        <section class="control-metrics">
+          <article class="metric-card"><span>Alunas</span><strong>${alunos.length}</strong><small>cadastros no sistema</small></article>
+          <article class="metric-card"><span>Protocolos</span><strong>${treinos.length}</strong><small>sistemas criados</small></article>
+          <article class="metric-card"><span>Execuções</span><strong>${exercicios.length}</strong><small>movimentos cadastrados</small></article>
+        </section>
+
+        <section class="admin-grid-fixed">
+          <aside class="panel students-panel">
+            <h2>Alunas</h2>
+            <p class="muted">Selecione para configurar sistema.</p>
+            <div class="student-list">
+              ${studentList}
+            </div>
+          </aside>
+          ${detail}
+        </section>
+      </main>`);
   }
   function drawStudents(selectedId){const st=data(); $('studentList').innerHTML=st.alunos.map(a=>`<button class="student-row ${a.id===selectedId?'active':''}" onclick="HERO.admin('${a.id}')"><strong>${esc(a.nome)}</strong><small>${esc(a.email)}</small><small>${esc(a.objetivo||'Sem objetivo definido')}</small></button>`).join('');}
   function drawDetail(alunoId){const st=data(); const a=st.alunos.find(x=>x.id===alunoId); const el=$('adminDetail'); if(!a){el.innerHTML='<div class="empty">Cadastre uma aluna para iniciar a prescrição.</div>'; return;} const ts=st.treinos.filter(t=>t.alunoId===a.id); el.innerHTML=`<div class="student-head"><div><p class="eyebrow">aluna selecionada</p><h2>${esc(a.nome)}</h2><p>${esc(a.email)}</p><div><span class="status ${a.status}">${esc(a.status)}</span></div></div><div class="toolbar"><button class="btn ghost small" onclick="HERO.studentForm('${a.id}')">Editar</button><button class="btn secondary small" onclick="HERO.toggleStudent('${a.id}')">${a.status==='ativo'?'Bloquear':'Liberar'}</button><button class="btn ghost small" onclick="HERO.gerarPrescricaoIA('${a.id}')">Diagnóstico IA</button><button class="btn small" onclick="HERO.newWorkout('${a.id}')">Novo protocolo</button><button class="btn danger small" onclick="HERO.deleteStudent('${a.id}')">Excluir cadastro</button></div></div><div class="note"><b>Objetivo:</b> ${esc(a.objetivo||'Não informado')}<br><b>Plano:</b> ${esc(a.plano||'HERO Aesthetic Performance')}</div>${full&&ts.length?heroRenderProtocolByDay(ts[0].id):''}<div class="cards">${!full&&ts.length?ts.map(t=>workoutCard(t)).join(''):(!full?'<div class="empty">Nenhum treino criado para esta aluna.</div>':'')}</div>`;}
@@ -7915,7 +7995,7 @@ input,textarea,select{border-radius:12px!important;box-shadow:none!important}
     return e?.reps||e?.repeticoes||e?.repetição||e?.repeticao||e?.repetições||'8 a 12';
   }
 
-async function student(alunoId,preview=false){let d=data(); const a=d.alunos.find(x=>x.id===alunoId); if(!a)return login(); let ts=d.treinos.filter(t=>t.alunoId===alunoId&&(preview||t.liberado)); if(supabaseAvailable()){for(const t of ts){await syncExerciciosPrescritosSupabase(t.id,alunoId);} d=data(); ts=d.treinos.filter(t=>t.alunoId===alunoId&&(preview||t.liberado));} mount(`${top(preview?'Visualização do aluno':'Área individual do aluno',preview?`<button class="btn secondary small" id="backPrev">Voltar ao centro de controle</button>`:`<button class="btn small" onclick="window.print()">Imprimir minha missão</button>`)}<main class="wrap student-view"><section class="hero print-head"><div class="student-profile"><div class="avatar-wrap">${a.foto?`<img src="${a.foto}" alt="Foto de ${esc(a.nome)}">`:`<div class="avatar-placeholder">H</div>`}</div><div><p class="eyebrow">Protocolo liberado</p><h1>${esc(a.nome)}</h1><p>Seu treino foi criado para estética, força, resistência e evolução real.</p><div class="mission-ribbon no-print">Área exclusiva HERO liberada</div><div class="toolbar no-print">${preview?'':`<button class="btn small" id="photoBtn">${a.foto?'Alterar foto':'Adicionar foto'}</button>`}<button class="btn secondary hero-community-link" onclick="HERO.community()">Comunidade HERO</button><button class="btn" onclick="window.print()">Imprimir minha missão</button></div></div></div></section>${heroControlMetrics(a.id)}<section class="print-area">${ts.length?studentToday(alunoId,ts,preview)+ts.map(t=>studentWorkout(t,alunoId,preview)).join(''):'<div class="empty">Sua missão ainda não foi liberada.</div>'}</section></main>`); const b=$('backPrev'); if(b)b.onclick=()=>admin(alunoId); const pb=$('photoBtn'); if(pb)pb.onclick=()=>photoEditor(alunoId); if(!preview) initTimer(alunoId);}
+async function student(alunoId,preview=false){let d=data(); const a=d.alunos.find(x=>x.id===alunoId); if(!a)return login(); let ts=d.treinos.filter(t=>t.alunoId===alunoId&&(preview||t.liberado)); if(supabaseAvailable()){for(const t of ts){await syncExerciciosPrescritosSupabase(t.id,alunoId);} d=data(); ts=d.treinos.filter(t=>t.alunoId===alunoId&&(preview||t.liberado));} mount(`${top(preview?'Visualização do aluno':'Área individual do aluno',preview?`<button class="btn secondary small" id="backPrev">Voltar ao centro de controle</button>`:`<button class="btn small" onclick="window.print()">Imprimir minha missão</button>`)}<main class="wrap student-view"><section class="hero print-head"><div class="student-profile"><div class="avatar-wrap">${a.foto?`<img src="${a.foto}" alt="Foto de ${esc(a.nome)}">`:`<div class="avatar-placeholder">H</div>`}</div><div><p class="eyebrow">Protocolo liberado</p><h1>${esc(a.nome)}</h1><p>Seu treino foi criado para estética, força, resistência e evolução real.</p><div class="mission-ribbon no-print">Área exclusiva HERO liberada</div><div class="toolbar no-print">${preview?'':`<button class="btn small" id="photoBtn">${a.foto?'Alterar foto':'Adicionar foto'}</button>`}<button class="btn" onclick="window.print()">Imprimir minha missão</button></div></div></div></section>${heroControlMetrics(a.id)}<section class="print-area">${ts.length?studentToday(alunoId,ts,preview)+ts.map(t=>studentWorkout(t,alunoId,preview)).join(''):'<div class="empty">Sua missão ainda não foi liberada.</div>'}</section></main>`); const b=$('backPrev'); if(b)b.onclick=()=>admin(alunoId); const pb=$('photoBtn'); if(pb)pb.onclick=()=>photoEditor(alunoId); if(!preview) initTimer(alunoId);}
   function studentToday(alunoId,ts,preview){
     const d=data();
     const selected=heroSelectedStudentDay(alunoId);
@@ -8241,8 +8321,15 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
       const u=raw?JSON.parse(raw):{};
       const st=data();
       const aluno=(st.alunos||[]).find(a=>String(a.id)===String(u.alunoId)||String(a.email||'').toLowerCase()===String(u.email||'').toLowerCase());
-      return {id:u.alunoId||u.id||u.email||aluno?.id||'local-user',name:u.nome||u.name||aluno?.nome||u.email||'Usuário HERO',role:u.role||aluno?.role||'aluna',email:u.email||aluno?.email||''};
-    }catch(_e){return {id:'local-user',name:'Usuário HERO',role:'aluna',email:''};}
+      return {
+        id:u.alunoId||u.id||u.email||aluno?.id||'local-user',
+        name:u.nome||u.name||aluno?.nome||u.email||'Usuário HERO',
+        role:u.role||aluno?.role||'aluna',
+        email:u.email||aluno?.email||''
+      };
+    }catch(_e){
+      return {id:'local-user',name:'Usuário HERO',role:'aluna',email:''};
+    }
   }
 
   function heroCommunityLocal(){
@@ -8252,6 +8339,36 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
     st.communityLikes=st.communityLikes||[];
     save(st);
     return st;
+  }
+
+  function heroCommunityBack(){
+    const u=heroCurrentUser();
+    if(u.role==='admin')return admin();
+    if(u.id&&u.id!=='local-user')return student(u.id,false);
+    return login();
+  }
+
+  function heroCommunityEnsureButton(){
+    const app=document.getElementById('app')||document.body;
+    const hasLogin=document.querySelector('#loginForm, .login-card, .login-panel');
+    const existing=document.getElementById('heroCommunityFloating');
+    if(hasLogin){
+      if(existing)existing.remove();
+      return;
+    }
+    if(existing)return;
+    const btn=document.createElement('button');
+    btn.id='heroCommunityFloating';
+    btn.type='button';
+    btn.className='hero-community-floating';
+    btn.textContent='Comunidade HERO';
+    btn.onclick=function(){community();};
+    document.body.appendChild(btn);
+  }
+
+  function heroCommunityScheduleButton(){
+    setTimeout(heroCommunityEnsureButton,80);
+    setTimeout(heroCommunityEnsureButton,450);
   }
 
   async function heroCommunityUploadImage(file){
@@ -8271,7 +8388,7 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
     if(!supabaseAvailable())return st;
     const client=supabaseClient();
     try{
-      const [{data:posts,error:postError},{data:comments,error:commentError},{data:likes,error:likeError}] = await Promise.all([
+      const [{data:posts,error:postError},{data:comments,error:commentError},{data:likes,error:likeError}]=await Promise.all([
         client.from('community_posts').select('*').eq('is_active',true).order('is_pinned',{ascending:false}).order('created_at',{ascending:false}).limit(80),
         client.from('community_comments').select('*').order('created_at',{ascending:true}).limit(300),
         client.from('community_likes').select('*').limit(500)
@@ -8283,7 +8400,9 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
       st.communityComments=(comments||[]).map(c=>({id:c.id,postId:c.post_id,authorId:c.author_id,authorName:c.author_name,authorRole:c.author_role,content:c.content,createdAt:c.created_at}));
       st.communityLikes=(likes||[]).map(l=>({id:l.id,postId:l.post_id,userId:l.user_id,createdAt:l.created_at}));
       save(st);
-    }catch(err){console.warn('Comunidade usando fallback local:',err.message);}
+    }catch(err){
+      console.warn('Comunidade usando fallback local:',err.message);
+    }
     return st;
   }
 
@@ -8292,25 +8411,82 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
     const postLikes=likes.filter(l=>String(l.postId)===String(post.id));
     const liked=postLikes.some(l=>String(l.userId)===String(user.id));
     return `<article class="community-post ${post.pinned?'pinned':''}">
-      <div class="community-post-head"><div class="community-author"><strong>${esc(post.authorName||'HERO')}</strong><span>${esc(post.authorRole||'aluna')} · ${post.createdAt?new Date(post.createdAt).toLocaleString('pt-BR'):''}</span></div><div class="community-category">${post.pinned?'fixado · ':''}${esc(post.category||'geral')}</div></div>
+      <div class="community-post-head">
+        <div class="community-author">
+          <strong>${esc(post.authorName||'HERO')}</strong>
+          <span>${esc(post.authorRole||'aluna')} · ${post.createdAt?new Date(post.createdAt).toLocaleString('pt-BR'):''}</span>
+        </div>
+        <div class="community-category">${post.pinned?'fixado · ':''}${esc(post.category||'geral')}</div>
+      </div>
       ${post.content?`<div class="community-content">${esc(post.content)}</div>`:''}
       ${post.imageUrl?`<img class="community-image" src="${esc(post.imageUrl)}" alt="Imagem da comunidade HERO">`:''}
-      <div class="community-actions"><button class="btn ghost small" onclick="HERO.communityLike('${post.id}')">${liked?'Curtido':'Curtir'} · ${postLikes.length}</button>${isAdmin?`<button class="btn secondary small" onclick="HERO.communityTogglePin('${post.id}')">${post.pinned?'Desfixar':'Fixar'}</button><button class="btn danger small" onclick="HERO.communityDeletePost('${post.id}')">Excluir</button>`:''}</div>
-      <div class="community-comments">${postComments.length?postComments.map(c=>`<div class="community-comment"><strong>${esc(c.authorName||'Usuário')}</strong><p>${esc(c.content)}</p></div>`).join(''):'<div class="muted">Sem comentários ainda.</div>'}<form class="community-comment-form" onsubmit="HERO.communityAddComment(event,'${post.id}')"><input name="content" placeholder="Comente com orientação, dúvida ou incentivo..." required><button class="btn secondary small">Comentar</button></form></div>
+      <div class="community-actions">
+        <button class="btn ghost small" onclick="HERO.communityLike('${post.id}')">${liked?'Curtido':'Curtir'} · ${postLikes.length}</button>
+        ${isAdmin?`<button class="btn secondary small" onclick="HERO.communityTogglePin('${post.id}')">${post.pinned?'Desfixar':'Fixar'}</button><button class="btn danger small" onclick="HERO.communityDeletePost('${post.id}')">Excluir</button>`:''}
+      </div>
+      <div class="community-comments">
+        ${postComments.length?postComments.map(c=>`<div class="community-comment"><strong>${esc(c.authorName||'Usuário')}</strong><p>${esc(c.content)}</p></div>`).join(''):'<div class="muted">Sem comentários ainda.</div>'}
+        <form class="community-comment-form" onsubmit="HERO.communityAddComment(event,'${post.id}')">
+          <input name="content" placeholder="Comente com orientação, dúvida ou incentivo..." required>
+          <button class="btn secondary small">Comentar</button>
+        </form>
+      </div>
     </article>`;
   }
 
   async function community(){
+    location.hash='comunidade';
     const user=heroCurrentUser();
     const isAdmin=user.role==='admin';
     const st=await heroCommunityFetch();
     const posts=(st.communityPosts||[]).filter(p=>p.active!==false);
     const comments=st.communityComments||[];
     const likes=st.communityLikes||[];
-    const backAction=isAdmin?`<button class="btn secondary small" onclick="HERO.admin()">Voltar ao centro</button>`:`<button class="btn secondary small" onclick="HERO.student('${user.id}',false)">Voltar</button>`;
-    mount(`${top('Comunidade HERO',backAction)}<main class="wrap"><section class="hero community-hero"><p class="eyebrow">mural privado</p><h1>Comunidade HERO</h1><p>Compartilhe evolução, tire dúvidas, acompanhe avisos e mantenha a execução no padrão certo.</p><div class="community-badge-row"><span>check-ins</span><span>dúvidas</span><span>avisos</span><span>resultados</span></div></section><section class="community-shell"><div><form id="communityForm" class="community-composer"><label>Publicação<textarea name="content" placeholder="Compartilhe uma evolução, dúvida, aviso ou check-in..." required></textarea></label><div class="community-row"><label>Categoria<select name="category"><option>Check-in</option><option>Dúvida</option><option>Resultado</option><option>Aviso</option><option>Execução</option><option>Motivação</option></select></label><label class="community-file">Imagem opcional<input type="file" name="image" accept="image/*"></label></div><button class="btn full">Publicar atualização</button><div id="communityMsg" class="msg"></div></form><div class="community-feed">${posts.length?posts.map(p=>heroCommunityPostCard(p,comments,likes,user,isAdmin)).join(''):'<div class="community-empty">Ainda não há publicações. Publique o primeiro check-in ou aviso.</div>'}</div></div><aside class="community-side"><div class="community-side-card"><h3>Como usar</h3><ul><li>poste check-ins e dúvidas objetivas;</li><li>registre evolução com foto quando fizer sentido;</li><li>mantenha respeito e foco no processo;</li><li>o treinador pode fixar avisos importantes.</li></ul></div><div class="community-side-card"><h3>Categorias</h3><p>Check-in, dúvida, resultado, aviso, execução e motivação.</p></div></aside></section></main>`);
+    const backAction=`<button class="btn secondary small" onclick="HERO.heroCommunityBack()">Voltar</button>`;
+
+    mount(`${top('Comunidade HERO',backAction)}
+      <main class="wrap">
+        <section class="hero community-hero">
+          <p class="eyebrow">mural privado</p>
+          <h1>Comunidade HERO</h1>
+          <p>Compartilhe evolução, tire dúvidas, acompanhe avisos e mantenha a execução no padrão certo.</p>
+          <div class="community-badge-row"><span>check-ins</span><span>dúvidas</span><span>avisos</span><span>resultados</span></div>
+        </section>
+        <section class="community-shell">
+          <div>
+            <form id="communityForm" class="community-composer">
+              <label>Publicação
+                <textarea name="content" placeholder="Compartilhe uma evolução, dúvida, aviso ou check-in..." required></textarea>
+              </label>
+              <div class="community-row">
+                <label>Categoria
+                  <select name="category">
+                    <option>Check-in</option>
+                    <option>Dúvida</option>
+                    <option>Resultado</option>
+                    <option>Aviso</option>
+                    <option>Execução</option>
+                    <option>Motivação</option>
+                  </select>
+                </label>
+                <label class="community-file">Imagem opcional
+                  <input type="file" name="image" accept="image/*">
+                </label>
+              </div>
+              <button class="btn full">Publicar atualização</button>
+              <div id="communityMsg" class="msg"></div>
+            </form>
+            <div class="community-feed">${posts.length?posts.map(p=>heroCommunityPostCard(p,comments,likes,user,isAdmin)).join(''):'<div class="community-empty">Ainda não há publicações. Publique o primeiro check-in ou aviso.</div>'}</div>
+          </div>
+          <aside class="community-side">
+            <div class="community-side-card"><h3>Como usar</h3><ul><li>poste check-ins e dúvidas objetivas;</li><li>registre evolução com foto quando fizer sentido;</li><li>mantenha respeito e foco no processo;</li><li>o treinador pode fixar avisos importantes.</li></ul></div>
+            <div class="community-side-card"><h3>Categorias</h3><p>Check-in, dúvida, resultado, aviso, execução e motivação.</p></div>
+          </aside>
+        </section>
+      </main>`);
     const form=$('communityForm');
     if(form)form.onsubmit=communityCreatePost;
+    heroCommunityScheduleButton();
   }
 
   async function communityCreatePost(ev){
@@ -8330,8 +8506,10 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
         st.communityPosts.unshift({id:uid(),authorId:user.id,authorName:user.name,authorRole:user.role,content,imageUrl,category,pinned:false,active:true,createdAt:new Date().toISOString()});
         save(st);
       }
-      form.reset(); await community();
-    }catch(err){msg.textContent='Erro ao publicar: '+err.message;btn.disabled=false;btn.textContent=old;}
+      form.reset();await community();
+    }catch(err){
+      msg.textContent='Erro ao publicar: '+err.message;btn.disabled=false;btn.textContent=old;
+    }
   }
 
   async function communityLike(postId){
@@ -8370,7 +8548,7 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
   }
 
   async function communityTogglePin(postId){
-    const user=heroCurrentUser(); if(user.role!=='admin')return;
+    const user=heroCurrentUser();if(user.role!=='admin')return;
     const st=heroCommunityLocal(),post=st.communityPosts.find(p=>String(p.id)===String(postId)),next=!post?.pinned;
     try{
       if(supabaseAvailable()){
@@ -8383,7 +8561,7 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
   }
 
   async function communityDeletePost(postId){
-    const user=heroCurrentUser(); if(user.role!=='admin')return;
+    const user=heroCurrentUser();if(user.role!=='admin')return;
     if(!confirm('Excluir esta publicação da comunidade?'))return;
     try{
       if(supabaseAvailable()){
@@ -8399,6 +8577,12 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
     await community();
   }
 
+  window.addEventListener('hashchange',function(){
+    if(location.hash==='#comunidade')community();
+  });
+  document.addEventListener('click',function(){setTimeout(heroCommunityEnsureButton,120);});
+  setInterval(heroCommunityEnsureButton,2000);
+
   window.HERO={heroIniciarSessaoTreino,heroFinalizarSessaoTreino,heroCancelarSessaoTreino,heroRestaurarCronometro,deleteStudent,abrirChatIA,syncWorkoutFromSupabase,gerarPrescricaoIA,admin,studentForm,toggleStudent,newWorkout,editWorkout,duplicateWorkout,toggleWorkout,exerciseForm,deleteExercise,libraryForm,addFromLibrary,student,photoEditor,closeModal,logout,toggleExerciseDone,finishWorkout,quickAddFromLibrary,drawQuick,
     pickExercise,
     removeProg,
@@ -8409,7 +8593,10 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
     communityLike,
     communityAddComment,
     communityTogglePin,
-    communityDeletePost};
+    communityDeletePost,
+    heroCommunityBack,
+    heroCommunityEnsureButton,
+    heroCommunityScheduleButton};
   document.addEventListener('DOMContentLoaded',()=>{initSplash();render();});
 })();
 
