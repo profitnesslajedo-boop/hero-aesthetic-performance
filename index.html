@@ -5722,249 +5722,165 @@ html[data-hero-os-visual="premium-v2"] .hero-version-confirm{
 }
 
 
-/* HERO OS V3.7 COMMUNITY FLOAT REPOSITION
-   Move o botão flutuante da Comunidade HERO para não sobrepor o suporte IA da aluna.
+
+/* HERO OS V4.6 FINAL CONSOLIDATED AUDIT FIX
+   Correção final consolidada:
+   - Botão antigo Comunidade HERO inferior/piscando removido.
+   - Voltar e Meu protocolo da Comunidade HERO da aluna funcionam.
+   - IA da aluna fica no canto inferior direito.
+   - Chat HERO do treinador não aparece para aluna.
+   - Dashboard estratégico só aparece para treinador.
+   - Postagem guiada mostra modelos.
+   - Check-in HERO aparece no desafio da semana.
 */
-html[data-hero-os-visual="premium-v2"] .community-fab,
-html[data-hero-os-visual="premium-v2"] .hero-community-fab,
-html[data-hero-os-visual="premium-v2"] #communityFab,
-html[data-hero-os-visual="premium-v2"] [data-community-fab],
-html[data-hero-os-visual="premium-v2"] button[onclick*="community()"].fab,
-html[data-hero-os-visual="premium-v2"] button[onclick*="HERO.community"].fab{
-  position:fixed!important;
-  right:18px!important;
-  bottom:auto!important;
-  top:92px!important;
-  z-index:99970!important;
-  max-width:210px!important;
-  min-height:42px!important;
-  border-radius:999px!important;
-}
 
-/* Quando a IA da aluna estiver presente, ela mantém prioridade no canto inferior. */
-html[data-hero-os-visual="premium-v2"] .student-ai-float{
-  z-index:99990!important;
-}
-html[data-hero-os-visual="premium-v2"] .student-ai-panel{
-  z-index:99999!important;
-}
-
-/* Botão de comunidade reposicionado quando for criado pelo patch final. */
-html[data-hero-os-visual="premium-v2"] .hero-community-access-fixed{
-  position:fixed!important;
-  right:18px!important;
-  top:92px!important;
-  bottom:auto!important;
-  z-index:99970!important;
-  display:inline-flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  gap:8px!important;
-  min-height:42px!important;
-  padding:0 14px!important;
-  border-radius:999px!important;
-  border:1px solid rgba(96,165,250,.28)!important;
-  background:rgba(2,6,23,.78)!important;
-  color:#e0f2fe!important;
-  font-size:.78rem!important;
-  font-weight:900!important;
-  letter-spacing:-.01em!important;
-  box-shadow:0 16px 44px rgba(0,0,0,.34)!important;
-  backdrop-filter:blur(18px)!important;
-}
-html[data-hero-os-visual="premium-v2"] .hero-community-access-fixed:hover{
-  transform:translateY(-1px)!important;
-  border-color:rgba(96,165,250,.46)!important;
-}
-
-/* Evita duplicidade visual caso exista outro botão antigo no canto inferior. */
-html[data-hero-os-visual="premium-v2"] .student-ai-float ~ .community-fab,
-html[data-hero-os-visual="premium-v2"] .student-ai-float ~ .hero-community-fab,
-html[data-hero-os-visual="premium-v2"] .student-ai-float ~ #communityFab{
-  top:92px!important;
-  bottom:auto!important;
-}
-
-@media(max-width:760px){
-  html[data-hero-os-visual="premium-v2"] .community-fab,
-  html[data-hero-os-visual="premium-v2"] .hero-community-fab,
-  html[data-hero-os-visual="premium-v2"] #communityFab,
-  html[data-hero-os-visual="premium-v2"] [data-community-fab],
-  html[data-hero-os-visual="premium-v2"] .hero-community-access-fixed{
-    top:76px!important;
-    right:12px!important;
-    max-width:170px!important;
-    min-height:38px!important;
-    padding:0 12px!important;
-    font-size:.72rem!important;
-  }
-}
-
-
-/* HERO OS V3.8 STUDENT AI PANEL STABILITY */
-html[data-hero-os-visual="premium-v2"] .student-ai-panel:not(.is-hidden){
-  display:grid!important;
-}
-html[data-hero-os-visual="premium-v2"] .student-ai-panel{
-  pointer-events:auto!important;
-}
-html[data-hero-os-visual="premium-v2"] .student-ai-float{
-  pointer-events:auto!important;
-}
-
-
-/* HERO OS V3.9 SINGLE COMMUNITY BUTTON
-   Mantém apenas um botão Comunidade HERO. Remove duplicidade visual.
-*/
-html[data-hero-os-visual="premium-v2"] .hero-community-fab:not(#heroCommunityAccessFixed),
-html[data-hero-os-visual="premium-v2"] .community-fab:not(#heroCommunityAccessFixed),
-html[data-hero-os-visual="premium-v2"] #communityFab:not(#heroCommunityAccessFixed),
-html[data-hero-os-visual="premium-v2"] [data-community-fab]:not(#heroCommunityAccessFixed){
-  display:none!important;
-  opacity:0!important;
-  pointer-events:none!important;
-}
-
-html[data-hero-os-visual="premium-v2"] #heroCommunityAccessFixed{
-  position:fixed!important;
-  right:18px!important;
-  top:92px!important;
-  bottom:auto!important;
-  z-index:99970!important;
-  display:inline-flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  gap:8px!important;
-  min-height:42px!important;
-  padding:0 14px!important;
-  border-radius:999px!important;
-  border:1px solid rgba(96,165,250,.28)!important;
-  background:rgba(2,6,23,.78)!important;
-  color:#e0f2fe!important;
-  font-size:.78rem!important;
-  font-weight:900!important;
-  letter-spacing:-.01em!important;
-  box-shadow:0 16px 44px rgba(0,0,0,.34)!important;
-  backdrop-filter:blur(18px)!important;
-}
-
-@media(max-width:760px){
-  html[data-hero-os-visual="premium-v2"] #heroCommunityAccessFixed{
-    top:76px!important;
-    right:12px!important;
-    max-width:170px!important;
-    min-height:38px!important;
-    padding:0 12px!important;
-    font-size:.72rem!important;
-  }
-}
-
-
-/* HERO OS V4.2 ROLE CLEANUP AND NAV AUDIT */
+/* Papéis */
 html[data-hero-role="student"] #coachDashboard,
 html[data-hero-role="student"] .coach-dashboard{
-  display:none!important;
-  pointer-events:none!important;
-  opacity:0!important;
-}
-html[data-hero-role="student"] #communityChatDirect,
-html[data-hero-role="student"] #communityChatDirectLegacy,
-html[data-hero-role="student"] #heroChatAccessTop,
-html[data-hero-role="student"] .hero-chat-access-top,
-html[data-hero-role="student"] [data-nav-v28="chat"],
-html[data-hero-role="student"] [data-hero-v27-action="chat"]{
-  display:none!important;
-  pointer-events:none!important;
-  opacity:0!important;
-}
-html[data-hero-role="student"] .student-ai-float{
-  display:grid!important;
-  right:18px!important;
-  bottom:18px!important;
-  z-index:99990!important;
-}
-html[data-hero-role="student"] .student-ai-panel{
-  z-index:99999!important;
-}
-html[data-hero-role="student"] #heroCommunityAccessFixed{
-  top:92px!important;
-  right:18px!important;
-  bottom:auto!important;
-  z-index:99970!important;
-}
-html[data-hero-role="student"] .hero-load-box{
-  display:grid!important;
-}
-html[data-hero-role="trainer"] .coach-dashboard{
-  display:grid!important;
-}
-@media(max-width:760px){
-  html[data-hero-role="student"] #heroCommunityAccessFixed{
-    top:76px!important;
-    right:12px!important;
-  }
-  html[data-hero-role="student"] .student-ai-float{
-    left:12px!important;
-    right:12px!important;
-    bottom:12px!important;
-  }
-}
-
-
-/* HERO OS V4.3 STUDENT COMMUNITY NAV ONLY FIX
-   Corrige apenas:
-   1) Voltar/Meu protocolo da comunidade para aluna.
-   2) Botão antigo Comunidade HERO inferior direito piscando sobre a IA.
-*/
-
-/* Remove visualmente qualquer Comunidade HERO antiga/duplicada que não seja o botão oficial superior */
-html[data-hero-role="student"] .community-fab:not(#heroCommunityAccessFixed),
-html[data-hero-role="student"] .hero-community-fab:not(#heroCommunityAccessFixed),
-html[data-hero-role="student"] #communityFab:not(#heroCommunityAccessFixed),
-html[data-hero-role="student"] [data-community-fab]:not(#heroCommunityAccessFixed),
-html[data-hero-role="student"] button[onclick*="community()"]:not(#heroCommunityAccessFixed),
-html[data-hero-role="student"] button[onclick*="HERO.community"]:not(#heroCommunityAccessFixed){
   display:none!important;
   opacity:0!important;
   visibility:hidden!important;
   pointer-events:none!important;
 }
 
-/* O botão oficial da Comunidade fica no topo, longe do suporte IA */
-html[data-hero-role="student"] #heroCommunityAccessFixed{
+/* Bloqueio total de Chat HERO do treinador para aluna */
+html[data-hero-role="student"] #heroChatAccessTop,
+html[data-hero-role="student"] .hero-chat-access-top,
+html[data-hero-role="student"] #communityChatDirect,
+html[data-hero-role="student"] #communityChatDirectLegacy,
+html[data-hero-role="student"] [data-nav-v28="chat"],
+html[data-hero-role="student"] [data-hero-v27-action="chat"]{
+  display:none!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+
+/* Remove definitivamente qualquer Comunidade HERO antiga/duplicada */
+html[data-hero-role="student"] .community-fab,
+html[data-hero-role="student"] .hero-community-fab,
+html[data-hero-role="student"] #communityFab,
+html[data-hero-role="student"] [data-community-fab],
+html[data-hero-role="student"] button[onclick*="community()"],
+html[data-hero-role="student"] button[onclick*="HERO.community"]{
+  display:none!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+
+/* ÚNICO botão oficial da Comunidade, se for necessário fora da comunidade */
+html[data-hero-role="student"] #heroCommunityAccessFinal{
   position:fixed!important;
   top:92px!important;
   right:18px!important;
   bottom:auto!important;
-  z-index:99970!important;
+  z-index:99960!important;
   display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-height:42px!important;
+  padding:0 14px!important;
+  border-radius:999px!important;
+  border:1px solid rgba(96,165,250,.28)!important;
+  background:rgba(2,6,23,.82)!important;
+  color:#e0f2fe!important;
+  font-size:.78rem!important;
+  font-weight:900!important;
+  box-shadow:0 16px 44px rgba(0,0,0,.34)!important;
+  backdrop-filter:blur(18px)!important;
   opacity:1!important;
   visibility:visible!important;
   pointer-events:auto!important;
 }
 
-/* IA da aluna continua soberana no canto inferior direito */
+/* Na própria Comunidade, nenhum botão flutuante de Comunidade deve aparecer */
+html[data-hero-current-screen="community"] #heroCommunityAccessFinal,
+html[data-hero-current-screen="community"] #heroCommunityAccessFixed,
+html[data-hero-current-screen="community"] .community-fab,
+html[data-hero-current-screen="community"] .hero-community-fab,
+html[data-hero-current-screen="community"] #communityFab,
+html[data-hero-current-screen="community"] [data-community-fab]{
+  display:none!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+
+/* IA da aluna soberana no canto inferior direito */
 html[data-hero-role="student"] .student-ai-float{
   position:fixed!important;
   right:18px!important;
   bottom:18px!important;
   z-index:99990!important;
   display:grid!important;
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+}
+html[data-hero-role="student"] .student-ai-panel{
+  z-index:99999!important;
 }
 
-/* Na página da comunidade, não deixa botão flutuante antigo ressuscitar */
-html[data-hero-current-screen="community"] .community-fab,
-html[data-hero-current-screen="community"] .hero-community-fab,
-html[data-hero-current-screen="community"] #communityFab,
-html[data-hero-current-screen="community"] [data-community-fab],
-html[data-hero-current-screen="community"] #heroCommunityAccessFixed{
-  display:none!important;
-  opacity:0!important;
-  pointer-events:none!important;
+/* Cargas continuam no card do exercício */
+html[data-hero-role="student"] .hero-load-box{
+  display:grid!important;
+}
+
+/* Postagem guiada */
+html[data-hero-os-visual="premium-v2"] .hero-guided-post-models-final{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:10px!important;
+  margin:14px 0 4px!important;
+}
+html[data-hero-os-visual="premium-v2"] .hero-guided-post-model-final{
+  display:grid!important;
+  gap:6px!important;
+  padding:12px!important;
+  border-radius:14px!important;
+  border:1px solid rgba(148,163,184,.16)!important;
+  background:rgba(15,23,42,.42)!important;
+}
+html[data-hero-os-visual="premium-v2"] .hero-guided-post-model-final strong{
+  color:#f8fafc!important;
+  font-size:.82rem!important;
+}
+html[data-hero-os-visual="premium-v2"] .hero-guided-post-model-final p{
+  margin:0!important;
+  color:rgba(226,232,240,.88)!important;
+  font-size:.76rem!important;
+  line-height:1.42!important;
+}
+
+/* Check-in HERO */
+html[data-hero-os-visual="premium-v2"] .hero-checkin-action-final{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:12px!important;
+  width:100%!important;
+  min-height:52px!important;
+  padding:12px 14px!important;
+  margin-top:12px!important;
+  border-radius:16px!important;
+  border:1px solid rgba(96,165,250,.26)!important;
+  background:rgba(37,99,235,.12)!important;
+  color:#dbeafe!important;
+  font-weight:900!important;
+  text-align:left!important;
+  box-shadow:0 14px 34px rgba(0,0,0,.22)!important;
+}
+html[data-hero-os-visual="premium-v2"] .hero-checkin-action-final small{
+  display:block!important;
+  margin-top:3px!important;
+  color:rgba(191,219,254,.82)!important;
+  font-size:.72rem!important;
+  font-weight:700!important;
 }
 
 @media(max-width:760px){
-  html[data-hero-role="student"] #heroCommunityAccessFixed{
+  html[data-hero-role="student"] #heroCommunityAccessFinal{
     top:76px!important;
     right:12px!important;
   }
@@ -5973,65 +5889,9 @@ html[data-hero-current-screen="community"] #heroCommunityAccessFixed{
     right:12px!important;
     bottom:12px!important;
   }
-}
-
-
-/* HERO OS V4.4 GUIDED POST CHECKIN FIX
-   Corrige apenas:
-   1) Modelos de mensagem na postagem guiada.
-   2) Nome/botão de Check-in HERO no desafio da semana.
-*/
-html[data-hero-os-visual="premium-v2"] .guided-post-models,
-html[data-hero-os-visual="premium-v2"] .hero-guided-post-models{
-  display:grid!important;
-  gap:10px!important;
-  margin-top:12px!important;
-}
-html[data-hero-os-visual="premium-v2"] .guided-post-model-card{
-  display:grid!important;
-  gap:6px!important;
-  padding:12px!important;
-  border-radius:14px!important;
-  border:1px solid rgba(148,163,184,.14)!important;
-  background:rgba(15,23,42,.38)!important;
-}
-html[data-hero-os-visual="premium-v2"] .guided-post-model-card strong{
-  color:#f8fafc!important;
-  font-size:.82rem!important;
-}
-html[data-hero-os-visual="premium-v2"] .guided-post-model-card p{
-  margin:0!important;
-  color:rgba(226,232,240,.88)!important;
-  font-size:.76rem!important;
-  line-height:1.42!important;
-}
-html[data-hero-os-visual="premium-v2"] .weekly-checkin-action,
-html[data-hero-os-visual="premium-v2"] .hero-weekly-checkin-action{
-  display:flex!important;
-  align-items:center!important;
-  justify-content:space-between!important;
-  gap:12px!important;
-  width:100%!important;
-  padding:12px 14px!important;
-  margin-top:12px!important;
-  border-radius:16px!important;
-  border:1px solid rgba(96,165,250,.22)!important;
-  background:rgba(37,99,235,.10)!important;
-  color:#dbeafe!important;
-  font-weight:900!important;
-  text-align:left!important;
-}
-html[data-hero-os-visual="premium-v2"] .weekly-checkin-action span,
-html[data-hero-os-visual="premium-v2"] .hero-weekly-checkin-action span{
-  display:block!important;
-}
-html[data-hero-os-visual="premium-v2"] .weekly-checkin-action small,
-html[data-hero-os-visual="premium-v2"] .hero-weekly-checkin-action small{
-  display:block!important;
-  margin-top:3px!important;
-  color:rgba(191,219,254,.82)!important;
-  font-size:.72rem!important;
-  font-weight:700!important;
+  html[data-hero-os-visual="premium-v2"] .hero-guided-post-models-final{
+    grid-template-columns:1fr!important;
+  }
 }
 
 </style>
@@ -11852,97 +11712,6 @@ function heroV42IsAdmin(){
 
 
 <script>
-/* HERO OS V3.7 COMMUNITY FLOAT REPOSITION */
-(function(){
-  if(!window.HERO){window.HERO={};}
-
-  function canShowCommunityAccess(){
-    return !!document.querySelector('.student-ai-float,.student-ai-panel,.hero-load-box,.student-ex,.workout-card,.protocol-exercise,.today-panel');
-  }
-
-  function openCommunity(){
-    if(window.HERO && typeof window.HERO.community==='function'){
-      return window.HERO.community();
-    }
-    try{
-      if(typeof community==='function')return community();
-    }catch(e){}
-  }
-
-  function repositionExistingCommunityButtons(){
-    var candidates=Array.from(document.querySelectorAll('button,a,.btn'));
-    candidates.forEach(function(el){
-      var txt=String(el.textContent||'').trim().toLowerCase();
-      var onclick=String(el.getAttribute('onclick')||'').toLowerCase();
-      var isCommunity=(txt.includes('comunidade hero')||txt==='comunidade'||onclick.includes('community'));
-      if(!isCommunity)return;
-      if(el.closest('.community-context-bar'))return;
-      if(el.id==='heroCommunityAccessFixed')return;
-      el.classList.add('hero-community-fab');
-      el.setAttribute('data-community-fab','true');
-      el.style.top='92px';
-      el.style.bottom='auto';
-      el.style.right='18px';
-      el.style.zIndex='99970';
-    });
-  }
-
-  function installCommunityAccess(){
-    repositionExistingCommunityButtons();
-    if(!canShowCommunityAccess())return;
-
-    var old=document.getElementById('heroCommunityAccessFixed');
-    if(old)return;
-
-    var btn=document.createElement('button');
-    btn.type='button';
-    btn.id='heroCommunityAccessFixed';
-    btn.className='hero-community-access-fixed';
-    btn.textContent='Comunidade HERO';
-    btn.onclick=function(ev){
-      ev.preventDefault();
-      ev.stopPropagation();
-      return openCommunity();
-    };
-    document.body.appendChild(btn);
-  }
-
-  var oldStudent=window.HERO.student;
-  if(typeof oldStudent==='function'&&!oldStudent.__heroCommunityRepositionV37){
-    var patchedStudent=function(){
-      var r=oldStudent.apply(this,arguments);
-      setTimeout(installCommunityAccess,180);
-      setTimeout(installCommunityAccess,700);
-      return r;
-    };
-    patchedStudent.__heroCommunityRepositionV37=true;
-    window.HERO.student=patchedStudent;
-  }
-
-  var oldCommunity=window.HERO.community;
-  if(typeof oldCommunity==='function'&&!oldCommunity.__heroCommunityRepositionCleanV37){
-    var patchedCommunity=function(){
-      var btn=document.getElementById('heroCommunityAccessFixed');
-      if(btn)btn.remove();
-      return oldCommunity.apply(this,arguments);
-    };
-    patchedCommunity.__heroCommunityRepositionCleanV37=true;
-    window.HERO.community=patchedCommunity;
-    window.community=patchedCommunity;
-  }
-
-  document.addEventListener('click',function(){
-    setTimeout(installCommunityAccess,260);
-  },true);
-
-  setTimeout(installCommunityAccess,600);
-  setTimeout(installCommunityAccess,1400);
-  document.documentElement.setAttribute('data-hero-os-patch','community-float-reposition-v37');
-})();
-</script>
-
-
-<script>
 /* HERO OS V3.8 STUDENT AI PANEL STABILITY */
 (function(){
   function panelOpen(){
@@ -12023,107 +11792,6 @@ function heroV42IsAdmin(){
   setTimeout(bindStableOpen,300);
   setTimeout(bindStableOpen,900);
   document.documentElement.setAttribute('data-hero-os-patch','student-ai-panel-stability-v38');
-})();
-</script>
-
-
-<script>
-/* HERO OS V3.9 SINGLE COMMUNITY BUTTON */
-(function(){
-  if(!window.HERO){window.HERO={};}
-
-  function isCommunityButton(el){
-    if(!el)return false;
-    if(el.id==='heroCommunityAccessFixed')return false;
-    if(el.closest && el.closest('.community-context-bar'))return false;
-    var txt=String(el.textContent||'').trim().toLowerCase();
-    var onclick=String(el.getAttribute&&el.getAttribute('onclick')||'').toLowerCase();
-    var className=String(el.className||'').toLowerCase();
-    return (
-      txt==='comunidade hero' ||
-      txt==='comunidade' ||
-      txt.includes('comunidade hero') ||
-      onclick.includes('community') ||
-      className.includes('community-fab') ||
-      el.hasAttribute && el.hasAttribute('data-community-fab')
-    );
-  }
-
-  function cleanupDuplicateCommunityButtons(){
-    var official=document.getElementById('heroCommunityAccessFixed');
-    var nodes=Array.from(document.querySelectorAll('button,a,.btn,[data-community-fab],.community-fab,.hero-community-fab,#communityFab'));
-    nodes.forEach(function(el){
-      if(el===official)return;
-      if(isCommunityButton(el)){
-        el.remove();
-      }
-    });
-
-    // Se por algum motivo houver mais de um botão oficial, mantém só o primeiro.
-    var officials=Array.from(document.querySelectorAll('#heroCommunityAccessFixed'));
-    officials.slice(1).forEach(function(el){el.remove();});
-  }
-
-  function ensureOfficialCommunityButton(){
-    cleanupDuplicateCommunityButtons();
-
-    var shouldShow=!!document.querySelector('.student-ai-float,.student-ai-panel,.hero-load-box,.student-ex,.workout-card,.protocol-exercise,.today-panel');
-    if(!shouldShow)return;
-
-    var official=document.getElementById('heroCommunityAccessFixed');
-    if(!official){
-      official=document.createElement('button');
-      official.type='button';
-      official.id='heroCommunityAccessFixed';
-      official.className='hero-community-access-fixed';
-      official.textContent='Comunidade HERO';
-      document.body.appendChild(official);
-    }
-
-    official.onclick=function(ev){
-      ev.preventDefault();
-      ev.stopPropagation();
-      if(window.HERO && typeof window.HERO.community==='function')return window.HERO.community();
-      try{if(typeof community==='function')return community();}catch(e){}
-    };
-  }
-
-  // Reaplica depois de scripts antigos tentarem recriar botões.
-  setTimeout(ensureOfficialCommunityButton,100);
-  setTimeout(ensureOfficialCommunityButton,500);
-  setTimeout(ensureOfficialCommunityButton,1200);
-  setInterval(ensureOfficialCommunityButton,1500);
-
-  document.addEventListener('click',function(){
-    setTimeout(ensureOfficialCommunityButton,180);
-  },true);
-
-  var oldStudent=window.HERO.student;
-  if(typeof oldStudent==='function'&&!oldStudent.__heroSingleCommunityV39){
-    var patchedStudent=function(){
-      var r=oldStudent.apply(this,arguments);
-      setTimeout(ensureOfficialCommunityButton,160);
-      setTimeout(ensureOfficialCommunityButton,700);
-      return r;
-    };
-    patchedStudent.__heroSingleCommunityV39=true;
-    window.HERO.student=patchedStudent;
-  }
-
-  var oldCommunity=window.HERO.community;
-  if(typeof oldCommunity==='function'&&!oldCommunity.__heroSingleCommunityCleanV39){
-    var patchedCommunity=function(){
-      cleanupDuplicateCommunityButtons();
-      var official=document.getElementById('heroCommunityAccessFixed');
-      if(official)official.remove();
-      return oldCommunity.apply(this,arguments);
-    };
-    patchedCommunity.__heroSingleCommunityCleanV39=true;
-    window.HERO.community=patchedCommunity;
-    window.community=patchedCommunity;
-  }
-
-  document.documentElement.setAttribute('data-hero-os-patch','single-community-button-v39');
 })();
 </script>
 
@@ -12567,141 +12235,577 @@ function heroV42IsAdmin(){
 </script>
 
 
+
 <script>
-/* HERO OS V4.4 GUIDED POST CHECKIN FIX */
+/* HERO OS V4.5 DIRECT COMMUNITY CONTENT FIX */
 (function(){
   if(!window.HERO){window.HERO={};}
 
-  function isStudentScreen(){
-    return !!document.querySelector('.student-ai-float,.hero-load-box,.student-ex,.workout-card,.protocol-exercise,.today-panel,.challenge-card,.desafio-card');
+  function norm(t){
+    return String(t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
   }
 
-  function findTextContainer(keywords){
-    var nodes=Array.from(document.querySelectorAll('section,article,.card,.panel,.box,div'));
-    return nodes.find(function(el){
-      var txt=String(el.textContent||'').toLowerCase();
-      return keywords.every(function(k){return txt.includes(k);});
-    });
-  }
-
-  function removeFrictionPhrase(){
-    Array.from(document.querySelectorAll('p,small,span,div')).forEach(function(el){
-      if(!el.childElementCount){
-        var txt=String(el.textContent||'');
-        if(/quanto menor o atrito,\s*maior a chance da aluna postar\.?/i.test(txt)){
-          el.textContent=txt.replace(/quanto menor o atrito,\s*maior a chance da aluna postar\.?/ig,'').trim();
-          if(!el.textContent)el.remove();
-        }
+  function removePhrase(){
+    var phrase=/quanto menor o atrito,\s*maior a chance da aluna postar\.?/ig;
+    Array.from(document.querySelectorAll('body *')).forEach(function(el){
+      if(el.children&&el.children.length)return;
+      var txt=String(el.textContent||'');
+      if(phrase.test(txt)){
+        el.textContent=txt.replace(/quanto menor o atrito,\s*maior a chance da aluna postar\.?/ig,'').trim();
+        if(!el.textContent)el.remove();
       }
     });
   }
 
-  function ensureGuidedPostModels(){
-    if(!isStudentScreen())return;
-
-    var area=findTextContainer(['postagem','guiada']) || findTextContainer(['postar','comunidade']) || null;
-    if(!area)return;
-
-    removeFrictionPhrase();
-
-    if(area.querySelector('.hero-guided-post-models,.guided-post-models'))return;
-
-    var box=document.createElement('div');
-    box.className='hero-guided-post-models';
-    box.innerHTML=
-      '<div class="guided-post-model-card"><strong>Modelo 1 — treino concluído</strong><p>Treino feito hoje. Mantive o foco, registrei minhas cargas e sigo evoluindo no protocolo HERO.</p></div>'+
-      '<div class="guided-post-model-card"><strong>Modelo 2 — evolução de carga</strong><p>Hoje consegui manter ou melhorar minha carga com execução controlada. Progresso real, um treino por vez.</p></div>'+
-      '<div class="guided-post-model-card"><strong>Modelo 3 — disciplina do dia</strong><p>Mesmo sem estar perfeito, eu fiz o que precisava ser feito. Mais um check-in para construir constância.</p></div>'+
-      '<div class="guided-post-model-card"><strong>Modelo 4 — comunidade</strong><p>Passando para registrar minha presença no desafio e acompanhar a evolução com as outras guerreiras.</p></div>';
-
-    var title=Array.from(area.querySelectorAll('h2,h3,strong')).find(function(el){
-      return String(el.textContent||'').toLowerCase().includes('postagem') || String(el.textContent||'').toLowerCase().includes('guiada');
-    });
-
-    if(title&&title.parentNode){
-      title.parentNode.insertBefore(box,title.nextSibling);
-    }else{
-      area.appendChild(box);
-    }
+  function closestCard(el){
+    if(!el)return null;
+    return el.closest('section,article,.card,.panel,.box,.community-card,.challenge-card,.desafio-card,.glass,main') || el.parentElement;
   }
 
-  function openCheckin(){
-    var possible=Array.from(document.querySelectorAll('button,a,.btn')).find(function(el){
-      var txt=String(el.textContent||'').toLowerCase();
-      var onclick=String(el.getAttribute&&el.getAttribute('onclick')||'').toLowerCase();
-      return (txt.includes('check')||onclick.includes('check')) && el.id!=='heroWeeklyCheckinAction';
+  function findByTitle(words){
+    var all=Array.from(document.querySelectorAll('h1,h2,h3,h4,strong,b,p,span,button,div'));
+    var hit=all.find(function(el){
+      var text=norm(el.textContent);
+      return words.every(function(w){return text.includes(norm(w));});
     });
+    return hit?closestCard(hit):null;
+  }
 
-    if(possible){
-      possible.click();
-      return true;
+  function findCommunityRoot(){
+    return document.querySelector('.community-v3-wrap,.community-v3-hero,main.wrap,#app main,#app') || document.getElementById('app') || document.body;
+  }
+
+  function modelsHtml(){
+    return ''+
+      '<div class="hero-guided-post-models-v45" id="heroGuidedPostModelsV45">'+
+        '<div class="hero-guided-post-model-v45"><strong>Modelo 1 — treino concluído</strong><p>Treino feito hoje. Mantive o foco, registrei minhas cargas e sigo evoluindo no protocolo HERO.</p></div>'+
+        '<div class="hero-guided-post-model-v45"><strong>Modelo 2 — evolução de carga</strong><p>Hoje consegui manter ou melhorar minha carga com execução controlada. Progresso real, um treino por vez.</p></div>'+
+        '<div class="hero-guided-post-model-v45"><strong>Modelo 3 — disciplina do dia</strong><p>Mesmo sem estar perfeito, eu fiz o que precisava ser feito. Mais um check-in para construir constância.</p></div>'+
+        '<div class="hero-guided-post-model-v45"><strong>Modelo 4 — comunidade</strong><p>Passando para registrar minha presença no desafio e acompanhar a evolução com as outras guerreiras.</p></div>'+
+      '</div>';
+  }
+
+  function ensureGuidedModels(){
+    if(document.getElementById('heroGuidedPostModelsV45'))return;
+
+    var card=findByTitle(['postagem','guiada']) || findByTitle(['postar']) || findByTitle(['comunidade']);
+    var root=findCommunityRoot();
+
+    var holder=document.createElement('div');
+    holder.innerHTML=modelsHtml();
+    var block=holder.firstElementChild;
+
+    if(card){
+      var title=Array.from(card.querySelectorAll('h1,h2,h3,h4,strong,b,p,span')).find(function(el){
+        var t=norm(el.textContent);
+        return (t.includes('postagem')&&t.includes('guiada'))||t.includes('postar');
+      });
+      if(title&&title.parentNode){
+        title.parentNode.insertBefore(block,title.nextSibling);
+      }else{
+        card.appendChild(block);
+      }
+      return;
     }
 
-    if(window.HERO&&typeof window.HERO.community==='function'){
-      window.HERO.community();
+    // Fallback visível: cria uma seção dentro da comunidade/área principal.
+    var fallback=document.createElement('section');
+    fallback.className='card hero-guided-post-fallback-v45';
+    fallback.innerHTML='<h3>Postagem guiada</h3>'+modelsHtml();
+    root.appendChild(fallback);
+  }
+
+  function checkinHtml(){
+    return '<button type="button" class="hero-checkin-action-v45" id="heroCheckinActionV45"><span>Check-in HERO<small>Toque aqui para registrar seu check-in no desafio da semana.</small></span><b>→</b></button>';
+  }
+
+  function triggerExistingCheckin(){
+    var existing=Array.from(document.querySelectorAll('button,a,.btn')).find(function(el){
+      if(el.id==='heroCheckinActionV45')return false;
+      var t=norm(el.textContent);
+      var onclick=norm(el.getAttribute&&el.getAttribute('onclick')||'');
+      return t.includes('check')||onclick.includes('check');
+    });
+    if(existing){
+      existing.click();
       return true;
     }
-
+    var input=document.querySelector('textarea,input');
+    if(input){
+      input.focus();
+      return true;
+    }
     return false;
   }
 
-  function ensureWeeklyCheckinAction(){
-    if(!isStudentScreen())return;
-
-    var area=findTextContainer(['desafio','semana']) || findTextContainer(['check-in']) || findTextContainer(['checkin']);
-    if(!area)return;
-
-    if(area.querySelector('#heroWeeklyCheckinAction'))return;
-
-    var hasVisibleCheckin=Array.from(area.querySelectorAll('button,a,.btn')).some(function(el){
-      var txt=String(el.textContent||'').trim().toLowerCase();
-      return txt.includes('check-in hero') || txt.includes('check-in') || txt.includes('fazer check');
-    });
-
-    if(hasVisibleCheckin)return;
-
-    var btn=document.createElement('button');
-    btn.type='button';
-    btn.id='heroWeeklyCheckinAction';
-    btn.className='hero-weekly-checkin-action';
-    btn.innerHTML='<span>Check-in HERO<small>Toque aqui para registrar seu check-in no desafio da semana.</small></span><b>→</b>';
-    btn.onclick=function(ev){
-      ev.preventDefault();
-      ev.stopPropagation();
-      return openCheckin();
-    };
-
-    area.appendChild(btn);
+  function bindCheckin(){
+    var btn=document.getElementById('heroCheckinActionV45');
+    if(btn&&!btn.__heroV45Bound){
+      btn.__heroV45Bound=true;
+      btn.onclick=function(ev){
+        ev.preventDefault();
+        ev.stopPropagation();
+        return triggerExistingCheckin();
+      };
+    }
   }
 
-  function runFix(){
-    removeFrictionPhrase();
-    ensureGuidedPostModels();
-    ensureWeeklyCheckinAction();
+  function ensureCheckinAction(){
+    if(document.getElementById('heroCheckinActionV45')){
+      bindCheckin();
+      return;
+    }
+
+    var card=findByTitle(['desafio','semana']) || findByTitle(['check-in']) || findByTitle(['checkin']) || findByTitle(['desafio']);
+    var root=findCommunityRoot();
+    var holder=document.createElement('div');
+    holder.innerHTML=checkinHtml();
+    var btn=holder.firstElementChild;
+
+    if(card){
+      card.appendChild(btn);
+    }else{
+      var fallback=document.createElement('section');
+      fallback.className='card hero-checkin-fallback-v45';
+      fallback.innerHTML='<h3>Desafio da semana</h3>'+checkinHtml();
+      root.appendChild(fallback);
+    }
+    bindCheckin();
+  }
+
+  function runV45Fix(){
+    removePhrase();
+    ensureGuidedModels();
+    ensureCheckinAction();
+  }
+
+  var oldCommunity=window.HERO.community||window.community;
+  if(typeof oldCommunity==='function'&&!oldCommunity.__heroV45ContentFix){
+    var patchedCommunity=function(){
+      var r=oldCommunity.apply(this,arguments);
+      setTimeout(runV45Fix,80);
+      setTimeout(runV45Fix,260);
+      setTimeout(runV45Fix,800);
+      return r;
+    };
+    patchedCommunity.__heroV45ContentFix=true;
+    window.HERO.community=patchedCommunity;
+    window.community=patchedCommunity;
   }
 
   var oldStudent=window.HERO.student;
-  if(typeof oldStudent==='function'&&!oldStudent.__heroGuidedPostCheckinV44){
+  if(typeof oldStudent==='function'&&!oldStudent.__heroV45StudentContentFix){
     var patchedStudent=function(){
       var r=oldStudent.apply(this,arguments);
-      setTimeout(runFix,120);
-      setTimeout(runFix,500);
-      setTimeout(runFix,1000);
+      setTimeout(runV45Fix,180);
+      setTimeout(runV45Fix,700);
       return r;
     };
-    patchedStudent.__heroGuidedPostCheckinV44=true;
+    patchedStudent.__heroV45StudentContentFix=true;
     window.HERO.student=patchedStudent;
   }
 
   document.addEventListener('click',function(){
-    setTimeout(runFix,200);
+    setTimeout(runV45Fix,220);
   },true);
 
-  setTimeout(runFix,600);
-  setTimeout(runFix,1400);
-  setInterval(runFix,2200);
+  setTimeout(runV45Fix,700);
+  setTimeout(runV45Fix,1600);
+  setInterval(runV45Fix,2500);
 
-  document.documentElement.setAttribute('data-hero-os-patch','guided-post-checkin-fix-v44');
+  document.documentElement.setAttribute('data-hero-os-patch','direct-community-content-fix-v45');
+})();
+</script>
+
+
+<script>
+/* HERO OS V4.6 FINAL CONSOLIDATED AUDIT FIX */
+(function(){
+  if(!window.HERO){window.HERO={};}
+
+  function norm(t){
+    return String(t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  }
+
+  function readSession(){
+    try{return JSON.parse(sessionStorage.getItem('hero_session')||'{}');}catch(e){return {};}
+  }
+
+  function stateData(){
+    try{return typeof data==='function'?data():{};}catch(e){return {};}
+  }
+
+  function isTrainer(){
+    var s=readSession();
+    return s.role==='admin'||s.tipo==='admin'||s.admin===true||String(s.email||'').toLowerCase()==='marcosestevees@icloud.com';
+  }
+
+  function markRole(){
+    document.documentElement.setAttribute('data-hero-role', isTrainer()?'trainer':'student');
+  }
+
+  function currentStudentId(){
+    var s=readSession();
+    var st=stateData();
+    var alunos=st.alunos||[];
+    var aluno=alunos.find(function(a){
+      return String(a.id)===String(s.alunoId||s.id) ||
+             String(a.email||'').toLowerCase()===String(s.email||'').toLowerCase();
+    });
+    return s.alunoId||s.id||(aluno&&aluno.id)||s.email||'';
+  }
+
+  function goStudentHome(){
+    markRole();
+    try{location.hash='';}catch(e){}
+    var id=currentStudentId();
+    document.documentElement.setAttribute('data-hero-last-action','student-home-v46');
+
+    if(id&&window.HERO&&typeof window.HERO.student==='function'){
+      window.HERO.student(id,false);
+      setTimeout(function(){document.documentElement.setAttribute('data-hero-current-screen','student');},80);
+      return true;
+    }
+
+    try{
+      if(id&&typeof student==='function'){
+        student(id,false);
+        setTimeout(function(){document.documentElement.setAttribute('data-hero-current-screen','student');},80);
+        return true;
+      }
+    }catch(e){}
+
+    if(window.HERO&&typeof window.HERO.login==='function'){
+      window.HERO.login();
+      return true;
+    }
+
+    try{
+      if(typeof login==='function'){
+        login();
+        return true;
+      }
+    }catch(e){}
+
+    return false;
+  }
+
+  function goTrainerHome(){
+    markRole();
+    try{location.hash='';}catch(e){}
+    document.documentElement.setAttribute('data-hero-last-action','trainer-home-v46');
+
+    if(window.HERO&&typeof window.HERO.admin==='function'){
+      window.HERO.admin();
+      setTimeout(function(){document.documentElement.setAttribute('data-hero-current-screen','trainer');},80);
+      return true;
+    }
+
+    try{
+      if(typeof admin==='function'){
+        admin();
+        setTimeout(function(){document.documentElement.setAttribute('data-hero-current-screen','trainer');},80);
+        return true;
+      }
+    }catch(e){}
+
+    return false;
+  }
+
+  function goBackFromCommunity(){
+    return isTrainer()?goTrainerHome():goStudentHome();
+  }
+
+  function isCommunityScreen(){
+    return !!document.querySelector('.community-v3-wrap,.community-context-bar,.community-v3-hero');
+  }
+
+  function removeFrictionPhrase(){
+    var re=/quanto menor o atrito,\s*maior a chance da aluna postar\.?/ig;
+    Array.from(document.querySelectorAll('body *')).forEach(function(el){
+      if(el.children&&el.children.length)return;
+      var txt=String(el.textContent||'');
+      if(re.test(txt)){
+        el.textContent=txt.replace(/quanto menor o atrito,\s*maior a chance da aluna postar\.?/ig,'').trim();
+        if(!el.textContent)el.remove();
+      }
+    });
+  }
+
+  function closestCard(el){
+    if(!el)return null;
+    return el.closest('section,article,.card,.panel,.box,.community-card,.challenge-card,.desafio-card,.glass,main') || el.parentElement;
+  }
+
+  function findByTitle(words){
+    var all=Array.from(document.querySelectorAll('h1,h2,h3,h4,strong,b,p,span,button,div'));
+    var hit=all.find(function(el){
+      var text=norm(el.textContent);
+      return words.every(function(w){return text.includes(norm(w));});
+    });
+    return hit?closestCard(hit):null;
+  }
+
+  function root(){
+    return document.querySelector('.community-v3-wrap,.community-v3-hero,main.wrap,#app main,#app') || document.getElementById('app') || document.body;
+  }
+
+  function ensureGuidedModels(){
+    if(document.getElementById('heroGuidedPostModelsFinal'))return;
+
+    var card=findByTitle(['postagem','guiada']) || findByTitle(['postar']) || findByTitle(['comunidade']);
+    var block=document.createElement('div');
+    block.className='hero-guided-post-models-final';
+    block.id='heroGuidedPostModelsFinal';
+    block.innerHTML=
+      '<div class="hero-guided-post-model-final"><strong>Modelo 1 — treino concluído</strong><p>Treino feito hoje. Mantive o foco, registrei minhas cargas e sigo evoluindo no protocolo HERO.</p></div>'+
+      '<div class="hero-guided-post-model-final"><strong>Modelo 2 — evolução de carga</strong><p>Hoje consegui manter ou melhorar minha carga com execução controlada. Progresso real, um treino por vez.</p></div>'+
+      '<div class="hero-guided-post-model-final"><strong>Modelo 3 — disciplina do dia</strong><p>Mesmo sem estar perfeito, eu fiz o que precisava ser feito. Mais um check-in para construir constância.</p></div>'+
+      '<div class="hero-guided-post-model-final"><strong>Modelo 4 — comunidade</strong><p>Passando para registrar minha presença no desafio e acompanhar a evolução com as outras guerreiras.</p></div>';
+
+    if(card){
+      var title=Array.from(card.querySelectorAll('h1,h2,h3,h4,strong,b,p,span')).find(function(el){
+        var t=norm(el.textContent);
+        return (t.includes('postagem')&&t.includes('guiada'))||t.includes('postar');
+      });
+      if(title&&title.parentNode){
+        title.parentNode.insertBefore(block,title.nextSibling);
+      }else{
+        card.appendChild(block);
+      }
+    }else{
+      var fallback=document.createElement('section');
+      fallback.className='card hero-guided-post-fallback-final';
+      fallback.innerHTML='<h3>Postagem guiada</h3>';
+      fallback.appendChild(block);
+      root().appendChild(fallback);
+    }
+  }
+
+  function triggerExistingCheckin(){
+    var existing=Array.from(document.querySelectorAll('button,a,.btn')).find(function(el){
+      if(el.id==='heroCheckinActionFinal')return false;
+      var t=norm(el.textContent);
+      var onclick=norm(el.getAttribute&&el.getAttribute('onclick')||'');
+      return t.includes('check')||onclick.includes('check');
+    });
+    if(existing){
+      existing.click();
+      return true;
+    }
+    var input=document.querySelector('textarea,input');
+    if(input){
+      input.focus();
+      return true;
+    }
+    return false;
+  }
+
+  function ensureCheckin(){
+    if(document.getElementById('heroCheckinActionFinal'))return;
+
+    var card=findByTitle(['desafio','semana']) || findByTitle(['check-in']) || findByTitle(['checkin']) || findByTitle(['desafio']);
+    var btn=document.createElement('button');
+    btn.type='button';
+    btn.id='heroCheckinActionFinal';
+    btn.className='hero-checkin-action-final';
+    btn.innerHTML='<span>Check-in HERO<small>Toque aqui para registrar seu check-in no desafio da semana.</small></span><b>→</b>';
+    btn.onclick=function(ev){
+      ev.preventDefault();
+      ev.stopPropagation();
+      return triggerExistingCheckin();
+    };
+
+    if(card){
+      card.appendChild(btn);
+    }else{
+      var fallback=document.createElement('section');
+      fallback.className='card hero-checkin-fallback-final';
+      fallback.innerHTML='<h3>Desafio da semana</h3>';
+      fallback.appendChild(btn);
+      root().appendChild(fallback);
+    }
+  }
+
+  function isCommunityButton(el){
+    if(!el)return false;
+    if(el.id==='heroCommunityAccessFinal')return false;
+    if(el.closest&&el.closest('.community-context-bar'))return false;
+
+    var txt=norm(el.textContent);
+    var onclick=norm(el.getAttribute&&el.getAttribute('onclick')||'');
+    var klass=norm(el.className||'');
+
+    return txt==='comunidade hero' ||
+           txt==='comunidade' ||
+           txt.includes('comunidade hero') ||
+           onclick.includes('community') ||
+           klass.includes('community-fab') ||
+           (el.hasAttribute&&el.hasAttribute('data-community-fab'));
+  }
+
+  function cleanupStudentLeaks(){
+    markRole();
+
+    var community=isCommunityScreen();
+    document.documentElement.setAttribute('data-hero-current-screen', community?'community':(isTrainer()?'trainer':'student'));
+
+    if(isTrainer())return;
+
+    document.querySelectorAll('#coachDashboard,.coach-dashboard').forEach(function(el){el.remove();});
+
+    document.querySelectorAll('#heroChatAccessTop,.hero-chat-access-top,#communityChatDirect,#communityChatDirectLegacy,[data-nav-v28="chat"],[data-hero-v27-action="chat"]').forEach(function(el){
+      if(el.closest&&el.closest('.student-ai-panel'))return;
+      el.remove();
+    });
+
+    Array.from(document.querySelectorAll('button,a,.btn,[data-community-fab],.community-fab,.hero-community-fab,#communityFab,#heroCommunityAccessFixed')).forEach(function(el){
+      if(isCommunityButton(el)){
+        el.remove();
+      }
+    });
+
+    Array.from(document.querySelectorAll('button,a,.btn')).forEach(function(el){
+      if(el.closest&&el.closest('.student-ai-panel'))return;
+      if(el.id==='studentAiOpen')return;
+      if(el.classList&&el.classList.contains('student-ai-button'))return;
+      if(el.id==='heroCommunityAccessFinal')return;
+
+      var txt=norm(el.textContent);
+      var onclick=norm(el.getAttribute&&el.getAttribute('onclick')||'');
+
+      if(txt==='chat hero'||txt.includes('chat hero')||onclick.includes('abrirchatia')){
+        el.remove();
+      }
+    });
+
+    if(community){
+      var finalBtn=document.getElementById('heroCommunityAccessFinal');
+      if(finalBtn)finalBtn.remove();
+      return;
+    }
+
+    var shouldShow=!!document.querySelector('.student-ai-float,.student-ai-panel,.hero-load-box,.student-ex,.workout-card,.protocol-exercise,.today-panel');
+    if(shouldShow&&!document.getElementById('heroCommunityAccessFinal')&&window.HERO&&typeof window.HERO.community==='function'){
+      var btn=document.createElement('button');
+      btn.type='button';
+      btn.id='heroCommunityAccessFinal';
+      btn.textContent='Comunidade HERO';
+      btn.onclick=function(ev){
+        ev.preventDefault();
+        ev.stopPropagation();
+        return window.HERO.community();
+      };
+      document.body.appendChild(btn);
+    }
+  }
+
+  function ensureStudentSupport(){
+    if(isTrainer())return;
+    var studentArea=!!document.querySelector('.hero-load-box,.student-ex,.workout-card,.protocol-exercise,.today-panel');
+    if(!studentArea)return;
+
+    var float=document.querySelector('.student-ai-float');
+    if(float){
+      float.classList.remove('is-hidden');
+      float.style.display='grid';
+    }
+  }
+
+  function bindCommunityNav(){
+    var ids=['communityBackDirect','communityBackDirectLegacy','communityProtocolDirect','communityProtocolDirectLegacy'];
+    ids.forEach(function(id){
+      var el=document.getElementById(id);
+      if(el){
+        el.onclick=function(ev){
+          ev.preventDefault();
+          ev.stopPropagation();
+          if(ev.stopImmediatePropagation)ev.stopImmediatePropagation();
+          return goBackFromCommunity();
+        };
+        el.setAttribute('data-hero-final-nav-bound','true');
+      }
+    });
+
+    if(!isTrainer()){
+      document.querySelectorAll('#communityCenterDirect,#communityCenterDirectLegacy,#communityChatDirect,#communityChatDirectLegacy').forEach(function(el){el.remove();});
+    }
+  }
+
+  function runFinalAuditFix(){
+    markRole();
+    cleanupStudentLeaks();
+    ensureStudentSupport();
+    bindCommunityNav();
+    removeFrictionPhrase();
+    ensureGuidedModels();
+    ensureCheckin();
+  }
+
+  var oldStudent=window.HERO.student;
+  if(typeof oldStudent==='function'&&!oldStudent.__heroV46Final){
+    var patchedStudent=function(){
+      var r=oldStudent.apply(this,arguments);
+      setTimeout(runFinalAuditFix,80);
+      setTimeout(runFinalAuditFix,350);
+      setTimeout(runFinalAuditFix,900);
+      return r;
+    };
+    patchedStudent.__heroV46Final=true;
+    window.HERO.student=patchedStudent;
+  }
+
+  var oldCommunity=window.HERO.community||window.community;
+  if(typeof oldCommunity==='function'&&!oldCommunity.__heroV46Final){
+    var patchedCommunity=function(){
+      var r=oldCommunity.apply(this,arguments);
+      document.documentElement.setAttribute('data-hero-current-screen','community');
+      setTimeout(runFinalAuditFix,50);
+      setTimeout(bindCommunityNav,120);
+      setTimeout(runFinalAuditFix,320);
+      setTimeout(runFinalAuditFix,900);
+      return r;
+    };
+    patchedCommunity.__heroV46Final=true;
+    window.HERO.community=patchedCommunity;
+    window.community=patchedCommunity;
+  }
+
+  var oldAdmin=window.HERO.admin;
+  if(typeof oldAdmin==='function'&&!oldAdmin.__heroV46Final){
+    var patchedAdmin=function(){
+      var r=oldAdmin.apply(this,arguments);
+      setTimeout(function(){
+        document.documentElement.setAttribute('data-hero-role','trainer');
+        document.documentElement.setAttribute('data-hero-current-screen','trainer');
+      },80);
+      return r;
+    };
+    patchedAdmin.__heroV46Final=true;
+    window.HERO.admin=patchedAdmin;
+  }
+
+  document.addEventListener('click',function(ev){
+    var id=ev.target&&ev.target.id;
+    if(id==='communityBackDirect'||id==='communityBackDirectLegacy'||id==='communityProtocolDirect'||id==='communityProtocolDirectLegacy'){
+      ev.preventDefault();
+      ev.stopPropagation();
+      if(ev.stopImmediatePropagation)ev.stopImmediatePropagation();
+      return goBackFromCommunity();
+    }
+    setTimeout(runFinalAuditFix,120);
+  },true);
+
+  window.HERO.goCommunityBack=goBackFromCommunity;
+  window.HERO.goStudentProtocol=goStudentHome;
+  window.HERO.goTrainerCenter=goTrainerHome;
+
+  setTimeout(runFinalAuditFix,250);
+  setTimeout(runFinalAuditFix,900);
+  setTimeout(runFinalAuditFix,1800);
+  setInterval(runFinalAuditFix,1200);
+
+  document.documentElement.setAttribute('data-hero-os-patch','final-consolidated-audit-fix-v46');
 })();
 </script>
 
