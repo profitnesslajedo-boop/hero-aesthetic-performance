@@ -5721,6 +5721,85 @@ html[data-hero-os-visual="premium-v2"] .hero-version-confirm{
   }
 }
 
+
+/* HERO OS V3.7 COMMUNITY FLOAT REPOSITION
+   Move o botão flutuante da Comunidade HERO para não sobrepor o suporte IA da aluna.
+*/
+html[data-hero-os-visual="premium-v2"] .community-fab,
+html[data-hero-os-visual="premium-v2"] .hero-community-fab,
+html[data-hero-os-visual="premium-v2"] #communityFab,
+html[data-hero-os-visual="premium-v2"] [data-community-fab],
+html[data-hero-os-visual="premium-v2"] button[onclick*="community()"].fab,
+html[data-hero-os-visual="premium-v2"] button[onclick*="HERO.community"].fab{
+  position:fixed!important;
+  right:18px!important;
+  bottom:auto!important;
+  top:92px!important;
+  z-index:99970!important;
+  max-width:210px!important;
+  min-height:42px!important;
+  border-radius:999px!important;
+}
+
+/* Quando a IA da aluna estiver presente, ela mantém prioridade no canto inferior. */
+html[data-hero-os-visual="premium-v2"] .student-ai-float{
+  z-index:99990!important;
+}
+html[data-hero-os-visual="premium-v2"] .student-ai-panel{
+  z-index:99999!important;
+}
+
+/* Botão de comunidade reposicionado quando for criado pelo patch final. */
+html[data-hero-os-visual="premium-v2"] .hero-community-access-fixed{
+  position:fixed!important;
+  right:18px!important;
+  top:92px!important;
+  bottom:auto!important;
+  z-index:99970!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:8px!important;
+  min-height:42px!important;
+  padding:0 14px!important;
+  border-radius:999px!important;
+  border:1px solid rgba(96,165,250,.28)!important;
+  background:rgba(2,6,23,.78)!important;
+  color:#e0f2fe!important;
+  font-size:.78rem!important;
+  font-weight:900!important;
+  letter-spacing:-.01em!important;
+  box-shadow:0 16px 44px rgba(0,0,0,.34)!important;
+  backdrop-filter:blur(18px)!important;
+}
+html[data-hero-os-visual="premium-v2"] .hero-community-access-fixed:hover{
+  transform:translateY(-1px)!important;
+  border-color:rgba(96,165,250,.46)!important;
+}
+
+/* Evita duplicidade visual caso exista outro botão antigo no canto inferior. */
+html[data-hero-os-visual="premium-v2"] .student-ai-float ~ .community-fab,
+html[data-hero-os-visual="premium-v2"] .student-ai-float ~ .hero-community-fab,
+html[data-hero-os-visual="premium-v2"] .student-ai-float ~ #communityFab{
+  top:92px!important;
+  bottom:auto!important;
+}
+
+@media(max-width:760px){
+  html[data-hero-os-visual="premium-v2"] .community-fab,
+  html[data-hero-os-visual="premium-v2"] .hero-community-fab,
+  html[data-hero-os-visual="premium-v2"] #communityFab,
+  html[data-hero-os-visual="premium-v2"] [data-community-fab],
+  html[data-hero-os-visual="premium-v2"] .hero-community-access-fixed{
+    top:76px!important;
+    right:12px!important;
+    max-width:170px!important;
+    min-height:38px!important;
+    padding:0 12px!important;
+    font-size:.72rem!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -11518,6 +11597,97 @@ if(window.HERO.heroCommunityScheduleButton)window.HERO.heroCommunityScheduleButt
   setInterval(bindNavButtons,600);
   setTimeout(bindNavButtons,200);
   document.documentElement.setAttribute('data-hero-os-patch','definitive-nav-v36');
+})();
+</script>
+
+
+<script>
+/* HERO OS V3.7 COMMUNITY FLOAT REPOSITION */
+(function(){
+  if(!window.HERO){window.HERO={};}
+
+  function canShowCommunityAccess(){
+    return !!document.querySelector('.student-ai-float,.student-ai-panel,.hero-load-box,.student-ex,.workout-card,.protocol-exercise,.today-panel');
+  }
+
+  function openCommunity(){
+    if(window.HERO && typeof window.HERO.community==='function'){
+      return window.HERO.community();
+    }
+    try{
+      if(typeof community==='function')return community();
+    }catch(e){}
+  }
+
+  function repositionExistingCommunityButtons(){
+    var candidates=Array.from(document.querySelectorAll('button,a,.btn'));
+    candidates.forEach(function(el){
+      var txt=String(el.textContent||'').trim().toLowerCase();
+      var onclick=String(el.getAttribute('onclick')||'').toLowerCase();
+      var isCommunity=(txt.includes('comunidade hero')||txt==='comunidade'||onclick.includes('community'));
+      if(!isCommunity)return;
+      if(el.closest('.community-context-bar'))return;
+      if(el.id==='heroCommunityAccessFixed')return;
+      el.classList.add('hero-community-fab');
+      el.setAttribute('data-community-fab','true');
+      el.style.top='92px';
+      el.style.bottom='auto';
+      el.style.right='18px';
+      el.style.zIndex='99970';
+    });
+  }
+
+  function installCommunityAccess(){
+    repositionExistingCommunityButtons();
+    if(!canShowCommunityAccess())return;
+
+    var old=document.getElementById('heroCommunityAccessFixed');
+    if(old)return;
+
+    var btn=document.createElement('button');
+    btn.type='button';
+    btn.id='heroCommunityAccessFixed';
+    btn.className='hero-community-access-fixed';
+    btn.textContent='Comunidade HERO';
+    btn.onclick=function(ev){
+      ev.preventDefault();
+      ev.stopPropagation();
+      return openCommunity();
+    };
+    document.body.appendChild(btn);
+  }
+
+  var oldStudent=window.HERO.student;
+  if(typeof oldStudent==='function'&&!oldStudent.__heroCommunityRepositionV37){
+    var patchedStudent=function(){
+      var r=oldStudent.apply(this,arguments);
+      setTimeout(installCommunityAccess,180);
+      setTimeout(installCommunityAccess,700);
+      return r;
+    };
+    patchedStudent.__heroCommunityRepositionV37=true;
+    window.HERO.student=patchedStudent;
+  }
+
+  var oldCommunity=window.HERO.community;
+  if(typeof oldCommunity==='function'&&!oldCommunity.__heroCommunityRepositionCleanV37){
+    var patchedCommunity=function(){
+      var btn=document.getElementById('heroCommunityAccessFixed');
+      if(btn)btn.remove();
+      return oldCommunity.apply(this,arguments);
+    };
+    patchedCommunity.__heroCommunityRepositionCleanV37=true;
+    window.HERO.community=patchedCommunity;
+    window.community=patchedCommunity;
+  }
+
+  document.addEventListener('click',function(){
+    setTimeout(installCommunityAccess,260);
+  },true);
+
+  setTimeout(installCommunityAccess,600);
+  setTimeout(installCommunityAccess,1400);
+  document.documentElement.setAttribute('data-hero-os-patch','community-float-reposition-v37');
 })();
 </script>
 
