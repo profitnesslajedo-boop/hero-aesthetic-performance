@@ -2920,6 +2920,107 @@ dialog,
   text-decoration:none!important;
 }
 
+
+/* CORREÇÃO IA + LAYOUT: nomes, sidebar e ações do treinador */
+.sidebar,
+.students-sidebar,
+.aside,
+.side-panel,
+.student-list,
+.students-list,
+.alunos-list{
+  min-width:0!important;
+  overflow:hidden!important;
+}
+.student-list,
+.students-list,
+.alunos-list{
+  display:grid!important;
+  gap:10px!important;
+}
+.student-item,
+.aluno-item,
+.student-row,
+.aluno-row,
+[class*="student-item"],
+[class*="aluno-item"]{
+  width:100%!important;
+  min-width:0!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  align-items:start!important;
+  gap:8px!important;
+  padding:14px!important;
+  border-radius:16px!important;
+  overflow:hidden!important;
+}
+.student-item h3,.student-item h4,.student-item strong,
+.aluno-item h3,.aluno-item h4,.aluno-item strong,
+.student-row h3,.student-row h4,.student-row strong,
+.aluno-row h3,.aluno-row h4,.aluno-row strong{
+  min-width:0!important;
+  max-width:100%!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+  line-height:1.25!important;
+}
+.student-item p,.student-item small,
+.aluno-item p,.aluno-item small,
+.student-row p,.student-row small,
+.aluno-row p,.aluno-row small{
+  min-width:0!important;
+  max-width:100%!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+}
+.student-head{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  gap:18px!important;
+  align-items:start!important;
+}
+.student-head > div:first-child{
+  min-width:0!important;
+}
+.student-head h2,
+.student-head p{
+  min-width:0!important;
+  max-width:100%!important;
+  overflow-wrap:anywhere!important;
+}
+.student-head .toolbar{
+  justify-content:flex-end!important;
+  align-items:center!important;
+  gap:10px!important;
+  max-width:100%!important;
+}
+.student-head .toolbar button,
+.student-head .toolbar .btn{
+  min-width:118px!important;
+}
+@media(max-width:980px){
+  .student-head{
+    grid-template-columns:1fr!important;
+  }
+  .student-head .toolbar{
+    justify-content:flex-start!important;
+    width:100%!important;
+  }
+}
+@media(max-width:640px){
+  .student-head .toolbar{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+  }
+  .student-head .toolbar button,
+  .student-head .toolbar .btn{
+    width:100%!important;
+    min-width:0!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -6713,15 +6814,92 @@ dialog,
 
 
 
-  function currentTrainerContext(){
-    const s=sessionStorage.getItem('hero_session');
-    if(!s)return {alunoId:null,treinoId:null};
+
+  function heroFindAlunoLocal(alunoId){
     const st=data();
-    const alunos=st.alunos||[];
-    const treinos=st.treinos||[];
-    const selectedAluno=window.HERO_SELECTED_ALUNO_ID||alunos[0]?.id||null;
-    const selectedTreino=window.HERO_SELECTED_TREINO_ID||treinos.find(t=>t.alunoId===selectedAluno)?.id||null;
-    return {alunoId:selectedAluno,treinoId:selectedTreino};
+    const list=st.alunos||[];
+    if(alunoId){
+      const id=String(alunoId);
+      const found=list.find(a=>String(a.id)===id||String(a.user_id||'')===id||String(a.auth_user_id||'')===id);
+      if(found)return found;
+    }
+    if(window.HERO_SELECTED_ALUNO_ID){
+      const id=String(window.HERO_SELECTED_ALUNO_ID);
+      const found=list.find(a=>String(a.id)===id||String(a.user_id||'')===id||String(a.auth_user_id||'')===id);
+      if(found)return found;
+    }
+    try{
+      const raw=sessionStorage.getItem('hero_session');
+      const u=raw?JSON.parse(raw):null;
+      if(u?.alunoId){
+        const found=list.find(a=>String(a.id)===String(u.alunoId)||String(a.user_id||'')===String(u.alunoId));
+        if(found)return found;
+      }
+      if(u?.email){
+        const found=list.find(a=>String(a.email||'').toLowerCase()===String(u.email).toLowerCase());
+        if(found)return found;
+      }
+    }catch(_e){}
+    return list[0]||null;
+  }
+
+  function heroFindTreinoLocal(alunoId,treinoId){
+    const st=data();
+    if(treinoId){
+      const found=(st.treinos||[]).find(t=>String(t.id)===String(treinoId));
+      if(found)return found;
+    }
+    const aluno=heroFindAlunoLocal(alunoId);
+    const aid=aluno?.id||alunoId||window.HERO_SELECTED_ALUNO_ID;
+    return (st.treinos||[]).find(t=>String(t.alunoId)===String(aid)) || (st.treinos||[])[0] || null;
+  }
+
+  async function heroEnsureAlunoContext(alunoId){
+    let aluno=heroFindAlunoLocal(alunoId);
+    if(aluno)return aluno;
+    if(!supabaseAvailable())return null;
+    try{
+      const client=supabaseClient();
+      const {data:{session}}=await client.auth.getSession();
+      if(!session)return null;
+      const {data:rows,error}=await client.from('alunos').select('*').limit(100);
+      if(error)throw error;
+      if(Array.isArray(rows)){
+        rows.forEach(r=>syncAlunoLocal(r));
+        aluno=heroFindAlunoLocal(alunoId);
+      }
+    }catch(err){
+      console.warn('Falha ao sincronizar alunas:',err.message);
+    }
+    return aluno;
+  }
+
+  async function heroEdgePost(functionName,payload){
+    const client=supabaseClient();
+    if(!client)throw new Error('Supabase não configurado.');
+    const {data:{session}}=await client.auth.getSession();
+    if(!session)throw new Error('Faça login como treinador antes de usar a IA.');
+    const response=await fetch(`${window.HERO_SUPABASE_CONFIG.url}/functions/v1/${functionName}`,{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        Authorization:`Bearer ${session.access_token}`
+      },
+      body:JSON.stringify(payload||{})
+    });
+    const raw=await response.text();
+    let result={};
+    try{result=raw?JSON.parse(raw):{};}catch(_e){result={error:raw||'Resposta inválida da função.'};}
+    if(!response.ok||result.error){
+      throw new Error(result.error||result.message||`Erro HTTP ${response.status}`);
+    }
+    return result;
+  }
+
+  function currentTrainerContext(){
+    const aluno=heroFindAlunoLocal(window.HERO_SELECTED_ALUNO_ID);
+    const treino=heroFindTreinoLocal(aluno?.id,window.HERO_SELECTED_TREINO_ID);
+    return {alunoId:aluno?.id||null,treinoId:treino?.id||null,aluno,treino};
   }
   function floatingAIButton(){
     const s=sessionStorage.getItem('hero_session');
@@ -6741,14 +6919,20 @@ dialog,
 
     const client=supabaseClient();
     if(!client){alert('Supabase não configurado. Verifique o arquivo supabase-config.js.');return;}
-    if(!alunoId){alert('Selecione ou cadastre uma aluna antes de usar o Chat HERO.');return;}
-
     const {data:{session}}=await client.auth.getSession();
     if(!session){alert('Faça login como treinador antes de usar o chat com IA.');return;}
 
+    const alunoCtx=await heroEnsureAlunoContext(alunoId);
+    if(!alunoCtx){alert('Nenhuma aluna encontrada. Cadastre ou selecione uma aluna antes de abrir o Chat HERO.');return;}
+    alunoId=alunoCtx.id;
+    const treinoCtx=heroFindTreinoLocal(alunoId,treinoId);
+    treinoId=treinoCtx?.id||treinoId||null;
+    window.HERO_SELECTED_ALUNO_ID=alunoId;
+    if(treinoId)window.HERO_SELECTED_TREINO_ID=treinoId;
+
     const st=data();
-    const aluno=st.alunos.find(a=>a.id===alunoId)||{};
-    const treino=st.treinos.find(t=>t.id===treinoId)||{};
+    const aluno=st.alunos.find(a=>a.id===alunoId)||alunoCtx||{};
+    const treino=st.treinos.find(t=>t.id===treinoId)||treinoCtx||{};
 
     let drawer=document.getElementById('heroAiDrawer');
     if(!drawer){
@@ -6805,20 +6989,7 @@ dialog,
       msgEl.scrollTop=msgEl.scrollHeight;
 
       try{
-        const response=await fetch(`${window.HERO_SUPABASE_CONFIG.url}/functions/v1/hero-ai-chat`,{
-          method:'POST',
-          headers:{
-            'Content-Type':'application/json',
-            Authorization:`Bearer ${session.access_token}`
-          },
-          body:JSON.stringify({
-            aluno_id:currentAlunoId,
-            treino_id:currentTreinoId,
-            pergunta
-          })
-        });
-        const result=await response.json().catch(()=>({error:'Resposta inválida da função.'}));
-        if(!response.ok||result.error)throw new Error(result.error||'Erro ao consultar IA.');
+        const result=await heroEdgePost('hero-ai-chat',{aluno_id:currentAlunoId,treino_id:currentTreinoId,pergunta});
         msgEl.insertAdjacentHTML('beforeend',`<div class="hero-ai-msg assistant"><b>IA HERO</b><p>${esc(result.resposta||'Sem resposta.')}</p></div>`);
       }catch(err){
         msgEl.insertAdjacentHTML('beforeend',`<div class="hero-ai-msg error"><b>Erro</b><p>${esc(err.message)}</p></div>`);
@@ -6835,8 +7006,12 @@ dialog,
     if(!client){alert('Supabase não configurado. Verifique o arquivo supabase-config.js.');return;}
     const {data:{session}}=await client.auth.getSession();
     if(!session){alert('Faça login como treinador antes de usar a IA.');return;}
+    const alunoCtx=await heroEnsureAlunoContext(alunoId);
+    if(!alunoCtx){alert('Nenhuma aluna encontrada para gerar o protocolo. Cadastre ou selecione uma aluna antes.');return;}
+    alunoId=alunoCtx.id;
+    window.HERO_SELECTED_ALUNO_ID=alunoId;
     const st=data();
-    const aluno=st.alunos.find(a=>a.id===alunoId)||{};
+    const aluno=st.alunos.find(a=>a.id===alunoId)||alunoCtx||{};
     modal(`<h2>Gerar prescrição com IA</h2>
       <p class="muted">A IA cria uma sugestão técnica no método HERO. Você revisa antes de liberar para a aluna.</p>
       <form id="aiForm" class="form">
@@ -6889,26 +7064,17 @@ dialog,
       msg.textContent='A IA está montando a prescrição. Aguarde.';
       const f=Object.fromEntries(new FormData(e.target));
       try{
-        const response=await fetch(`${window.HERO_SUPABASE_CONFIG.url}/functions/v1/generate-prescription`,{
-          method:'POST',
-          headers:{
-            'Content-Type':'application/json',
-            Authorization:`Bearer ${session.access_token}`
-          },
-          body:JSON.stringify({
-            aluno_id:alunoId,
-            objetivo:f.objetivo,
-            nivel:f.nivel,
-            dias_semana:Number(f.dias_semana),
-            tempo_por_treino:f.tempo_por_treino,
-            foco:f.foco,
-            restricoes:f.restricoes,
-            observacoes:f.observacoes,
-            salvar:!!f.salvar
-          })
+        const result=await heroEdgePost('generate-prescription',{
+          aluno_id:alunoId,
+          objetivo:f.objetivo,
+          nivel:f.nivel,
+          dias_semana:Number(f.dias_semana),
+          tempo_por_treino:f.tempo_por_treino,
+          foco:f.foco,
+          restricoes:f.restricoes,
+          observacoes:f.observacoes,
+          salvar:!!f.salvar
         });
-        const result=await response.json().catch(()=>({error:'Resposta inválida da função.'}));
-        if(!response.ok||result.error){throw new Error(result.error||'Erro ao gerar prescrição.');}
         if(result.treino){syncTreinoLocal(result.treino,alunoId);}
         if(result.prescription&&Array.isArray(result.prescription.dias)){
           const st2=data();
@@ -6942,7 +7108,7 @@ dialog,
         msg.textContent='Prescrição gerada com sucesso. Revise antes de liberar.';
         setTimeout(()=>{closeModal(); admin(alunoId);},700);
       }catch(err){
-        msg.textContent='Erro ao gerar prescrição com IA: '+err.message;
+        msg.textContent='Erro ao gerar protocolo HERO: '+err.message+' | Verifique se a função generate-prescription está implantada e se OPENAI_API_KEY está nos Secrets do Supabase.';
         btn.disabled=false;
         btn.textContent=old;
       }
