@@ -3586,159 +3586,101 @@ dialog,
 }
 
 
-/* COMUNIDADE HERO PLUS: interação, alinhamento e conexão */
-.community-composer{
-  display:grid!important;
-  gap:16px!important;
+/* COMUNIDADE HERO V2 OVERRIDE FINAL: experiência mais viva, alinhada e interativa */
+.hero-community-floating{
+  position:fixed!important;right:18px!important;bottom:18px!important;z-index:99999!important;min-height:46px!important;
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;padding:0 18px!important;
+  border-radius:999px!important;border:1px solid rgba(96,165,250,.38)!important;
+  background:linear-gradient(135deg,rgba(37,99,235,.92),rgba(15,23,42,.96))!important;color:#f8fafc!important;
+  font-size:.78rem!important;font-weight:900!important;letter-spacing:.02em!important;
+  box-shadow:0 20px 60px rgba(0,0,0,.36),0 0 0 1px rgba(255,255,255,.04) inset!important;
+  backdrop-filter:blur(16px)!important;-webkit-backdrop-filter:blur(16px)!important;
 }
-.community-composer label{
-  display:grid!important;
-  gap:8px!important;
-  margin:0!important;
-  color:rgba(226,232,240,.92)!important;
-  font-size:.78rem!important;
-  font-weight:800!important;
-  letter-spacing:.02em!important;
+.hero-community-floating:hover{transform:translateY(-2px)!important;border-color:rgba(147,197,253,.64)!important}
+.community-v2-wrap{display:grid;gap:22px}
+.community-v2-hero{
+  position:relative;overflow:hidden;border:1px solid rgba(96,165,250,.16);
+  background:radial-gradient(circle at 12% 12%,rgba(37,99,235,.20),transparent 30%),linear-gradient(180deg,rgba(15,23,42,.86),rgba(2,6,23,.74));
 }
-.community-composer textarea,
-.community-composer select,
-.community-composer input[type="file"],
-.community-comment-form input{
-  width:100%!important;
-  margin:0!important;
+.community-v2-hero::after{
+  content:"";position:absolute;width:360px;height:360px;right:-140px;bottom:-190px;border-radius:999px;
+  background:radial-gradient(circle,rgba(59,130,246,.26),transparent 66%);pointer-events:none;
 }
-.community-composer textarea{
-  min-height:128px!important;
-  resize:vertical!important;
-  line-height:1.5!important;
+.community-v2-hero h1{letter-spacing:-.04em}
+.community-v2-hero p{max-width:740px}
+.community-v2-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.community-v2-pills span{
+  min-height:30px;display:inline-flex;align-items:center;padding:0 11px;border-radius:999px;
+  border:1px solid rgba(148,163,184,.14);background:rgba(2,6,23,.34);color:rgba(219,234,254,.90);
+  font-size:.68rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase;
 }
-.community-row{
-  display:grid!important;
-  grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
-  gap:14px!important;
-  align-items:start!important;
+.community-v2-board{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:22px;align-items:start}
+.community-v2-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.community-v2-stat{border:1px solid rgba(148,163,184,.13);background:rgba(15,23,42,.58);border-radius:20px;padding:15px}
+.community-v2-stat span{display:block;color:rgba(148,163,184,.84);font-size:.66rem;font-weight:950;letter-spacing:.08em;text-transform:uppercase}
+.community-v2-stat strong{display:block;margin-top:8px;color:#f8fafc;font-size:1.35rem;line-height:1}
+.community-v2-composer{
+  display:grid!important;gap:16px!important;margin-bottom:18px!important;border:1px solid rgba(96,165,250,.18)!important;
+  background:linear-gradient(180deg,rgba(15,23,42,.78),rgba(2,6,23,.46))!important;border-radius:24px!important;padding:18px!important;
 }
-.community-composer .btn.full{
-  width:100%!important;
-  min-height:46px!important;
-  margin-top:2px!important;
-  border-radius:14px!important;
+.community-v2-composer label{
+  display:grid!important;gap:9px!important;margin:0!important;color:rgba(226,232,240,.94)!important;
+  font-size:.76rem!important;font-weight:900!important;letter-spacing:.03em!important;
 }
-.community-quick-actions{
-  display:grid!important;
-  grid-template-columns:repeat(3,minmax(0,1fr))!important;
-  gap:8px!important;
+.community-v2-composer textarea,.community-v2-composer select,.community-v2-composer input[type="file"],.community-v2-comment-form input{
+  width:100%!important;margin:0!important;border-radius:14px!important;
 }
-.community-quick-actions button{
-  min-height:40px!important;
-  padding:0 10px!important;
-  border-radius:12px!important;
-  border:1px solid rgba(148,163,184,.14)!important;
-  background:rgba(2,6,23,.28)!important;
-  color:rgba(219,234,254,.92)!important;
-  font-size:.70rem!important;
-  font-weight:800!important;
-  box-shadow:none!important;
+.community-v2-composer textarea{min-height:142px!important;line-height:1.5!important;resize:vertical!important}
+.community-v2-template-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.community-v2-template-grid button{
+  min-height:46px!important;border-radius:14px!important;border:1px solid rgba(148,163,184,.14)!important;
+  background:rgba(15,23,42,.58)!important;color:#dbeafe!important;font-size:.72rem!important;font-weight:900!important;box-shadow:none!important;
 }
-.community-quick-actions button:hover{
-  border-color:rgba(96,165,250,.38)!important;
-  background:rgba(37,99,235,.13)!important;
+.community-v2-template-grid button:hover{background:rgba(37,99,235,.17)!important;border-color:rgba(96,165,250,.42)!important}
+.community-v2-form-row{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:14px!important;align-items:start!important}
+.community-v2-file input[type="file"]{min-height:48px!important;padding:12px!important}
+.community-v2-publish{width:100%!important;min-height:50px!important;border-radius:16px!important;font-weight:950!important;letter-spacing:.01em!important}
+.community-v2-feed{display:grid;gap:16px}
+.community-v2-post{
+  display:grid;gap:14px;border:1px solid rgba(148,163,184,.14);background:rgba(15,23,42,.64);
+  border-radius:24px;padding:18px;transition:transform .2s ease,border-color .2s ease,background .2s ease;
 }
-.community-prompt-card{
-  border:1px solid rgba(96,165,250,.18);
-  background:linear-gradient(180deg,rgba(37,99,235,.10),rgba(2,6,23,.24));
-  border-radius:18px;
-  padding:14px;
-  display:grid;
-  gap:10px;
+.community-v2-post:hover{transform:translateY(-1px);border-color:rgba(96,165,250,.26)}
+.community-v2-post.is-pinned{border-color:rgba(96,165,250,.42);background:linear-gradient(180deg,rgba(37,99,235,.14),rgba(15,23,42,.68))}
+.community-v2-post-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.community-v2-author{display:grid;gap:3px;min-width:0}
+.community-v2-author strong{color:#f8fafc;font-size:.98rem}
+.community-v2-author span{color:rgba(148,163,184,.86);font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.community-v2-category{
+  flex:0 0 auto;min-height:28px;display:inline-flex;align-items:center;padding:0 10px;border-radius:999px;
+  border:1px solid rgba(96,165,250,.23);background:rgba(37,99,235,.13);color:#bfdbfe;
+  font-size:.68rem;font-weight:950;letter-spacing:.06em;text-transform:uppercase;
 }
-.community-prompt-card strong{
-  color:#f8fafc;
-  font-size:.88rem;
+.community-v2-content{color:rgba(226,232,240,.96);line-height:1.6;white-space:pre-wrap}
+.community-v2-image{width:100%;max-height:500px;object-fit:cover;border-radius:18px;border:1px solid rgba(148,163,184,.13)}
+.community-v2-actions{display:flex;flex-wrap:wrap;gap:8px}
+.community-v2-actions .btn,.community-v2-actions button{min-height:38px!important;padding:0 12px!important;border-radius:12px!important;font-size:.72rem!important}
+.community-v2-comments{display:grid;gap:10px;padding-top:12px;border-top:1px solid rgba(148,163,184,.10)}
+.community-v2-comment{border:1px solid rgba(148,163,184,.10);background:rgba(2,6,23,.30);border-radius:15px;padding:11px 12px}
+.community-v2-comment strong{color:#e2e8f0;font-size:.78rem}
+.community-v2-comment p{margin:4px 0 0;color:rgba(203,213,225,.90);font-size:.84rem;line-height:1.45}
+.community-v2-comment-form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center}
+.community-v2-comment-form input,.community-v2-comment-form button{min-height:42px!important}
+.community-v2-side{display:grid;gap:14px;position:sticky;top:92px}
+.community-v2-card{border:1px solid rgba(148,163,184,.14);background:rgba(15,23,42,.62);border-radius:22px;padding:17px}
+.community-v2-card.feature{border-color:rgba(96,165,250,.26);background:linear-gradient(180deg,rgba(37,99,235,.13),rgba(15,23,42,.62))}
+.community-v2-card small{color:#93c5fd;font-size:.68rem;font-weight:950;letter-spacing:.08em;text-transform:uppercase}
+.community-v2-card h3{margin:8px 0 8px!important;color:#f8fafc!important;font-size:1rem!important}
+.community-v2-card p,.community-v2-card li{color:rgba(203,213,225,.84);font-size:.86rem;line-height:1.45}
+.community-v2-card ul{padding-left:18px;margin:0}
+.community-v2-empty{text-align:center;padding:28px;border:1px solid rgba(148,163,184,.12);background:rgba(15,23,42,.46);border-radius:22px;color:rgba(203,213,225,.82)}
+@media(max-width:980px){
+  .community-v2-board{grid-template-columns:1fr}
+  .community-v2-side{position:static}
+  .community-v2-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
-.community-prompt-card p{
-  margin:0;
-  color:rgba(203,213,225,.84);
-  font-size:.82rem;
-  line-height:1.42;
-}
-.community-challenge{
-  border:1px solid rgba(96,165,250,.22);
-  background:rgba(37,99,235,.10);
-  border-radius:20px;
-  padding:16px;
-  display:grid;
-  gap:10px;
-}
-.community-challenge small{
-  color:#93c5fd;
-  font-size:.68rem;
-  font-weight:900;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-}
-.community-challenge h3{
-  margin:0!important;
-  color:#f8fafc!important;
-  font-size:1rem!important;
-}
-.community-challenge p{
-  margin:0!important;
-  color:rgba(203,213,225,.86)!important;
-  font-size:.86rem!important;
-  line-height:1.45!important;
-}
-.community-stats-grid{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:10px;
-  margin:0 0 18px;
-}
-.community-stat{
-  border:1px solid rgba(148,163,184,.12);
-  background:rgba(15,23,42,.50);
-  border-radius:18px;
-  padding:14px;
-}
-.community-stat span{
-  display:block;
-  color:rgba(148,163,184,.82);
-  font-size:.68rem;
-  font-weight:900;
-  letter-spacing:.07em;
-  text-transform:uppercase;
-}
-.community-stat strong{
-  display:block;
-  margin-top:6px;
-  color:#f8fafc;
-  font-size:1.25rem;
-  line-height:1;
-}
-.community-file{
-  min-height:100%;
-}
-.community-file input[type="file"]{
-  min-height:46px!important;
-  display:flex!important;
-  align-items:center!important;
-}
-.community-post{
-  transition:border-color .2s ease, transform .2s ease, background .2s ease!important;
-}
-.community-post:hover{
-  transform:translateY(-1px);
-  border-color:rgba(96,165,250,.22);
-}
-.community-empty{
-  text-align:center;
-}
-@media(max-width:720px){
-  .community-row,
-  .community-quick-actions,
-  .community-stats-grid{
-    grid-template-columns:1fr!important;
-  }
+@media(max-width:680px){
+  .community-v2-template-grid,.community-v2-form-row,.community-v2-stats,.community-v2-comment-form{grid-template-columns:1fr!important}
 }
 
 </style>
@@ -8590,28 +8532,6 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
     </article>`;
   }
 
-
-  function communityUsePrompt(kind){
-    const form=document.getElementById('communityForm');
-    if(!form)return;
-    const textarea=form.querySelector('textarea[name="content"]');
-    const select=form.querySelector('select[name="category"]');
-    const prompts={
-      checkin:{cat:'Check-in',text:'Check-in do dia:\\n\\nTreino concluído. Hoje eu senti mais dificuldade em: \\nMinha maior vitória de hoje foi: '},
-      duvida:{cat:'Dúvida',text:'Dúvida rápida:\\n\\nEstou com dificuldade em entender/execução de: \\nO que eu senti durante o exercício foi: '},
-      resultado:{cat:'Resultado',text:'Evolução registrada:\\n\\nHoje percebi melhora em: \\nAntes eu tinha dificuldade com: \\nAgora consegui: '},
-      execucao:{cat:'Execução',text:'Análise de execução:\\n\\nExercício: \\nO que quero que o treinador avalie: \\nSensação durante a série: '}
-    };
-    const item=prompts[kind]||prompts.checkin;
-    if(textarea){
-      textarea.value=item.text;
-      textarea.focus();
-      textarea.selectionStart=textarea.value.length;
-      textarea.selectionEnd=textarea.value.length;
-    }
-    if(select)select.value=item.cat;
-  }
-
   async function community(){
     location.hash='comunidade';
     const user=heroCurrentUser();
@@ -8620,9 +8540,6 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
     const posts=(st.communityPosts||[]).filter(p=>p.active!==false);
     const comments=st.communityComments||[];
     const likes=st.communityLikes||[];
-    const pinnedCount=posts.filter(p=>p.pinned).length;
-    const checkinCount=posts.filter(p=>String(p.category||'').toLowerCase().includes('check')).length;
-    const resultCount=posts.filter(p=>String(p.category||'').toLowerCase().includes('resultado')).length;
     const backAction=`<button class="btn secondary small" onclick="HERO.heroCommunityBack()">Voltar</button>`;
 
     mount(`${top('Comunidade HERO',backAction)}
@@ -8633,30 +8550,12 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
           <p>Compartilhe evolução, tire dúvidas, acompanhe avisos e mantenha a execução no padrão certo.</p>
           <div class="community-badge-row"><span>check-ins</span><span>dúvidas</span><span>avisos</span><span>resultados</span></div>
         </section>
-
-        <section class="community-stats-grid">
-          <div class="community-stat"><span>Publicações</span><strong>${posts.length}</strong></div>
-          <div class="community-stat"><span>Check-ins</span><strong>${checkinCount}</strong></div>
-          <div class="community-stat"><span>Resultados</span><strong>${resultCount}</strong></div>
-        </section>
-
         <section class="community-shell">
           <div>
             <form id="communityForm" class="community-composer">
-              <div class="community-prompt-card">
-                <strong>Publique uma atualização rápida</strong>
-                <p>Use um modelo pronto para postar check-in, dúvida, resultado ou análise de execução sem precisar pensar demais. A humanidade agradece quando o atrito é menor.</p>
-                <div class="community-quick-actions">
-                  <button type="button" onclick="HERO.communityUsePrompt('checkin')">Check-in</button>
-                  <button type="button" onclick="HERO.communityUsePrompt('duvida')">Dúvida</button>
-                  <button type="button" onclick="HERO.communityUsePrompt('resultado')">Resultado</button>
-                </div>
-              </div>
-
               <label>Publicação
                 <textarea name="content" placeholder="Compartilhe uma evolução, dúvida, aviso ou check-in..." required></textarea>
               </label>
-
               <div class="community-row">
                 <label>Categoria
                   <select name="category">
@@ -8672,34 +8571,14 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
                   <input type="file" name="image" accept="image/*">
                 </label>
               </div>
-
               <button class="btn full">Publicar atualização</button>
               <div id="communityMsg" class="msg"></div>
             </form>
-
             <div class="community-feed">${posts.length?posts.map(p=>heroCommunityPostCard(p,comments,likes,user,isAdmin)).join(''):'<div class="community-empty">Ainda não há publicações. Publique o primeiro check-in ou aviso.</div>'}</div>
           </div>
-
           <aside class="community-side">
-            <div class="community-challenge">
-              <small>desafio da semana</small>
-              <h3>4 check-ins HERO</h3>
-              <p>Publique 4 check-ins nesta semana: treino feito, dúvida, evolução ou ajuste de execução. Consistência também precisa de palco, infelizmente.</p>
-              <button class="btn secondary small" onclick="HERO.communityUsePrompt('checkin')">Fazer check-in</button>
-            </div>
-            <div class="community-side-card">
-              <h3>Como usar</h3>
-              <ul>
-                <li>poste check-ins e dúvidas objetivas;</li>
-                <li>registre evolução com foto quando fizer sentido;</li>
-                <li>comente nos posts de outras alunas;</li>
-                <li>o treinador pode fixar avisos importantes.</li>
-              </ul>
-            </div>
-            <div class="community-side-card">
-              <h3>Movimento da comunidade</h3>
-              <p>${pinnedCount} aviso(s) fixado(s), ${likes.length} curtida(s) e ${comments.length} comentário(s).</p>
-            </div>
+            <div class="community-side-card"><h3>Como usar</h3><ul><li>poste check-ins e dúvidas objetivas;</li><li>registre evolução com foto quando fizer sentido;</li><li>mantenha respeito e foco no processo;</li><li>o treinador pode fixar avisos importantes.</li></ul></div>
+            <div class="community-side-card"><h3>Categorias</h3><p>Check-in, dúvida, resultado, aviso, execução e motivação.</p></div>
           </aside>
         </section>
       </main>`);
@@ -8815,8 +8694,7 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
     communityDeletePost,
     heroCommunityBack,
     heroCommunityEnsureButton,
-    heroCommunityScheduleButton,
-    communityUsePrompt};
+    heroCommunityScheduleButton};
   document.addEventListener('DOMContentLoaded',()=>{initSplash();render();});
 })();
 
@@ -8824,5 +8702,32 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
   setTimeout(()=>{if(document.getElementById('heroWorkoutTimer'))heroRestaurarCronometro(window.HERO_SELECTED_TREINO_ID||null);},800);
 
 </script>
+
+<script>
+/* COMUNIDADE HERO V2 OVERRIDE SCRIPT FINAL */
+(function(){
+  function safeEsc(v){if(typeof esc==='function')return esc(v);return String(v??'').replace(/[&<>"']/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]});}
+  window.HERO=window.HERO||{};
+  function currentUser(){try{var raw=sessionStorage.getItem('hero_session');var u=raw?JSON.parse(raw):{};var st=typeof data==='function'?data():{};var aluno=(st.alunos||[]).find(function(a){return String(a.id)===String(u.alunoId)||String(a.email||'').toLowerCase()===String(u.email||'').toLowerCase()});return {id:u.alunoId||u.id||u.email||(aluno&&aluno.id)||'local-user',name:u.nome||u.name||(aluno&&aluno.nome)||u.email||'Usuário HERO',role:u.role||(aluno&&aluno.role)||'aluna',email:u.email||(aluno&&aluno.email)||''};}catch(e){return {id:'local-user',name:'Usuário HERO',role:'aluna',email:''};}}
+  function localState(){var st=typeof data==='function'?data():{};st.communityPosts=st.communityPosts||[];st.communityComments=st.communityComments||[];st.communityLikes=st.communityLikes||[];if(typeof save==='function')save(st);return st;}
+  async function uploadImg(file){if(!file)return '';if(typeof supabaseClient!=='function'||typeof supabaseAvailable!=='function'||!supabaseAvailable())return '';var client=supabaseClient();if(!client)return '';var ext=(file.name.split('.').pop()||'jpg').toLowerCase();var path='posts/'+Date.now()+'-'+(typeof uid==='function'?uid():Math.random().toString(36).slice(2))+'.'+ext;var up=await client.storage.from('community-media').upload(path,file,{cacheControl:'3600',upsert:false});if(up.error)throw new Error('Erro ao enviar imagem: '+up.error.message);var pub=client.storage.from('community-media').getPublicUrl(path);return (pub.data&&pub.data.publicUrl)||'';}
+  async function fetchCommunity(){var st=localState();if(typeof supabaseAvailable!=='function'||!supabaseAvailable()||typeof supabaseClient!=='function')return st;var client=supabaseClient();try{var r=await Promise.all([client.from('community_posts').select('*').eq('is_active',true).order('is_pinned',{ascending:false}).order('created_at',{ascending:false}).limit(80),client.from('community_comments').select('*').order('created_at',{ascending:true}).limit(300),client.from('community_likes').select('*').limit(500)]);if(r[0].error)throw r[0].error;if(r[1].error)throw r[1].error;if(r[2].error)throw r[2].error;st.communityPosts=(r[0].data||[]).map(function(p){return {id:p.id,authorId:p.author_id,authorName:p.author_name,authorRole:p.author_role,content:p.content,imageUrl:p.image_url,category:p.category,pinned:!!p.is_pinned,active:p.is_active!==false,createdAt:p.created_at};});st.communityComments=(r[1].data||[]).map(function(c){return {id:c.id,postId:c.post_id,authorId:c.author_id,authorName:c.author_name,authorRole:c.author_role,content:c.content,createdAt:c.created_at};});st.communityLikes=(r[2].data||[]).map(function(l){return {id:l.id,postId:l.post_id,userId:l.user_id,createdAt:l.created_at};});if(typeof save==='function')save(st);}catch(e){console.warn('Comunidade HERO em modo local:',e.message);}return st;}
+  function postCard(post,comments,likes,user,isAdmin){var pc=comments.filter(function(c){return String(c.postId)===String(post.id)});var pl=likes.filter(function(l){return String(l.postId)===String(post.id)});var liked=pl.some(function(l){return String(l.userId)===String(user.id)});return '<article class="community-v2-post '+(post.pinned?'is-pinned':'')+'"><div class="community-v2-post-head"><div class="community-v2-author"><strong>'+safeEsc(post.authorName||'HERO')+'</strong><span>'+safeEsc(post.authorRole||'aluna')+' · '+(post.createdAt?new Date(post.createdAt).toLocaleString('pt-BR'):'')+'</span></div><div class="community-v2-category">'+(post.pinned?'fixado · ':'')+safeEsc(post.category||'geral')+'</div></div>'+(post.content?'<div class="community-v2-content">'+safeEsc(post.content)+'</div>':'')+(post.imageUrl?'<img class="community-v2-image" src="'+safeEsc(post.imageUrl)+'" alt="Imagem da comunidade HERO">':'')+'<div class="community-v2-actions"><button class="btn ghost small" onclick="HERO.communityLike(\''+post.id+'\')">'+(liked?'Curtido':'Curtir')+' · '+pl.length+'</button>'+(isAdmin?'<button class="btn secondary small" onclick="HERO.communityTogglePin(\''+post.id+'\')">'+(post.pinned?'Desfixar':'Fixar')+'</button><button class="btn danger small" onclick="HERO.communityDeletePost(\''+post.id+'\')">Excluir</button>':'')+'</div><div class="community-v2-comments">'+(pc.length?pc.map(function(c){return '<div class="community-v2-comment"><strong>'+safeEsc(c.authorName||'Usuário')+'</strong><p>'+safeEsc(c.content)+'</p></div>'}).join(''):'<div class="muted">Sem comentários ainda.</div>')+'<form class="community-v2-comment-form" onsubmit="HERO.communityAddComment(event,\''+post.id+'\')"><input name="content" placeholder="Comente com orientação, dúvida ou incentivo..." required><button class="btn secondary small">Comentar</button></form></div></article>';}
+  window.HERO.communityUsePrompt=function(kind){var form=document.getElementById('communityForm');if(!form)return;var textarea=form.querySelector('textarea[name="content"]');var select=form.querySelector('select[name="category"]');var prompts={checkin:{cat:'Check-in',text:'Check-in do dia:\n\nTreino concluído.\nHoje eu senti mais dificuldade em:\nMinha maior vitória de hoje foi:'},duvida:{cat:'Dúvida',text:'Dúvida rápida:\n\nEstou com dificuldade em:\nO que eu senti durante a execução foi:\nQuero entender melhor:'},resultado:{cat:'Resultado',text:'Evolução registrada:\n\nHoje percebi melhora em:\nAntes eu tinha dificuldade com:\nAgora consegui:'},execucao:{cat:'Execução',text:'Análise de execução:\n\nExercício:\nO que quero que o treinador avalie:\nSensação durante a série:'}};var item=prompts[kind]||prompts.checkin;if(textarea){textarea.value=item.text;textarea.focus();textarea.selectionStart=textarea.value.length;textarea.selectionEnd=textarea.value.length;}if(select)select.value=item.cat;};
+  window.HERO.community=async function(){location.hash='comunidade';var user=currentUser();var isAdmin=user.role==='admin';var st=await fetchCommunity();var posts=(st.communityPosts||[]).filter(function(p){return p.active!==false});var comments=st.communityComments||[];var likes=st.communityLikes||[];var pinned=posts.filter(function(p){return p.pinned}).length;var checkins=posts.filter(function(p){return String(p.category||'').toLowerCase().indexOf('check')>-1}).length;var results=posts.filter(function(p){return String(p.category||'').toLowerCase().indexOf('resultado')>-1}).length;var back='<button class="btn secondary small" onclick="HERO.heroCommunityBack()">Voltar</button>';var html=(typeof top==='function'?top('Comunidade HERO',back):'')+'<main class="wrap community-v2-wrap"><section class="hero community-v2-hero"><p class="eyebrow">mural privado</p><h1>Comunidade HERO</h1><p>Compartilhe evolução, tire dúvidas, acompanhe avisos e mantenha a execução no padrão certo.</p><div class="community-v2-pills"><span>check-ins</span><span>dúvidas</span><span>avisos</span><span>resultados</span></div></section><section class="community-v2-stats"><div class="community-v2-stat"><span>Publicações</span><strong>'+posts.length+'</strong></div><div class="community-v2-stat"><span>Check-ins</span><strong>'+checkins+'</strong></div><div class="community-v2-stat"><span>Resultados</span><strong>'+results+'</strong></div><div class="community-v2-stat"><span>Comentários</span><strong>'+comments.length+'</strong></div></section><section class="community-v2-board"><div><form id="communityForm" class="community-v2-composer"><div class="community-v2-card feature"><small>postagem guiada</small><h3>Escolha um modelo rápido</h3><p>Quanto menor o atrito, maior a chance da aluna postar.</p><div class="community-v2-template-grid"><button type="button" onclick="HERO.communityUsePrompt(\'checkin\')">Check-in</button><button type="button" onclick="HERO.communityUsePrompt(\'duvida\')">Dúvida</button><button type="button" onclick="HERO.communityUsePrompt(\'resultado\')">Resultado</button><button type="button" onclick="HERO.communityUsePrompt(\'execucao\')">Execução</button></div></div><label>Publicação<textarea name="content" placeholder="Compartilhe uma evolução, dúvida, aviso ou check-in..." required></textarea></label><div class="community-v2-form-row"><label>Categoria<select name="category"><option>Check-in</option><option>Dúvida</option><option>Resultado</option><option>Aviso</option><option>Execução</option><option>Motivação</option></select></label><label class="community-v2-file">Imagem opcional<input type="file" name="image" accept="image/*"></label></div><button class="btn community-v2-publish">Publicar atualização</button><div id="communityMsg" class="msg"></div></form><div class="community-v2-feed">'+(posts.length?posts.map(function(p){return postCard(p,comments,likes,user,isAdmin)}).join(''):'<div class="community-v2-empty">Ainda não há publicações. Publique o primeiro check-in ou aviso.</div>')+'</div></div><aside class="community-v2-side"><div class="community-v2-card feature"><small>desafio da semana</small><h3>4 check-ins HERO</h3><p>Publique 4 check-ins nesta semana: treino feito, dúvida, evolução ou ajuste de execução.</p><button class="btn secondary small" onclick="HERO.communityUsePrompt(\'checkin\')">Fazer check-in</button></div><div class="community-v2-card"><h3>Como usar</h3><ul><li>poste check-ins objetivos;</li><li>comente nos posts de outras alunas;</li><li>registre evolução com foto;</li><li>tire dúvidas de execução.</li></ul></div><div class="community-v2-card"><h3>Movimento</h3><p>'+pinned+' aviso(s) fixado(s), '+likes.length+' curtida(s) e '+comments.length+' comentário(s).</p></div></aside></section></main>';if(typeof mount==='function')mount(html);else document.body.innerHTML=html;var form=document.getElementById('communityForm');if(form)form.onsubmit=window.HERO.communityCreatePost;if(window.HERO.heroCommunityScheduleButton)window.HERO.heroCommunityScheduleButton();};
+  window.HERO.communityCreatePost=async function(ev){ev.preventDefault();var form=ev.target,msg=document.getElementById('communityMsg'),btn=form.querySelector('button.community-v2-publish'),old=btn?btn.textContent:'Publicar atualização';if(btn){btn.disabled=true;btn.textContent='Publicando...';}if(msg)msg.textContent='';var user=currentUser();var fd=new FormData(form);var content=String(fd.get('content')||'').trim();var category=String(fd.get('category')||'geral');var file=fd.get('image');try{var imageUrl='';if(file&&file.name)imageUrl=await uploadImg(file);if(typeof supabaseAvailable==='function'&&supabaseAvailable()&&typeof supabaseClient==='function'){var client=supabaseClient();var ins=await client.from('community_posts').insert({author_id:String(user.id),author_name:user.name,author_role:user.role,content:content,image_url:imageUrl,category:category,is_pinned:false,is_active:true});if(ins.error)throw ins.error;}else{var st=localState();st.communityPosts.unshift({id:(typeof uid==='function'?uid():Math.random().toString(36).slice(2)),authorId:user.id,authorName:user.name,authorRole:user.role,content:content,imageUrl:imageUrl,category:category,pinned:false,active:true,createdAt:new Date().toISOString()});if(typeof save==='function')save(st);}form.reset();await window.HERO.community();}catch(e){if(msg)msg.textContent='Erro ao publicar: '+e.message;if(btn){btn.disabled=false;btn.textContent=old;}}};
+  window.HERO.communityLike=async function(postId){var user=currentUser(),st=localState();var existing=(st.communityLikes||[]).find(function(l){return String(l.postId)===String(postId)&&String(l.userId)===String(user.id)});try{if(typeof supabaseAvailable==='function'&&supabaseAvailable()&&typeof supabaseClient==='function'){var client=supabaseClient();if(existing)await client.from('community_likes').delete().eq('post_id',postId).eq('user_id',String(user.id));else await client.from('community_likes').insert({post_id:postId,user_id:String(user.id)});}else{if(existing)st.communityLikes=st.communityLikes.filter(function(l){return l!==existing});else st.communityLikes.push({id:(typeof uid==='function'?uid():Math.random().toString(36).slice(2)),postId:postId,userId:user.id,createdAt:new Date().toISOString()});if(typeof save==='function')save(st);}}catch(e){alert('Erro ao curtir: '+e.message);}await window.HERO.community();};
+  window.HERO.communityAddComment=async function(ev,postId){ev.preventDefault();var user=currentUser(),content=String(new FormData(ev.target).get('content')||'').trim();if(!content)return;try{if(typeof supabaseAvailable==='function'&&supabaseAvailable()&&typeof supabaseClient==='function'){var client=supabaseClient();var ins=await client.from('community_comments').insert({post_id:postId,author_id:String(user.id),author_name:user.name,author_role:user.role,content:content});if(ins.error)throw ins.error;}else{var st=localState();st.communityComments.push({id:(typeof uid==='function'?uid():Math.random().toString(36).slice(2)),postId:postId,authorId:user.id,authorName:user.name,authorRole:user.role,content:content,createdAt:new Date().toISOString()});if(typeof save==='function')save(st);}}catch(e){alert('Erro ao comentar: '+e.message);}await window.HERO.community();};
+  window.HERO.communityTogglePin=async function(postId){var user=currentUser();if(user.role!=='admin')return;var st=localState(),post=(st.communityPosts||[]).find(function(p){return String(p.id)===String(postId)}),next=!(post&&post.pinned);try{if(typeof supabaseAvailable==='function'&&supabaseAvailable()&&typeof supabaseClient==='function'){var client=supabaseClient();var upd=await client.from('community_posts').update({is_pinned:next}).eq('id',postId);if(upd.error)throw upd.error;}else if(post){post.pinned=next;if(typeof save==='function')save(st);}}catch(e){alert('Erro ao fixar: '+e.message);}await window.HERO.community();};
+  window.HERO.communityDeletePost=async function(postId){var user=currentUser();if(user.role!=='admin')return;if(!confirm('Excluir esta publicação da comunidade?'))return;try{if(typeof supabaseAvailable==='function'&&supabaseAvailable()&&typeof supabaseClient==='function'){var client=supabaseClient();var upd=await client.from('community_posts').update({is_active:false}).eq('id',postId);if(upd.error)throw upd.error;}else{var st=localState();st.communityPosts=(st.communityPosts||[]).filter(function(p){return String(p.id)!==String(postId)});if(typeof save==='function')save(st);}}catch(e){alert('Erro ao excluir: '+e.message);}await window.HERO.community();};
+  if(!window.HERO.heroCommunityBack){window.HERO.heroCommunityBack=function(){var u=currentUser();if(u.role==='admin'&&typeof admin==='function')return admin();if(u.id&&u.id!=='local-user'&&typeof student==='function')return student(u.id,false);if(typeof login==='function')return login();};}
+  if(!window.HERO.heroCommunityEnsureButton){window.HERO.heroCommunityEnsureButton=function(){var hasLogin=document.querySelector('#loginForm, .login-card, .login-panel');var existing=document.getElementById('heroCommunityFloating');if(hasLogin){if(existing)existing.remove();return;}if(existing)return;var btn=document.createElement('button');btn.id='heroCommunityFloating';btn.type='button';btn.className='hero-community-floating';btn.textContent='Comunidade HERO';btn.onclick=function(){window.HERO.community();};document.body.appendChild(btn);};}
+  if(!window.HERO.heroCommunityScheduleButton){window.HERO.heroCommunityScheduleButton=function(){setTimeout(window.HERO.heroCommunityEnsureButton,80);setTimeout(window.HERO.heroCommunityEnsureButton,450);};}
+  setTimeout(window.HERO.heroCommunityScheduleButton,500);setInterval(window.HERO.heroCommunityEnsureButton,2000);
+  window.addEventListener('hashchange',function(){if(location.hash==='#comunidade')window.HERO.community();});
+  setTimeout(function(){if(location.hash==='#comunidade')window.HERO.community();},700);
+})();
+</script>
+
 </body>
 </html>
