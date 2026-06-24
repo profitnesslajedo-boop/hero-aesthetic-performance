@@ -5672,6 +5672,55 @@ html[data-hero-os-visual="premium-v2"] .student-ai-form button{
   }
 }
 
+
+/* HERO OS V3.6 DEFINITIVE NAV PATCH */
+html[data-hero-os-visual="premium-v2"] .community-context-bar[data-hero-nav-bar="community-definitive"]{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:12px!important;
+  flex-wrap:wrap!important;
+  padding:12px 0 18px!important;
+  margin-bottom:4px!important;
+  border-bottom:1px solid rgba(148,163,184,.10)!important;
+}
+html[data-hero-os-visual="premium-v2"] .community-context-bar[data-hero-nav-bar="community-definitive"] .context-actions{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:10px!important;
+  flex-wrap:wrap!important;
+}
+#communityBackDirect,#communityCenterDirect,#communityProtocolDirect,#communityChatDirect,
+#communityBackDirectLegacy,#communityCenterDirectLegacy,#communityProtocolDirectLegacy,#communityChatDirectLegacy{
+  pointer-events:auto!important;
+}
+html[data-hero-os-visual="premium-v2"] .hero-version-confirm{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-height:24px!important;
+  padding:0 8px!important;
+  border-radius:999px!important;
+  border:1px solid rgba(96,165,250,.22)!important;
+  background:rgba(37,99,235,.10)!important;
+  color:#bfdbfe!important;
+  font-size:.62rem!important;
+  font-weight:850!important;
+  letter-spacing:.06em!important;
+  text-transform:uppercase!important;
+}
+@media(max-width:760px){
+  html[data-hero-os-visual="premium-v2"] .community-context-bar[data-hero-nav-bar="community-definitive"]{
+    align-items:flex-start!important;
+    flex-direction:column!important;
+  }
+  html[data-hero-os-visual="premium-v2"] .community-context-bar[data-hero-nav-bar="community-definitive"] .context-actions,
+  html[data-hero-os-visual="premium-v2"] .community-context-bar[data-hero-nav-bar="community-definitive"] button{
+    width:100%!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -10548,7 +10597,7 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
     const posts=(st.communityPosts||[]).filter(p=>p.active!==false);
     const comments=st.communityComments||[];
     const likes=st.communityLikes||[];
-    const backAction=`<button class="btn secondary small" onclick="HERO.heroCommunityBack()">Voltar</button>`;
+    const backAction=`<button type="button" class="btn secondary small" id="communityBackDirectLegacy">Voltar</button>${isAdmin?'<button type="button" class="btn ghost small" id="communityCenterDirectLegacy">Centro de controle</button>':'<button type="button" class="btn ghost small" id="communityProtocolDirectLegacy">Meu protocolo</button>'}<button type="button" class="btn ghost small" id="communityChatDirectLegacy">Chat HERO</button>`;
 
     mount(`${top('Comunidade HERO',backAction)}
       <main class="wrap">
@@ -10592,6 +10641,14 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
       </main>`);
     const form=$('communityForm');
     if(form)form.onsubmit=communityCreatePost;
+    const backLegacy=$('communityBackDirectLegacy');
+    if(backLegacy)backLegacy.onclick=function(ev){ev.preventDefault();ev.stopPropagation();location.hash='';if(isAdmin)return admin();if(user.id&&user.id!=='local-user')return student(user.id,false);return login();};
+    const protocolLegacy=$('communityProtocolDirectLegacy');
+    if(protocolLegacy)protocolLegacy.onclick=function(ev){ev.preventDefault();ev.stopPropagation();location.hash='';if(user.id&&user.id!=='local-user')return student(user.id,false);return login();};
+    const centerLegacy=$('communityCenterDirectLegacy');
+    if(centerLegacy)centerLegacy.onclick=function(ev){ev.preventDefault();ev.stopPropagation();location.hash='';return admin();};
+    const chatLegacy=$('communityChatDirectLegacy');
+    if(chatLegacy)chatLegacy.onclick=function(ev){ev.preventDefault();ev.stopPropagation();return abrirChatIA();};
     heroCommunityScheduleButton();
   }
 
@@ -10702,7 +10759,7 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
     communityDeletePost,
     heroCommunityBack,
     heroCommunityEnsureButton,
-    heroCommunityScheduleButton};
+    heroCommunityScheduleButton,login};
   document.addEventListener('DOMContentLoaded',()=>{initSplash();render();});
 })();
 
@@ -10722,7 +10779,16 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
   async function fetchCommunity(){var st=localState();if(typeof supabaseAvailable!=='function'||!supabaseAvailable()||typeof supabaseClient!=='function')return st;var client=supabaseClient();try{var r=await Promise.all([client.from('community_posts').select('*').eq('is_active',true).order('is_pinned',{ascending:false}).order('created_at',{ascending:false}).limit(80),client.from('community_comments').select('*').order('created_at',{ascending:true}).limit(300),client.from('community_likes').select('*').limit(500)]);if(r[0].error)throw r[0].error;if(r[1].error)throw r[1].error;if(r[2].error)throw r[2].error;st.communityPosts=(r[0].data||[]).map(function(p){return {id:p.id,authorId:p.author_id,authorName:p.author_name,authorRole:p.author_role,content:p.content,imageUrl:p.image_url,category:p.category,pinned:!!p.is_pinned,active:p.is_active!==false,createdAt:p.created_at};});st.communityComments=(r[1].data||[]).map(function(c){return {id:c.id,postId:c.post_id,authorId:c.author_id,authorName:c.author_name,authorRole:c.author_role,content:c.content,createdAt:c.created_at};});st.communityLikes=(r[2].data||[]).map(function(l){return {id:l.id,postId:l.post_id,userId:l.user_id,createdAt:l.created_at};});if(typeof save==='function')save(st);}catch(e){console.warn('Comunidade HERO em modo local:',e.message);}return st;}
   function postCard(post,comments,likes,user,isAdmin){var pc=comments.filter(function(c){return String(c.postId)===String(post.id)});var pl=likes.filter(function(l){return String(l.postId)===String(post.id)});var liked=pl.some(function(l){return String(l.userId)===String(user.id)});return '<article class="community-v3-post '+(post.pinned?'is-pinned':'')+'"><div class="community-v3-post-head"><div class="community-v3-author"><strong>'+safeEsc(post.authorName||'HERO')+'</strong><span>'+safeEsc(post.authorRole||'aluna')+' · '+(post.createdAt?new Date(post.createdAt).toLocaleString('pt-BR'):'')+'</span></div><div class="community-v3-category">'+(post.pinned?'fixado · ':'')+safeEsc(post.category||'geral')+'</div></div>'+(post.content?'<div class="community-v3-content">'+safeEsc(post.content)+'</div>':'')+(post.imageUrl?'<img class="community-v3-image" src="'+safeEsc(post.imageUrl)+'" alt="Imagem da comunidade HERO">':'')+'<div class="community-v3-actions"><button class="btn ghost small" onclick="HERO.communityLike(\''+post.id+'\')">'+(liked?'Curtido':'Curtir')+' · '+pl.length+'</button>'+(isAdmin?'<button class="btn secondary small" onclick="HERO.communityTogglePin(\''+post.id+'\')">'+(post.pinned?'Desfixar':'Fixar')+'</button><button class="btn danger small" onclick="HERO.communityDeletePost(\''+post.id+'\')">Excluir</button>':'')+'</div><div class="community-v3-comments">'+(pc.length?pc.map(function(c){return '<div class="community-v3-comment"><strong>'+safeEsc(c.authorName||'Usuário')+'</strong><p>'+safeEsc(c.content)+'</p></div>'}).join(''):'<div class="muted">Sem comentários ainda.</div>')+'<form class="community-v3-comment-form" onsubmit="HERO.communityAddComment(event,\''+post.id+'\')"><input name="content" placeholder="Comente com orientação, dúvida ou incentivo..." required><button class="btn secondary small">Comentar</button></form></div></article>';}
   window.HERO.communityUsePrompt=function(kind){var form=document.getElementById('communityForm');if(!form)return;var textarea=form.querySelector('textarea[name="content"]');var select=form.querySelector('select[name="category"]');var prompts={checkin:{cat:'Check-in',text:'Check-in do dia:\n\nTreino concluído.\nHoje eu senti mais dificuldade em:\nMinha maior vitória de hoje foi:'},duvida:{cat:'Dúvida',text:'Dúvida rápida:\n\nEstou com dificuldade em:\nO que eu senti durante a execução foi:\nQuero entender melhor:'},resultado:{cat:'Resultado',text:'Evolução registrada:\n\nHoje percebi melhora em:\nAntes eu tinha dificuldade com:\nAgora consegui:'},execucao:{cat:'Execução',text:'Análise de execução:\n\nExercício:\nO que quero que o treinador avalie:\nSensação durante a série:'}};var item=prompts[kind]||prompts.checkin;if(textarea){textarea.value=item.text;textarea.focus();textarea.selectionStart=textarea.value.length;textarea.selectionEnd=textarea.value.length;}if(select)select.value=item.cat;};
-  window.HERO.community=async function(){location.hash='comunidade';var user=currentUser();var isAdmin=user.role==='admin';var st=await fetchCommunity();var posts=(st.communityPosts||[]).filter(function(p){return p.active!==false});var comments=st.communityComments||[];var likes=st.communityLikes||[];var pinned=posts.filter(function(p){return p.pinned}).length;var checkins=posts.filter(function(p){return String(p.category||'').toLowerCase().indexOf('check')>-1}).length;var results=posts.filter(function(p){return String(p.category||'').toLowerCase().indexOf('resultado')>-1}).length;var back='<button class="btn secondary small" onclick="HERO.heroCommunityBack()">Voltar</button>';var html=(typeof top==='function'?top('Comunidade HERO',back):'')+'<main class="wrap community-v3-wrap"><section class="hero community-v3-hero"><p class="eyebrow">mural privado</p><h1>Comunidade HERO</h1><p>Compartilhe evolução, tire dúvidas, acompanhe avisos e mantenha a execução no padrão certo.</p><div class="community-v3-pills"><span>check-ins</span><span>dúvidas</span><span>avisos</span><span>resultados</span></div></section><section class="community-v3-stats"><div class="community-v3-stat"><span>Publicações</span><strong>'+posts.length+'</strong></div><div class="community-v3-stat"><span>Check-ins</span><strong>'+checkins+'</strong></div><div class="community-v3-stat"><span>Resultados</span><strong>'+results+'</strong></div><div class="community-v3-stat"><span>Comentários</span><strong>'+comments.length+'</strong></div></section><section class="community-v3-board"><div><form id="communityForm" class="community-v3-composer"><div class="community-v3-card feature"><small>postagem guiada</small><h3>Escolha um modelo rápido</h3><p>Quanto menor o atrito, maior a chance da aluna postar.</p><div class="community-v3-template-grid"><button type="button" onclick="HERO.communityUsePrompt(\'checkin\')">Check-in</button><button type="button" onclick="HERO.communityUsePrompt(\'duvida\')">Dúvida</button><button type="button" onclick="HERO.communityUsePrompt(\'resultado\')">Resultado</button><button type="button" onclick="HERO.communityUsePrompt(\'execucao\')">Execução</button></div></div><label>Publicação<textarea name="content" placeholder="Compartilhe uma evolução, dúvida, aviso ou check-in..." required></textarea></label><div class="community-v3-form-row"><label>Categoria<select name="category"><option>Check-in</option><option>Dúvida</option><option>Resultado</option><option>Aviso</option><option>Execução</option><option>Motivação</option></select></label><label class="community-v3-file">Imagem opcional<input type="file" name="image" accept="image/*"></label></div><button class="btn community-v3-publish">Publicar atualização</button><div id="communityMsg" class="msg"></div></form><div class="community-v3-feed">'+(posts.length?posts.map(function(p){return postCard(p,comments,likes,user,isAdmin)}).join(''):'<div class="community-v3-empty">Ainda não há publicações. Publique o primeiro check-in ou aviso.</div>')+'</div></div><aside class="community-v3-side"><div class="community-v3-card feature"><small>desafio da semana</small><h3>4 check-ins HERO</h3><p>Publique 4 check-ins nesta semana: treino feito, dúvida, evolução ou ajuste de execução.</p><button class="btn secondary small" onclick="HERO.communityUsePrompt(\'checkin\')">Fazer check-in</button></div><div class="community-v3-card"><h3>Como usar</h3><ul><li>poste check-ins objetivos;</li><li>comente nos posts de outras alunas;</li><li>registre evolução com foto;</li><li>tire dúvidas de execução.</li></ul></div><div class="community-v3-card"><h3>Movimento</h3><p>'+pinned+' aviso(s) fixado(s), '+likes.length+' curtida(s) e '+comments.length+' comentário(s).</p></div></aside></section></main>';if(typeof mount==='function')mount(html);else document.body.innerHTML=html;var form=document.getElementById('communityForm');if(form)form.onsubmit=window.HERO.communityCreatePost;if(window.HERO.heroCommunityScheduleButton)window.HERO.heroCommunityScheduleButton();};
+  window.HERO.community=async function(){location.hash='comunidade';var user=currentUser();var isAdmin=user.role==='admin';var st=await fetchCommunity();var posts=(st.communityPosts||[]).filter(function(p){return p.active!==false});var comments=st.communityComments||[];var likes=st.communityLikes||[];var pinned=posts.filter(function(p){return p.pinned}).length;var checkins=posts.filter(function(p){return String(p.category||'').toLowerCase().indexOf('check')>-1}).length;var results=posts.filter(function(p){return String(p.category||'').toLowerCase().indexOf('resultado')>-1}).length;var back='<button type="button" class="btn secondary small" id="communityBackDirect">Voltar</button>'+(isAdmin?'<button type="button" class="btn ghost small" id="communityCenterDirect">Centro de controle</button>':'<button type="button" class="btn ghost small" id="communityProtocolDirect">Meu protocolo</button>')+'<button type="button" class="btn ghost small" id="communityChatDirect">Chat HERO</button>';var html='<main class="wrap community-v3-wrap"><div class="community-context-bar" data-hero-nav-bar="community-definitive"><div><span class="community-context-kicker">navegação</span><h2 class="community-context-title">Comunidade HERO</h2></div><div class="context-actions">'+back+'</div></div><section class="hero community-v3-hero"><p class="eyebrow">mural privado</p><h1>Comunidade HERO</h1><p>Compartilhe evolução, tire dúvidas, acompanhe avisos e mantenha a execução no padrão certo.</p><div class="community-v3-pills"><span>check-ins</span><span>dúvidas</span><span>avisos</span><span>resultados</span></div></section><section class="community-v3-stats"><div class="community-v3-stat"><span>Publicações</span><strong>'+posts.length+'</strong></div><div class="community-v3-stat"><span>Check-ins</span><strong>'+checkins+'</strong></div><div class="community-v3-stat"><span>Resultados</span><strong>'+results+'</strong></div><div class="community-v3-stat"><span>Comentários</span><strong>'+comments.length+'</strong></div></section><section class="community-v3-board"><div><form id="communityForm" class="community-v3-composer"><div class="community-v3-card feature"><small>postagem guiada</small><h3>Escolha um modelo rápido</h3><p>Quanto menor o atrito, maior a chance da aluna postar.</p><div class="community-v3-template-grid"><button type="button" onclick="HERO.communityUsePrompt(\'checkin\')">Check-in</button><button type="button" onclick="HERO.communityUsePrompt(\'duvida\')">Dúvida</button><button type="button" onclick="HERO.communityUsePrompt(\'resultado\')">Resultado</button><button type="button" onclick="HERO.communityUsePrompt(\'execucao\')">Execução</button></div></div><label>Publicação<textarea name="content" placeholder="Compartilhe uma evolução, dúvida, aviso ou check-in..." required></textarea></label><div class="community-v3-form-row"><label>Categoria<select name="category"><option>Check-in</option><option>Dúvida</option><option>Resultado</option><option>Aviso</option><option>Execução</option><option>Motivação</option></select></label><label class="community-v3-file">Imagem opcional<input type="file" name="image" accept="image/*"></label></div><button class="btn community-v3-publish">Publicar atualização</button><div id="communityMsg" class="msg"></div></form><div class="community-v3-feed">'+(posts.length?posts.map(function(p){return postCard(p,comments,likes,user,isAdmin)}).join(''):'<div class="community-v3-empty">Ainda não há publicações. Publique o primeiro check-in ou aviso.</div>')+'</div></div><aside class="community-v3-side"><div class="community-v3-card feature"><small>desafio da semana</small><h3>4 check-ins HERO</h3><p>Publique 4 check-ins nesta semana: treino feito, dúvida, evolução ou ajuste de execução.</p><button class="btn secondary small" onclick="HERO.communityUsePrompt(\'checkin\')">Fazer check-in</button></div><div class="community-v3-card"><h3>Como usar</h3><ul><li>poste check-ins objetivos;</li><li>comente nos posts de outras alunas;</li><li>registre evolução com foto;</li><li>tire dúvidas de execução.</li></ul></div><div class="community-v3-card"><h3>Movimento</h3><p>'+pinned+' aviso(s) fixado(s), '+likes.length+' curtida(s) e '+comments.length+' comentário(s).</p></div></aside></section></main>';if(typeof mount==='function')mount(html);else document.body.innerHTML=html;var form=document.getElementById('communityForm');if(form)form.onsubmit=window.HERO.communityCreatePost;
+var backBtn=document.getElementById('communityBackDirect');
+if(backBtn)backBtn.onclick=function(ev){ev.preventDefault();ev.stopPropagation();location.hash='';if(isAdmin&&window.HERO&&typeof window.HERO.admin==='function')return window.HERO.admin();if(user&&user.id&&user.id!=='local-user'&&window.HERO&&typeof window.HERO.student==='function')return window.HERO.student(user.id,false);if(window.HERO&&typeof window.HERO.login==='function')return window.HERO.login();};
+var protocolBtn=document.getElementById('communityProtocolDirect');
+if(protocolBtn)protocolBtn.onclick=function(ev){ev.preventDefault();ev.stopPropagation();location.hash='';if(user&&user.id&&user.id!=='local-user'&&window.HERO&&typeof window.HERO.student==='function')return window.HERO.student(user.id,false);if(window.HERO&&typeof window.HERO.login==='function')return window.HERO.login();};
+var centerBtn=document.getElementById('communityCenterDirect');
+if(centerBtn)centerBtn.onclick=function(ev){ev.preventDefault();ev.stopPropagation();location.hash='';if(window.HERO&&typeof window.HERO.admin==='function')return window.HERO.admin();};
+var chatBtn=document.getElementById('communityChatDirect');
+if(chatBtn)chatBtn.onclick=function(ev){ev.preventDefault();ev.stopPropagation();if(window.HERO&&typeof window.HERO.abrirChatIA==='function')return window.HERO.abrirChatIA();};
+if(window.HERO.heroCommunityScheduleButton)window.HERO.heroCommunityScheduleButton();};
   window.community=window.HERO.community;
   window.HERO.communityCreatePost=async function(ev){ev.preventDefault();var form=ev.target,msg=document.getElementById('communityMsg'),btn=form.querySelector('button.community-v3-publish'),old=btn?btn.textContent:'Publicar atualização';if(btn){btn.disabled=true;btn.textContent='Publicando...';}if(msg)msg.textContent='';var user=currentUser();var fd=new FormData(form);var content=String(fd.get('content')||'').trim();var category=String(fd.get('category')||'geral');var file=fd.get('image');try{var imageUrl='';if(file&&file.name)imageUrl=await uploadImg(file);if(typeof supabaseAvailable==='function'&&supabaseAvailable()&&typeof supabaseClient==='function'){var client=supabaseClient();var ins=await client.from('community_posts').insert({author_id:String(user.id),author_name:user.name,author_role:user.role,content:content,image_url:imageUrl,category:category,is_pinned:false,is_active:true});if(ins.error)throw ins.error;}else{var st=localState();st.communityPosts.unshift({id:(typeof uid==='function'?uid():Math.random().toString(36).slice(2)),authorId:user.id,authorName:user.name,authorRole:user.role,content:content,imageUrl:imageUrl,category:category,pinned:false,active:true,createdAt:new Date().toISOString()});if(typeof save==='function')save(st);}form.reset();await window.HERO.community();}catch(e){if(msg)msg.textContent='Erro ao publicar: '+e.message;if(btn){btn.disabled=false;btn.textContent=old;}}};
   window.HERO.communityLike=async function(postId){var user=currentUser(),st=localState();var existing=(st.communityLikes||[]).find(function(l){return String(l.postId)===String(postId)&&String(l.userId)===String(user.id)});try{if(typeof supabaseAvailable==='function'&&supabaseAvailable()&&typeof supabaseClient==='function'){var client=supabaseClient();if(existing)await client.from('community_likes').delete().eq('post_id',postId).eq('user_id',String(user.id));else await client.from('community_likes').insert({post_id:postId,user_id:String(user.id)});}else{if(existing)st.communityLikes=st.communityLikes.filter(function(l){return l!==existing});else st.communityLikes.push({id:(typeof uid==='function'?uid():Math.random().toString(36).slice(2)),postId:postId,userId:user.id,createdAt:new Date().toISOString()});if(typeof save==='function')save(st);}}catch(e){alert('Erro ao curtir: '+e.message);}await window.HERO.community();};
@@ -10771,235 +10837,6 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
   if(window.HERO && window.HERO.community){
     window.community = window.HERO.community;
   }
-})();
-</script>
-
-
-<script>
-/* HERO OS V2.4 NAV CLEAN HEADERS MARKER */
-(function(){
-  function applyPatch(){
-    document.documentElement.setAttribute('data-hero-os-visual','premium-v2');
-    document.documentElement.setAttribute('data-hero-os-patch','nav-clean-headers-v24');
-    document.documentElement.classList.add('hero-os-v24-ready');
-  }
-  applyPatch();
-
-  if(!window.HERO){ window.HERO = {}; }
-
-  function currentUserV24(){
-    try{
-      var raw=sessionStorage.getItem('hero_session');
-      var u=raw?JSON.parse(raw):{};
-      var st=typeof data==='function'?data():{};
-      var aluno=(st.alunos||[]).find(function(a){
-        return String(a.id)===String(u.alunoId)||String(a.email||'').toLowerCase()===String(u.email||'').toLowerCase();
-      });
-      return {
-        id:u.alunoId||u.id||u.email||(aluno&&aluno.id)||'local-user',
-        name:u.nome||u.name||(aluno&&aluno.nome)||u.email||'Usuário HERO',
-        role:u.role||(aluno&&aluno.role)||'aluna',
-        email:u.email||(aluno&&aluno.email)||''
-      };
-    }catch(e){
-      return {id:'local-user',name:'Usuário HERO',role:'aluna',email:''};
-    }
-  }
-
-  function safeEscV24(v){
-    if(typeof esc==='function') return esc(v);
-    return String(v??'').replace(/[&<>"']/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]});
-  }
-
-  var previousCommunity = window.HERO.community || window.community;
-
-  window.HERO.heroCommunityBack = function(){
-    var u=currentUserV24();
-    if(u.role==='admin' && typeof admin==='function') return admin();
-    if(u.id && u.id!=='local-user' && typeof student==='function') return student(u.id,false);
-    if(typeof login==='function') return login();
-  };
-
-  window.HERO.heroCommunityContextBar = function(){
-    var u=currentUserV24();
-    var adminBtn = u.role==='admin'
-      ? '<button class="btn ghost small" onclick="HERO.admin ? HERO.admin() : admin()">Centro de controle</button>'
-      : '<button class="btn ghost small" onclick="HERO.heroCommunityBack()">Meu protocolo</button>';
-    var chatBtn = (typeof abrirChatIA==='function' || (window.HERO && window.HERO.abrirChatIA))
-      ? '<button class="btn ghost small" onclick="HERO.abrirChatIA ? HERO.abrirChatIA() : abrirChatIA()">Chat HERO</button>'
-      : '';
-    return '<div class="community-context-bar"><div><span class="community-context-kicker">navegação</span><h2 class="community-context-title">Comunidade HERO</h2></div><div class="context-actions"><button class="btn secondary small" onclick="HERO.heroCommunityBack()">Voltar</button>'+adminBtn+chatBtn+'</div></div>';
-  };
-
-  function injectCommunityContext(){
-    try{
-      var app=document.getElementById('app') || document.body;
-      if(!app || document.querySelector('.community-context-bar')) return;
-      var main=document.querySelector('main.wrap');
-      if(!main) return;
-      var wrap=document.createElement('div');
-      wrap.innerHTML=window.HERO.heroCommunityContextBar();
-      main.insertBefore(wrap.firstElementChild, main.firstElementChild);
-    }catch(e){ console.warn('Context bar comunidade:', e.message); }
-  }
-
-  if(previousCommunity){
-    window.HERO.community = async function(){
-      var result = await previousCommunity.apply(this, arguments);
-      setTimeout(injectCommunityContext,40);
-      setTimeout(injectCommunityContext,180);
-      return result;
-    };
-    window.community = window.HERO.community;
-  }
-
-  window.addEventListener('hashchange', function(){
-    if(location.hash==='#comunidade'){
-      setTimeout(injectCommunityContext,120);
-    }
-  });
-
-  setTimeout(function(){
-    applyPatch();
-    if(location.hash==='#comunidade') injectCommunityContext();
-  },300);
-})();
-</script>
-
-
-<script>
-/* HERO OS V2.5 COMMUNITY NAV FIX MARKER */
-(function(){
-  function applyPatch(){
-    document.documentElement.setAttribute('data-hero-os-visual','premium-v2');
-    document.documentElement.setAttribute('data-hero-os-patch','community-nav-fix-v25');
-    document.documentElement.classList.add('hero-os-v25-community-nav-ready');
-  }
-  applyPatch();
-
-  if(!window.HERO){ window.HERO = {}; }
-
-  function currentUserV25(){
-    try{
-      var raw=sessionStorage.getItem('hero_session');
-      var u=raw?JSON.parse(raw):{};
-      var st=typeof data==='function'?data():{};
-      var aluno=(st.alunos||[]).find(function(a){
-        return String(a.id)===String(u.alunoId)||String(a.email||'').toLowerCase()===String(u.email||'').toLowerCase();
-      });
-      return {
-        id:u.alunoId||u.id||u.email||(aluno&&aluno.id)||'local-user',
-        name:u.nome||u.name||(aluno&&aluno.nome)||u.email||'Usuário HERO',
-        role:u.role||(aluno&&aluno.role)||'aluna',
-        email:u.email||(aluno&&aluno.email)||''
-      };
-    }catch(e){
-      return {id:'local-user',name:'Usuário HERO',role:'aluna',email:''};
-    }
-  }
-
-  window.HERO.goTrainerCenter = function(){
-    try{
-      location.hash='';
-      if(window.HERO && typeof window.HERO.admin==='function') return window.HERO.admin();
-      if(typeof admin==='function') return admin();
-      if(window.HERO && typeof window.HERO.dashboard==='function') return window.HERO.dashboard();
-      return false;
-    }catch(e){
-      console.warn('Falha ao abrir Centro de controle:', e.message);
-      return false;
-    }
-  };
-
-  window.HERO.goCommunityBack = function(){
-    try{
-      var u=currentUserV25();
-      location.hash='';
-      if(u.role==='admin'){
-        if(window.HERO && typeof window.HERO.admin==='function') return window.HERO.admin();
-        if(typeof admin==='function') return admin();
-      }
-      if(u.id && u.id!=='local-user'){
-        if(window.HERO && typeof window.HERO.student==='function') return window.HERO.student(u.id,false);
-        if(typeof student==='function') return student(u.id,false);
-      }
-      if(typeof login==='function') return login();
-      return false;
-    }catch(e){
-      console.warn('Falha ao voltar:', e.message);
-      if(typeof login==='function') return login();
-      return false;
-    }
-  };
-
-  window.HERO.openHeroChat = function(){
-    try{
-      if(window.HERO && typeof window.HERO.abrirChatIA==='function') return window.HERO.abrirChatIA();
-      if(typeof abrirChatIA==='function') return abrirChatIA();
-      return false;
-    }catch(e){
-      console.warn('Falha ao abrir Chat HERO:', e.message);
-      return false;
-    }
-  };
-
-  window.HERO.heroCommunityContextBar = function(){
-    var u=currentUserV25();
-    var adminBtn = u.role==='admin'
-      ? '<button type="button" class="btn ghost small" onclick="HERO.goTrainerCenter()">Centro de controle</button>'
-      : '<button type="button" class="btn ghost small" onclick="HERO.goCommunityBack()">Meu protocolo</button>';
-    var chatBtn = '<button type="button" class="btn ghost small" onclick="HERO.openHeroChat()">Chat HERO</button>';
-    return '<div class="community-context-bar"><div><span class="community-context-kicker">navegação</span><h2 class="community-context-title">Comunidade HERO</h2></div><div class="context-actions"><button type="button" class="btn secondary small" onclick="HERO.goCommunityBack()">Voltar</button>'+adminBtn+chatBtn+'</div></div>';
-  };
-
-  function removeCommunityVersionBadge(){
-    try{
-      document.querySelectorAll('.community-v3-version').forEach(function(el){ el.remove(); });
-    }catch(e){}
-  }
-
-  function injectCommunityContext(){
-    try{
-      removeCommunityVersionBadge();
-      var main=document.querySelector('main.wrap');
-      if(!main) return;
-      var old=document.querySelector('.community-context-bar');
-      if(old) old.remove();
-      var wrap=document.createElement('div');
-      wrap.innerHTML=window.HERO.heroCommunityContextBar();
-      main.insertBefore(wrap.firstElementChild, main.firstElementChild);
-    }catch(e){
-      console.warn('Context bar comunidade:', e.message);
-    }
-  }
-
-  var previousCommunity = window.HERO.community || window.community;
-  if(previousCommunity && !previousCommunity.__heroV25Patched){
-    var patched = async function(){
-      var result = await previousCommunity.apply(this, arguments);
-      setTimeout(injectCommunityContext,40);
-      setTimeout(injectCommunityContext,180);
-      setTimeout(removeCommunityVersionBadge,220);
-      return result;
-    };
-    patched.__heroV25Patched = true;
-    window.HERO.community = patched;
-    window.community = patched;
-  }else if(window.HERO.community){
-    window.community = window.HERO.community;
-  }
-
-  window.addEventListener('hashchange', function(){
-    if(location.hash==='#comunidade'){
-      setTimeout(injectCommunityContext,100);
-    }
-  });
-
-  setTimeout(function(){
-    applyPatch();
-    if(location.hash==='#comunidade') injectCommunityContext();
-    removeCommunityVersionBadge();
-  },300);
 })();
 </script>
 
@@ -11555,6 +11392,132 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
 
   setTimeout(installStudentAI,1000);
   document.documentElement.setAttribute('data-hero-os-patch','student-ai-float-v35');
+})();
+</script>
+
+
+<script>
+/* HERO OS V3.6 DEFINITIVE NAV PATCH */
+(function(){
+  if(!window.HERO){window.HERO={};}
+
+  function readSession(){
+    try{return JSON.parse(sessionStorage.getItem('hero_session')||'{}');}catch(e){return {};}
+  }
+
+  function getState(){
+    try{return typeof data==='function'?data():{};}catch(e){return {};}
+  }
+
+  function currentStudentId(){
+    var s=readSession();
+    var state=getState();
+    var alunos=state.alunos||[];
+    var aluno=alunos.find(function(a){
+      return String(a.id)===String(s.alunoId||s.id)||String(a.email||'').toLowerCase()===String(s.email||'').toLowerCase();
+    });
+    return s.alunoId||s.id||(aluno&&aluno.id)||s.email||'';
+  }
+
+  function isAdminSession(){
+    var s=readSession();
+    return s.role==='admin'||s.tipo==='admin'||s.admin===true;
+  }
+
+  function goAdmin(){
+    document.documentElement.setAttribute('data-hero-last-action','admin-v36');
+    try{location.hash='';}catch(e){}
+    if(window.HERO&&typeof window.HERO.admin==='function'){window.HERO.admin();return true;}
+    try{if(typeof admin==='function'){admin();return true;}}catch(e){}
+    return false;
+  }
+
+  function goStudent(){
+    document.documentElement.setAttribute('data-hero-last-action','student-v36');
+    try{location.hash='';}catch(e){}
+    var id=currentStudentId();
+    if(id&&window.HERO&&typeof window.HERO.student==='function'){window.HERO.student(id,false);return true;}
+    try{if(id&&typeof student==='function'){student(id,false);return true;}}catch(e){}
+    if(window.HERO&&typeof window.HERO.login==='function'){window.HERO.login();return true;}
+    try{if(typeof login==='function'){login();return true;}}catch(e){}
+    return false;
+  }
+
+  function goBack(){
+    return isAdminSession()?goAdmin():goStudent();
+  }
+
+  function goChat(){
+    document.documentElement.setAttribute('data-hero-last-action','chat-v36');
+    if(window.HERO&&typeof window.HERO.abrirChatIA==='function'){window.HERO.abrirChatIA();return true;}
+    try{if(typeof abrirChatIA==='function'){abrirChatIA();return true;}}catch(e){}
+    return false;
+  }
+
+  window.HERO.goTrainerCenter=goAdmin;
+  window.HERO.goCommunityBack=goBack;
+  window.HERO.goStudentProtocol=goStudent;
+  window.HERO.openHeroChat=goChat;
+
+  function bindNavButtons(){
+    var pairs=[
+      ['communityBackDirect',goBack],
+      ['communityBackDirectLegacy',goBack],
+      ['communityCenterDirect',goAdmin],
+      ['communityCenterDirectLegacy',goAdmin],
+      ['communityProtocolDirect',goStudent],
+      ['communityProtocolDirectLegacy',goStudent],
+      ['communityChatDirect',goChat],
+      ['communityChatDirectLegacy',goChat]
+    ];
+    pairs.forEach(function(pair){
+      var el=document.getElementById(pair[0]);
+      if(el&&!el.__heroV36Bound){
+        el.__heroV36Bound=true;
+        el.onclick=function(ev){
+          ev.preventDefault();
+          ev.stopPropagation();
+          if(ev.stopImmediatePropagation)ev.stopImmediatePropagation();
+          return pair[1]();
+        };
+      }
+    });
+  }
+
+  document.addEventListener('click',function(ev){
+    var id=ev.target&&ev.target.id;
+    if(!id)return;
+    if(id==='communityBackDirect'||id==='communityBackDirectLegacy'){ev.preventDefault();ev.stopPropagation();return goBack();}
+    if(id==='communityCenterDirect'||id==='communityCenterDirectLegacy'){ev.preventDefault();ev.stopPropagation();return goAdmin();}
+    if(id==='communityProtocolDirect'||id==='communityProtocolDirectLegacy'){ev.preventDefault();ev.stopPropagation();return goStudent();}
+    if(id==='communityChatDirect'||id==='communityChatDirectLegacy'){ev.preventDefault();ev.stopPropagation();return goChat();}
+  },true);
+
+  var oldCommunity=window.HERO.community||window.community;
+  if(typeof oldCommunity==='function'&&!oldCommunity.__heroV36Nav){
+    var patchedCommunity=function(){
+      var r=oldCommunity.apply(this,arguments);
+      setTimeout(bindNavButtons,40);
+      setTimeout(bindNavButtons,180);
+      setTimeout(function(){
+        var main=document.querySelector('main.wrap');
+        if(main&&!document.querySelector('.hero-version-confirm')){
+          var badge=document.createElement('div');
+          badge.className='hero-version-confirm';
+          badge.textContent='nav v3.6 ativo';
+          main.insertBefore(badge,main.firstElementChild);
+        }
+      },220);
+      return r;
+    };
+    patchedCommunity.__heroV36Nav=true;
+    window.HERO.community=patchedCommunity;
+    window.community=patchedCommunity;
+  }
+
+  setInterval(bindNavButtons,600);
+  setTimeout(bindNavButtons,200);
+  document.documentElement.setAttribute('data-hero-os-patch','definitive-nav-v36');
 })();
 </script>
 
