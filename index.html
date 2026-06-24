@@ -3021,6 +3021,127 @@ dialog,
   }
 }
 
+
+/* PROTOCOLO POR DIAS: navegação semanal premium */
+.hero-week-tabs{
+  display:grid;
+  grid-template-columns:repeat(7,minmax(0,1fr));
+  gap:8px;
+  margin:18px 0 18px;
+  padding:8px;
+  border-radius:18px;
+  border:1px solid rgba(148,163,184,.14);
+  background:rgba(2,6,23,.26);
+}
+.hero-day-tab{
+  min-height:42px!important;
+  height:auto!important;
+  padding:0 10px!important;
+  border-radius:12px!important;
+  border:1px solid rgba(148,163,184,.14)!important;
+  background:rgba(15,23,42,.42)!important;
+  color:rgba(203,213,225,.86)!important;
+  font-size:.72rem!important;
+  font-weight:650!important;
+  letter-spacing:.02em!important;
+  box-shadow:none!important;
+}
+.hero-day-tab:hover{
+  border-color:rgba(96,165,250,.28)!important;
+  background:rgba(15,23,42,.60)!important;
+  transform:translateY(-1px)!important;
+}
+.hero-day-tab.active{
+  border-color:rgba(96,165,250,.48)!important;
+  background:rgba(37,99,235,.18)!important;
+  color:#f8fafc!important;
+}
+.hero-day-tab.has-training::before{
+  content:"";
+  width:6px;
+  height:6px;
+  border-radius:999px;
+  background:#60a5fa;
+  display:inline-block;
+  margin-right:6px;
+  opacity:.88;
+}
+.hero-day-section{
+  margin-top:16px;
+}
+.hero-day-heading{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin:0 0 14px;
+  padding:13px 16px;
+  border-radius:16px;
+  border:1px solid rgba(96,165,250,.20);
+  background:linear-gradient(90deg,rgba(37,99,235,.18),rgba(15,23,42,.34));
+}
+.hero-day-heading strong{
+  color:#f8fafc;
+  font-size:.92rem;
+  letter-spacing:.01em;
+}
+.hero-day-heading span{
+  color:rgba(148,163,184,.86);
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.exercise .meta,
+.exercise .ex-meta,
+.exercise .exercise-details{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:8px!important;
+  margin:12px 0!important;
+}
+.exercise .meta span,
+.exercise .ex-meta span,
+.exercise .exercise-details span,
+.exercise-detail-pill{
+  display:inline-flex!important;
+  align-items:center!important;
+  min-height:28px!important;
+  padding:0 10px!important;
+  border-radius:999px!important;
+  border:1px solid rgba(148,163,184,.15)!important;
+  background:rgba(15,23,42,.42)!important;
+  color:rgba(226,232,240,.88)!important;
+  font-size:.7rem!important;
+  font-weight:700!important;
+  line-height:1!important;
+}
+.exercise-detail-pill b{
+  color:#93c5fd;
+  font-weight:800;
+  margin-right:4px;
+}
+@media(max-width:860px){
+  .hero-week-tabs{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+  }
+}
+@media(max-width:520px){
+  .hero-week-tabs{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:7px;
+    padding:7px;
+  }
+  .hero-day-tab{
+    min-height:40px!important;
+    font-size:.68rem!important;
+  }
+  .hero-day-heading{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -3065,6 +3186,69 @@ dialog,
     const direct=ex?.video||ex?.video_url||ex?.youtube||ex?.youtube_url||'';
     if(direct&&/^https?:\/\//i.test(direct))return direct;
     return heroYoutubeExerciseUrl(ex?.nome||ex?.exercicio||'execução');
+  }
+
+
+  const HERO_WEEK_DAYS=[
+    'segunda-feira',
+    'terça-feira',
+    'quarta-feira',
+    'quinta-feira',
+    'sexta-feira',
+    'sábado',
+    'domingo'
+  ];
+
+  function heroDayLabel(day){
+    const d=normalizeDayName(day||'',0);
+    return d.charAt(0).toUpperCase()+d.slice(1);
+  }
+
+  function heroGetSelectedDay(treinoId){
+    const key='hero_selected_day_'+String(treinoId||'default');
+    const saved=sessionStorage.getItem(key);
+    return saved||HERO_WEEK_DAYS[new Date().getDay()===0?6:new Date().getDay()-1]||'segunda-feira';
+  }
+
+  function heroSetSelectedDay(treinoId,day){
+    const normalized=normalizeDayName(day,0);
+    sessionStorage.setItem('hero_selected_day_'+String(treinoId||'default'),normalized);
+    window.HERO_SELECTED_DAY=normalized;
+    return normalized;
+  }
+
+  function heroExerciseDetailPills(e){
+    const reps=e.repeticoes||e.reps||e.rep||e.repeticao||'8 a 12';
+    const series=e.series||e.serie||'3';
+    const carga=e.carga||'RIR 1-3';
+    const descanso=e.descanso||'60 a 90s';
+    const cadencia=e.cadencia||'2-0-2';
+    return `<div class="exercise-details">
+      <span class="exercise-detail-pill"><b>Séries</b>${esc(series)}</span>
+      <span class="exercise-detail-pill"><b>Reps</b>${esc(reps)}</span>
+      <span class="exercise-detail-pill"><b>Carga</b>${esc(carga)}</span>
+      <span class="exercise-detail-pill"><b>Descanso</b>${esc(descanso)}</span>
+      <span class="exercise-detail-pill"><b>Cadência</b>${esc(cadencia)}</span>
+    </div>`;
+  }
+
+  function heroWeekTabs(treinoId,exercicios){
+    const selected=heroGetSelectedDay(treinoId);
+    const available=new Set((exercicios||[]).map(e=>normalizeDayName(e.dia||e.dia_da_semana||e.diaSemana||e.dia_semana||'',0)));
+    return `<div class="hero-week-tabs" role="tablist" aria-label="Dias do protocolo">
+      ${HERO_WEEK_DAYS.map(day=>`<button type="button" class="hero-day-tab ${day===selected?'active':''} ${available.has(day)?'has-training':''}" onclick="HERO.selectProtocolDay('${esc(treinoId)}','${esc(day)}')">${heroDayLabel(day)}</button>`).join('')}
+    </div>`;
+  }
+
+  function selectProtocolDay(treinoId,day){
+    heroSetSelectedDay(treinoId,day);
+    const st=data();
+    const treino=(st.treinos||[]).find(t=>String(t.id)===String(treinoId));
+    if(treino?.alunoId){
+      student(treino.alunoId,true);
+    }else if(treinoId&&typeof editWorkout==='function'){
+      editWorkout(treinoId);
+    }
   }
 
   function heroVideoButton(ex){
@@ -6764,7 +6948,7 @@ dialog,
   async function logout(){await supabaseLogout(); sessionStorage.removeItem('hero_session'); login();}
   function admin(selectedId){const st=data(); const selected=st.alunos.find(a=>a.id===(selectedId||st.alunos[0]?.id)); window.HERO_SELECTED_ALUNO_ID=selected?.id||null; window.HERO_SELECTED_TREINO_ID=st.treinos.find(t=>t.alunoId===window.HERO_SELECTED_ALUNO_ID)?.id||null; mount(`${top('Central de prescrição HERO',`<button class="btn small" id="addStudent">Cadastrar aluna</button><button class="btn ghost small" id="openLib">Biblioteca de execuções HERO</button>`)}<main class="wrap"><section class="hero"><p class="eyebrow">centro de controle do treinador</p><h1>Central de prescrição HERO</h1><p>Cadastre alunos, monte treinos, salve protocolos e libere missões individuais.</p><div class="stats"><div><b>${st.alunos.length}</b><span>alunas</span></div><div><b>${st.treinos.length}</b><span>protocolos</span></div><div><b>${st.exercicios.length}</b><span>exercícios</span></div><div><b>${st.alunos.filter(a=>a.status==='ativo').length}</b><span>ativos</span></div></div></section><section class="admin-grid"><aside class="panel"><div class="panel-title"><div><h2>Alunas</h2><p>Selecione para configurar sistema.</p></div></div><div id="studentList"></div></aside><section id="adminDetail" class="panel"></section></section></main>`); $('addStudent').onclick=()=>studentForm(); $('openLib').onclick=()=>library(); drawStudents(selected?.id); drawDetail(selected?.id);}
   function drawStudents(selectedId){const st=data(); $('studentList').innerHTML=st.alunos.map(a=>`<button class="student-row ${a.id===selectedId?'active':''}" onclick="HERO.admin('${a.id}')"><strong>${esc(a.nome)}</strong><small>${esc(a.email)}</small><small>${esc(a.objetivo||'Sem objetivo definido')}</small></button>`).join('');}
-  function drawDetail(alunoId){const st=data(); const a=st.alunos.find(x=>x.id===alunoId); const el=$('adminDetail'); if(!a){el.innerHTML='<div class="empty">Cadastre uma aluna para iniciar a prescrição.</div>'; return;} const ts=st.treinos.filter(t=>t.alunoId===a.id); el.innerHTML=`<div class="student-head"><div><p class="eyebrow">aluna selecionada</p><h2>${esc(a.nome)}</h2><p>${esc(a.email)}</p><div><span class="status ${a.status}">${esc(a.status)}</span></div></div><div class="toolbar"><button class="btn ghost small" onclick="HERO.studentForm('${a.id}')">Editar</button><button class="btn secondary small" onclick="HERO.toggleStudent('${a.id}')">${a.status==='ativo'?'Bloquear':'Liberar'}</button><button class="btn ghost small" onclick="HERO.gerarPrescricaoIA('${a.id}')">Diagnóstico IA</button><button class="btn small" onclick="HERO.newWorkout('${a.id}')">Novo protocolo</button><button class="btn danger small" onclick="HERO.deleteStudent('${a.id}')">Excluir cadastro</button></div></div><div class="note"><b>Objetivo:</b> ${esc(a.objetivo||'Não informado')}<br><b>Plano:</b> ${esc(a.plano||'HERO Aesthetic Performance')}</div><div class="cards">${ts.length?ts.map(t=>workoutCard(t)).join(''):'<div class="empty">Nenhum treino criado para esta aluna.</div>'}</div>`;}
+  function drawDetail(alunoId){const st=data(); const a=st.alunos.find(x=>x.id===alunoId); const el=$('adminDetail'); if(!a){el.innerHTML='<div class="empty">Cadastre uma aluna para iniciar a prescrição.</div>'; return;} const ts=st.treinos.filter(t=>t.alunoId===a.id); el.innerHTML=`<div class="student-head"><div><p class="eyebrow">aluna selecionada</p><h2>${esc(a.nome)}</h2><p>${esc(a.email)}</p><div><span class="status ${a.status}">${esc(a.status)}</span></div></div><div class="toolbar"><button class="btn ghost small" onclick="HERO.studentForm('${a.id}')">Editar</button><button class="btn secondary small" onclick="HERO.toggleStudent('${a.id}')">${a.status==='ativo'?'Bloquear':'Liberar'}</button><button class="btn ghost small" onclick="HERO.gerarPrescricaoIA('${a.id}')">Diagnóstico IA</button><button class="btn small" onclick="HERO.newWorkout('${a.id}')">Novo protocolo</button><button class="btn danger small" onclick="HERO.deleteStudent('${a.id}')">Excluir cadastro</button></div></div><div class="note"><b>Objetivo:</b> ${esc(a.objetivo||'Não informado')}<br><b>Plano:</b> ${esc(a.plano||'HERO Aesthetic Performance')}</div>${full&&ts.length?heroRenderProtocolByDay(ts[0].id):''}<div class="cards">${!full&&ts.length?ts.map(t=>workoutCard(t)).join(''):(!full?'<div class="empty">Nenhum treino criado para esta aluna.</div>':'')}</div>`;}
   function workoutCard(t){const count=data().exercicios.filter(e=>e.treinoId===t.id).length; return `<article class="workout-card"><div><span class="badge">${t.liberado?'liberado':'bloqueado'}</span><h3>${esc(t.nome)}</h3><p>${esc(t.objetivo)}</p><small>${count} execuções cadastradas</small></div><div class="toolbar"><button class="btn small" onclick="HERO.editWorkout('${t.id}')">Configurar sistema</button><button class="btn ghost small" onclick="HERO.student('${t.alunoId}',true)">Visualizar</button><button class="btn secondary small" onclick="HERO.toggleWorkout('${t.id}')">${t.liberado?'Bloquear':'Liberar'}</button><button class="btn ghost small" onclick="HERO.duplicateWorkout('${t.id}')">Duplicar</button></div></article>`;}
 
 
@@ -6797,7 +6981,7 @@ dialog,
         categoria:r.categoria||'HERO - IA',
         execucao:r.execucao||'',
         series:r.series||'',
-        reps:r.repeticoes||'',
+        reps:r.repeticoes||r.reps||r.repeticao||'8 a 12',
         carga:r.carga||'',
         descanso:r.descanso||'',
         cadencia:'',
@@ -7032,7 +7216,8 @@ dialog,
               <option>4</option>
               <option selected>5</option>
               <option>6</option>
-            </select>
+                          <option>7</option>
+</select>
           </label>
           <label>Tempo por treino
             <input name="tempo_por_treino" value="50 a 60 minutos">
@@ -7096,7 +7281,7 @@ dialog,
                 st2.exercicios.push({
                   id:uid(),treinoId,dia:dia.dia,ordem:ex.ordem||1,
                   nome:ex.nome||'Exercício',traducao:ex.traducao||'',grupo:ex.grupo||'',
-                  categoria:ex.categoria||'HERO - IA',series:ex.series||'',repeticoes:ex.repeticoes||'',
+                  categoria:ex.categoria||'HERO - IA',series:ex.series||'',reps:ex.repeticoes||ex.reps||'8 a 12',repeticoes:ex.repeticoes||ex.reps||'8 a 12',
                   carga:ex.carga||'',descanso:ex.descanso||'',metodo:ex.metodo||'',
                   execucao:ex.execucao||'',observacoes:ex.observacoes||''
                 });
@@ -7115,6 +7300,31 @@ dialog,
     };
   }
 
+
+
+  function heroRenderProtocolByDay(treinoId){
+    const st=data();
+    const treino=(st.treinos||[]).find(t=>String(t.id)===String(treinoId));
+    if(!treino)return '<div class="empty">Protocolo não encontrado.</div>';
+    const all=(st.exercicios||[])
+      .filter(e=>String(e.treinoId)===String(treinoId))
+      .map((e,i)=>({...e,dia:normalizeDayName(e.dia||e.dia_da_semana||e.diaSemana||e.dia_semana||'',i)}))
+      .sort((a,b)=>(HERO_WEEK_DAYS.indexOf(a.dia)-HERO_WEEK_DAYS.indexOf(b.dia))||Number(a.ordem||0)-Number(b.ordem||0));
+
+    const selected=heroGetSelectedDay(treinoId);
+    const dayExercises=all.filter(e=>normalizeDayName(e.dia,0)===selected);
+
+    return `${heroWeekTabs(treinoId,all)}
+      <section class="hero-day-section">
+        <div class="hero-day-heading"><strong>${heroDayLabel(selected)}</strong><span>${dayExercises.length} execuções</span></div>
+        ${dayExercises.length?dayExercises.map(e=>`<article class="exercise">
+          <div class="ex-head"><h3>${esc(e.nome||'Execução HERO')}</h3>${typeof heroVideoButton==='function'?heroVideoButton(e):''}</div>
+          ${heroExerciseDetailPills(e)}
+          ${e.execucao?`<p>${esc(e.execucao)}</p>`:''}
+          ${e.metodo?`<small>${esc(e.metodo)}</small>`:''}
+        </article>`).join(''):'<div class="empty">Nenhuma execução cadastrada para este dia.</div>'}
+      </section>`;
+  }
 
   function heroControlMetrics(alunoId){
     const st=data();
@@ -7464,7 +7674,8 @@ dialog,
 
   window.HERO={heroIniciarSessaoTreino,heroFinalizarSessaoTreino,heroCancelarSessaoTreino,heroRestaurarCronometro,deleteStudent,abrirChatIA,syncWorkoutFromSupabase,gerarPrescricaoIA,admin,studentForm,toggleStudent,newWorkout,editWorkout,duplicateWorkout,toggleWorkout,exerciseForm,deleteExercise,libraryForm,addFromLibrary,student,photoEditor,closeModal,logout,toggleExerciseDone,finishWorkout,quickAddFromLibrary,drawQuick,
     pickExercise,
-    removeProg};
+    removeProg,
+    selectProtocolDay};
   document.addEventListener('DOMContentLoaded',()=>{initSplash();render();});
 })();
 
