@@ -5462,22 +5462,215 @@ html[data-hero-os-visual="premium-v2"] .community-context-bar button{
 }
 
 
-/* HERO OS V3.0 COMMUNITY FINAL BUTTON FIX */
-#communityBackDirect,
-#communityCenterDirect,
-#communityChatDirect,
-#communityBackDirectLegacy,
-#communityCenterDirectLegacy,
-#communityChatDirectLegacy{
-  pointer-events:auto!important;
+/* HERO OS V3.3 LOAD TRACKER AND COACH DASHBOARD */
+html[data-hero-os-visual="premium-v2"] .hero-load-box{display:grid!important;gap:12px!important;margin-top:14px!important;padding:14px!important;border:1px solid rgba(148,163,184,.12)!important;border-radius:16px!important;background:rgba(2,6,23,.28)!important}
+html[data-hero-os-visual="premium-v2"] .hero-load-head{display:flex!important;align-items:flex-start!important;justify-content:space-between!important;gap:12px!important;flex-wrap:wrap!important}
+html[data-hero-os-visual="premium-v2"] .hero-load-head strong{color:#f8fafc!important;font-size:.84rem!important}
+html[data-hero-os-visual="premium-v2"] .hero-load-head span{display:block!important;margin-top:3px!important;color:rgba(148,163,184,.88)!important;font-size:.72rem!important;line-height:1.3!important}
+html[data-hero-os-visual="premium-v2"] .hero-load-grid{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(118px,1fr))!important;gap:10px!important}
+html[data-hero-os-visual="premium-v2"] .hero-load-field{display:grid!important;gap:6px!important}
+html[data-hero-os-visual="premium-v2"] .hero-load-field label{color:rgba(226,232,240,.92)!important;font-size:.68rem!important;font-weight:850!important;letter-spacing:.06em!important;text-transform:uppercase!important}
+html[data-hero-os-visual="premium-v2"] .hero-load-field input{min-height:38px!important;padding:0 10px!important;border-radius:12px!important;font-size:.82rem!important}
+html[data-hero-os-visual="premium-v2"] .hero-load-save-status{color:#93c5fd!important;font-size:.72rem!important;font-weight:800!important}
+html[data-hero-os-visual="premium-v2"] .coach-dashboard{display:grid!important;gap:16px!important;margin:0 0 24px!important;padding:18px!important;border:1px solid rgba(96,165,250,.16)!important;border-radius:22px!important;background:radial-gradient(circle at 8% 0%,rgba(37,99,235,.14),transparent 34%),linear-gradient(180deg,rgba(15,23,42,.72),rgba(2,6,23,.38))!important}
+html[data-hero-os-visual="premium-v2"] .coach-dashboard-head{display:flex!important;align-items:flex-start!important;justify-content:space-between!important;gap:14px!important;flex-wrap:wrap!important}
+html[data-hero-os-visual="premium-v2"] .coach-dashboard-head h2{margin:0!important}
+html[data-hero-os-visual="premium-v2"] .coach-dashboard-head p{margin:5px 0 0!important;color:rgba(148,163,184,.92)!important;font-size:.86rem!important}
+html[data-hero-os-visual="premium-v2"] .coach-kpi-grid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:12px!important}
+html[data-hero-os-visual="premium-v2"] .coach-kpi{min-height:94px!important;padding:14px!important;border-radius:16px!important;border:1px solid rgba(148,163,184,.12)!important;background:rgba(2,6,23,.26)!important}
+html[data-hero-os-visual="premium-v2"] .coach-kpi span{display:block!important;color:rgba(148,163,184,.86)!important;font-size:.64rem!important;font-weight:900!important;letter-spacing:.08em!important;text-transform:uppercase!important}
+html[data-hero-os-visual="premium-v2"] .coach-kpi strong{display:block!important;margin-top:8px!important;color:#f8fafc!important;font-size:1.45rem!important;line-height:1!important}
+html[data-hero-os-visual="premium-v2"] .coach-dashboard-list{display:grid!important;gap:10px!important}
+html[data-hero-os-visual="premium-v2"] .coach-row{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:12px!important;align-items:center!important;padding:12px 14px!important;border-radius:14px!important;border:1px solid rgba(148,163,184,.10)!important;background:rgba(15,23,42,.38)!important}
+html[data-hero-os-visual="premium-v2"] .coach-row strong{display:block!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+html[data-hero-os-visual="premium-v2"] .coach-row small{display:block!important;margin-top:4px!important;color:rgba(148,163,184,.88)!important;font-size:.74rem!important}
+html[data-hero-os-visual="premium-v2"] .coach-badge{display:inline-flex!important;min-height:28px!important;align-items:center!important;justify-content:center!important;padding:0 10px!important;border-radius:999px!important;border:1px solid rgba(96,165,250,.24)!important;background:rgba(37,99,235,.12)!important;color:#bfdbfe!important;font-size:.72rem!important;font-weight:850!important;white-space:nowrap!important}
+@media(max-width:900px){html[data-hero-os-visual="premium-v2"] .coach-kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:620px){html[data-hero-os-visual="premium-v2"] .coach-kpi-grid,html[data-hero-os-visual="premium-v2"] .hero-load-grid{grid-template-columns:1fr!important}html[data-hero-os-visual="premium-v2"] .coach-row{grid-template-columns:1fr!important}}
+
+
+/* HERO OS V3.4 LOAD SERIES SELECTOR */
+html[data-hero-os-visual="premium-v2"] .hero-load-selector{
+  display:grid!important;
+  gap:6px!important;
+  margin-top:2px!important;
+}
+html[data-hero-os-visual="premium-v2"] .hero-load-selector label{
+  color:rgba(226,232,240,.92)!important;
+  font-size:.68rem!important;
+  font-weight:850!important;
+  letter-spacing:.06em!important;
+  text-transform:uppercase!important;
+}
+html[data-hero-os-visual="premium-v2"] .hero-load-selector select{
+  min-height:38px!important;
+  border-radius:12px!important;
+  font-size:.82rem!important;
+  padding:0 10px!important;
+}
+html[data-hero-os-visual="premium-v2"] .hero-load-field.is-hidden-series{
+  display:none!important;
 }
 
 
-/* HERO OS V3.1 COMMUNITY INLINE NAV TESTED */
-html[data-hero-os-visual="premium-v2"] .community-context-bar[data-hero-nav-bar="community-final"]{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;flex-wrap:wrap!important;padding:12px 0 18px!important;margin-bottom:4px!important;border-bottom:1px solid rgba(148,163,184,.10)!important;}
-html[data-hero-os-visual="premium-v2"] .community-context-bar[data-hero-nav-bar="community-final"] .context-actions{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:10px!important;flex-wrap:wrap!important;}
-#communityBackDirect,#communityCenterDirect,#communityChatDirect{pointer-events:auto!important;}
-@media(max-width:760px){html[data-hero-os-visual="premium-v2"] .community-context-bar[data-hero-nav-bar="community-final"]{align-items:flex-start!important;flex-direction:column!important;}html[data-hero-os-visual="premium-v2"] .community-context-bar[data-hero-nav-bar="community-final"] .context-actions,html[data-hero-os-visual="premium-v2"] .community-context-bar[data-hero-nav-bar="community-final"] button{width:100%!important;}}
+/* HERO OS V3.5 STUDENT AI FLOAT SUPPORT */
+html[data-hero-os-visual="premium-v2"] .student-ai-float{
+  position:fixed!important;
+  right:18px!important;
+  bottom:18px!important;
+  z-index:99998!important;
+  display:grid!important;
+  gap:8px!important;
+  justify-items:end!important;
+  max-width:min(360px,calc(100vw - 28px))!important;
+}
+html[data-hero-os-visual="premium-v2"] .student-ai-float.is-hidden{
+  display:none!important;
+}
+html[data-hero-os-visual="premium-v2"] .student-ai-hint{
+  max-width:310px!important;
+  padding:10px 12px!important;
+  border:1px solid rgba(96,165,250,.24)!important;
+  border-radius:16px!important;
+  background:rgba(2,6,23,.84)!important;
+  color:#f8fafc!important;
+  box-shadow:0 18px 50px rgba(0,0,0,.34)!important;
+  font-size:.80rem!important;
+  line-height:1.35!important;
+  backdrop-filter:blur(18px)!important;
+}
+html[data-hero-os-visual="premium-v2"] .student-ai-button{
+  min-height:52px!important;
+  padding:0 18px!important;
+  border-radius:999px!important;
+  border:1px solid rgba(96,165,250,.42)!important;
+  background:linear-gradient(135deg,rgba(37,99,235,.96),rgba(2,6,23,.96))!important;
+  color:#fff!important;
+  font-weight:900!important;
+  letter-spacing:-.01em!important;
+  box-shadow:0 22px 60px rgba(0,0,0,.40),0 0 0 1px rgba(255,255,255,.05) inset!important;
+}
+html[data-hero-os-visual="premium-v2"] .student-ai-panel{
+  position:fixed!important;
+  right:18px!important;
+  bottom:86px!important;
+  z-index:99999!important;
+  width:min(420px,calc(100vw - 28px))!important;
+  max-height:min(680px,calc(100vh - 112px))!important;
+  display:grid!important;
+  grid-template-rows:auto 1fr auto!important;
+  overflow:hidden!important;
+  border:1px solid rgba(96,165,250,.22)!important;
+  border-radius:24px!important;
+  background:linear-gradient(180deg,rgba(15,23,42,.96),rgba(2,6,23,.96))!important;
+  box-shadow:0 30px 90px rgba(0,0,0,.52)!important;
+  backdrop-filter:blur(20px)!important;
+}
+html[data-hero-os-visual="premium-v2"] .student-ai-panel.is-hidden{
+  display:none!important;
+}
+html[data-hero-os-visual="premium-v2"] .student-ai-header{
+  display:flex!important;
+  align-items:flex-start!important;
+  justify-content:space-between!important;
+  gap:12px!important;
+  padding:16px!important;
+  border-bottom:1px solid rgba(148,163,184,.12)!important;
+}
+html[data-hero-os-visual="premium-v2"] .student-ai-header strong{
+  display:block!important;
+  color:#f8fafc!important;
+  font-size:.95rem!important;
+}
+html[data-hero-os-visual="premium-v2"] .student-ai-header span{
+  display:block!important;
+  margin-top:4px!important;
+  color:rgba(148,163,184,.88)!important;
+  font-size:.74rem!important;
+  line-height:1.35!important;
+}
+html[data-hero-os-visual="premium-v2"] .student-ai-close{
+  width:34px!important;
+  min-height:34px!important;
+  padding:0!important;
+  border-radius:12px!important;
+}
+html[data-hero-os-visual="premium-v2"] .student-ai-messages{
+  display:grid!important;
+  gap:10px!important;
+  align-content:start!important;
+  padding:14px!important;
+  overflow-y:auto!important;
+}
+html[data-hero-os-visual="premium-v2"] .student-ai-msg{
+  max-width:88%!important;
+  padding:10px 12px!important;
+  border-radius:16px!important;
+  font-size:.82rem!important;
+  line-height:1.45!important;
+}
+html[data-hero-os-visual="premium-v2"] .student-ai-msg.bot{
+  justify-self:start!important;
+  border:1px solid rgba(96,165,250,.16)!important;
+  background:rgba(15,23,42,.76)!important;
+  color:rgba(226,232,240,.96)!important;
+}
+html[data-hero-os-visual="premium-v2"] .student-ai-msg.user{
+  justify-self:end!important;
+  background:rgba(37,99,235,.88)!important;
+  color:#fff!important;
+}
+html[data-hero-os-visual="premium-v2"] .student-ai-suggestions{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:8px!important;
+  padding:0 14px 12px!important;
+}
+html[data-hero-os-visual="premium-v2"] .student-ai-chip{
+  min-height:30px!important;
+  padding:0 10px!important;
+  border-radius:999px!important;
+  font-size:.72rem!important;
+  border:1px solid rgba(148,163,184,.16)!important;
+  background:rgba(2,6,23,.34)!important;
+  color:#e2e8f0!important;
+}
+html[data-hero-os-visual="premium-v2"] .student-ai-form{
+  display:grid!important;
+  grid-template-columns:1fr auto!important;
+  gap:10px!important;
+  padding:14px!important;
+  border-top:1px solid rgba(148,163,184,.12)!important;
+}
+html[data-hero-os-visual="premium-v2"] .student-ai-form input{
+  min-height:42px!important;
+}
+html[data-hero-os-visual="premium-v2"] .student-ai-form button{
+  min-height:42px!important;
+}
+@media(max-width:620px){
+  html[data-hero-os-visual="premium-v2"] .student-ai-float{
+    left:12px!important;
+    right:12px!important;
+    bottom:12px!important;
+    max-width:none!important;
+  }
+  html[data-hero-os-visual="premium-v2"] .student-ai-hint{
+    justify-self:stretch!important;
+    max-width:none!important;
+  }
+  html[data-hero-os-visual="premium-v2"] .student-ai-button{
+    width:100%!important;
+    border-radius:16px!important;
+  }
+  html[data-hero-os-visual="premium-v2"] .student-ai-panel{
+    left:12px!important;
+    right:12px!important;
+    bottom:78px!important;
+    width:auto!important;
+    max-height:calc(100vh - 100px)!important;
+  }
+}
 
 </style>
 </head>
@@ -5665,7 +5858,7 @@ html[data-hero-os-visual="premium-v2"] .community-context-bar[data-hero-nav-bar=
     if(!treino)return null;
     const st=data();
     let t=st.treinos.find(x=>x.id===treino.id);
-    const mapped={id:treino.id,alunoId:alunoId||treino.aluno_id,nome:treino.nome_do_treino||treino.nome||'Sistema HERO - protocolo do dia',fase:treino.fase||'Foundation',objetivo:treino.objetivo_do_treino||treino.objetivo||'Estética, força e evolução real',observacoes:treino.observacoes||'Execute com precisão. Evolua com disciplina.',liberado:treino.liberado!==false};
+    const mapped={id:treino.id,alunoId:alunoId||treino.aluno_id,nome:treino.nome_do_treino||treino.nome||'Sistema HERO - protocolo do dia',fase:treino.fase||'Base',objetivo:treino.objetivo_do_treino||treino.objetivo||'Estética, força e evolução real',observacoes:treino.observacoes||'Execute com precisão. Evolua com disciplina.',liberado:treino.liberado!==false};
     if(t){Object.assign(t,mapped);}else{st.treinos.push(mapped);}
     save(st);
     return mapped;
@@ -5712,7 +5905,7 @@ html[data-hero-os-visual="premium-v2"] .community-context-bar[data-hero-nav-bar=
       {email:'jessika.liz.feitosa@gmail.com',password:'Caruaru00@',role:'student',alunoId:'al_jessika'}
     ],
     alunos:[{id:'al_jessika',nome:'Jessika Liz Feitosa',email:'jessika.liz.feitosa@gmail.com',senha:'Caruaru00@',objetivo:'Estética, força e evolução real',plano:'HERO Aesthetic Performance',status:'ativo',foto:'',data:new Date().toLocaleDateString('pt-BR')}],
-    treinos:[{id:'tr_jessika',alunoId:'al_jessika',nome:'Sistema HERO - protocolo do dia',fase:'Foundation',objetivo:'Construir estética, força e condicionamento com execução precisa.',observacoes:'Execute com precisão. Evolua com disciplina.',liberado:true}],
+    treinos:[{id:'tr_jessika',alunoId:'al_jessika',nome:'Sistema HERO - protocolo do dia',fase:'Base',objetivo:'Construir estética, força e condicionamento com execução precisa.',observacoes:'Execute com precisão. Evolua com disciplina.',liberado:true}],
     exercicios:[
       {id:'ex1',treinoId:'tr_jessika',dia:'segunda-feira',bloco:'Inferiores',nome:'Hip Thrust',traducao:'Elevação pélvica com apoio',grupo:'Glúteos',categoria:'Estética muscular',execucao:'Apoie as costas no banco, mantenha os pés firmes no chão, suba o quadril contraindo os glúteos no topo e desça de forma controlada.',series:'4',reps:'8-12',carga:'progressiva',descanso:'90s',cadencia:'2-1-2',metodo:'pico de contração',metodoDescricao:defaultAdvanced['pico de contração'],progressaoAtiva:true,progressao:[{serie:'1',reps:'12',carga:'moderada'},{serie:'2',reps:'10',carga:'maior'},{serie:'3',reps:'8',carga:'forte'}],obs:'Priorize contração no topo.',video:'',ordem:1},
       {id:'ex2',treinoId:'tr_jessika',dia:'segunda-feira',bloco:'Posterior',nome:'Romanian Deadlift',traducao:'Levantamento terra romeno',grupo:'Posterior de coxa',categoria:'Força real',execucao:'Mantenha a coluna neutra, leve o quadril para trás, desça a carga próxima às pernas e suba contraindo glúteos e posteriores.',series:'3',reps:'8-10',carga:'a definir',descanso:'90s',cadencia:'3-0-1',metodo:'excêntrica controlada',metodoDescricao:defaultAdvanced['excêntrica controlada'],progressaoAtiva:false,progressao:[],obs:'Não arredondar a lombar.',video:'',ordem:2}
@@ -9799,7 +9992,7 @@ html[data-hero-os-visual="premium-v2"] .community-context-bar[data-hero-nav-bar=
     </section>`;
   }
 
-  function studentForm(id){const st=data(); const a=st.alunos.find(x=>x.id===id)||{nome:'',email:'',senha:'',objetivo:'',plano:'HERO Aesthetic Performance',status:'ativo'}; modal(`<h2>${id?'Editar aluna':'Cadastrar aluna'}</h2><form id="studentForm" class="form"><div class="grid two"><label>Nome<input name="nome" value="${esc(a.nome)}" required></label><label>E-mail<input name="email" type="email" value="${esc(a.email)}" required></label><label>Senha<input name="senha" value="${esc(a.senha)}" required></label><label>Status<select name="status"><option ${a.status==='ativo'?'selected':''}>ativo</option><option ${a.status==='bloqueado'?'selected':''}>bloqueado</option></select></label><label>Plano<input name="plano" value="${esc(a.plano)}"></label><label>Objetivo<input name="objetivo" value="${esc(a.objetivo)}"></label></div><button class="btn">Salvar aluna e configurar sistema</button></form>`); $('studentForm').onsubmit=async e=>{e.preventDefault(); const btn=e.target.querySelector('button'); const oldBtn=btn.textContent; btn.textContent='Salvando...'; btn.disabled=true; const f=Object.fromEntries(new FormData(e.target)); const d=data(); let alunoId=id; let t=null; try{if(!id&&supabaseAvailable()){const result=await cadastrarAlunaSupabase({nome:f.nome,email:f.email,senha:f.senha,objetivo:f.objetivo||'Estética, força e evolução real',plano:f.plano||'HERO Aesthetic Performance',status:f.status||'ativo'}); const localAluno=syncAlunoLocal(result.aluno); alunoId=localAluno.id; t=syncTreinoLocal(result.treino,alunoId); closeModal(); editWorkout(t.id); return;}}catch(err){alert('Erro ao cadastrar no Supabase: '+err.message); btn.textContent=oldBtn; btn.disabled=false; return;} if(id){Object.assign(d.alunos.find(x=>x.id===id),f); const u=d.users.find(u=>u.alunoId===id); if(u){u.email=f.email;u.password=f.senha;}} else {alunoId=uid(); d.alunos.push({...f,id:alunoId,foto:'',data:new Date().toLocaleDateString('pt-BR')}); d.users.push({email:f.email,password:f.senha,role:'student',alunoId});} t=d.treinos.find(t=>t.alunoId===alunoId); if(!t){t={id:uid(),alunoId,nome:'Sistema HERO - protocolo do dia',fase:'Foundation',objetivo:f.objetivo||'Estética, força e evolução real',observacoes:'Execute com precisão. Evolua com disciplina.',liberado:true}; d.treinos.push(t);} save(d); closeModal(); editWorkout(t.id);};}
+  function studentForm(id){const st=data(); const a=st.alunos.find(x=>x.id===id)||{nome:'',email:'',senha:'',objetivo:'',plano:'HERO Aesthetic Performance',status:'ativo'}; modal(`<h2>${id?'Editar aluna':'Cadastrar aluna'}</h2><form id="studentForm" class="form"><div class="grid two"><label>Nome<input name="nome" value="${esc(a.nome)}" required></label><label>E-mail<input name="email" type="email" value="${esc(a.email)}" required></label><label>Senha<input name="senha" value="${esc(a.senha)}" required></label><label>Status<select name="status"><option ${a.status==='ativo'?'selected':''}>ativo</option><option ${a.status==='bloqueado'?'selected':''}>bloqueado</option></select></label><label>Plano<input name="plano" value="${esc(a.plano)}"></label><label>Objetivo<input name="objetivo" value="${esc(a.objetivo)}"></label></div><button class="btn">Salvar aluna e configurar sistema</button></form>`); $('studentForm').onsubmit=async e=>{e.preventDefault(); const btn=e.target.querySelector('button'); const oldBtn=btn.textContent; btn.textContent='Salvando...'; btn.disabled=true; const f=Object.fromEntries(new FormData(e.target)); const d=data(); let alunoId=id; let t=null; try{if(!id&&supabaseAvailable()){const result=await cadastrarAlunaSupabase({nome:f.nome,email:f.email,senha:f.senha,objetivo:f.objetivo||'Estética, força e evolução real',plano:f.plano||'HERO Aesthetic Performance',status:f.status||'ativo'}); const localAluno=syncAlunoLocal(result.aluno); alunoId=localAluno.id; t=syncTreinoLocal(result.treino,alunoId); closeModal(); editWorkout(t.id); return;}}catch(err){alert('Erro ao cadastrar no Supabase: '+err.message); btn.textContent=oldBtn; btn.disabled=false; return;} if(id){Object.assign(d.alunos.find(x=>x.id===id),f); const u=d.users.find(u=>u.alunoId===id); if(u){u.email=f.email;u.password=f.senha;}} else {alunoId=uid(); d.alunos.push({...f,id:alunoId,foto:'',data:new Date().toLocaleDateString('pt-BR')}); d.users.push({email:f.email,password:f.senha,role:'student',alunoId});} t=d.treinos.find(t=>t.alunoId===alunoId); if(!t){t={id:uid(),alunoId,nome:'Sistema HERO - protocolo do dia',fase:'Base',objetivo:f.objetivo||'Estética, força e evolução real',observacoes:'Execute com precisão. Evolua com disciplina.',liberado:true}; d.treinos.push(t);} save(d); closeModal(); editWorkout(t.id);};}
 
   async function deleteStudent(alunoId){
     const st=data();
@@ -9834,7 +10027,7 @@ html[data-hero-os-visual="premium-v2"] .community-context-bar[data-hero-nav-bar=
   }
 
   function toggleStudent(id){const d=data(); const a=d.alunos.find(x=>x.id===id); a.status=a.status==='ativo'?'bloqueado':'ativo'; save(d); admin(id);}
-  function newWorkout(alunoId){const d=data(); const t={id:uid(),alunoId,nome:'Sistema HERO - protocolo do dia',fase:'Foundation',objetivo:'Estética, força, resistência e evolução real.',observacoes:'',liberado:true}; d.treinos.push(t); save(d); editWorkout(t.id);}
+  function newWorkout(alunoId){const d=data(); const t={id:uid(),alunoId,nome:'Sistema HERO - protocolo do dia',fase:'Base',objetivo:'Estética, força, resistência e evolução real.',observacoes:'',liberado:true}; d.treinos.push(t); save(d); editWorkout(t.id);}
   async function editWorkout(id){window.HERO_SELECTED_TREINO_ID=id; let st=data(); let t=st.treinos.find(x=>x.id===id); if(t)window.HERO_SELECTED_ALUNO_ID=t.alunoId; if(t&&supabaseAvailable()){await syncExerciciosPrescritosSupabase(id,t.alunoId); st=data(); t=st.treinos.find(x=>x.id===id);} const a=st.alunos.find(x=>x.id===t.alunoId); const ex=st.exercicios.filter(e=>e.treinoId===id).sort((a,b)=>days.indexOf(a.dia)-days.indexOf(b.dia)||Number(a.ordem)-Number(b.ordem)); const groups=[...new Set(st.library.map(x=>x.grupo).filter(Boolean))].sort(); mount(`${top('Prescrição HERO',`<button class="btn secondary small" id="backAdmin">Voltar</button><button class="btn ghost small" id="openLib">Biblioteca de execuções</button><button class="btn ghost small" onclick="HERO.syncWorkoutFromSupabase('${id}')">Sincronizar Supabase</button><button class="btn ghost small" onclick="HERO.gerarPrescricaoIA('${t.alunoId}')">Diagnóstico Inteligente HERO</button><button class="btn ghost small" onclick="HERO.abrirChatIA('${t.alunoId}','${t.id}')">Chat HERO</button><button class="btn small" id="addExercise">Adicionar execução</button>`)}<main class="wrap">
       <div class="hero-workout-timer-card">
         <div>
@@ -10355,7 +10548,7 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
     const posts=(st.communityPosts||[]).filter(p=>p.active!==false);
     const comments=st.communityComments||[];
     const likes=st.communityLikes||[];
-    const backAction=`<button type="button" class="btn secondary small" id="communityBackDirectLegacy">Voltar</button>${isAdmin?'<button type="button" class="btn ghost small" id="communityCenterDirectLegacy">Centro de controle</button>':''}<button type="button" class="btn ghost small" id="communityChatDirectLegacy">Chat HERO</button>`;
+    const backAction=`<button class="btn secondary small" onclick="HERO.heroCommunityBack()">Voltar</button>`;
 
     mount(`${top('Comunidade HERO',backAction)}
       <main class="wrap">
@@ -10399,12 +10592,6 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
       </main>`);
     const form=$('communityForm');
     if(form)form.onsubmit=communityCreatePost;
-    const backLegacy=$('communityBackDirectLegacy');
-    if(backLegacy)backLegacy.onclick=function(ev){ev.preventDefault();ev.stopPropagation();location.hash='';if(isAdmin)return admin();if(user.id&&user.id!=='local-user')return student(user.id,false);return login();};
-    const centerLegacy=$('communityCenterDirectLegacy');
-    if(centerLegacy)centerLegacy.onclick=function(ev){ev.preventDefault();ev.stopPropagation();location.hash='';return admin();};
-    const chatLegacy=$('communityChatDirectLegacy');
-    if(chatLegacy)chatLegacy.onclick=function(ev){ev.preventDefault();ev.stopPropagation();return abrirChatIA();};
     heroCommunityScheduleButton();
   }
 
@@ -10515,7 +10702,7 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
     communityDeletePost,
     heroCommunityBack,
     heroCommunityEnsureButton,
-    heroCommunityScheduleButton,login};
+    heroCommunityScheduleButton};
   document.addEventListener('DOMContentLoaded',()=>{initSplash();render();});
 })();
 
@@ -10535,14 +10722,7 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
   async function fetchCommunity(){var st=localState();if(typeof supabaseAvailable!=='function'||!supabaseAvailable()||typeof supabaseClient!=='function')return st;var client=supabaseClient();try{var r=await Promise.all([client.from('community_posts').select('*').eq('is_active',true).order('is_pinned',{ascending:false}).order('created_at',{ascending:false}).limit(80),client.from('community_comments').select('*').order('created_at',{ascending:true}).limit(300),client.from('community_likes').select('*').limit(500)]);if(r[0].error)throw r[0].error;if(r[1].error)throw r[1].error;if(r[2].error)throw r[2].error;st.communityPosts=(r[0].data||[]).map(function(p){return {id:p.id,authorId:p.author_id,authorName:p.author_name,authorRole:p.author_role,content:p.content,imageUrl:p.image_url,category:p.category,pinned:!!p.is_pinned,active:p.is_active!==false,createdAt:p.created_at};});st.communityComments=(r[1].data||[]).map(function(c){return {id:c.id,postId:c.post_id,authorId:c.author_id,authorName:c.author_name,authorRole:c.author_role,content:c.content,createdAt:c.created_at};});st.communityLikes=(r[2].data||[]).map(function(l){return {id:l.id,postId:l.post_id,userId:l.user_id,createdAt:l.created_at};});if(typeof save==='function')save(st);}catch(e){console.warn('Comunidade HERO em modo local:',e.message);}return st;}
   function postCard(post,comments,likes,user,isAdmin){var pc=comments.filter(function(c){return String(c.postId)===String(post.id)});var pl=likes.filter(function(l){return String(l.postId)===String(post.id)});var liked=pl.some(function(l){return String(l.userId)===String(user.id)});return '<article class="community-v3-post '+(post.pinned?'is-pinned':'')+'"><div class="community-v3-post-head"><div class="community-v3-author"><strong>'+safeEsc(post.authorName||'HERO')+'</strong><span>'+safeEsc(post.authorRole||'aluna')+' · '+(post.createdAt?new Date(post.createdAt).toLocaleString('pt-BR'):'')+'</span></div><div class="community-v3-category">'+(post.pinned?'fixado · ':'')+safeEsc(post.category||'geral')+'</div></div>'+(post.content?'<div class="community-v3-content">'+safeEsc(post.content)+'</div>':'')+(post.imageUrl?'<img class="community-v3-image" src="'+safeEsc(post.imageUrl)+'" alt="Imagem da comunidade HERO">':'')+'<div class="community-v3-actions"><button class="btn ghost small" onclick="HERO.communityLike(\''+post.id+'\')">'+(liked?'Curtido':'Curtir')+' · '+pl.length+'</button>'+(isAdmin?'<button class="btn secondary small" onclick="HERO.communityTogglePin(\''+post.id+'\')">'+(post.pinned?'Desfixar':'Fixar')+'</button><button class="btn danger small" onclick="HERO.communityDeletePost(\''+post.id+'\')">Excluir</button>':'')+'</div><div class="community-v3-comments">'+(pc.length?pc.map(function(c){return '<div class="community-v3-comment"><strong>'+safeEsc(c.authorName||'Usuário')+'</strong><p>'+safeEsc(c.content)+'</p></div>'}).join(''):'<div class="muted">Sem comentários ainda.</div>')+'<form class="community-v3-comment-form" onsubmit="HERO.communityAddComment(event,\''+post.id+'\')"><input name="content" placeholder="Comente com orientação, dúvida ou incentivo..." required><button class="btn secondary small">Comentar</button></form></div></article>';}
   window.HERO.communityUsePrompt=function(kind){var form=document.getElementById('communityForm');if(!form)return;var textarea=form.querySelector('textarea[name="content"]');var select=form.querySelector('select[name="category"]');var prompts={checkin:{cat:'Check-in',text:'Check-in do dia:\n\nTreino concluído.\nHoje eu senti mais dificuldade em:\nMinha maior vitória de hoje foi:'},duvida:{cat:'Dúvida',text:'Dúvida rápida:\n\nEstou com dificuldade em:\nO que eu senti durante a execução foi:\nQuero entender melhor:'},resultado:{cat:'Resultado',text:'Evolução registrada:\n\nHoje percebi melhora em:\nAntes eu tinha dificuldade com:\nAgora consegui:'},execucao:{cat:'Execução',text:'Análise de execução:\n\nExercício:\nO que quero que o treinador avalie:\nSensação durante a série:'}};var item=prompts[kind]||prompts.checkin;if(textarea){textarea.value=item.text;textarea.focus();textarea.selectionStart=textarea.value.length;textarea.selectionEnd=textarea.value.length;}if(select)select.value=item.cat;};
-  window.HERO.community=async function(){location.hash='comunidade';var user=currentUser();var isAdmin=user.role==='admin';var st=await fetchCommunity();var posts=(st.communityPosts||[]).filter(function(p){return p.active!==false});var comments=st.communityComments||[];var likes=st.communityLikes||[];var pinned=posts.filter(function(p){return p.pinned}).length;var checkins=posts.filter(function(p){return String(p.category||'').toLowerCase().indexOf('check')>-1}).length;var results=posts.filter(function(p){return String(p.category||'').toLowerCase().indexOf('resultado')>-1}).length;var back='<button type="button" class="btn secondary small" id="communityBackDirect">Voltar</button>'+(isAdmin?'<button type="button" class="btn ghost small" id="communityCenterDirect">Centro de controle</button>':'')+'<button type="button" class="btn ghost small" id="communityChatDirect">Chat HERO</button>';var html='<main class="wrap community-v3-wrap"><div class="community-context-bar" data-hero-nav-bar="community-final"><div><span class="community-context-kicker">navegação</span><h2 class="community-context-title">Comunidade HERO</h2></div><div class="context-actions">'+back+'</div></div><section class="hero community-v3-hero"><p class="eyebrow">mural privado</p><h1>Comunidade HERO</h1><p>Compartilhe evolução, tire dúvidas, acompanhe avisos e mantenha a execução no padrão certo.</p><div class="community-v3-pills"><span>check-ins</span><span>dúvidas</span><span>avisos</span><span>resultados</span></div></section><section class="community-v3-stats"><div class="community-v3-stat"><span>Publicações</span><strong>'+posts.length+'</strong></div><div class="community-v3-stat"><span>Check-ins</span><strong>'+checkins+'</strong></div><div class="community-v3-stat"><span>Resultados</span><strong>'+results+'</strong></div><div class="community-v3-stat"><span>Comentários</span><strong>'+comments.length+'</strong></div></section><section class="community-v3-board"><div><form id="communityForm" class="community-v3-composer"><div class="community-v3-card feature"><small>postagem guiada</small><h3>Escolha um modelo rápido</h3><p>Quanto menor o atrito, maior a chance da aluna postar.</p><div class="community-v3-template-grid"><button type="button" onclick="HERO.communityUsePrompt(\'checkin\')">Check-in</button><button type="button" onclick="HERO.communityUsePrompt(\'duvida\')">Dúvida</button><button type="button" onclick="HERO.communityUsePrompt(\'resultado\')">Resultado</button><button type="button" onclick="HERO.communityUsePrompt(\'execucao\')">Execução</button></div></div><label>Publicação<textarea name="content" placeholder="Compartilhe uma evolução, dúvida, aviso ou check-in..." required></textarea></label><div class="community-v3-form-row"><label>Categoria<select name="category"><option>Check-in</option><option>Dúvida</option><option>Resultado</option><option>Aviso</option><option>Execução</option><option>Motivação</option></select></label><label class="community-v3-file">Imagem opcional<input type="file" name="image" accept="image/*"></label></div><button class="btn community-v3-publish">Publicar atualização</button><div id="communityMsg" class="msg"></div></form><div class="community-v3-feed">'+(posts.length?posts.map(function(p){return postCard(p,comments,likes,user,isAdmin)}).join(''):'<div class="community-v3-empty">Ainda não há publicações. Publique o primeiro check-in ou aviso.</div>')+'</div></div><aside class="community-v3-side"><div class="community-v3-card feature"><small>desafio da semana</small><h3>4 check-ins HERO</h3><p>Publique 4 check-ins nesta semana: treino feito, dúvida, evolução ou ajuste de execução.</p><button class="btn secondary small" onclick="HERO.communityUsePrompt(\'checkin\')">Fazer check-in</button></div><div class="community-v3-card"><h3>Como usar</h3><ul><li>poste check-ins objetivos;</li><li>comente nos posts de outras alunas;</li><li>registre evolução com foto;</li><li>tire dúvidas de execução.</li></ul></div><div class="community-v3-card"><h3>Movimento</h3><p>'+pinned+' aviso(s) fixado(s), '+likes.length+' curtida(s) e '+comments.length+' comentário(s).</p></div></aside></section></main>';if(typeof mount==='function')mount(html);else{var root=document.getElementById('app');if(root)root.innerHTML=html;else document.body.innerHTML=html;}var form=document.getElementById('communityForm');if(form)form.onsubmit=window.HERO.communityCreatePost;
-var backBtn=document.getElementById('communityBackDirect');
-if(backBtn)backBtn.onclick=function(ev){ev.preventDefault();ev.stopPropagation();location.hash='';if(isAdmin&&window.HERO&&typeof window.HERO.admin==='function')return window.HERO.admin();if(user&&user.id&&user.id!=='local-user'&&window.HERO&&typeof window.HERO.student==='function')return window.HERO.student(user.id,false);if(window.HERO&&typeof window.HERO.login==='function')return window.HERO.login();};
-var centerBtn=document.getElementById('communityCenterDirect');
-if(centerBtn)centerBtn.onclick=function(ev){ev.preventDefault();ev.stopPropagation();location.hash='';if(window.HERO&&typeof window.HERO.admin==='function')return window.HERO.admin();};
-var chatBtn=document.getElementById('communityChatDirect');
-if(chatBtn)chatBtn.onclick=function(ev){ev.preventDefault();ev.stopPropagation();if(window.HERO&&typeof window.HERO.abrirChatIA==='function')return window.HERO.abrirChatIA();};
-if(window.HERO.heroCommunityScheduleButton)window.HERO.heroCommunityScheduleButton();};
+  window.HERO.community=async function(){location.hash='comunidade';var user=currentUser();var isAdmin=user.role==='admin';var st=await fetchCommunity();var posts=(st.communityPosts||[]).filter(function(p){return p.active!==false});var comments=st.communityComments||[];var likes=st.communityLikes||[];var pinned=posts.filter(function(p){return p.pinned}).length;var checkins=posts.filter(function(p){return String(p.category||'').toLowerCase().indexOf('check')>-1}).length;var results=posts.filter(function(p){return String(p.category||'').toLowerCase().indexOf('resultado')>-1}).length;var back='<button class="btn secondary small" onclick="HERO.heroCommunityBack()">Voltar</button>';var html=(typeof top==='function'?top('Comunidade HERO',back):'')+'<main class="wrap community-v3-wrap"><section class="hero community-v3-hero"><p class="eyebrow">mural privado</p><h1>Comunidade HERO</h1><p>Compartilhe evolução, tire dúvidas, acompanhe avisos e mantenha a execução no padrão certo.</p><div class="community-v3-pills"><span>check-ins</span><span>dúvidas</span><span>avisos</span><span>resultados</span></div></section><section class="community-v3-stats"><div class="community-v3-stat"><span>Publicações</span><strong>'+posts.length+'</strong></div><div class="community-v3-stat"><span>Check-ins</span><strong>'+checkins+'</strong></div><div class="community-v3-stat"><span>Resultados</span><strong>'+results+'</strong></div><div class="community-v3-stat"><span>Comentários</span><strong>'+comments.length+'</strong></div></section><section class="community-v3-board"><div><form id="communityForm" class="community-v3-composer"><div class="community-v3-card feature"><small>postagem guiada</small><h3>Escolha um modelo rápido</h3><p>Quanto menor o atrito, maior a chance da aluna postar.</p><div class="community-v3-template-grid"><button type="button" onclick="HERO.communityUsePrompt(\'checkin\')">Check-in</button><button type="button" onclick="HERO.communityUsePrompt(\'duvida\')">Dúvida</button><button type="button" onclick="HERO.communityUsePrompt(\'resultado\')">Resultado</button><button type="button" onclick="HERO.communityUsePrompt(\'execucao\')">Execução</button></div></div><label>Publicação<textarea name="content" placeholder="Compartilhe uma evolução, dúvida, aviso ou check-in..." required></textarea></label><div class="community-v3-form-row"><label>Categoria<select name="category"><option>Check-in</option><option>Dúvida</option><option>Resultado</option><option>Aviso</option><option>Execução</option><option>Motivação</option></select></label><label class="community-v3-file">Imagem opcional<input type="file" name="image" accept="image/*"></label></div><button class="btn community-v3-publish">Publicar atualização</button><div id="communityMsg" class="msg"></div></form><div class="community-v3-feed">'+(posts.length?posts.map(function(p){return postCard(p,comments,likes,user,isAdmin)}).join(''):'<div class="community-v3-empty">Ainda não há publicações. Publique o primeiro check-in ou aviso.</div>')+'</div></div><aside class="community-v3-side"><div class="community-v3-card feature"><small>desafio da semana</small><h3>4 check-ins HERO</h3><p>Publique 4 check-ins nesta semana: treino feito, dúvida, evolução ou ajuste de execução.</p><button class="btn secondary small" onclick="HERO.communityUsePrompt(\'checkin\')">Fazer check-in</button></div><div class="community-v3-card"><h3>Como usar</h3><ul><li>poste check-ins objetivos;</li><li>comente nos posts de outras alunas;</li><li>registre evolução com foto;</li><li>tire dúvidas de execução.</li></ul></div><div class="community-v3-card"><h3>Movimento</h3><p>'+pinned+' aviso(s) fixado(s), '+likes.length+' curtida(s) e '+comments.length+' comentário(s).</p></div></aside></section></main>';if(typeof mount==='function')mount(html);else document.body.innerHTML=html;var form=document.getElementById('communityForm');if(form)form.onsubmit=window.HERO.communityCreatePost;if(window.HERO.heroCommunityScheduleButton)window.HERO.heroCommunityScheduleButton();};
   window.community=window.HERO.community;
   window.HERO.communityCreatePost=async function(ev){ev.preventDefault();var form=ev.target,msg=document.getElementById('communityMsg'),btn=form.querySelector('button.community-v3-publish'),old=btn?btn.textContent:'Publicar atualização';if(btn){btn.disabled=true;btn.textContent='Publicando...';}if(msg)msg.textContent='';var user=currentUser();var fd=new FormData(form);var content=String(fd.get('content')||'').trim();var category=String(fd.get('category')||'geral');var file=fd.get('image');try{var imageUrl='';if(file&&file.name)imageUrl=await uploadImg(file);if(typeof supabaseAvailable==='function'&&supabaseAvailable()&&typeof supabaseClient==='function'){var client=supabaseClient();var ins=await client.from('community_posts').insert({author_id:String(user.id),author_name:user.name,author_role:user.role,content:content,image_url:imageUrl,category:category,is_pinned:false,is_active:true});if(ins.error)throw ins.error;}else{var st=localState();st.communityPosts.unshift({id:(typeof uid==='function'?uid():Math.random().toString(36).slice(2)),authorId:user.id,authorName:user.name,authorRole:user.role,content:content,imageUrl:imageUrl,category:category,pinned:false,active:true,createdAt:new Date().toISOString()});if(typeof save==='function')save(st);}form.reset();await window.HERO.community();}catch(e){if(msg)msg.textContent='Erro ao publicar: '+e.message;if(btn){btn.disabled=false;btn.textContent=old;}}};
   window.HERO.communityLike=async function(postId){var user=currentUser(),st=localState();var existing=(st.communityLikes||[]).find(function(l){return String(l.postId)===String(postId)&&String(l.userId)===String(user.id)});try{if(typeof supabaseAvailable==='function'&&supabaseAvailable()&&typeof supabaseClient==='function'){var client=supabaseClient();if(existing)await client.from('community_likes').delete().eq('post_id',postId).eq('user_id',String(user.id));else await client.from('community_likes').insert({post_id:postId,user_id:String(user.id)});}else{if(existing)st.communityLikes=st.communityLikes.filter(function(l){return l!==existing});else st.communityLikes.push({id:(typeof uid==='function'?uid():Math.random().toString(36).slice(2)),postId:postId,userId:user.id,createdAt:new Date().toISOString()});if(typeof save==='function')save(st);}}catch(e){alert('Erro ao curtir: '+e.message);}await window.HERO.community();};
@@ -10595,18 +10775,787 @@ if(window.HERO.heroCommunityScheduleButton)window.HERO.heroCommunityScheduleButt
 </script>
 
 
-
 <script>
-/* HERO OS V3.0 COMMUNITY FINAL BUTTON FIX */
+/* HERO OS V2.4 NAV CLEAN HEADERS MARKER */
 (function(){
-  document.documentElement.setAttribute('data-hero-os-patch','community-final-buttons-v30');
+  function applyPatch(){
+    document.documentElement.setAttribute('data-hero-os-visual','premium-v2');
+    document.documentElement.setAttribute('data-hero-os-patch','nav-clean-headers-v24');
+    document.documentElement.classList.add('hero-os-v24-ready');
+  }
+  applyPatch();
+
+  if(!window.HERO){ window.HERO = {}; }
+
+  function currentUserV24(){
+    try{
+      var raw=sessionStorage.getItem('hero_session');
+      var u=raw?JSON.parse(raw):{};
+      var st=typeof data==='function'?data():{};
+      var aluno=(st.alunos||[]).find(function(a){
+        return String(a.id)===String(u.alunoId)||String(a.email||'').toLowerCase()===String(u.email||'').toLowerCase();
+      });
+      return {
+        id:u.alunoId||u.id||u.email||(aluno&&aluno.id)||'local-user',
+        name:u.nome||u.name||(aluno&&aluno.nome)||u.email||'Usuário HERO',
+        role:u.role||(aluno&&aluno.role)||'aluna',
+        email:u.email||(aluno&&aluno.email)||''
+      };
+    }catch(e){
+      return {id:'local-user',name:'Usuário HERO',role:'aluna',email:''};
+    }
+  }
+
+  function safeEscV24(v){
+    if(typeof esc==='function') return esc(v);
+    return String(v??'').replace(/[&<>"']/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]});
+  }
+
+  var previousCommunity = window.HERO.community || window.community;
+
+  window.HERO.heroCommunityBack = function(){
+    var u=currentUserV24();
+    if(u.role==='admin' && typeof admin==='function') return admin();
+    if(u.id && u.id!=='local-user' && typeof student==='function') return student(u.id,false);
+    if(typeof login==='function') return login();
+  };
+
+  window.HERO.heroCommunityContextBar = function(){
+    var u=currentUserV24();
+    var adminBtn = u.role==='admin'
+      ? '<button class="btn ghost small" onclick="HERO.admin ? HERO.admin() : admin()">Centro de controle</button>'
+      : '<button class="btn ghost small" onclick="HERO.heroCommunityBack()">Meu protocolo</button>';
+    var chatBtn = (typeof abrirChatIA==='function' || (window.HERO && window.HERO.abrirChatIA))
+      ? '<button class="btn ghost small" onclick="HERO.abrirChatIA ? HERO.abrirChatIA() : abrirChatIA()">Chat HERO</button>'
+      : '';
+    return '<div class="community-context-bar"><div><span class="community-context-kicker">navegação</span><h2 class="community-context-title">Comunidade HERO</h2></div><div class="context-actions"><button class="btn secondary small" onclick="HERO.heroCommunityBack()">Voltar</button>'+adminBtn+chatBtn+'</div></div>';
+  };
+
+  function injectCommunityContext(){
+    try{
+      var app=document.getElementById('app') || document.body;
+      if(!app || document.querySelector('.community-context-bar')) return;
+      var main=document.querySelector('main.wrap');
+      if(!main) return;
+      var wrap=document.createElement('div');
+      wrap.innerHTML=window.HERO.heroCommunityContextBar();
+      main.insertBefore(wrap.firstElementChild, main.firstElementChild);
+    }catch(e){ console.warn('Context bar comunidade:', e.message); }
+  }
+
+  if(previousCommunity){
+    window.HERO.community = async function(){
+      var result = await previousCommunity.apply(this, arguments);
+      setTimeout(injectCommunityContext,40);
+      setTimeout(injectCommunityContext,180);
+      return result;
+    };
+    window.community = window.HERO.community;
+  }
+
+  window.addEventListener('hashchange', function(){
+    if(location.hash==='#comunidade'){
+      setTimeout(injectCommunityContext,120);
+    }
+  });
+
+  setTimeout(function(){
+    applyPatch();
+    if(location.hash==='#comunidade') injectCommunityContext();
+  },300);
 })();
 </script>
 
 
 <script>
-/* HERO OS V3.1 COMMUNITY INLINE NAV TESTED */
-(function(){document.documentElement.setAttribute('data-hero-os-patch','community-inline-nav-v31');})();
+/* HERO OS V2.5 COMMUNITY NAV FIX MARKER */
+(function(){
+  function applyPatch(){
+    document.documentElement.setAttribute('data-hero-os-visual','premium-v2');
+    document.documentElement.setAttribute('data-hero-os-patch','community-nav-fix-v25');
+    document.documentElement.classList.add('hero-os-v25-community-nav-ready');
+  }
+  applyPatch();
+
+  if(!window.HERO){ window.HERO = {}; }
+
+  function currentUserV25(){
+    try{
+      var raw=sessionStorage.getItem('hero_session');
+      var u=raw?JSON.parse(raw):{};
+      var st=typeof data==='function'?data():{};
+      var aluno=(st.alunos||[]).find(function(a){
+        return String(a.id)===String(u.alunoId)||String(a.email||'').toLowerCase()===String(u.email||'').toLowerCase();
+      });
+      return {
+        id:u.alunoId||u.id||u.email||(aluno&&aluno.id)||'local-user',
+        name:u.nome||u.name||(aluno&&aluno.nome)||u.email||'Usuário HERO',
+        role:u.role||(aluno&&aluno.role)||'aluna',
+        email:u.email||(aluno&&aluno.email)||''
+      };
+    }catch(e){
+      return {id:'local-user',name:'Usuário HERO',role:'aluna',email:''};
+    }
+  }
+
+  window.HERO.goTrainerCenter = function(){
+    try{
+      location.hash='';
+      if(window.HERO && typeof window.HERO.admin==='function') return window.HERO.admin();
+      if(typeof admin==='function') return admin();
+      if(window.HERO && typeof window.HERO.dashboard==='function') return window.HERO.dashboard();
+      return false;
+    }catch(e){
+      console.warn('Falha ao abrir Centro de controle:', e.message);
+      return false;
+    }
+  };
+
+  window.HERO.goCommunityBack = function(){
+    try{
+      var u=currentUserV25();
+      location.hash='';
+      if(u.role==='admin'){
+        if(window.HERO && typeof window.HERO.admin==='function') return window.HERO.admin();
+        if(typeof admin==='function') return admin();
+      }
+      if(u.id && u.id!=='local-user'){
+        if(window.HERO && typeof window.HERO.student==='function') return window.HERO.student(u.id,false);
+        if(typeof student==='function') return student(u.id,false);
+      }
+      if(typeof login==='function') return login();
+      return false;
+    }catch(e){
+      console.warn('Falha ao voltar:', e.message);
+      if(typeof login==='function') return login();
+      return false;
+    }
+  };
+
+  window.HERO.openHeroChat = function(){
+    try{
+      if(window.HERO && typeof window.HERO.abrirChatIA==='function') return window.HERO.abrirChatIA();
+      if(typeof abrirChatIA==='function') return abrirChatIA();
+      return false;
+    }catch(e){
+      console.warn('Falha ao abrir Chat HERO:', e.message);
+      return false;
+    }
+  };
+
+  window.HERO.heroCommunityContextBar = function(){
+    var u=currentUserV25();
+    var adminBtn = u.role==='admin'
+      ? '<button type="button" class="btn ghost small" onclick="HERO.goTrainerCenter()">Centro de controle</button>'
+      : '<button type="button" class="btn ghost small" onclick="HERO.goCommunityBack()">Meu protocolo</button>';
+    var chatBtn = '<button type="button" class="btn ghost small" onclick="HERO.openHeroChat()">Chat HERO</button>';
+    return '<div class="community-context-bar"><div><span class="community-context-kicker">navegação</span><h2 class="community-context-title">Comunidade HERO</h2></div><div class="context-actions"><button type="button" class="btn secondary small" onclick="HERO.goCommunityBack()">Voltar</button>'+adminBtn+chatBtn+'</div></div>';
+  };
+
+  function removeCommunityVersionBadge(){
+    try{
+      document.querySelectorAll('.community-v3-version').forEach(function(el){ el.remove(); });
+    }catch(e){}
+  }
+
+  function injectCommunityContext(){
+    try{
+      removeCommunityVersionBadge();
+      var main=document.querySelector('main.wrap');
+      if(!main) return;
+      var old=document.querySelector('.community-context-bar');
+      if(old) old.remove();
+      var wrap=document.createElement('div');
+      wrap.innerHTML=window.HERO.heroCommunityContextBar();
+      main.insertBefore(wrap.firstElementChild, main.firstElementChild);
+    }catch(e){
+      console.warn('Context bar comunidade:', e.message);
+    }
+  }
+
+  var previousCommunity = window.HERO.community || window.community;
+  if(previousCommunity && !previousCommunity.__heroV25Patched){
+    var patched = async function(){
+      var result = await previousCommunity.apply(this, arguments);
+      setTimeout(injectCommunityContext,40);
+      setTimeout(injectCommunityContext,180);
+      setTimeout(removeCommunityVersionBadge,220);
+      return result;
+    };
+    patched.__heroV25Patched = true;
+    window.HERO.community = patched;
+    window.community = patched;
+  }else if(window.HERO.community){
+    window.community = window.HERO.community;
+  }
+
+  window.addEventListener('hashchange', function(){
+    if(location.hash==='#comunidade'){
+      setTimeout(injectCommunityContext,100);
+    }
+  });
+
+  setTimeout(function(){
+    applyPatch();
+    if(location.hash==='#comunidade') injectCommunityContext();
+    removeCommunityVersionBadge();
+  },300);
+})();
+</script>
+
+
+<script>
+/* HERO OS V3.3 LOAD TRACKER AND COACH DASHBOARD */
+(function(){
+  if(!window.HERO){window.HERO={};}
+  var LOAD_KEY='hero_load_records_v1';
+  var SESSION_KEY='hero_training_sessions_v1';
+
+  function todayKey(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+  function readJSON(k,f){try{return JSON.parse(localStorage.getItem(k)||JSON.stringify(f));}catch(e){return f;}}
+  function writeJSON(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+  function st(){try{return typeof data==='function'?data():{};}catch(e){return {};}}
+  function sess(){try{return JSON.parse(sessionStorage.getItem('hero_session')||'{}');}catch(e){return {};}}
+  function escH(s){return String(s||'').replace(/[&<>"']/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];});}
+  function supabaseClient(){try{return window.supabaseClient||window.supabase||null;}catch(e){return null;}}
+
+  function alunoAtual(){
+    var s=sess(), state=st(), alunos=state.alunos||[];
+    var aluno=alunos.find(function(a){return String(a.id)===String(s.alunoId||s.id)||String(a.email||'').toLowerCase()===String(s.email||'').toLowerCase();});
+    return aluno||{id:s.alunoId||s.id||s.email||'local-user',nome:s.nome||s.name||s.email||'Aluna HERO'};
+  }
+
+  function exName(card){
+    var h=card.querySelector('h3,h4,strong,b');
+    var txt=h?String(h.textContent||'').trim():'Execução';
+    return txt||'Execução';
+  }
+
+  function seriesCount(card){
+    var text=String(card.textContent||'');
+    var m=text.match(/(\d+)\s*(?:x|séries|series|série|serie)/i);
+    if(m){var n=parseInt(m[1],10);if(n>0&&n<=12)return n;}
+    m=text.match(/séries?\s*[:\-]?\s*(\d+)/i);
+    if(m){var n2=parseInt(m[1],10);if(n2>0&&n2<=12)return n2;}
+    return 4;
+  }
+
+  function keyOf(studentId, exercise, series){return [todayKey(),studentId||'local-user',exercise||'Execução',series].join('|');}
+  function records(){return readJSON(LOAD_KEY,{});}
+  function saveLocal(key,value){var r=records();r[key]=value;writeJSON(LOAD_KEY,r);}
+
+  async function syncLoadToSupabase(value){
+    var sb=supabaseClient();
+    if(!sb||!sb.from)return false;
+    try{
+      var payload={
+        record_date:value.date,
+        student_id:String(value.studentId||''),
+        student_name:String(value.studentName||''),
+        exercise:String(value.exercise||''),
+        series_number:Number(value.series||1),
+        load_kg:Number(String(value.load||'0').replace(',','.'))||0,
+        created_at:new Date(value.timestamp||Date.now()).toISOString()
+      };
+      var res=await sb.from('hero_training_loads').upsert(payload,{onConflict:'record_date,student_id,exercise,series_number'});
+      return !res.error;
+    }catch(e){return false;}
+  }
+
+  function enhanceExerciseCards(){
+    var aluno=alunoAtual();
+    var cards=Array.from(document.querySelectorAll('.student-ex,.workout-card,.exercise-card,.protocol-exercise'));
+    cards=cards.filter(function(card){
+      if(card.querySelector('.hero-load-box'))return false;
+      var txt=String(card.textContent||'').toLowerCase();
+      return card.classList.contains('student-ex')||txt.includes('série')||txt.includes('serie')||txt.includes('repet')||txt.includes('execução')||txt.includes('carga');
+    });
+    if(!cards.length)return;
+    var rec=records();
+    cards.forEach(function(card){
+      var exercise=exName(card), total=seriesCount(card), grid='';
+      for(var i=1;i<=total;i++){
+        var k=keyOf(aluno.id,exercise,i);
+        var current=rec[k]&&rec[k].load?rec[k].load:'';
+        grid+='<div class="hero-load-field"><label>Série '+i+'</label><input inputmode="decimal" type="number" min="0" step="0.5" placeholder="kg total" value="'+escH(current)+'" data-load-key="'+escH(k)+'" data-load-series="'+i+'" data-load-exercise="'+escH(exercise)+'"></div>';
+      }
+      var box=document.createElement('div');
+      box.className='hero-load-box';
+      box.innerHTML='<div class="hero-load-head"><div><strong>Carga utilizada</strong><span>Informe a carga total usada em cada série deste exercício.</span></div><span class="hero-load-save-status">salvamento automático</span></div><div class="hero-load-grid">'+grid+'</div>';
+      card.appendChild(box);
+    });
+    document.querySelectorAll('[data-load-key]').forEach(function(input){
+      if(input.__heroLoadBound)return;
+      input.__heroLoadBound=true;
+      input.addEventListener('input',function(){
+        var aluno=alunoAtual();
+        var val={
+          date:todayKey(),timestamp:Date.now(),studentId:aluno.id||'local-user',studentName:aluno.nome||'Aluna HERO',
+          exercise:input.getAttribute('data-load-exercise')||'Execução',
+          series:Number(input.getAttribute('data-load-series')||1),
+          load:String(input.value||'').trim()
+        };
+        saveLocal(input.getAttribute('data-load-key'),val);
+        syncLoadToSupabase(val);
+        var status=input.closest('.hero-load-box')&&input.closest('.hero-load-box').querySelector('.hero-load-save-status');
+        if(status){status.textContent='salvo';setTimeout(function(){status.textContent='salvamento automático';},900);}
+      });
+    });
+  }
+
+  function finalizeLoadSession(){
+    var aluno=alunoAtual(), all=Object.values(records());
+    var vals=all.filter(function(r){return r&&r.date===todayKey()&&String(r.studentId)===String(aluno.id||'local-user')&&String(r.load||'').trim()!=='';});
+    if(vals.length){
+      var sessions=readJSON(SESSION_KEY,[]);
+      sessions.push({id:'session_'+Date.now(),date:todayKey(),timestamp:Date.now(),studentId:aluno.id||'local-user',studentName:aluno.nome||'Aluna HERO',loads:vals});
+      writeJSON(SESSION_KEY,sessions.slice(-600));
+    }
+  }
+
+  function dashboardHTML(){
+    var state=st(), alunos=state.alunos||[], sessions=readJSON(SESSION_KEY,[]), all=Object.values(records()), today=todayKey();
+    var todaySessions=sessions.filter(function(s){return s&&s.date===today;});
+    var trained={}; todaySessions.forEach(function(s){trained[s.studentId]=s.studentName;});
+    var todayRecords=all.filter(function(r){return r&&r.date===today&&String(r.load||'').trim()!=='';});
+    var max=0,maxRec=null,byStudent={};
+    todayRecords.forEach(function(r){
+      var n=Number(String(r.load).replace(',','.'));
+      if(!isNaN(n)&&n>max){max=n;maxRec=r;}
+      var sid=r.studentId||'local-user';
+      if(!byStudent[sid])byStudent[sid]={name:r.studentName||'Aluna HERO',count:0,max:0,exercise:''};
+      byStudent[sid].count++;
+      if(!isNaN(n)&&n>byStudent[sid].max){byStudent[sid].max=n;byStudent[sid].exercise=r.exercise||'Execução';}
+    });
+    var rows=Object.values(byStudent).sort(function(a,b){return b.max-a.max;}).slice(0,8);
+    var list=rows.length?rows.map(function(x){
+      return '<div class="coach-row"><div><strong>'+escH(x.name)+'</strong><small>'+x.count+' séries registradas hoje • maior carga em '+escH(x.exercise)+'</small></div><span class="coach-badge">'+x.max+' kg</span></div>';
+    }).join(''):'<div class="coach-row"><div><strong>Nenhum treino finalizado ainda hoje</strong><small>Os dados aparecem após a aluna registrar cargas e finalizar o treino.</small></div><span class="coach-badge">aguardando</span></div>';
+    var trainedCount=Object.keys(trained).length||Object.keys(byStudent).length;
+    return '<section class="coach-dashboard" id="coachDashboard"><div class="coach-dashboard-head"><div><span class="eyebrow">painel estratégico</span><h2>Performance das alunas hoje</h2><p>Resumo para acompanhar presença, cargas e exercícios com maior progressão.</p></div><button class="btn ghost small" onclick="HERO.refreshCoachDashboard&&HERO.refreshCoachDashboard()">Atualizar</button></div><div class="coach-kpi-grid"><div class="coach-kpi"><span>alunas cadastradas</span><strong>'+alunos.length+'</strong></div><div class="coach-kpi"><span>treinaram hoje</span><strong>'+trainedCount+'</strong></div><div class="coach-kpi"><span>séries com carga</span><strong>'+todayRecords.length+'</strong></div><div class="coach-kpi"><span>maior carga do dia</span><strong>'+(maxRec?max+' kg':'--')+'</strong></div></div><div class="coach-dashboard-list">'+list+'</div></section>';
+  }
+
+  function injectDashboard(){
+    var main=document.querySelector('main.wrap'); if(!main)return;
+    var old=document.getElementById('coachDashboard'); if(old)old.remove();
+    var box=document.createElement('div'); box.innerHTML=dashboardHTML();
+    var hero=main.querySelector('.hero'); if(hero&&hero.nextSibling)main.insertBefore(box.firstElementChild,hero.nextSibling); else main.insertBefore(box.firstElementChild,main.firstElementChild);
+  }
+
+  window.HERO.refreshCoachDashboard=injectDashboard;
+
+  var oldAdmin=window.HERO.admin;
+  if(typeof oldAdmin==='function'&&!oldAdmin.__heroDashV33){
+    var patchedAdmin=function(){var r=oldAdmin.apply(this,arguments);setTimeout(injectDashboard,80);setTimeout(injectDashboard,260);return r;};
+    patchedAdmin.__heroDashV33=true; window.HERO.admin=patchedAdmin;
+  }
+
+  var oldStudent=window.HERO.student;
+  if(typeof oldStudent==='function'&&!oldStudent.__heroLoadV33){
+    var patchedStudent=function(){var r=oldStudent.apply(this,arguments);setTimeout(enhanceExerciseCards,80);setTimeout(enhanceExerciseCards,260);setTimeout(enhanceExerciseCards,700);return r;};
+    patchedStudent.__heroLoadV33=true; window.HERO.student=patchedStudent;
+  }
+
+  document.addEventListener('click',function(ev){
+    var txt=String(ev.target&&ev.target.textContent||'').toLowerCase();
+    if(txt.includes('finalizar')||txt.includes('concluir')||txt.includes('encerrar treino')){finalizeLoadSession();setTimeout(injectDashboard,180);}
+  },true);
+
+  document.documentElement.setAttribute('data-hero-os-patch','load-tracker-dashboard-v33');
+  setTimeout(enhanceExerciseCards,900);
+  setTimeout(injectDashboard,1100);
+})();
+</script>
+
+
+<script>
+/* HERO OS V3.4 LOAD SERIES SELECTOR */
+(function(){
+  var LOAD_KEY='hero_load_records_v1';
+  var SERIES_COUNT_KEY='hero_load_series_count_v1';
+
+  function readJSON(key,fallback){
+    try{return JSON.parse(localStorage.getItem(key)||JSON.stringify(fallback));}
+    catch(e){return fallback;}
+  }
+
+  function writeJSON(key,value){
+    try{localStorage.setItem(key,JSON.stringify(value));}catch(e){}
+  }
+
+  function todayKey(){
+    var d=new Date();
+    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  }
+
+  function saveLoad(key,value){
+    var records=readJSON(LOAD_KEY,{});
+    records[key]=value;
+    writeJSON(LOAD_KEY,records);
+  }
+
+  function sessionStudentFromKey(firstInput){
+    var key=firstInput&&firstInput.getAttribute('data-load-key')||'';
+    var parts=key.split('|');
+    return {
+      date:parts[0]||todayKey(),
+      studentId:parts[1]||'local-user',
+      exercise:firstInput&&firstInput.getAttribute('data-load-exercise')||parts[2]||'Execução'
+    };
+  }
+
+  function escapeHtml(s){
+    return String(s||'').replace(/[&<>"']/g,function(m){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];
+    });
+  }
+
+  async function syncLoadToSupabase(value){
+    try{
+      var sb=window.supabaseClient||window.supabase||null;
+      if(!sb||!sb.from)return false;
+      var payload={
+        record_date:value.date,
+        student_id:String(value.studentId||''),
+        student_name:String(value.studentName||''),
+        exercise:String(value.exercise||''),
+        series_number:Number(value.series||1),
+        load_kg:Number(String(value.load||'0').replace(',','.'))||0,
+        created_at:new Date(value.timestamp||Date.now()).toISOString()
+      };
+      var res=await sb.from('hero_training_loads').upsert(payload,{onConflict:'record_date,student_id,exercise,series_number'});
+      return !res.error;
+    }catch(e){return false;}
+  }
+
+  function bindInput(input){
+    if(input.__heroSeriesSelectorBound)return;
+    input.__heroSeriesSelectorBound=true;
+    input.addEventListener('input',function(){
+      var meta=sessionStudentFromKey(input);
+      var value={
+        date:meta.date||todayKey(),
+        timestamp:Date.now(),
+        studentId:meta.studentId||'local-user',
+        studentName:'',
+        exercise:input.getAttribute('data-load-exercise')||meta.exercise||'Execução',
+        series:Number(input.getAttribute('data-load-series')||1),
+        load:String(input.value||'').trim()
+      };
+      saveLoad(input.getAttribute('data-load-key'),value);
+      syncLoadToSupabase(value);
+      var status=input.closest('.hero-load-box')&&input.closest('.hero-load-box').querySelector('.hero-load-save-status');
+      if(status){
+        status.textContent='salvo';
+        setTimeout(function(){status.textContent='salvamento automático';},900);
+      }
+    });
+  }
+
+  function ensureSevenFields(box){
+    var grid=box.querySelector('.hero-load-grid');
+    if(!grid)return;
+    var first=grid.querySelector('[data-load-key]');
+    if(!first)return;
+
+    var meta=sessionStudentFromKey(first);
+    var records=readJSON(LOAD_KEY,{});
+    var existing={};
+    grid.querySelectorAll('[data-load-series]').forEach(function(input){
+      existing[String(input.getAttribute('data-load-series'))]=input.closest('.hero-load-field');
+      bindInput(input);
+    });
+
+    for(var i=1;i<=7;i++){
+      if(existing[String(i)])continue;
+      var key=[meta.date,meta.studentId,meta.exercise,i].join('|');
+      var current=records[key]&&records[key].load?records[key].load:'';
+      var field=document.createElement('div');
+      field.className='hero-load-field';
+      field.innerHTML='<label>Série '+i+'</label><input inputmode="decimal" type="number" min="0" step="0.5" placeholder="kg total" value="'+escapeHtml(current)+'" data-load-key="'+escapeHtml(key)+'" data-load-series="'+i+'" data-load-exercise="'+escapeHtml(meta.exercise)+'">';
+      grid.appendChild(field);
+      bindInput(field.querySelector('input'));
+    }
+  }
+
+  function addSelector(box){
+    if(box.querySelector('.hero-load-selector'))return;
+    var grid=box.querySelector('.hero-load-grid');
+    if(!grid)return;
+    var first=grid.querySelector('[data-load-key]');
+    if(!first)return;
+
+    var meta=sessionStudentFromKey(first);
+    var countMap=readJSON(SERIES_COUNT_KEY,{});
+    var mapKey=[meta.date,meta.studentId,meta.exercise].join('|');
+    var defaultCount=Number(countMap[mapKey]||Math.min(Math.max(grid.querySelectorAll('.hero-load-field').length||4,1),7));
+
+    var selector=document.createElement('div');
+    selector.className='hero-load-selector';
+    selector.innerHTML='<label>Quantidade de séries para registrar</label><select data-series-count-select><option value="1">1 série</option><option value="2">2 séries</option><option value="3">3 séries</option><option value="4">4 séries</option><option value="5">5 séries</option><option value="6">6 séries</option><option value="7">7 séries</option></select>';
+    grid.parentNode.insertBefore(selector,grid);
+
+    var select=selector.querySelector('select');
+    select.value=String(defaultCount);
+
+    function applyCount(){
+      var count=Number(select.value||defaultCount||4);
+      var currentMap=readJSON(SERIES_COUNT_KEY,{});
+      currentMap[mapKey]=count;
+      writeJSON(SERIES_COUNT_KEY,currentMap);
+      box.querySelectorAll('.hero-load-field').forEach(function(field){
+        var input=field.querySelector('[data-load-series]');
+        var n=Number(input&&input.getAttribute('data-load-series')||1);
+        field.classList.toggle('is-hidden-series',n>count);
+      });
+    }
+
+    select.addEventListener('change',applyCount);
+    applyCount();
+  }
+
+  function upgradeLoadBoxes(){
+    document.querySelectorAll('.hero-load-box').forEach(function(box){
+      ensureSevenFields(box);
+      addSelector(box);
+    });
+  }
+
+  var mo=new MutationObserver(function(){upgradeLoadBoxes();});
+  try{mo.observe(document.body,{childList:true,subtree:true});}catch(e){}
+
+  setTimeout(upgradeLoadBoxes,300);
+  setTimeout(upgradeLoadBoxes,900);
+  setTimeout(upgradeLoadBoxes,1600);
+
+  document.documentElement.setAttribute('data-hero-os-patch','load-series-selector-v34');
+})();
+</script>
+
+
+<script>
+/* HERO OS V3.5 STUDENT AI FLOAT SUPPORT */
+(function(){
+  if(!window.HERO){window.HERO={};}
+
+  function todayKey(){
+    var d=new Date();
+    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  }
+
+  function readJSON(key,fallback){
+    try{return JSON.parse(localStorage.getItem(key)||JSON.stringify(fallback));}
+    catch(e){return fallback;}
+  }
+
+  function stateData(){
+    try{return typeof data==='function'?data():{};}catch(e){return {};}
+  }
+
+  function sessionData(){
+    try{return JSON.parse(sessionStorage.getItem('hero_session')||'{}');}catch(e){return {};}
+  }
+
+  function escapeHtml(s){
+    return String(s||'').replace(/[&<>"']/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];});
+  }
+
+  function currentStudent(){
+    var s=sessionData();
+    var st=stateData();
+    var alunos=st.alunos||[];
+    var aluno=alunos.find(function(a){
+      return String(a.id)===String(s.alunoId||s.id) || String(a.email||'').toLowerCase()===String(s.email||'').toLowerCase();
+    });
+    return aluno||{id:s.alunoId||s.id||s.email||'local-user',nome:s.nome||s.name||s.email||'Guerreira HERO'};
+  }
+
+  function currentExerciseFromScreen(){
+    var active=document.activeElement;
+    var box=active&&active.closest?active.closest('.student-ex,.workout-card,.exercise-card,.protocol-exercise'):null;
+    if(!box)box=document.querySelector('.student-ex,.workout-card,.exercise-card,.protocol-exercise');
+    if(!box)return '';
+    var h=box.querySelector('h3,h4,strong,b');
+    return h?String(h.textContent||'').trim():'';
+  }
+
+  function loadRecordsForStudent(){
+    var aluno=currentStudent();
+    var records=Object.values(readJSON('hero_load_records_v1',{}));
+    return records.filter(function(r){
+      return r && String(r.studentId)===String(aluno.id||'local-user') && String(r.load||'').trim()!=='';
+    }).sort(function(a,b){return Number(b.timestamp||0)-Number(a.timestamp||0);});
+  }
+
+  function previousLoadsByExercise(exercise){
+    var recs=loadRecordsForStudent();
+    if(exercise){
+      var target=String(exercise).toLowerCase();
+      recs=recs.filter(function(r){return String(r.exercise||'').toLowerCase().includes(target)||target.includes(String(r.exercise||'').toLowerCase());});
+    }
+    var grouped={};
+    recs.forEach(function(r){
+      var ex=r.exercise||'Execução';
+      if(!grouped[ex])grouped[ex]=[];
+      grouped[ex].push(r);
+    });
+    return grouped;
+  }
+
+  function bestProgressText(){
+    var recs=loadRecordsForStudent();
+    if(!recs.length)return 'Ainda não encontrei cargas registradas. Assim que você preencher as cargas por série, eu vou lembrar para te orientar no próximo treino.';
+    var byExercise={};
+    recs.forEach(function(r){
+      var ex=r.exercise||'Execução';
+      var load=Number(String(r.load||'0').replace(',','.'));
+      if(isNaN(load))return;
+      if(!byExercise[ex]||load>byExercise[ex].max){
+        byExercise[ex]={max:load,date:r.date,series:r.series};
+      }
+    });
+    var best=Object.entries(byExercise).sort(function(a,b){return b[1].max-a[1].max;})[0];
+    if(!best)return 'Você tem registros de carga, mas ainda não consegui identificar um maior valor válido.';
+    return 'Seu melhor registro até agora foi em '+best[0]+': '+best[1].max+' kg na série '+best[1].series+' em '+best[1].date+'. Use isso como referência. Se hoje a execução estiver firme, tente manter ou subir pouco, sem perder técnica.';
+  }
+
+  function previousLoadText(exercise){
+    var grouped=previousLoadsByExercise(exercise);
+    var names=Object.keys(grouped);
+    if(!names.length){
+      return 'Ainda não tenho carga anterior para esse exercício. Faça o registro hoje e eu vou usar isso como referência no próximo treino.';
+    }
+    var lines=names.slice(0,3).map(function(ex){
+      var list=grouped[ex].slice(0,7).sort(function(a,b){return Number(a.series||0)-Number(b.series||0);});
+      var latestDate=list[0]&&list[0].date?list[0].date:'último treino';
+      var loads=list.map(function(r){return 'S'+r.series+': '+r.load+' kg';}).join(' • ');
+      return ex+' ('+latestDate+'): '+loads;
+    });
+    return 'Aqui está a referência de carga anterior:\n'+lines.join('\n')+'\n\nUse como base. Se a última série ficou confortável e a execução está boa, progrida pouco. Se perdeu forma, mantenha.';
+  }
+
+  function answerStudentAI(text){
+    var q=String(text||'').toLowerCase();
+    var ex=currentExerciseFromScreen();
+
+    var offTopic=!(q.includes('treino')||q.includes('carga')||q.includes('série')||q.includes('serie')||q.includes('exerc')||q.includes('execução')||q.includes('protocolo')||q.includes('repet')||q.includes('descanso')||q.includes('dor')||q.includes('progress')||q.includes('quanto')||q.includes('anterior'));
+    if(offTopic){
+      return 'Eu sou sua IA de treino dentro da plataforma HERO. Vou te ajudar de forma direta com protocolo, execução, séries, descanso, cargas e progressão. Para outros assuntos, fale com o treinador.';
+    }
+
+    if(q.includes('carga anterior')||q.includes('treino anterior')||q.includes('última carga')||q.includes('ultima carga')||q.includes('quanto eu peguei')||q.includes('peguei quanto')||q.includes('usei quanto')||q.includes('anterior')){
+      return previousLoadText(ex);
+    }
+
+    if(q.includes('progress')||q.includes('aumentar')||q.includes('subir carga')||q.includes('evoluir')){
+      return bestProgressText();
+    }
+
+    if(q.includes('dor')){
+      return 'Se for dor articular, pontada, formigamento ou dor diferente do esforço muscular comum, pare o exercício e avise o treinador. Se for apenas queimação muscular controlada, reduza a pressa, mantenha a técnica e respeite o intervalo.';
+    }
+
+    if(q.includes('descanso')){
+      return 'Respeite o descanso indicado no protocolo. Se a carga estiver pesada e a execução estiver caindo, descanse um pouco mais. Qualidade primeiro, ego depois. O ego não hipertrofia, só atrapalha.';
+    }
+
+    if(q.includes('série')||q.includes('serie')||q.includes('repet')){
+      return 'Registre a carga total usada em cada série. Se conseguir completar todas as repetições com boa execução, essa carga vira referência para o próximo treino. Se travar antes, mantenha ou reduza.';
+    }
+
+    if(q.includes('exerc')||q.includes('execução')){
+      return 'Neste exercício, foque em amplitude, controle e estabilidade. A carga só vale se a execução estiver boa. Se quiser, toque no campo de carga do exercício e me pergunte: “qual foi minha carga anterior?”.';
+    }
+
+    return 'Direto ao ponto: siga o protocolo da tela, registre as cargas por série e use a carga anterior como referência. Se a execução estiver boa, progrida pouco. Se a execução piorar, mantenha ou reduza.';
+  }
+
+  function addMsg(role,text){
+    var box=document.getElementById('studentAiMessages');
+    if(!box)return;
+    var div=document.createElement('div');
+    div.className='student-ai-msg '+role;
+    div.textContent=text;
+    box.appendChild(div);
+    box.scrollTop=box.scrollHeight;
+  }
+
+  function openStudentAI(){
+    var panel=document.getElementById('studentAiPanel');
+    if(panel)panel.classList.remove('is-hidden');
+    var input=document.getElementById('studentAiInput');
+    if(input)setTimeout(function(){input.focus();},80);
+  }
+
+  function closeStudentAI(){
+    var panel=document.getElementById('studentAiPanel');
+    if(panel)panel.classList.add('is-hidden');
+  }
+
+  function installStudentAI(){
+    var root=document.getElementById('app')||document.body;
+    if(!root)return;
+
+    var isStudentPage=!!document.querySelector('.hero-load-box,.student-ex,.workout-card,.protocol-exercise,.today-panel');
+    if(!isStudentPage)return;
+
+    document.querySelectorAll('.student-ai-float,.student-ai-panel').forEach(function(el){el.remove();});
+
+    var float=document.createElement('div');
+    float.className='student-ai-float';
+    float.innerHTML='<div class="student-ai-hint">Olá, como eu posso te ajudar hoje, guerreira?</div><button type="button" class="student-ai-button" id="studentAiOpen">Suporte IA HERO</button>';
+
+    var panel=document.createElement('div');
+    panel.className='student-ai-panel is-hidden';
+    panel.id='studentAiPanel';
+    panel.innerHTML='<div class="student-ai-header"><div><strong>IA HERO da aluna</strong><span>Ajuda direta sobre seu treino, protocolo, execução e cargas registradas.</span></div><button type="button" class="student-ai-close" id="studentAiClose">×</button></div><div class="student-ai-messages" id="studentAiMessages"><div class="student-ai-msg bot">Estou aqui para te orientar no treino. Posso lembrar sua carga anterior, analisar progressão e te ajudar a seguir o protocolo com mais clareza.</div></div><div class="student-ai-suggestions"><button type="button" class="student-ai-chip" data-ai-suggest="Qual foi minha carga anterior?">Carga anterior</button><button type="button" class="student-ai-chip" data-ai-suggest="Posso subir carga hoje?">Subir carga</button><button type="button" class="student-ai-chip" data-ai-suggest="Como faço esse exercício melhor?">Execução</button></div><form class="student-ai-form" id="studentAiForm"><input id="studentAiInput" placeholder="Pergunte sobre seu treino ou carga..." autocomplete="off"><button type="submit" class="btn secondary small">Enviar</button></form>';
+
+    document.body.appendChild(float);
+    document.body.appendChild(panel);
+
+    document.getElementById('studentAiOpen').onclick=openStudentAI;
+    document.getElementById('studentAiClose').onclick=closeStudentAI;
+
+    document.querySelectorAll('[data-ai-suggest]').forEach(function(btn){
+      btn.onclick=function(){
+        openStudentAI();
+        var text=btn.getAttribute('data-ai-suggest');
+        addMsg('user',text);
+        setTimeout(function(){addMsg('bot',answerStudentAI(text));},180);
+      };
+    });
+
+    var form=document.getElementById('studentAiForm');
+    if(form)form.onsubmit=function(ev){
+      ev.preventDefault();
+      var input=document.getElementById('studentAiInput');
+      var text=input&&input.value?input.value.trim():'';
+      if(!text)return;
+      addMsg('user',text);
+      input.value='';
+      setTimeout(function(){addMsg('bot',answerStudentAI(text));},180);
+    };
+  }
+
+  var oldStudent=window.HERO.student;
+  if(typeof oldStudent==='function'&&!oldStudent.__heroStudentAIV35){
+    var patchedStudent=function(){
+      var r=oldStudent.apply(this,arguments);
+      setTimeout(installStudentAI,120);
+      setTimeout(installStudentAI,600);
+      return r;
+    };
+    patchedStudent.__heroStudentAIV35=true;
+    window.HERO.student=patchedStudent;
+  }
+
+  document.addEventListener('click',function(){
+    setTimeout(installStudentAI,260);
+  },true);
+
+  setTimeout(installStudentAI,1000);
+  document.documentElement.setAttribute('data-hero-os-patch','student-ai-float-v35');
+})();
 </script>
 
 </body>
