@@ -1,98 +1,181 @@
-# RELATÓRIO HERO OS V60 — DESIGN SYSTEM PROFISSIONAL E REFINAMENTO ESTRUTURAL
+# HERO OS V61 • QA final de pré-produção
 
 ## Escopo executado
 
-Foi criada uma camada global de Design System profissional e uma separação estrutural inicial da camada visual do HERO.
+Auditoria e correção final sobre a versão V60, mantendo intactos:
 
-A intervenção foi limitada à experiência visual, organização de CSS e documentação de arquitetura. Não foram alterados banco de dados, autenticação, Supabase, SQLs, APIs, permissões, fluxos ou regras de negócio.
+- funcionalidades existentes
+- banco de dados
+- autenticação
+- Supabase
+- SQLs
+- fluxos principais
+- permissões
+- estrutura de sessão/localStorage
 
-## O que mudou
+As correções foram limitadas a estabilidade visual, referências, responsividade, elementos legados e consistência pré-produção.
 
-### 1. CSS deixou de estar preso ao HTML
+## Correções aplicadas
 
-Os blocos visuais antes embutidos em `index.html` e `404.html` foram extraídos para a pasta `/styles`:
+### 1. Botões flutuantes legados da comunidade
+
+Foram neutralizadas as rotinas que ainda podiam recriar botões de comunidade no `body`.
+
+Correções:
+
+- `heroCommunityEnsureButton` deixou de criar novo botão flutuante.
+- `heroCommunityScheduleButton` deixou de agendar recriação visual.
+- Removida a criação do `heroCommunityFloating`.
+- Desativada a injeção do `heroCommunityCleanButton` no corpo da página.
+- Desativada a injeção do `heroTrainerCommunityTopAccess` no corpo da página.
+- A comunidade permanece acessível pelos botões oficiais dentro da navegação/telas.
+
+Resultado esperado:
+
+- nenhum botão piscando no rodapé;
+- nenhum CTA duplicado fora do layout;
+- nenhuma recriação automática causando layout shift.
+
+### 2. Camada final de QA visual
+
+Criado o arquivo:
+
+```text
+/styles/qa-final-v61.css
+```
+
+Aplicado em `index.html` e `404.html` após o Design System V60.
+
+A camada V61 corrige:
+
+- overflow horizontal;
+- quebras em mobile;
+- botões fora da largura útil;
+- imagens e mídias estourando containers;
+- textos longos em nomes/títulos;
+- inconsistências de toolbar/context-actions;
+- animações excessivas quando o usuário prefere movimento reduzido;
+- neutralização visual de FABs/comunidade legados.
+
+### 3. Responsividade
+
+Foram adicionadas proteções para:
+
+- desktop;
+- notebook;
+- tablet;
+- mobile.
+
+Ajustes principais:
+
+- grids de comunidade/login/aluna viram uma coluna em telas menores;
+- toolbars quebram em coluna no mobile;
+- botões ocupam largura total em telas pequenas;
+- painel da IA da aluna não estoura lateralmente;
+- containers recebem proteção contra overflow horizontal.
+
+### 4. Animações e microinterações
+
+Padronizada uma transição discreta de 180ms.
+
+Foram bloqueados, na camada final, comportamentos visuais indesejados em elementos legados:
+
+- blink;
+- pulse;
+- floating CTA;
+- transformações agressivas;
+- loops desnecessários em elementos removidos.
+
+### 5. Arquitetura e referências
+
+Verificado:
+
+- `index.html` carrega todos os CSS locais necessários;
+- `404.html` carrega todos os CSS locais necessários;
+- `supabase-config.js` continua na raiz;
+- SQLs permanecem intactos;
+- pastas `/styles`, `/components` e `/pages` preservadas;
+- nenhum arquivo local referenciado está ausente.
+
+## Validações executadas
+
+### Sintaxe JavaScript
+
+Executado `node --check` sobre os scripts inline extraídos de:
+
+- `index.html`
+- `404.html`
+
+Resultado:
+
+```text
+index.html: sem erro de sintaxe JS
+404.html: sem erro de sintaxe JS
+```
+
+### CSS
+
+Verificado balanceamento básico de chaves dos CSS:
 
 - `legacy-core.css`
 - `premium-refinement-v58.css`
 - `global-design-system-v59.css`
 - `audit-fixes-v57.css`
 - `product-system-v60.css`
+- `qa-final-v61.css`
 
-O arquivo `product-system-v60.css` é a camada final de autoridade visual.
+Resultado:
 
-### 2. Design System global
+```text
+CSS local com chaves balanceadas
+```
 
-Foram definidos tokens visuais globais para:
+### Referências locais
 
-- cores
-- superfícies
-- bordas
-- raios
-- espaçamento
-- sombras
-- tipografia
-- velocidade de transição
-- easing
+Verificado em:
 
-### 3. Componentes oficiais
+- `index.html`
+- `404.html`
 
-A plataforma passa a utilizar uma linguagem única para:
+Resultado:
 
-- botões primários
-- botões secundários
-- inputs
-- cards informativos
-- cards de métrica
-- modais
-- badges
-- status
-- listas
-- áreas densas
+```text
+nenhum CSS/JS local obrigatório ausente
+```
 
-### 4. Refinamento visual premium
+### Build
 
-Foram reduzidos:
+Este projeto é estático, sem `package.json`, Vite, Next ou pipeline de build.
 
-- sombras exageradas
-- glow artificial
-- bordas redundantes
-- sensação de dashboard administrativo
-- contraste excessivo entre cards
-- animações chamativas
-- visual de template pronto
+Portanto, a validação de build aplicável é:
 
-A interface agora prioriza composição, espaçamento, tipografia e hierarquia.
+- carregamento estático dos arquivos;
+- sintaxe JS;
+- referências locais;
+- pacote final ZIP.
 
-### 5. Responsividade
+Resultado:
 
-Foram reforçados padrões para:
+```text
+pronto para deploy estático
+```
 
-- desktop
-- notebook
-- tablet
-- mobile
+## Observações importantes
 
-Especialmente em grids, botões, painéis, listas e modais.
+A auditoria automatizada estática não substitui um teste real em navegador com Supabase conectado. Antes de publicar oficialmente, recomenda-se validar manualmente no ambiente de staging:
 
-### 6. Estrutura futura
+1. login com usuário treinador;
+2. login com usuária/aluna;
+3. criação/edição de aluna;
+4. acesso à comunidade;
+5. postagem na comunidade;
+6. upload de imagem;
+7. abertura do chat HERO;
+8. navegação no mobile;
+9. console do navegador sem erros externos.
 
-Foram criadas as pastas:
+## Status final
 
-- `/components`
-- `/pages`
-- `/docs`
+A versão V61 está pronta para deploy estático em ambiente de teste/staging.
 
-Nesta versão, elas são documentação estrutural e guia de evolução. A lógica não foi extraída para evitar regressões.
-
-## Validações
-
-- `index.html` preservado como ponto de entrada principal.
-- `404.html` preservado como fallback.
-- `supabase-config.js` não foi alterado.
-- Arquivos SQL não foram alterados.
-- Scripts internos não foram modificados.
-- A camada visual foi movida para CSS externo e conectada por `<link rel="stylesheet">`.
-
-## Observação importante
-
-Esta versão é uma refatoração visual segura. A refatoração completa de JavaScript em componentes reais deve ser feita em uma próxima etapa, com testes funcionais mais amplos, porque hoje a aplicação depende de muitas funções globais no `index.html`.
+Não foram alteradas regras de negócio, banco de dados, autenticação ou integrações.
