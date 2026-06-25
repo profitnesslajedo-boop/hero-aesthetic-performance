@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-hero-os-visual="interface-v70" class="hero-interface-v70-ready">
+<html lang="pt-BR" data-hero-os-visual="interface-final" class="hero-interface-final-ready">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,9 +8,10 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' rx='24' fill='%23050b14'/%3E%3Cpath d='M22 84V36h14v18h18V36h14v48H54V66H36v18H22Zm58-3 14-24 14 24h-9l-5-9-5 9h-9Z' fill='%23f8fafc'/%3E%3Cpath d='M94 57 80 81h9l5-9 5 9h9L94 57Z' fill='%232d6cdf'/%3E%3C/svg%3E">
 
 
-<link rel="stylesheet" href="./styles/hero-os-interface-v70.css?v=70-no-inline">
+<!-- HERO_OS_FINAL_CACHEPROOF_20260625 -->
+<link rel="stylesheet" href="./styles/hero-os-interface-final.css?v=final-cacheproof-20260625">
 </head>
-<body data-hero-visual="interface-v70" data-hero-version="no-inline-css-final">
+<body data-hero-visual="interface-final" data-hero-version="cacheproof-final">
 <div id="heroSplash" class="splash-screen">
   <div class="splash-content">
     <div class="access-indicator welcome-access-indicator" aria-label="Centro de performance privado">
