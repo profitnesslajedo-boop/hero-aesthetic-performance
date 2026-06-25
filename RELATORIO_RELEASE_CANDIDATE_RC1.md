@@ -1,61 +1,94 @@
-# HERO OS • Release Candidate RC1
+# RELATÓRIO DE REFINAMENTO PREMIUM V5.8
 
-## Escopo
-Modo de estabilização pré-produção aplicado sobre a V61. Nenhuma funcionalidade nova foi criada. Banco de dados, Supabase, autenticação, APIs, permissões, SQLs e regras de negócio foram preservados.
+## Escopo executado
+Refinamento visual completo da interface HERO, sem alteração de funcionalidades, banco de dados, integrações, autenticação, rotas ou fluxos.
 
-## Correções aplicadas
+## Arquivos alterados
+- index.html
+- 404.html
 
-### 1. Arquitetura e estabilidade
-- Removidos scripts legados concorrentes V5.5, V5.6 e V57 que reprocessavam os mesmos elementos da comunidade.
-- Eliminados monkey patches em `appendChild` e `insertBefore`, reduzindo risco de efeitos colaterais no DOM.
-- Removido observador global amplo que reexecutava estabilizações em mutações de toda a página.
-- Mantidos apenas os mecanismos necessários de renderização já existentes.
+## Arquivos preservados
+- supabase-config.js
+- SQL_COMUNIDADE_HERO.sql
+- SQL_CARGAS_TREINO_HERO_CORRIGIDO.sql
+- audit.json
+- relatórios anteriores
 
-### 2. Comunidade HERO
-- Consolidada a neutralização de botões flutuantes legados em um único script RC1.
-- Preservados os botões oficiais dentro da navegação, toolbar, cards e contexto da comunidade.
-- Protegido o fluxo contra retorno do botão inferior piscando.
-- Corrigido risco de elementos duplicados de comunidade fora do fluxo oficial.
+## Camada adicionada
+Foi adicionada uma camada visual isolada:
 
-### 3. Design System e UI
-- Adicionado `styles/release-candidate-rc1.css` como camada final de estabilidade visual.
-- Padronizados estados de botões, inputs, modais, cards, áreas de IA e responsividade final.
-- Reforçada proteção contra quebra de nomes de alunas.
-- Reduzidos efeitos visuais agressivos e sombras desnecessárias na camada final.
+`<style id="hero-v58-premium-refinement">`
 
-### 4. Responsividade
-- Ajustes finais para mobile, tablet, notebook e desktop.
-- Proteção contra overflow horizontal.
-- Ajuste de toolbar, ações contextuais, modal e IA da aluna em telas pequenas.
+Essa camada atua apenas sobre CSS, refinando aparência, hierarquia, espaçamento, botões, cards, responsividade e percepção de produto premium.
 
-### 5. Performance
-- Reduzidos reprocessamentos concorrentes.
-- Removidas camadas redundantes de estabilização antiga.
-- Mantidos os intervalos de cronômetro existentes, por serem funcionais.
+## Correções/refinamentos visuais aplicados
 
-## Validações executadas
-- `index.html` e `404.html` possuem o mesmo conteúdo.
-- Todos os arquivos CSS locais referenciados existem.
-- `supabase-config.js` permanece na raiz.
-- Sintaxe de todos os scripts inline validada com Node.js `vm.Script`.
-- Servidor HTTP local validou carregamento dos arquivos principais com status 200.
-- IDs estáticos duplicados: nenhum encontrado.
-- Chamadas `onclick` para funções HERO: nenhuma referência quebrada encontrada.
-- Scripts legados V5.5, V5.6 e V57: removidos.
-- Monkey patches globais de DOM: removidos.
+### 1. Redução da complexidade visual
+- Redução de bordas agressivas.
+- Redução de linhas e separadores visuais.
+- Cards com aparência mais leve e integrada.
+- Containers menos pesados.
+- Fundo mais limpo e proprietário.
 
-## Itens preservados
-- Supabase
-- SQLs
-- Login
-- Sessão
-- Área do treinador
-- Área da aluna
-- Comunidade
-- Chat/IA HERO
-- Cronômetros
-- Dados em localStorage
-- Fluxos existentes
+### 2. Cards
+- Cards administrativos, métricas, treinos, biblioteca, comunidade e painéis receberam visual unificado.
+- Sombras exageradas foram neutralizadas.
+- Bordas foram suavizadas.
+- Aparência de blocos empilhados foi reduzida.
 
-## Observação honesta de QA
-A validação foi feita por análise estática, checagem de referências, sintaxe JS e servidor local. Testes conectados ao Supabase em ambiente real ainda devem ser executados após deploy, porque dependem das credenciais, tabelas, políticas RLS e dados reais do projeto.
+### 3. Espaçamento
+- Padronização de margens e paddings.
+- Mais respiro entre seções.
+- Melhor distância entre cards, grids e toolbars.
+- Layout menos apertado em desktop e mobile.
+
+### 4. Tipografia
+- Hierarquia visual refinada para títulos, subtítulos, textos auxiliares e métricas.
+- Redução de excesso de pesos e tamanhos concorrentes.
+- Ajuste de letter spacing, line height e equilíbrio visual.
+
+### 5. Cores
+- Identidade escura e azul HERO preservada.
+- Uso da cor de destaque mais controlado.
+- Menos variação cromática desnecessária.
+- Contraste baseado em composição e profundidade, não em excesso de cor.
+
+### 6. Botões
+- Todos os botões foram padronizados em linguagem única.
+- Ações principais mantêm destaque.
+- Ações secundárias ficaram mais discretas.
+- Aparência genérica foi reduzida.
+
+### 7. Elementos visuais
+- Glows, brilhos artificiais e sombras excessivas foram neutralizados.
+- Animações e efeitos visuais foram suavizados.
+- Microinterações foram mantidas de forma discreta.
+
+### 8. Consistência
+- Login, área administrativa, área da aluna, comunidade, biblioteca e modais receberam a mesma linguagem visual.
+- Componentes passaram a parecer parte do mesmo produto.
+
+### 9. Responsividade
+Foram adicionados refinamentos para:
+- desktop
+- notebook
+- tablet
+- mobile
+- telas pequenas abaixo de 460px
+
+## Testes executados
+
+### Sintaxe JavaScript
+- index.html: scripts inline extraídos e validados com `node --check`.
+- 404.html: scripts inline extraídos e validados com `node --check`.
+
+Resultado: sem erros de sintaxe.
+
+### Integridade estrutural
+- Nenhum arquivo SQL alterado.
+- Configuração Supabase preservada.
+- Scripts de lógica preservados.
+- Fluxos existentes preservados.
+
+## Observação técnica
+O refinamento foi aplicado como camada visual final para reduzir risco de regressão. A estrutura monolítica do projeto permanece igual por exigência do escopo.
