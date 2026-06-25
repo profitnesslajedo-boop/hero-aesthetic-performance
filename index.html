@@ -7190,6 +7190,33 @@ html[data-hero-os-visual] .student-ai-messages{
   }
 }
 
+
+
+/* HERO OS RC3 — correções cirúrgicas solicitadas */
+:root{--hero-rc3-transition:160ms cubic-bezier(.2,.8,.2,1)}
+.community-v3-card:has(#heroGuidedPostModelsStable),
+#heroGuidedPostModelsStable,
+.hero-guided-post-models-clean,
+.hero-guided-post-model-clean,
+.community-v3-template-grid,
+.hero-community-clean-section:has(#heroGuidedPostModelsStable){display:none!important}
+.community-v3-composer .community-v3-card.feature:has(.community-v3-template-grid){display:none!important}
+.community-v3-board{align-items:start!important}
+.community-v3-side{display:grid!important;gap:14px!important;align-content:start!important}
+.hero-checkin-card{order:-10!important}
+.hero-week-challenge-card{order:-5!important}
+.community-v3-file,.community-file{position:relative!important;display:grid!important;gap:8px!important;align-content:start!important}
+.community-v3-file input[type=file],.community-file input[type=file]{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;overflow:hidden!important;pointer-events:none!important}
+.community-v3-file::after,.community-file::after{content:'Adicionar imagem';display:flex;align-items:center;justify-content:center;width:100%;min-height:46px;padding:0 18px;border-radius:var(--hero-radius-md,14px);border:1px solid rgba(148,163,184,.28);background:rgba(15,23,42,.56);color:var(--hero-text,#f8fafc);font-weight:700;letter-spacing:.01em;text-align:center;line-height:1;transition:background var(--hero-rc3-transition),border-color var(--hero-rc3-transition),transform var(--hero-rc3-transition)}
+.community-v3-file:hover::after,.community-file:hover::after{border-color:rgba(96,165,250,.48);background:rgba(37,99,235,.12);transform:translateY(-1px)}
+.student-view .workout-card,.student-view .student-ex,.print-area .workout-card,.print-area .student-ex{background:rgba(15,23,42,.42)!important;border:1px solid rgba(148,163,184,.16)!important;box-shadow:none!important;border-radius:18px!important;padding:16px!important;transition:border-color var(--hero-rc3-transition),background var(--hero-rc3-transition),transform var(--hero-rc3-transition)!important}
+.student-view .workout-card:hover,.student-view .student-ex:hover,.print-area .workout-card:hover,.print-area .student-ex:hover{border-color:rgba(96,165,250,.32)!important;background:rgba(15,23,42,.54)!important;transform:translateY(-1px)!important}
+.student-view .workout-card h3,.student-view .student-ex h3,.print-area .workout-card h3,.print-area .student-ex h3{letter-spacing:-.01em!important;margin-top:0!important}
+.student-view .mini-grid span,.print-area .mini-grid span{background:rgba(2,6,23,.28)!important;border-color:rgba(148,163,184,.13)!important}
+.student-view .cards,.student-view .exercise-list,.print-area .cards,.print-area .exercise-list{gap:12px!important}
+.community-v3-side .community-v3-card{width:100%!important;margin:0!important}
+@media(max-width:860px){.community-v3-board{grid-template-columns:1fr!important}.community-v3-side{order:2!important}.community-v3-file::after,.community-file::after{min-height:44px}.student-view .workout-card,.student-view .student-ex{padding:14px!important}}
+
 </style>
 </head>
 <body>
@@ -12264,8 +12291,8 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
   async function uploadImg(file){if(!file)return '';if(typeof supabaseClient!=='function'||typeof supabaseAvailable!=='function'||!supabaseAvailable())return '';var client=supabaseClient();if(!client)return '';var ext=(file.name.split('.').pop()||'jpg').toLowerCase();var path='posts/'+Date.now()+'-'+(typeof uid==='function'?uid():Math.random().toString(36).slice(2))+'.'+ext;var up=await client.storage.from('community-media').upload(path,file,{cacheControl:'3600',upsert:false});if(up.error)throw new Error('Erro ao enviar imagem: '+up.error.message);var pub=client.storage.from('community-media').getPublicUrl(path);return (pub.data&&pub.data.publicUrl)||'';}
   async function fetchCommunity(){var st=localState();if(typeof supabaseAvailable!=='function'||!supabaseAvailable()||typeof supabaseClient!=='function')return st;var client=supabaseClient();try{var r=await Promise.all([client.from('community_posts').select('*').eq('is_active',true).order('is_pinned',{ascending:false}).order('created_at',{ascending:false}).limit(80),client.from('community_comments').select('*').order('created_at',{ascending:true}).limit(300),client.from('community_likes').select('*').limit(500)]);if(r[0].error)throw r[0].error;if(r[1].error)throw r[1].error;if(r[2].error)throw r[2].error;st.communityPosts=(r[0].data||[]).map(function(p){return {id:p.id,authorId:p.author_id,authorName:p.author_name,authorRole:p.author_role,content:p.content,imageUrl:p.image_url,category:p.category,pinned:!!p.is_pinned,active:p.is_active!==false,createdAt:p.created_at};});st.communityComments=(r[1].data||[]).map(function(c){return {id:c.id,postId:c.post_id,authorId:c.author_id,authorName:c.author_name,authorRole:c.author_role,content:c.content,createdAt:c.created_at};});st.communityLikes=(r[2].data||[]).map(function(l){return {id:l.id,postId:l.post_id,userId:l.user_id,createdAt:l.created_at};});if(typeof save==='function')save(st);}catch(e){console.warn('Comunidade HERO em modo local:',e.message);}return st;}
   function postCard(post,comments,likes,user,isAdmin){var pc=comments.filter(function(c){return String(c.postId)===String(post.id)});var pl=likes.filter(function(l){return String(l.postId)===String(post.id)});var liked=pl.some(function(l){return String(l.userId)===String(user.id)});return '<article class="community-v3-post '+(post.pinned?'is-pinned':'')+'"><div class="community-v3-post-head"><div class="community-v3-author"><strong>'+safeEsc(post.authorName||'HERO')+'</strong><span>'+safeEsc(post.authorRole||'aluna')+' · '+(post.createdAt?new Date(post.createdAt).toLocaleString('pt-BR'):'')+'</span></div><div class="community-v3-category">'+(post.pinned?'fixado · ':'')+safeEsc(post.category||'geral')+'</div></div>'+(post.content?'<div class="community-v3-content">'+safeEsc(post.content)+'</div>':'')+(post.imageUrl?'<img class="community-v3-image" src="'+safeEsc(post.imageUrl)+'" alt="Imagem da comunidade HERO">':'')+'<div class="community-v3-actions"><button class="btn ghost small" onclick="HERO.communityLike(\''+post.id+'\')">'+(liked?'Curtido':'Curtir')+' · '+pl.length+'</button>'+(isAdmin?'<button class="btn secondary small" onclick="HERO.communityTogglePin(\''+post.id+'\')">'+(post.pinned?'Desfixar':'Fixar')+'</button><button class="btn danger small" onclick="HERO.communityDeletePost(\''+post.id+'\')">Excluir</button>':'')+'</div><div class="community-v3-comments">'+(pc.length?pc.map(function(c){return '<div class="community-v3-comment"><strong>'+safeEsc(c.authorName||'Usuário')+'</strong><p>'+safeEsc(c.content)+'</p></div>'}).join(''):'<div class="muted">Sem comentários ainda.</div>')+'<form class="community-v3-comment-form" onsubmit="HERO.communityAddComment(event,\''+post.id+'\')"><input name="content" placeholder="Comente com orientação, dúvida ou incentivo..." required><button class="btn secondary small">Comentar</button></form></div></article>';}
-  window.HERO.communityUsePrompt=function(kind){var form=document.getElementById('communityForm');if(!form)return;var textarea=form.querySelector('textarea[name="content"]');var select=form.querySelector('select[name="category"]');var prompts={checkin:{cat:'Check-in',text:'Check-in do dia:\n\nTreino concluído.\nHoje eu senti mais dificuldade em:\nMinha maior vitória de hoje foi:'},duvida:{cat:'Dúvida',text:'Dúvida rápida:\n\nEstou com dificuldade em:\nO que eu senti durante a execução foi:\nQuero entender melhor:'},resultado:{cat:'Resultado',text:'Evolução registrada:\n\nHoje percebi melhora em:\nAntes eu tinha dificuldade com:\nAgora consegui:'},execucao:{cat:'Execução',text:'Análise de execução:\n\nExercício:\nO que quero que o treinador avalie:\nSensação durante a série:'}};var item=prompts[kind]||prompts.checkin;if(textarea){textarea.value=item.text;textarea.focus();textarea.selectionStart=textarea.value.length;textarea.selectionEnd=textarea.value.length;}if(select)select.value=item.cat;};
-  window.HERO.community=async function(){location.hash='comunidade';var user=currentUser();var isAdmin=user.role==='admin';var st=await fetchCommunity();var posts=(st.communityPosts||[]).filter(function(p){return p.active!==false});var comments=st.communityComments||[];var likes=st.communityLikes||[];var pinned=posts.filter(function(p){return p.pinned}).length;var checkins=posts.filter(function(p){return String(p.category||'').toLowerCase().indexOf('check')>-1}).length;var results=posts.filter(function(p){return String(p.category||'').toLowerCase().indexOf('resultado')>-1}).length;var back='<button type="button" class="btn secondary small" id="communityBackDirect">Voltar</button>'+(isAdmin?'<button type="button" class="btn ghost small" id="communityCenterDirect">Centro de controle</button>':'<button type="button" class="btn ghost small" id="communityProtocolDirect">Meu protocolo</button>')+'<button type="button" class="btn ghost small" id="communityChatDirect">Chat HERO</button>';var html='<main class="wrap community-v3-wrap"><div class="community-context-bar" data-hero-nav-bar="community-definitive"><div><span class="community-context-kicker">navegação</span><h2 class="community-context-title">Comunidade HERO</h2></div><div class="context-actions">'+back+'</div></div><section class="hero community-v3-hero"><p class="eyebrow">mural privado</p><h1>Comunidade HERO</h1><p>Compartilhe evolução, tire dúvidas, acompanhe avisos e mantenha a execução no padrão certo.</p><div class="community-v3-pills"><span>check-ins</span><span>dúvidas</span><span>avisos</span><span>resultados</span></div></section><section class="community-v3-stats"><div class="community-v3-stat"><span>Publicações</span><strong>'+posts.length+'</strong></div><div class="community-v3-stat"><span>Check-ins</span><strong>'+checkins+'</strong></div><div class="community-v3-stat"><span>Resultados</span><strong>'+results+'</strong></div><div class="community-v3-stat"><span>Comentários</span><strong>'+comments.length+'</strong></div></section><section class="community-v3-board"><div><form id="communityForm" class="community-v3-composer"><div class="community-v3-card feature"><small>postagem guiada</small><h3>Escolha um modelo rápido</h3><p></p><div class="community-v3-template-grid"><button type="button" onclick="HERO.communityUsePrompt(\'checkin\')">Check-in</button><button type="button" onclick="HERO.communityUsePrompt(\'duvida\')">Dúvida</button><button type="button" onclick="HERO.communityUsePrompt(\'resultado\')">Resultado</button><button type="button" onclick="HERO.communityUsePrompt(\'execucao\')">Execução</button></div></div><label>Publicação<textarea name="content" placeholder="Compartilhe uma evolução, dúvida, aviso ou check-in..." required></textarea></label><div class="community-v3-form-row"><label>Categoria<select name="category"><option>Check-in</option><option>Dúvida</option><option>Resultado</option><option>Aviso</option><option>Execução</option><option>Motivação</option></select></label><label class="community-v3-file">Imagem opcional<input type="file" name="image" accept="image/*"></label></div><button class="btn community-v3-publish">Publicar atualização</button><div id="communityMsg" class="msg"></div></form><div class="community-v3-feed">'+(posts.length?posts.map(function(p){return postCard(p,comments,likes,user,isAdmin)}).join(''):'<div class="community-v3-empty">Ainda não há publicações. Publique o primeiro check-in ou aviso.</div>')+'</div></div><aside class="community-v3-side"><div class="community-v3-card feature"><small>desafio da semana</small><h3>4 check-ins HERO</h3><p>Publique 4 check-ins nesta semana: treino feito, dúvida, evolução ou ajuste de execução.</p><button class="btn secondary small" onclick="HERO.communityUsePrompt(\'checkin\')">Fazer check-in</button></div><div class="community-v3-card"><h3>Como usar</h3><ul><li>poste check-ins objetivos;</li><li>comente nos posts de outras alunas;</li><li>registre evolução com foto;</li><li>tire dúvidas de execução.</li></ul></div><div class="community-v3-card"><h3>Movimento</h3><p>'+pinned+' aviso(s) fixado(s), '+likes.length+' curtida(s) e '+comments.length+' comentário(s).</p></div></aside></section></main>';if(typeof mount==='function')mount(html);else document.body.innerHTML=html;var form=document.getElementById('communityForm');if(form)form.onsubmit=window.HERO.communityCreatePost;
+  window.HERO.communityUsePrompt=function(){return false;};
+  window.HERO.community=async function(){location.hash='comunidade';var user=currentUser();var isAdmin=user.role==='admin';var st=await fetchCommunity();var posts=(st.communityPosts||[]).filter(function(p){return p.active!==false});var comments=st.communityComments||[];var likes=st.communityLikes||[];var pinned=posts.filter(function(p){return p.pinned}).length;var checkins=posts.filter(function(p){return String(p.category||'').toLowerCase().indexOf('check')>-1}).length;var results=posts.filter(function(p){return String(p.category||'').toLowerCase().indexOf('resultado')>-1}).length;var back='<button type="button" class="btn secondary small" id="communityBackDirect">Voltar</button>'+(isAdmin?'<button type="button" class="btn ghost small" id="communityCenterDirect">Centro de controle</button>':'<button type="button" class="btn ghost small" id="communityProtocolDirect">Meu protocolo</button>')+'<button type="button" class="btn ghost small" id="communityChatDirect">Chat HERO</button>';var html='<main class="wrap community-v3-wrap"><div class="community-context-bar" data-hero-nav-bar="community-definitive"><div><span class="community-context-kicker">navegação</span><h2 class="community-context-title">Comunidade HERO</h2></div><div class="context-actions">'+back+'</div></div><section class="hero community-v3-hero"><p class="eyebrow">mural privado</p><h1>Comunidade HERO</h1><p>Compartilhe evolução, tire dúvidas, acompanhe avisos e mantenha a execução no padrão certo.</p><div class="community-v3-pills"><span>check-ins</span><span>dúvidas</span><span>avisos</span><span>resultados</span></div></section><section class="community-v3-stats"><div class="community-v3-stat"><span>Publicações</span><strong>'+posts.length+'</strong></div><div class="community-v3-stat"><span>Check-ins</span><strong>'+checkins+'</strong></div><div class="community-v3-stat"><span>Resultados</span><strong>'+results+'</strong></div><div class="community-v3-stat"><span>Comentários</span><strong>'+comments.length+'</strong></div></section><section class="community-v3-board"><div><form id="communityForm" class="community-v3-composer"><label>Publicação<textarea name="content" placeholder="Compartilhe uma evolução, dúvida, aviso ou check-in..." required></textarea></label><div class="community-v3-form-row"><label>Categoria<select name="category"><option>Check-in</option><option>Dúvida</option><option>Resultado</option><option>Aviso</option><option>Execução</option><option>Motivação</option></select></label><label class="community-v3-file">Imagem opcional<input type="file" name="image" accept="image/*"></label></div><button class="btn community-v3-publish">Publicar atualização</button><div id="communityMsg" class="msg"></div></form><div class="community-v3-feed">'+(posts.length?posts.map(function(p){return postCard(p,comments,likes,user,isAdmin)}).join(''):'<div class="community-v3-empty">Ainda não há publicações. Publique o primeiro check-in ou aviso.</div>')+'</div></div><aside class="community-v3-side"><div class="community-v3-card feature"><small>desafio da semana</small><h3>4 check-ins HERO</h3><p>Publique 4 check-ins nesta semana: treino feito, dúvida, evolução ou ajuste de execução.</p><button type="button" class="btn secondary small" id="heroChallengeCheckinButton">Registrar check-in</button></div><div class="community-v3-card"><h3>Como usar</h3><ul><li>poste check-ins objetivos;</li><li>comente nos posts de outras alunas;</li><li>registre evolução com foto;</li><li>tire dúvidas de execução.</li></ul></div><div class="community-v3-card"><h3>Movimento</h3><p>'+pinned+' aviso(s) fixado(s), '+likes.length+' curtida(s) e '+comments.length+' comentário(s).</p></div></aside></section></main>';if(typeof mount==='function')mount(html);else document.body.innerHTML=html;var form=document.getElementById('communityForm');if(form)form.onsubmit=window.HERO.communityCreatePost;
 var backBtn=document.getElementById('communityBackDirect');
 if(backBtn)backBtn.onclick=function(ev){ev.preventDefault();ev.stopPropagation();location.hash='';if(isAdmin&&window.HERO&&typeof window.HERO.admin==='function')return window.HERO.admin();if(user&&user.id&&user.id!=='local-user'&&window.HERO&&typeof window.HERO.student==='function')return window.HERO.student(user.id,false);if(window.HERO&&typeof window.HERO.login==='function')return window.HERO.login();};
 var protocolBtn=document.getElementById('communityProtocolDirect');
@@ -12862,16 +12889,7 @@ function heroStableIsTrainer(){
       }
     });
   }
-  function ensureGuidedModels(){
-    if(document.getElementById('heroGuidedPostModelsStable'))return;
-    const card=findByTitle(['postagem','guiada'])||findByTitle(['postar'])||findByTitle(['comunidade']);
-    if(!card&&!isCommunityScreen())return;
-    const block=document.createElement('div');
-    block.id='heroGuidedPostModelsStable';
-    block.className='hero-guided-post-models-clean';
-    block.innerHTML='<div class="hero-guided-post-model-clean"><strong>Modelo 1 — treino concluído</strong><p>Treino feito hoje. Mantive o foco, registrei minhas cargas e sigo evoluindo no protocolo HERO.</p></div><div class="hero-guided-post-model-clean"><strong>Modelo 2 — evolução de carga</strong><p>Hoje consegui manter ou melhorar minha carga com execução controlada. Progresso real, um treino por vez.</p></div><div class="hero-guided-post-model-clean"><strong>Modelo 3 — disciplina do dia</strong><p>Mesmo sem estar perfeito, eu fiz o que precisava ser feito. Mais um check-in para construir constância.</p></div><div class="hero-guided-post-model-clean"><strong>Modelo 4 — comunidade</strong><p>Passando para registrar minha presença no desafio e acompanhar a evolução com as outras guerreiras.</p></div>';
-    if(card)card.appendChild(block); else {const sec=document.createElement('section');sec.className='card hero-community-clean-section';sec.innerHTML='<h3>Postagem guiada</h3>';sec.appendChild(block);root().appendChild(sec);}
-  }
+  function ensureGuidedModels(){return;}
   function triggerCheckin(){
     const existing=Array.from(document.querySelectorAll('button,a,.btn')).find(el=>el.id!=='heroCheckinStableButton'&&(norm(el.textContent).includes('check')||norm(el.getAttribute&&el.getAttribute('onclick')||'').includes('check')));
     if(existing){existing.click();return true;}
@@ -12897,7 +12915,6 @@ function heroStableIsTrainer(){
     ensureStudentAI();
     bindCommunityNav();
     removePhrase();
-    ensureGuidedModels();
     ensureCheckin();
     ensureCommunityButton();
   }
@@ -13002,6 +13019,159 @@ function heroStableIsTrainer(){
   window.addEventListener('hashchange',schedule);
   document.addEventListener('DOMContentLoaded',function(){setTimeout(schedule,60);});
   setTimeout(schedule,80);setTimeout(schedule,400);
+})();
+</script>
+
+
+
+<script id="hero-rc3-specific-fixes">
+/* HERO OS RC3 — ajustes cirúrgicos: comunidade, imagem, navegação e cards. */
+(function(){
+  if(window.__heroRC3SpecificFixesApplied)return;
+  window.__heroRC3SpecificFixesApplied=true;
+
+  function safeSession(){try{return JSON.parse(sessionStorage.getItem('hero_session')||'{}')||{};}catch(e){return {};}}
+  function currentUser(){
+    var s=safeSession();
+    if(s&&Object.keys(s).length)return s;
+    try{if(typeof data==='function'){var st=data();return (st.users||[])[0]||{};}}catch(e){}
+    return {};
+  }
+  function isAdmin(){var u=currentUser();return u.role==='admin'||u.tipo==='admin'||u.admin===true||String(u.email||'').toLowerCase()==='marcosestevees@icloud.com';}
+  function normalize(value){return String(value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();}
+  function getStudentId(){
+    var u=currentUser();
+    if(u.alunoId)return u.alunoId;
+    if(u.id&&u.role!=='admin')return u.id;
+    try{
+      if(typeof data==='function'){
+        var st=data();
+        var byEmail=(st.users||[]).find(function(x){return String(x.email||'').toLowerCase()===String(u.email||'').toLowerCase();});
+        if(byEmail&&byEmail.alunoId)return byEmail.alunoId;
+        var aluno=(st.alunos||[]).find(function(a){return String(a.email||'').toLowerCase()===String(u.email||'').toLowerCase();});
+        if(aluno)return aluno.id;
+      }
+    }catch(e){}
+    return '';
+  }
+  function goProtocol(){
+    try{location.hash='';}catch(e){}
+    var sid=getStudentId();
+    if(sid&&window.HERO&&typeof window.HERO.student==='function')return window.HERO.student(sid,false);
+    if(typeof student==='function'&&sid)return student(sid,false);
+    if(typeof login==='function')return login();
+  }
+  function goBack(){
+    try{location.hash='';}catch(e){}
+    if(isAdmin()){
+      if(window.HERO&&typeof window.HERO.admin==='function')return window.HERO.admin();
+      if(typeof admin==='function')return admin();
+    }
+    return goProtocol();
+  }
+  function focusCheckin(){
+    var category=document.querySelector('#communityForm select[name="category"]');
+    if(category)category.value='Check-in';
+    var textarea=document.querySelector('#communityForm textarea[name="content"]');
+    if(textarea){
+      textarea.focus();
+      textarea.scrollIntoView({behavior:'smooth',block:'center'});
+      return true;
+    }
+    return false;
+  }
+  function removeGuidedPosting(){
+    var selectors=['#heroGuidedPostModelsStable','.hero-guided-post-models-clean','.hero-guided-post-model-clean','.community-v3-template-grid'];
+    selectors.forEach(function(sel){document.querySelectorAll(sel).forEach(function(el){try{el.remove();}catch(e){}});});
+    Array.from(document.querySelectorAll('.community-v3-card,.community-side-card,.hero-community-clean-section,section,article,div')).forEach(function(el){
+      var txt=normalize(el.textContent);
+      if((txt.includes('postagem'+' guiada')||txt.includes('escolha um modelo rapido')||txt.includes('modelo 1')) && !el.closest('.community-comments')){
+        try{el.remove();}catch(e){}
+      }
+    });
+    Array.from(document.querySelectorAll('button,a')).forEach(function(el){
+      var txt=normalize(el.textContent), onclick=normalize(el.getAttribute('onclick')||'');
+      if(onclick.includes('communityuseprompt')||txt==='check-in'||txt==='duvida'||txt==='resultado'||txt==='execucao'){
+        if(el.closest('.community-v3-template-grid')||onclick.includes('communityuseprompt')){try{el.remove();}catch(e){}}
+      }
+    });
+  }
+  function normalizeFileInputs(){
+    document.querySelectorAll('#communityForm input[type="file"][name="image"]').forEach(function(input){
+      var label=input.closest('label');
+      if(label){
+        label.classList.add(label.classList.contains('community-file')?'community-file':'community-v3-file');
+        label.childNodes.forEach(function(n){if(n.nodeType===3)n.textContent=n.textContent.replace(/Escolher ficheiro|Escolher arquivo|Nenhum ficheiro selecionado|Nenhum arquivo escolhido/gi,'').trim()?n.textContent:'';});
+        if(!label.querySelector('.hero-image-label-text')){
+          var span=document.createElement('span');span.className='hero-image-label-text';span.textContent='Imagem opcional';label.insertBefore(span,input);
+        }
+        input.setAttribute('aria-label','Adicionar imagem');
+      }
+    });
+  }
+  function ensureCheckinAboveChallenge(){
+    var aside=document.querySelector('.community-v3-side,.community-side');
+    if(!aside)return;
+    removeGuidedPosting();
+    var old=document.getElementById('heroCheckinStableButton');
+    if(old){try{old.remove();}catch(e){}}
+    var existing=aside.querySelector('.hero-checkin-card');
+    if(!existing){
+      existing=document.createElement('div');
+      existing.className='community-v3-card hero-checkin-card';
+      existing.innerHTML='<small>check-in hero</small><h3>Check-in HERO</h3><p>Registre seu check-in do dia com objetividade e mantenha sua evolução acompanhada.</p><button type="button" class="btn secondary small" id="heroCheckinActionRC3">Registrar check-in</button>';
+    }
+    var challenge=Array.from(aside.children).find(function(el){return normalize(el.textContent).includes('desafio da semana');});
+    if(challenge){challenge.classList.add('hero-week-challenge-card');aside.insertBefore(existing,challenge);}else if(aside.firstChild){aside.insertBefore(existing,aside.firstChild);}else{aside.appendChild(existing);}
+    var btn=existing.querySelector('#heroCheckinActionRC3');
+    if(btn&&!btn.__heroRC3Bound){btn.__heroRC3Bound=true;btn.addEventListener('click',function(ev){ev.preventDefault();ev.stopPropagation();focusCheckin();});}
+    Array.from(aside.querySelectorAll('button')).forEach(function(btn){
+      var onclick=normalize(btn.getAttribute('onclick')||''), txt=normalize(btn.textContent);
+      if(onclick.includes('communityuseprompt')){btn.removeAttribute('onclick');btn.addEventListener('click',function(ev){ev.preventDefault();focusCheckin();});}
+      if(txt==='fazer check-in')btn.textContent='Registrar check-in';
+      if(btn.id==='heroChallengeCheckinButton'&&!btn.__heroRC3Bound){btn.__heroRC3Bound=true;btn.addEventListener('click',function(ev){ev.preventDefault();ev.stopPropagation();focusCheckin();});}
+    });
+  }
+  function bindNavButtons(){
+    ['communityBackDirect','communityBackDirectLegacy'].forEach(function(id){var el=document.getElementById(id);if(el&&!el.__heroRC3Bound){el.__heroRC3Bound=true;el.addEventListener('click',function(ev){ev.preventDefault();ev.stopPropagation();if(ev.stopImmediatePropagation)ev.stopImmediatePropagation();goBack();},true);}});
+    ['communityProtocolDirect','communityProtocolDirectLegacy'].forEach(function(id){var el=document.getElementById(id);if(el&&!el.__heroRC3Bound){el.__heroRC3Bound=true;el.addEventListener('click',function(ev){ev.preventDefault();ev.stopPropagation();if(ev.stopImmediatePropagation)ev.stopImmediatePropagation();goProtocol();},true);}});
+  }
+  function translateTrainingNames(){
+    Array.from(document.querySelectorAll('body *')).forEach(function(el){
+      if(el.children&&el.children.length)return;
+      var txt=el.textContent||'';
+      if(/\bFoundation\b/i.test(txt))el.textContent=txt.replace(/\bFoundation\b/gi,'Base de Performance');
+      if(/\bfoundation\b/i.test(txt))el.textContent=txt.replace(/\bfoundation\b/gi,'Base de Performance');
+    });
+  }
+  function run(){
+    removeGuidedPosting();
+    normalizeFileInputs();
+    ensureCheckinAboveChallenge();
+    bindNavButtons();
+    translateTrainingNames();
+  }
+  window.HERO=window.HERO||{};
+  window.HERO.communityUsePrompt=function(){focusCheckin();return false;};
+  window.HERO.goCommunityBack=goBack;
+  window.HERO.goStudentProtocol=goProtocol;
+  var originalCommunity=window.HERO.community||window.community;
+  if(typeof originalCommunity==='function'&&!originalCommunity.__heroRC3Wrapped){
+    var wrapped=function(){var r=originalCommunity.apply(this,arguments);setTimeout(run,40);setTimeout(run,160);return r;};
+    wrapped.__heroRC3Wrapped=true;
+    window.HERO.community=wrapped;window.community=wrapped;
+  }
+  ['student','admin'].forEach(function(name){
+    if(window.HERO&&typeof window.HERO[name]==='function'&&!window.HERO[name].__heroRC3Wrapped){
+      var old=window.HERO[name];
+      window.HERO[name]=function(){var r=old.apply(this,arguments);setTimeout(run,80);setTimeout(run,220);return r;};
+      window.HERO[name].__heroRC3Wrapped=true;
+    }
+  });
+  document.addEventListener('click',function(){setTimeout(run,40);},true);
+  window.addEventListener('hashchange',function(){setTimeout(run,80);});
+  document.addEventListener('DOMContentLoaded',function(){setTimeout(run,120);});
+  setTimeout(run,200);setTimeout(run,700);
 })();
 </script>
 
