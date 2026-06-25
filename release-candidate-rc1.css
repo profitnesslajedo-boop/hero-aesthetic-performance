@@ -1,393 +1,243 @@
-/* HERO OS V5.8 PREMIUM REFINEMENT
-   Visual-only layer. No database, route, integration or business logic changes.
-*/
+/* HERO OS V6.0 PRODUCT SYSTEM
+   Visual/structural refinement only. No database, authentication, API or business logic changes.
+   This file is the final visual authority and intentionally loads after legacy layers. */
+
 :root{
-  --hero-bg:#030712;
-  --hero-bg-soft:#07111f;
-  --hero-surface:rgba(8,13,24,.58);
-  --hero-surface-soft:rgba(15,23,42,.38);
-  --hero-line:rgba(148,163,184,.105);
-  --hero-line-strong:rgba(148,163,184,.18);
-  --hero-blue:#4f8cff;
-  --hero-blue-soft:rgba(79,140,255,.14);
+  --hero-bg-0:#03060b;
+  --hero-bg-1:#070d16;
+  --hero-surface:rgba(11,18,30,.72);
+  --hero-surface-strong:rgba(15,23,42,.86);
+  --hero-surface-soft:rgba(255,255,255,.035);
+  --hero-border:rgba(148,163,184,.16);
+  --hero-border-strong:rgba(148,163,184,.24);
   --hero-text:#f8fafc;
-  --hero-muted:#8f9db4;
-  --hero-muted-2:#64748b;
-  --hero-radius:22px;
-  --hero-radius-sm:14px;
-  --hero-shadow:0 18px 52px rgba(0,0,0,.18);
+  --hero-muted:#9aa7bb;
+  --hero-muted-2:#718096;
+  --hero-accent:#2d6cdf;
+  --hero-accent-soft:rgba(45,108,223,.14);
+  --hero-radius-sm:12px;
+  --hero-radius-md:16px;
+  --hero-radius-lg:22px;
+  --hero-radius-xl:28px;
+  --hero-space-1:4px;
+  --hero-space-2:8px;
+  --hero-space-3:12px;
+  --hero-space-4:16px;
+  --hero-space-5:20px;
+  --hero-space-6:24px;
+  --hero-space-8:32px;
+  --hero-space-10:40px;
+  --hero-space-12:48px;
+  --hero-shadow:0 18px 50px rgba(0,0,0,.22);
+  --hero-ease:cubic-bezier(.2,.8,.2,1);
+  --hero-speed:180ms;
 }
-html[data-hero-os-visual] body{
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
   background:
-    radial-gradient(circle at 50% -18%,rgba(79,140,255,.16),transparent 36%),
-    linear-gradient(180deg,#020617 0%,#050914 48%,#030712 100%)!important;
+    radial-gradient(circle at 50% -20%,rgba(45,108,223,.16),transparent 34%),
+    linear-gradient(135deg,var(--hero-bg-0),var(--hero-bg-1) 52%,#03060b) !important;
   color:var(--hero-text)!important;
-  text-rendering:geometricPrecision!important;
-  -webkit-font-smoothing:antialiased!important;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+  letter-spacing:-.01em;
 }
-html[data-hero-os-visual] body:before{
-  opacity:.16!important;
-  background:linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.014) 1px,transparent 1px)!important;
-  background-size:72px 72px!important;
-  mask-image:linear-gradient(#000 0%,transparent 72%)!important;
+body:before{
+  opacity:.38!important;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px),
+    linear-gradient(rgba(255,255,255,.014) 1px,transparent 1px)!important;
+  background-size:56px 56px!important;
 }
-html[data-hero-os-visual] body:after{
-  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
-  background:linear-gradient(180deg,rgba(255,255,255,.025),transparent 22%,transparent 100%);
-}
-html[data-hero-os-visual] *{
-  letter-spacing:normal;
-  scroll-margin-top:96px;
-}
-html[data-hero-os-visual] .wrap,
-html[data-hero-os-visual] main.wrap,
-html[data-hero-os-visual] .container{
-  width:min(1180px,calc(100vw - 48px))!important;
-  padding:42px 0 84px!important;
-}
-html[data-hero-os-visual] .top,
-html[data-hero-os-visual] .topbar,
-html[data-hero-os-visual] header.top{
-  min-height:70px!important;
-  padding:14px clamp(18px,3vw,34px)!important;
-  border-bottom:1px solid rgba(148,163,184,.10)!important;
-  background:rgba(3,7,18,.72)!important;
-  backdrop-filter:blur(22px) saturate(1.2)!important;
-  box-shadow:none!important;
-}
-html[data-hero-os-visual] .logo .word,
-html[data-hero-os-visual] .word{
-  font-size:26px!important;
-  font-weight:920!important;
-  letter-spacing:.08em!important;
-  text-shadow:none!important;
-}
-html[data-hero-os-visual] .logo small{
-  color:var(--hero-muted)!important;
-  font-size:8px!important;
-  letter-spacing:.34em!important;
-}
-html[data-hero-os-visual] .eyebrow,
-html[data-hero-os-visual] .badge,
-html[data-hero-os-visual] .status,
-html[data-hero-os-visual] .community-v3-version{
-  min-height:24px!important;
-  padding:0 9px!important;
-  border:1px solid rgba(79,140,255,.22)!important;
-  background:rgba(79,140,255,.075)!important;
-  color:#b9d3ff!important;
-  font-size:10px!important;
+
+/* Typography authority */
+h1,.login-card h1,.hero h1{
+  font-size:clamp(2.15rem,4.4vw,4.9rem)!important;
+  line-height:.96!important;
+  letter-spacing:-.075em!important;
   font-weight:780!important;
+  margin:0 0 var(--hero-space-4)!important;
+}
+h2{font-size:clamp(1.35rem,2.2vw,2.3rem)!important;line-height:1.04!important;letter-spacing:-.045em!important;font-weight:720!important;margin:0 0 var(--hero-space-3)!important}
+h3{font-size:1rem!important;line-height:1.18!important;letter-spacing:-.02em!important;font-weight:680!important;margin:0 0 var(--hero-space-2)!important}
+p,.hint,.note,small,span{line-height:1.55}
+.hint,.note,.panel p,.hero p,.login-card p{color:var(--hero-muted)!important}
+.eyebrow,.badge,.status{
   letter-spacing:.12em!important;
-  text-transform:uppercase!important;
-  box-shadow:none!important;
-}
-html[data-hero-os-visual] h1,
-html[data-hero-os-visual] h2,
-html[data-hero-os-visual] h3,
-html[data-hero-os-visual] h4{
-  color:var(--hero-text)!important;
-  letter-spacing:-.045em!important;
-  font-weight:820!important;
-  text-wrap:balance!important;
-}
-html[data-hero-os-visual] h1{font-size:clamp(34px,5vw,58px)!important;line-height:.98!important;margin:14px 0 12px!important;}
-html[data-hero-os-visual] h2{font-size:clamp(24px,2.7vw,36px)!important;line-height:1.06!important;margin:0 0 12px!important;}
-html[data-hero-os-visual] h3{font-size:clamp(17px,1.45vw,21px)!important;line-height:1.16!important;margin:0 0 10px!important;}
-html[data-hero-os-visual] p,
-html[data-hero-os-visual] small,
-html[data-hero-os-visual] .hint,
-html[data-hero-os-visual] .muted,
-html[data-hero-os-visual] .panel p,
-html[data-hero-os-visual] .hero p{
-  color:var(--hero-muted)!important;
-  line-height:1.58!important;
-}
-html[data-hero-os-visual] .hero,
-html[data-hero-os-visual] .panel,
-html[data-hero-os-visual] .card,
-html[data-hero-os-visual] .workout-card,
-html[data-hero-os-visual] .exercise,
-html[data-hero-os-visual] .student-ex,
-html[data-hero-os-visual] .lib,
-html[data-hero-os-visual] .metric-card,
-html[data-hero-os-visual] .stats>div,
-html[data-hero-os-visual] .visual-card,
-html[data-hero-os-visual] .community-v3-card,
-html[data-hero-os-visual] .community-v3-post,
-html[data-hero-os-visual] .community-v3-composer,
-html[data-hero-os-visual] .hero-community-clean-section,
-html[data-hero-os-visual] .operator-action-card{
-  border:1px solid var(--hero-line)!important;
-  background:linear-gradient(180deg,rgba(15,23,42,.42),rgba(2,6,23,.20))!important;
-  box-shadow:none!important;
-  border-radius:var(--hero-radius)!important;
-  backdrop-filter:blur(14px)!important;
-}
-html[data-hero-os-visual] .hero,
-html[data-hero-os-visual] .panel{
-  padding:clamp(22px,3vw,34px)!important;
-  margin-bottom:26px!important;
-}
-html[data-hero-os-visual] .hero:after,
-html[data-hero-os-visual] .login-card:after,
-html[data-hero-os-visual] .login-visual:after,
-html[data-hero-os-visual] .hero:before,
-html[data-hero-os-visual] .panel:before{
-  opacity:.22!important;
-  filter:blur(10px)!important;
-}
-html[data-hero-os-visual] .panel + .panel,
-html[data-hero-os-visual] .card + .card,
-html[data-hero-os-visual] section + section{
-  margin-top:18px!important;
-}
-html[data-hero-os-visual] .admin-grid,
-html[data-hero-os-visual] .admin-grid-fixed{
-  grid-template-columns:minmax(280px,316px) minmax(0,1fr)!important;
-  gap:26px!important;
-  align-items:start!important;
-}
-html[data-hero-os-visual] .cards,
-html[data-hero-os-visual] .exercise-list,
-html[data-hero-os-visual] .list,
-html[data-hero-os-visual] #studentList,
-html[data-hero-os-visual] .library-grid{
-  gap:14px!important;
-}
-html[data-hero-os-visual] .workout-card,
-html[data-hero-os-visual] .exercise,
-html[data-hero-os-visual] .student-ex,
-html[data-hero-os-visual] .lib{
-  padding:20px!important;
-  border-color:rgba(148,163,184,.095)!important;
-}
-html[data-hero-os-visual] .student-row,
-html[data-hero-os-visual] .student-list-card{
-  min-height:74px!important;
-  padding:15px 16px!important;
-  border-radius:18px!important;
-  border-color:rgba(148,163,184,.095)!important;
-  background:rgba(15,23,42,.28)!important;
-  transition:background .18s ease,border-color .18s ease,transform .18s ease!important;
-}
-html[data-hero-os-visual] .student-row:hover,
-html[data-hero-os-visual] .student-list-card:hover{
-  transform:translateY(-1px)!important;
-  border-color:rgba(79,140,255,.26)!important;
-  background:rgba(15,23,42,.42)!important;
-}
-html[data-hero-os-visual] .student-row.active,
-html[data-hero-os-visual] .student-list-card.active{
-  border-color:rgba(79,140,255,.36)!important;
-  background:linear-gradient(180deg,rgba(79,140,255,.12),rgba(15,23,42,.24))!important;
-}
-html[data-hero-os-visual] .stats,
-html[data-hero-os-visual] .control-metrics,
-html[data-hero-os-visual] .mini-grid{
-  gap:12px!important;
-}
-html[data-hero-os-visual] .stats>div,
-html[data-hero-os-visual] .metric-card,
-html[data-hero-os-visual] .mini-grid span{
-  padding:17px!important;
-  min-height:auto!important;
-  border-radius:18px!important;
-  background:rgba(15,23,42,.26)!important;
-}
-html[data-hero-os-visual] .stats b,
-html[data-hero-os-visual] .metric-card strong,
-html[data-hero-os-visual] .mini-grid b{
-  color:#eef6ff!important;
-  font-size:clamp(20px,2.1vw,28px)!important;
-  font-weight:780!important;
-}
-html[data-hero-os-visual] .toolbar,
-html[data-hero-os-visual] .panel-title,
-html[data-hero-os-visual] .student-head,
-html[data-hero-os-visual] .ex-title{
-  gap:12px!important;
-  align-items:center!important;
-}
-html[data-hero-os-visual] button,
-html[data-hero-os-visual] .btn,
-html[data-hero-os-visual] a.btn,
-html[data-hero-os-visual] input[type="button"],
-html[data-hero-os-visual] input[type="submit"]{
-  min-height:42px!important;
-  border-radius:999px!important;
-  padding:0 16px!important;
-  border:1px solid rgba(148,163,184,.13)!important;
-  background:rgba(15,23,42,.52)!important;
-  color:#eef6ff!important;
-  box-shadow:none!important;
-  font-size:12px!important;
+  font-size:.68rem!important;
   font-weight:760!important;
-  letter-spacing:.015em!important;
-  text-transform:none!important;
-  transition:transform .16s ease,border-color .16s ease,background .16s ease,opacity .16s ease!important;
 }
-html[data-hero-os-visual] button:hover,
-html[data-hero-os-visual] .btn:hover,
-html[data-hero-os-visual] a.btn:hover{
-  transform:translateY(-1px)!important;
-  border-color:rgba(79,140,255,.34)!important;
-  background:rgba(30,41,59,.64)!important;
-  filter:none!important;
+
+/* Layout authority */
+.wrap{width:min(1180px,92vw)!important;padding:var(--hero-space-10) 0 var(--hero-space-12)!important}
+.top{
+  padding:14px clamp(16px,3vw,32px)!important;
+  background:rgba(3,6,11,.72)!important;
+  border-bottom:1px solid rgba(148,163,184,.12)!important;
+  box-shadow:none!important;
 }
-html[data-hero-os-visual] .btn.secondary,
-html[data-hero-os-visual] button.secondary,
-html[data-hero-os-visual] .btn.ghost,
-html[data-hero-os-visual] button.ghost{
-  background:rgba(2,6,23,.18)!important;
-  color:#cbd5e1!important;
+.top nav,.toolbar{gap:var(--hero-space-2)!important}
+.admin-grid{grid-template-columns:minmax(280px,320px) 1fr!important;gap:var(--hero-space-8)!important;align-items:start!important}
+.grid.two{gap:var(--hero-space-6)!important}
+.cards,.exercise-list,#studentList,.list{gap:var(--hero-space-4)!important;margin-top:var(--hero-space-5)!important}
+
+/* Surface authority: open layouts, fewer heavy boxes */
+.hero,.panel,.protocol,.today-panel,.workout-card,.exercise,.student-ex,.lib,.quick-prescription,.community-shell,.modal-box,.login-card,.login-visual{
+  border:1px solid var(--hero-border)!important;
+  border-radius:var(--hero-radius-xl)!important;
+  background:linear-gradient(180deg,rgba(15,23,42,.68),rgba(5,10,18,.58))!important;
+  box-shadow:none!important;
 }
-html[data-hero-os-visual] .btn.full,
-html[data-hero-os-visual] .btn.primary,
-html[data-hero-os-visual] button.primary,
-html[data-hero-os-visual] .community-v3-publish,
-html[data-hero-os-visual] form button[type="submit"]{
-  border-color:rgba(79,140,255,.34)!important;
-  background:linear-gradient(180deg,rgba(79,140,255,.92),rgba(37,99,235,.78))!important;
-  color:white!important;
-}
-html[data-hero-os-visual] .btn.danger,
-html[data-hero-os-visual] button.danger{
-  border-color:rgba(248,113,113,.22)!important;
-  background:rgba(127,29,29,.26)!important;
-  color:#fecaca!important;
-}
-html[data-hero-os-visual] input,
-html[data-hero-os-visual] textarea,
-html[data-hero-os-visual] select{
-  border-radius:16px!important;
+.hero,.panel,.protocol,.today-panel{padding:var(--hero-space-8)!important}
+.hero:after,.hero:before,.login-card:after,.student-view .hero:before{display:none!important}
+.stats{gap:var(--hero-space-4)!important;margin-top:var(--hero-space-8)!important}
+.stats div,.mini-grid span,.quick-card,.visual-card{
   border:1px solid rgba(148,163,184,.12)!important;
-  background:rgba(2,6,23,.30)!important;
-  color:#f8fafc!important;
+  border-radius:var(--hero-radius-lg)!important;
+  background:rgba(255,255,255,.026)!important;
   box-shadow:none!important;
 }
-html[data-hero-os-visual] input:focus,
-html[data-hero-os-visual] textarea:focus,
-html[data-hero-os-visual] select:focus{
-  border-color:rgba(79,140,255,.40)!important;
-  background:rgba(2,6,23,.46)!important;
+.stats b{font-size:clamp(1.35rem,2.3vw,2rem)!important;color:var(--hero-text)!important;font-weight:740!important}
+.stats span{color:var(--hero-muted-2)!important;font-size:.68rem!important}
+
+/* Cards: only content cards and metric cards survive visually */
+.workout-card,.exercise,.student-ex,.lib{
+  padding:var(--hero-space-5)!important;
+  border-radius:var(--hero-radius-lg)!important;
+  background:rgba(255,255,255,.026)!important;
+  border-color:rgba(148,163,184,.13)!important;
 }
-html[data-hero-os-visual] label{
-  gap:8px!important;
-  color:#aab6c8!important;
-  font-size:12px!important;
-  font-weight:680!important;
+.student-row{
+  border-radius:var(--hero-radius-lg)!important;
+  padding:var(--hero-space-4)!important;
+  background:transparent!important;
+  border:1px solid rgba(148,163,184,.11)!important;
+  box-shadow:none!important;
+  transform:none!important;
 }
-html[data-hero-os-visual] .login-screen{padding:clamp(18px,3vw,34px)!important;}
-html[data-hero-os-visual] .login-shell{
-  width:min(1160px,100%)!important;
-  grid-template-columns:minmax(340px,500px) minmax(0,1fr)!important;
-  gap:24px!important;
+.student-row:before,.student-row:after{display:none!important}
+.student-row:hover,.student-row.active{
+  border-color:rgba(45,108,223,.48)!important;
+  background:rgba(45,108,223,.09)!important;
+  box-shadow:none!important;
+  transform:none!important;
 }
-html[data-hero-os-visual] .login-card,
-html[data-hero-os-visual] .login-visual{
-  border-radius:30px!important;
-  border-color:rgba(148,163,184,.12)!important;
-  background:linear-gradient(180deg,rgba(15,23,42,.56),rgba(2,6,23,.30))!important;
-  box-shadow:var(--hero-shadow)!important;
-}
-html[data-hero-os-visual] .login-card{padding:clamp(28px,4vw,44px)!important;}
-html[data-hero-os-visual] .login-visual{min-height:620px!important;}
-html[data-hero-os-visual] .visual-card{
-  border-radius:16px!important;
-  padding:12px 13px!important;
-  background:rgba(2,6,23,.28)!important;
-}
-html[data-hero-os-visual] .visual-mini,
-html[data-hero-os-visual] .visual-cards{
-  opacity:.86!important;
-}
-html[data-hero-os-visual] .community-v3-board{
-  grid-template-columns:minmax(0,1fr) minmax(280px,320px)!important;
-  gap:24px!important;
-}
-html[data-hero-os-visual] .community-v3-template-grid{
-  grid-template-columns:repeat(2,minmax(0,1fr))!important;
-}
-html[data-hero-os-visual] .modal-box,
-html[data-hero-os-visual] .student-ai-panel{
-  border-radius:24px!important;
-  border:1px solid rgba(148,163,184,.14)!important;
-  background:rgba(5,10,20,.92)!important;
-  box-shadow:0 24px 80px rgba(0,0,0,.38)!important;
-}
-html[data-hero-os-visual] .instagram-cta{
+.student-row strong{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:680!important}
+
+/* Button system: primary and secondary only. Danger keeps semantic color but same geometry. */
+.btn,.btn.small,.btn.full,a.btn,button.btn{
+  min-height:44px!important;
+  padding:0 18px!important;
   border-radius:999px!important;
-  background:rgba(15,23,42,.32)!important;
+  border:1px solid transparent!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:8px!important;
+  font-size:.88rem!important;
+  font-weight:720!important;
+  letter-spacing:-.01em!important;
+  text-decoration:none!important;
+  box-shadow:none!important;
+  transition:background var(--hero-speed) var(--hero-ease),border-color var(--hero-speed) var(--hero-ease),transform var(--hero-speed) var(--hero-ease),color var(--hero-speed) var(--hero-ease)!important;
+}
+.btn:not(.secondary):not(.ghost):not(.danger){
+  background:var(--hero-accent)!important;
+  color:white!important;
+  border-color:rgba(255,255,255,.08)!important;
+}
+.btn.secondary,.btn.ghost,.btn.clean,.btn.outline{
+  background:rgba(255,255,255,.034)!important;
+  color:var(--hero-text)!important;
+  border-color:rgba(148,163,184,.18)!important;
+}
+.btn.danger{background:rgba(239,68,68,.12)!important;color:#fecaca!important;border-color:rgba(239,68,68,.24)!important}
+.btn:hover{transform:translateY(-1px)!important;filter:none!important;box-shadow:none!important}
+.btn.secondary:hover,.btn.ghost:hover{background:rgba(255,255,255,.06)!important;border-color:rgba(148,163,184,.3)!important}
+.btn.full{width:100%!important}
+
+/* Forms */
+.input,input,textarea,select{
+  min-height:46px!important;
+  padding:0 14px!important;
+  border-radius:var(--hero-radius-md)!important;
+  border:1px solid rgba(148,163,184,.16)!important;
+  background:rgba(2,6,12,.56)!important;
+  color:var(--hero-text)!important;
+  box-shadow:none!important;
+  transition:border-color var(--hero-speed) var(--hero-ease),background var(--hero-speed) var(--hero-ease)!important;
+}
+textarea{padding:14px!important;min-height:110px!important}
+.input:focus,input:focus,textarea:focus,select:focus{
+  outline:0!important;
+  border-color:rgba(45,108,223,.58)!important;
+  background:rgba(2,6,12,.78)!important;
+}
+.form{gap:var(--hero-space-4)!important}
+.form label{gap:var(--hero-space-2)!important;font-size:.78rem!important;color:var(--hero-muted)!important;font-weight:640!important}
+
+/* Status, badges, indicators */
+.badge,.status,.mission-ribbon{
+  min-height:26px!important;
+  border-radius:999px!important;
+  padding:0 10px!important;
+  border:1px solid rgba(148,163,184,.16)!important;
+  background:rgba(255,255,255,.035)!important;
+  color:#cbd5e1!important;
   box-shadow:none!important;
 }
-html[data-hero-os-visual] [style*="box-shadow"],
-html[data-hero-os-visual] [class*="glow"],
-html[data-hero-os-visual] [class*="shine"]{
-  box-shadow:none!important;
-}
-html[data-hero-os-visual] .hero-community-floating,
-html[data-hero-os-visual] .community-fab,
-html[data-hero-os-visual] .hero-community-fab{
-  animation:none!important;
-  box-shadow:none!important;
-}
-html[data-hero-os-visual] .student-row strong,
-html[data-hero-os-visual] .student-list-card strong,
-html[data-hero-os-visual] .panel-title strong,
-html[data-hero-os-visual] .ex-title strong{
-  white-space:normal!important;
-  overflow-wrap:break-word!important;
-  line-height:1.22!important;
-}
-@media(prefers-reduced-motion:reduce){
-  html[data-hero-os-visual] *,html[data-hero-os-visual] *:before,html[data-hero-os-visual] *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important;}
-}
+.status.ativo{color:#bbf7d0!important;background:rgba(34,197,94,.09)!important;border-color:rgba(34,197,94,.2)!important}
+.status.bloqueado{color:#fecaca!important;background:rgba(239,68,68,.09)!important;border-color:rgba(239,68,68,.2)!important}
+
+/* Modal system */
+.modal{background:rgba(0,0,0,.68)!important;backdrop-filter:blur(10px)!important;padding:var(--hero-space-5)!important}
+.modal-box{width:min(900px,94vw)!important;max-height:88vh!important;padding:var(--hero-space-8)!important;border-radius:var(--hero-radius-xl)!important}
+
+/* Microinteractions: no blink/pulse/bounce */
+*,*::before,*::after{animation-duration:var(--hero-speed);animation-timing-function:var(--hero-ease)}
+@keyframes blink{from{opacity:1}to{opacity:1}}
+@keyframes pulse{from{opacity:1;transform:none}to{opacity:1;transform:none}}
+@keyframes heroSmoke{from{opacity:.28;transform:none}to{opacity:.32;transform:none}}
+@keyframes heroLightSweep{from{opacity:0;transform:none}to{opacity:0;transform:none}}
+.splash-screen:before,.splash-screen:after{animation:none!important;opacity:.18!important}
+.floating-ai-btn{box-shadow:none!important;animation:none!important}
+
+/* Login becomes product-grade, less promotional/template */
+.login-screen{padding:clamp(18px,4vw,48px)!important}
+.login-shell{width:min(1160px,100%)!important;grid-template-columns:minmax(330px,480px) 1fr!important;gap:var(--hero-space-8)!important}
+.login-card{padding:clamp(28px,4vw,48px)!important}
+.login-visual{min-height:620px!important}
+.visual-copy{left:clamp(22px,3vw,40px)!important;top:clamp(28px,4vw,48px)!important}
+.visual-copy h2{letter-spacing:-.06em!important;font-weight:760!important}
+.visual-mini i{box-shadow:none!important}
+.visual-cards{gap:var(--hero-space-3)!important}
+
+/* Tables/lists and dense areas */
+.mini-grid{gap:var(--hero-space-3)!important}
+.library-grid{gap:var(--hero-space-5)!important}
+.filters{gap:var(--hero-space-3)!important}
+.panel-title,.student-head,.ex-title{gap:var(--hero-space-4)!important;align-items:center!important}
+
+/* Responsive coherence */
 @media(max-width:1100px){
-  html[data-hero-os-visual] .admin-grid,
-  html[data-hero-os-visual] .admin-grid-fixed,
-  html[data-hero-os-visual] .community-v3-board{grid-template-columns:1fr!important;}
-  html[data-hero-os-visual] .login-shell{grid-template-columns:1fr!important;}
-  html[data-hero-os-visual] .login-visual{min-height:420px!important;}
+  .admin-grid{grid-template-columns:1fr!important}
+  .login-shell{grid-template-columns:1fr!important}
+  .login-visual{min-height:520px!important}
 }
-@media(max-width:760px){
-  html[data-hero-os-visual] .wrap,
-  html[data-hero-os-visual] main.wrap,
-  html[data-hero-os-visual] .container{width:calc(100vw - 28px)!important;padding:26px 0 76px!important;}
-  html[data-hero-os-visual] .top,
-  html[data-hero-os-visual] .topbar{position:sticky!important;align-items:flex-start!important;flex-direction:column!important;gap:12px!important;}
-  html[data-hero-os-visual] .top nav,
-  html[data-hero-os-visual] .topbar nav,
-  html[data-hero-os-visual] .toolbar{width:100%!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:9px!important;}
-  html[data-hero-os-visual] .top nav .btn,
-  html[data-hero-os-visual] .topbar nav .btn,
-  html[data-hero-os-visual] .toolbar .btn,
-  html[data-hero-os-visual] .toolbar button{width:100%!important;}
-  html[data-hero-os-visual] h1{font-size:clamp(30px,10vw,42px)!important;}
-  html[data-hero-os-visual] .hero,
-  html[data-hero-os-visual] .panel,
-  html[data-hero-os-visual] .card{padding:20px!important;border-radius:22px!important;}
-  html[data-hero-os-visual] .grid.two,
-  html[data-hero-os-visual] .filters,
-  html[data-hero-os-visual] .mini-grid,
-  html[data-hero-os-visual] .library-grid,
-  html[data-hero-os-visual] .community-v3-form-row,
-  html[data-hero-os-visual] .community-v3-template-grid{grid-template-columns:1fr!important;}
-  html[data-hero-os-visual] .stats,
-  html[data-hero-os-visual] .control-metrics,
-  html[data-hero-os-visual] .community-v3-stats{grid-template-columns:1fr 1fr!important;}
-  html[data-hero-os-visual] .workout-card,
-  html[data-hero-os-visual] .exercise{display:grid!important;grid-template-columns:1fr!important;}
-  html[data-hero-os-visual] .visual-photo{opacity:.56!important;width:100%!important;right:0!important;}
+@media(max-width:820px){
+  .wrap{width:min(94vw,720px)!important;padding:var(--hero-space-6) 0 var(--hero-space-10)!important}
+  .hero,.panel,.protocol,.today-panel{padding:var(--hero-space-5)!important;border-radius:var(--hero-radius-lg)!important}
+  .stats,.mini-grid,.library-grid,.filters,.grid.two{grid-template-columns:1fr!important}
+  .workout-card,.exercise{display:grid!important}
+  .top{position:relative!important;align-items:flex-start!important;flex-direction:column!important}
+  .toolbar,.top nav{width:100%!important}
+  .toolbar .btn,.top nav .btn{flex:1 1 auto!important}
+  .login-visual{display:none!important}
+  h1,.login-card h1,.hero h1{font-size:clamp(2rem,12vw,3.2rem)!important}
 }
-@media(max-width:460px){
-  html[data-hero-os-visual] .top nav,
-  html[data-hero-os-visual] .topbar nav,
-  html[data-hero-os-visual] .toolbar,
-  html[data-hero-os-visual] .stats,
-  html[data-hero-os-visual] .control-metrics,
-  html[data-hero-os-visual] .community-v3-stats{grid-template-columns:1fr!important;}
-  html[data-hero-os-visual] .login-card{padding:24px!important;}
-  html[data-hero-os-visual] button,
-  html[data-hero-os-visual] .btn{width:auto;max-width:100%;}
+@media(max-width:520px){
+  .btn,.btn.small{width:100%;min-height:46px!important}
+  .panel-title,.student-head,.ex-title{align-items:flex-start!important;flex-direction:column!important}
+  .modal-box{padding:var(--hero-space-5)!important}
 }

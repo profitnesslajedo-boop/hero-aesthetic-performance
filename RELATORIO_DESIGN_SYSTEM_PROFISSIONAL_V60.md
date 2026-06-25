@@ -1,98 +1,70 @@
-# RELATÓRIO HERO OS V60 — DESIGN SYSTEM PROFISSIONAL E REFINAMENTO ESTRUTURAL
+# RELATÓRIO DE CORREÇÃO - HERO OS V5.7
 
-## Escopo executado
+## Escopo
+Correções aplicadas apenas sobre os problemas identificados na auditoria anterior, preservando:
 
-Foi criada uma camada global de Design System profissional e uma separação estrutural inicial da camada visual do HERO.
+- estrutura geral do projeto;
+- páginas existentes;
+- banco de dados;
+- Supabase;
+- SQLs;
+- autenticação;
+- funções principais;
+- fluxo de treinador e aluna.
 
-A intervenção foi limitada à experiência visual, organização de CSS e documentação de arquitetura. Não foram alterados banco de dados, autenticação, Supabase, SQLs, APIs, permissões, fluxos ou regras de negócio.
+## Arquivos alterados
 
-## O que mudou
+- `index.html`
+- `404.html`
 
-### 1. CSS deixou de estar preso ao HTML
+Nenhum arquivo SQL, configuração Supabase ou banco local foi alterado.
 
-Os blocos visuais antes embutidos em `index.html` e `404.html` foram extraídos para a pasta `/styles`:
+## Correções aplicadas
 
-- `legacy-core.css`
-- `premium-refinement-v58.css`
-- `global-design-system-v59.css`
-- `audit-fixes-v57.css`
-- `product-system-v60.css`
+### 1. Botão flutuante da Comunidade HERO
+- Desativada a recriação automática via intervalo recorrente.
+- Bloqueados botões antigos com classes/IDs de floating/fab.
+- Preservado o acesso funcional à Comunidade HERO por botão normal dentro do fluxo da interface.
+- Removido comportamento de botão inferior piscando.
 
-O arquivo `product-system-v60.css` é a camada final de autoridade visual.
+### 2. Layout subindo/descendo
+- Removido o mecanismo recorrente que recriava elementos a cada 2 segundos.
+- Adicionada estabilização via MutationObserver sem setInterval de layout.
+- Neutralizadas animações em containers grandes que podiam gerar flicker visual.
 
-### 2. Design System global
+### 3. Responsividade
+- Ajustados botões em toolbars para quebra controlada em telas pequenas.
+- Melhorado comportamento de cards e painéis em mobile.
+- Protegido overflow de conteúdo em cards de treino e painéis.
 
-Foram definidos tokens visuais globais para:
+### 4. Nome da aluna quebrando layout
+- Aplicado controle visual para nomes longos em cards e perfil da aluna.
+- Uso de `white-space`, `overflow`, `text-overflow` e limite de linhas em mobile.
 
-- cores
-- superfícies
-- bordas
-- raios
-- espaçamento
-- sombras
-- tipografia
-- velocidade de transição
-- easing
+### 5. Componentes duplicados/flutuantes
+- Criada camada final de bloqueio para componentes antigos de comunidade flutuante.
+- Impedido que novas instâncias legacy sejam inseridas por `appendChild` ou `insertBefore`.
 
-### 3. Componentes oficiais
+### 6. Timers
+- Protegido timer legado para limpar intervalo anterior antes de criar novo intervalo.
+- Mantida a lógica principal do cronômetro de sessão.
 
-A plataforma passa a utilizar uma linguagem única para:
+### 7. Botões de comunidade
+- Botões válidos no fluxo da interface continuam funcionais.
+- Botões antigos, flutuantes ou inferiores foram bloqueados/removidos.
 
-- botões primários
-- botões secundários
-- inputs
-- cards informativos
-- cards de métrica
-- modais
-- badges
-- status
-- listas
-- áreas densas
+## Testes realizados
 
-### 4. Refinamento visual premium
+### Teste estático
+- Verificada presença do patch V5.7 nos arquivos `index.html` e `404.html`.
+- Confirmado que os intervalos antigos de recriação do botão da comunidade foram removidos.
+- Confirmado que os scripts passam por validação sintática via Node `new Function()`.
 
-Foram reduzidos:
+### Resultado dos testes
+- `index.html`: 13 scripts validados, 0 erros de sintaxe.
+- `404.html`: 13 scripts validados, 0 erros de sintaxe.
+- `setInterval(heroCommunityEnsureButton,2000)`: 0 ocorrências.
+- `setInterval(window.HERO.heroCommunityEnsureButton,2000)`: 0 ocorrências.
 
-- sombras exageradas
-- glow artificial
-- bordas redundantes
-- sensação de dashboard administrativo
-- contraste excessivo entre cards
-- animações chamativas
-- visual de template pronto
-
-A interface agora prioriza composição, espaçamento, tipografia e hierarquia.
-
-### 5. Responsividade
-
-Foram reforçados padrões para:
-
-- desktop
-- notebook
-- tablet
-- mobile
-
-Especialmente em grids, botões, painéis, listas e modais.
-
-### 6. Estrutura futura
-
-Foram criadas as pastas:
-
-- `/components`
-- `/pages`
-- `/docs`
-
-Nesta versão, elas são documentação estrutural e guia de evolução. A lógica não foi extraída para evitar regressões.
-
-## Validações
-
-- `index.html` preservado como ponto de entrada principal.
-- `404.html` preservado como fallback.
-- `supabase-config.js` não foi alterado.
-- Arquivos SQL não foram alterados.
-- Scripts internos não foram modificados.
-- A camada visual foi movida para CSS externo e conectada por `<link rel="stylesheet">`.
-
-## Observação importante
-
-Esta versão é uma refatoração visual segura. A refatoração completa de JavaScript em componentes reais deve ser feita em uma próxima etapa, com testes funcionais mais amplos, porque hoje a aplicação depende de muitas funções globais no `index.html`.
+## Observação técnica
+O projeto continua monolítico, com muito CSS antigo e várias camadas de patches. A correção foi feita de forma cirúrgica para estabilizar o comportamento sem reestruturar o projeto inteiro.
