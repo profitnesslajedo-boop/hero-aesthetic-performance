@@ -3808,12 +3808,12 @@
   };
   function data(){let raw=localStorage.getItem('hero_v12'); if(!raw){localStorage.setItem('hero_v12',JSON.stringify(seed)); return JSON.parse(JSON.stringify(seed));} const st=JSON.parse(raw); let changed=false; if(!st.users.some(u=>u.email==='marcosestevees@icloud.com')){st.users.push(seed.users[0]); changed=true;} if(!st.users.some(u=>u.email==='jessika.liz.feitosa@gmail.com')){st.users.push(seed.users[1]); changed=true;} if(!st.alunos.some(a=>a.id==='al_jessika')){st.alunos.push(seed.alunos[0]); changed=true;} if(!st.completions){st.completions={}; changed=true;} if(!st.timers){st.timers={}; changed=true;} if(!st.library || st.library.length < 180){st.library=seed.library; changed=true;} if(changed)save(st); return st;}
   function save(d){localStorage.setItem('hero_v12',JSON.stringify(d));}
-  function mount(html){$('app').innerHTML=html;}
+  function mount(html){let app=$('app');if(!app){document.body.innerHTML='<div id="app"></div>';app=$('app');}app.innerHTML=html;}
   function logo(){return `<div class="logo"><div class="word">HERO<span></span></div><small>AESTHETIC PERFORMANCE</small></div>`;}
   function top(title,actions=''){return `<header class="top no-print"><div>${logo()}<strong>${esc(title)}</strong></div><nav>${actions}<button class="btn secondary small" onclick="HERO.logout()">Sair</button></nav></header>${floatingAIButton()}`;}
   function modal(html){document.body.insertAdjacentHTML('beforeend',`<div class="modal" id="modal"><div class="modal-box"><button class="x" onclick="HERO.closeModal()">×</button>${html}</div></div>`);}
   function closeModal(){const m=$('modal'); if(m)m.remove();}
-  function login(){mount(`<main class="login-screen"><div class="login-shell"><section class="login-card"><div class="login-brand"><div><div class="access-indicator" aria-label="Centro de performance privado">
+  function login(){document.querySelectorAll('.student-ai-float,#studentAiPanel,.floating-ai-btn').forEach(el=>{try{el.remove();}catch(e){}});document.documentElement.setAttribute('data-hero-role','public');document.documentElement.setAttribute('data-hero-current-screen','login');mount(`<main class="login-screen"><div class="login-shell"><section class="login-card"><div class="login-brand"><div><div class="access-indicator" aria-label="Centro de performance privado">
   <span class="access-icon" aria-hidden="true">⌁</span>
   <span class="access-main">Centro de performance</span>
   <span class="access-divider"></span>
@@ -4439,7 +4439,7 @@
     return e?.reps||e?.repeticoes||e?.repetição||e?.repeticao||e?.repetições||'8 a 12';
   }
 
-async function student(alunoId,preview=false){let d=data(); const a=d.alunos.find(x=>x.id===alunoId); if(!a)return login(); let ts=d.treinos.filter(t=>t.alunoId===alunoId&&(preview||t.liberado)); if(supabaseAvailable()){for(const t of ts){await syncExerciciosPrescritosSupabase(t.id,alunoId);} d=data(); ts=d.treinos.filter(t=>t.alunoId===alunoId&&(preview||t.liberado));} mount(`${top(preview?'Visualização do aluno':'Área individual do aluno',preview?`<button class="btn secondary small" id="backPrev">Voltar ao centro de controle</button>`:`<button class="btn secondary small" id="studentBackBtn">Voltar</button><button class="btn small" onclick="window.print()">Imprimir minha missão</button><button class="btn secondary small" onclick="HERO.community()">Comunidade HERO</button>`)}<main class="wrap student-view"><section class="hero print-head"><div class="student-profile"><div class="avatar-wrap">${a.foto?`<img src="${a.foto}" alt="Foto de ${esc(a.nome)}">`:`<div class="avatar-placeholder">H</div>`}</div><div><p class="eyebrow">Protocolo liberado</p><h1>${esc(a.nome)}</h1><p>Seu treino foi criado para estética, força, resistência e evolução real.</p><div class="mission-ribbon no-print">Área exclusiva HERO liberada</div><div class="toolbar no-print">${preview?'':`<button class="btn small" id="photoBtn">${a.foto?'Alterar foto':'Adicionar foto'}</button>`}<button class="btn" onclick="window.print()">Imprimir minha missão</button></div></div></div></section>${heroControlMetrics(a.id)}<section class="print-area">${ts.length?studentToday(alunoId,ts,preview)+ts.map(t=>studentWorkout(t,alunoId,preview)).join(''):'<div class="empty">Sua missão ainda não foi liberada.</div>'}</section></main>`); const b=$('backPrev'); if(b)b.onclick=()=>admin(alunoId); const sb=$('studentBackBtn'); if(sb)sb.onclick=()=>studentBack(alunoId); const pb=$('photoBtn'); if(pb)pb.onclick=()=>photoEditor(alunoId); if(!preview) initTimer(alunoId);}
+async function student(alunoId,preview=false){let d=data(); const a=d.alunos.find(x=>x.id===alunoId); if(!a)return login(); window.HERO_LAST_STUDENT_ID=a.id; let ts=d.treinos.filter(t=>t.alunoId===alunoId&&(preview||t.liberado)); if(supabaseAvailable()){for(const t of ts){await syncExerciciosPrescritosSupabase(t.id,alunoId);} d=data(); ts=d.treinos.filter(t=>t.alunoId===alunoId&&(preview||t.liberado));} mount(`${top(preview?'Visualização do aluno':'Área individual do aluno',preview?`<button class="btn secondary small" id="backPrev">Voltar ao centro de controle</button>`:`<button class="btn secondary small" id="studentBackBtn">Voltar</button><button class="btn small" onclick="window.print()">Imprimir minha missão</button><button class="btn secondary small" onclick="HERO.community()">Comunidade HERO</button>`)}<main class="wrap student-view"><section class="hero print-head"><div class="student-profile"><div class="avatar-wrap">${a.foto?`<img src="${a.foto}" alt="Foto de ${esc(a.nome)}">`:`<div class="avatar-placeholder">H</div>`}</div><div><p class="eyebrow">Protocolo liberado</p><h1>${esc(a.nome)}</h1><p>Seu treino foi criado para estética, força, resistência e evolução real.</p><div class="mission-ribbon no-print">Área exclusiva HERO liberada</div><div class="toolbar no-print">${preview?'':`<button class="btn small" id="photoBtn">${a.foto?'Alterar foto':'Adicionar foto'}</button>`}<button class="btn" onclick="window.print()">Imprimir minha missão</button></div></div></div></section>${heroControlMetrics(a.id)}<section class="print-area">${ts.length?studentToday(alunoId,ts,preview)+ts.map(t=>studentWorkout(t,alunoId,preview)).join(''):'<div class="empty">Sua missão ainda não foi liberada.</div>'}</section></main>`); const b=$('backPrev'); if(b)b.onclick=()=>admin(alunoId); const sb=$('studentBackBtn'); if(sb)sb.onclick=()=>studentBack(alunoId); const pb=$('photoBtn'); if(pb)pb.onclick=()=>photoEditor(alunoId); if(!preview) initTimer(alunoId);}
   function studentBack(alunoId){try{if(location.hash==='#comunidade'){location.hash='';return student(alunoId,false);} if(document.referrer&&history.length>1){history.back();return;}}catch(_e){} return student(alunoId,false);}
   function studentToday(alunoId,ts,preview){
     const d=data();
@@ -4919,9 +4919,9 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
     const form=$('communityForm');
     if(form)form.onsubmit=communityCreatePost;
     const backLegacy=$('communityBackDirectLegacy');
-    if(backLegacy)backLegacy.onclick=function(ev){ev.preventDefault();ev.stopPropagation();location.hash='';if(isAdmin)return admin();if(user.id&&user.id!=='local-user')return student(user.id,false);return login();};
+    if(backLegacy)backLegacy.onclick=function(ev){ev.preventDefault();ev.stopPropagation();location.hash='';if(isAdmin)return admin();var sid=(typeof heroStudentIdForCommunityBack==='function'?heroStudentIdForCommunityBack():user.id);if(sid)return student(sid,false);return login();};
     const protocolLegacy=$('communityProtocolDirectLegacy');
-    if(protocolLegacy)protocolLegacy.onclick=function(ev){ev.preventDefault();ev.stopPropagation();location.hash='';if(user.id&&user.id!=='local-user')return student(user.id,false);return login();};
+    if(protocolLegacy)protocolLegacy.onclick=function(ev){ev.preventDefault();ev.stopPropagation();location.hash='';var sid=(typeof heroStudentIdForCommunityBack==='function'?heroStudentIdForCommunityBack():user.id);if(sid)return student(sid,false);return login();};
     const centerLegacy=$('communityCenterDirectLegacy');
     if(centerLegacy)centerLegacy.onclick=function(ev){ev.preventDefault();ev.stopPropagation();location.hash='';return admin();};
     const chatLegacy=$('communityChatDirectLegacy');
@@ -5050,7 +5050,11 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
 (function(){
   function safeEsc(v){if(typeof esc==='function')return esc(v);return String(v??'').replace(/[&<>"']/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]});}
   window.HERO=window.HERO||{};
-  function currentUser(){try{var raw=sessionStorage.getItem('hero_session');var u=raw?JSON.parse(raw):{};var st=typeof data==='function'?data():{};var aluno=(st.alunos||[]).find(function(a){return String(a.id)===String(u.alunoId)||String(a.email||'').toLowerCase()===String(u.email||'').toLowerCase()});return {id:u.alunoId||u.id||u.email||(aluno&&aluno.id)||'local-user',name:u.nome||u.name||(aluno&&aluno.nome)||u.email||'Usuário HERO',role:u.role||(aluno&&aluno.role)||'aluna',email:u.email||(aluno&&aluno.email)||''};}catch(e){return {id:'local-user',name:'Usuário HERO',role:'aluna',email:''};}}
+  function currentUser(){try{var raw=sessionStorage.getItem('hero_session');var u=raw?JSON.parse(raw):{};var st=typeof data==='function'?data():{};var aluno=(st.alunos||[]).find(function(a){return String(a.id)===String(u.alunoId)||String(a.email||'').toLowerCase()===String(u.email||'').toLowerCase()});return {id:u.alunoId||u.id||(aluno&&aluno.id)||u.email||'local-user',name:u.nome||u.name||(aluno&&aluno.nome)||u.email||'Usuário HERO',role:u.role||(aluno&&aluno.role)||'aluna',email:u.email||(aluno&&aluno.email)||''};}catch(e){return {id:'local-user',name:'Usuário HERO',role:'aluna',email:''};}}
+  function heroStudentIdForCommunityBack(){try{var raw=sessionStorage.getItem('hero_session');var u=raw?JSON.parse(raw):{};var st=typeof data==='function'?data():{};var alunos=st.alunos||[];var aluno=alunos.find(function(a){return String(a.id)===String(window.HERO_LAST_STUDENT_ID||u.alunoId||u.id)||String(a.email||'').toLowerCase()===String(u.email||'').toLowerCase()});return (aluno&&aluno.id)||window.HERO_LAST_STUDENT_ID||u.alunoId||'';}catch(e){return window.HERO_LAST_STUDENT_ID||'';}}
+  function heroCommunityBackToStudent(ev){if(ev){ev.preventDefault();ev.stopPropagation();if(ev.stopImmediatePropagation)ev.stopImmediatePropagation();}try{location.hash='';}catch(e){}var sid=heroStudentIdForCommunityBack();if(sid&&window.HERO&&typeof window.HERO.student==='function')return window.HERO.student(sid,false);if(window.HERO&&typeof window.HERO.login==='function')return window.HERO.login();}
+  window.heroCommunityBackToStudent=heroCommunityBackToStudent;
+  window.HERO.heroCommunityBackToStudent=heroCommunityBackToStudent;
   function localState(){var st=typeof data==='function'?data():{};st.communityPosts=st.communityPosts||[];st.communityComments=st.communityComments||[];st.communityLikes=st.communityLikes||[];if(typeof save==='function')save(st);return st;}
   function fileToDataUrl(file){return new Promise(function(resolve,reject){var reader=new FileReader();reader.onload=function(ev){resolve(ev.target.result||'');};reader.onerror=function(){reject(new Error('Erro ao ler a imagem selecionada.'));};reader.readAsDataURL(file);});}
   async function uploadImg(file){if(!file)return '';if(typeof supabaseClient!=='function'||typeof supabaseAvailable!=='function'||!supabaseAvailable())return fileToDataUrl(file);var client=supabaseClient();if(!client)return fileToDataUrl(file);var ext=(file.name.split('.').pop()||'jpg').toLowerCase();var path='posts/'+Date.now()+'-'+(typeof uid==='function'?uid():Math.random().toString(36).slice(2))+'.'+ext;var up=await client.storage.from('community-media').upload(path,file,{cacheControl:'3600',upsert:false});if(up.error){console.warn('Comunidade HERO usando imagem local:',up.error.message);return fileToDataUrl(file);}var pub=client.storage.from('community-media').getPublicUrl(path);return (pub.data&&pub.data.publicUrl)||fileToDataUrl(file);}
@@ -5059,9 +5063,9 @@ async function student(alunoId,preview=false){let d=data(); const a=d.alunos.fin
   window.HERO.communityUsePrompt=function(kind){var form=document.getElementById('communityForm');if(!form)return;var textarea=form.querySelector('textarea[name="content"]');var select=form.querySelector('select[name="category"]');var prompts={checkin:{cat:'Check-in',text:'Check-in do dia:\n\nTreino concluído.\nHoje eu senti mais dificuldade em:\nMinha maior vitória de hoje foi:'},duvida:{cat:'Dúvida',text:'Dúvida rápida:\n\nEstou com dificuldade em:\nO que eu senti durante a execução foi:\nQuero entender melhor:'},resultado:{cat:'Resultado',text:'Evolução registrada:\n\nHoje percebi melhora em:\nAntes eu tinha dificuldade com:\nAgora consegui:'},execucao:{cat:'Execução',text:'Análise de execução:\n\nExercício:\nO que quero que o treinador avalie:\nSensação durante a série:'}};var item=prompts[kind]||prompts.checkin;if(textarea){textarea.value=item.text;textarea.focus();textarea.selectionStart=textarea.value.length;textarea.selectionEnd=textarea.value.length;}if(select)select.value=item.cat;};
   window.HERO.community=async function(){location.hash='comunidade';var user=currentUser();var isAdmin=user.role==='admin';var st=await fetchCommunity();var posts=(st.communityPosts||[]).filter(function(p){return p.active!==false});var comments=st.communityComments||[];var likes=st.communityLikes||[];var pinned=posts.filter(function(p){return p.pinned}).length;var checkins=posts.filter(function(p){return String(p.category||'').toLowerCase().indexOf('check')>-1}).length;var results=posts.filter(function(p){return String(p.category||'').toLowerCase().indexOf('resultado')>-1}).length;var back='<button type="button" class="btn secondary small" id="communityBackDirect">Voltar</button>'+(isAdmin?'<button type="button" class="btn ghost small" id="communityCenterDirect">Centro de controle</button>':'<button type="button" class="btn ghost small" id="communityProtocolDirect">Meu protocolo</button>')+'<button type="button" class="btn ghost small" id="communityChatDirect">Chat HERO</button>';var html='<main class="wrap community-v3-wrap"><div class="community-context-bar" data-hero-nav-bar="community-definitive"><div><span class="community-context-kicker">navegação</span><h2 class="community-context-title">Comunidade HERO</h2></div><div class="context-actions">'+back+'</div></div><section class="hero community-v3-hero"><p class="eyebrow">mural privado</p><h1>Comunidade HERO</h1><p>Compartilhe evolução, tire dúvidas, acompanhe avisos e mantenha a execução no padrão certo.</p><div class="community-v3-pills"><span>check-ins</span><span>dúvidas</span><span>avisos</span><span>resultados</span></div></section><section class="community-v3-stats"><div class="community-v3-stat"><span>Publicações</span><strong>'+posts.length+'</strong></div><div class="community-v3-stat"><span>Check-ins</span><strong>'+checkins+'</strong></div><div class="community-v3-stat"><span>Resultados</span><strong>'+results+'</strong></div><div class="community-v3-stat"><span>Comentários</span><strong>'+comments.length+'</strong></div></section><section class="community-v3-board"><div><form id="communityForm" class="community-v3-composer"><div class="community-v3-card feature"><small>postagem guiada</small><h3>Escolha um modelo rápido</h3><p></p><div class="community-v3-template-grid"><button type="button" onclick="HERO.communityUsePrompt(\'checkin\')">Check-in</button><button type="button" onclick="HERO.communityUsePrompt(\'duvida\')">Dúvida</button><button type="button" onclick="HERO.communityUsePrompt(\'resultado\')">Resultado</button><button type="button" onclick="HERO.communityUsePrompt(\'execucao\')">Execução</button></div></div><label>Publicação<textarea name="content" placeholder="Compartilhe uma evolução, dúvida, aviso ou check-in..." required></textarea></label><div class="community-v3-form-row"><label>Categoria<select name="category"><option>Check-in</option><option>Dúvida</option><option>Resultado</option><option>Aviso</option><option>Execução</option><option>Motivação</option></select></label><label class="community-v3-file">Imagem opcional<input type="file" name="image" accept="image/*"></label></div><button class="btn community-v3-publish">Publicar atualização</button><div id="communityMsg" class="msg"></div></form><div class="community-v3-feed">'+(posts.length?posts.map(function(p){return postCard(p,comments,likes,user,isAdmin)}).join(''):'<div class="community-v3-empty">Ainda não há publicações. Publique o primeiro check-in ou aviso.</div>')+'</div></div><aside class="community-v3-side"><div class="community-v3-card feature"><small>desafio da semana</small><h3>4 check-ins HERO</h3><p>Publique 4 check-ins nesta semana: treino feito, dúvida, evolução ou ajuste de execução.</p><button class="btn secondary small" onclick="HERO.communityUsePrompt(\'checkin\')">Fazer check-in</button></div><div class="community-v3-card"><h3>Como usar</h3><ul><li>poste check-ins objetivos;</li><li>comente nos posts de outras alunas;</li><li>registre evolução com foto;</li><li>tire dúvidas de execução.</li></ul></div><div class="community-v3-card"><h3>Movimento</h3><p>'+pinned+' aviso(s) fixado(s), '+likes.length+' curtida(s) e '+comments.length+' comentário(s).</p></div></aside></section></main>';if(typeof mount==='function')mount(html);else document.body.innerHTML=html;var form=document.getElementById('communityForm');if(form)form.onsubmit=window.HERO.communityCreatePost;
 var backBtn=document.getElementById('communityBackDirect');
-if(backBtn)backBtn.onclick=function(ev){ev.preventDefault();ev.stopPropagation();location.hash='';if(isAdmin&&window.HERO&&typeof window.HERO.admin==='function')return window.HERO.admin();if(user&&user.id&&user.id!=='local-user'&&window.HERO&&typeof window.HERO.student==='function')return window.HERO.student(user.id,false);if(window.HERO&&typeof window.HERO.login==='function')return window.HERO.login();};
+if(backBtn)backBtn.onclick=function(ev){if(isAdmin){ev.preventDefault();ev.stopPropagation();location.hash='';if(window.HERO&&typeof window.HERO.admin==='function')return window.HERO.admin();}return heroCommunityBackToStudent(ev);};
 var protocolBtn=document.getElementById('communityProtocolDirect');
-if(protocolBtn)protocolBtn.onclick=function(ev){ev.preventDefault();ev.stopPropagation();location.hash='';if(user&&user.id&&user.id!=='local-user'&&window.HERO&&typeof window.HERO.student==='function')return window.HERO.student(user.id,false);if(window.HERO&&typeof window.HERO.login==='function')return window.HERO.login();};
+if(protocolBtn)protocolBtn.onclick=heroCommunityBackToStudent;
 var centerBtn=document.getElementById('communityCenterDirect');
 if(centerBtn)centerBtn.onclick=function(ev){ev.preventDefault();ev.stopPropagation();location.hash='';if(window.HERO&&typeof window.HERO.admin==='function')return window.HERO.admin();};
 var chatBtn=document.getElementById('communityChatDirect');
@@ -5483,8 +5487,8 @@ function heroStableIsTrainer(){
   function markScreen(){document.documentElement.setAttribute('data-hero-current-screen',isCommunityScreen()?'community':(isTrainer()?'trainer':'student'));}
   function currentStudentId(){
     const s=readSession(), st=stateData(), alunos=st.alunos||[];
-    const aluno=alunos.find(a=>String(a.id)===String(s.alunoId||s.id)||String(a.email||'').toLowerCase()===String(s.email||'').toLowerCase());
-    return s.alunoId||s.id||(aluno&&aluno.id)||s.email||'';
+    const aluno=alunos.find(a=>String(a.id)===String(window.HERO_LAST_STUDENT_ID||s.alunoId||s.id)||String(a.email||'').toLowerCase()===String(s.email||'').toLowerCase());
+    return (aluno&&aluno.id)||window.HERO_LAST_STUDENT_ID||s.alunoId||s.id||'';
   }
 
   function goStudentHome(){
@@ -5520,7 +5524,7 @@ function heroStableIsTrainer(){
 
   function isOldCommunityButton(el){
     if(!el||el.id==='heroCommunityCleanButton')return false;
-    if(el.closest&&el.closest('.community-context-bar'))return false;
+    if(el.closest&&el.closest('.community-context-bar,.context-actions,.toolbar,.top,.student-profile,.community-v3-card,.community-v3-template-grid,.community-v3-actions'))return false;
     const txt=norm(el.textContent), onclick=norm(el.getAttribute&&el.getAttribute('onclick')||''), klass=norm(el.className||'');
     return txt==='comunidade hero'||txt==='comunidade'||txt.includes('comunidade hero')||onclick.includes('community')||klass.includes('community-fab')||(el.hasAttribute&&el.hasAttribute('data-community-fab'))||el.id==='communityFab'||el.id==='heroCommunityAccessFixed'||el.id==='heroCommunityAccessFinal'||el.id==='heroCommunityAccessTop';
   }
@@ -5574,8 +5578,10 @@ function heroStableIsTrainer(){
   }
   function ensureStudentAI(){
     function removeAI(){document.querySelectorAll('.student-ai-float,#studentAiPanel').forEach(el=>{try{el.remove();}catch(e){}});}
+    const session=readSession();
+    if(!session.role&&!session.email&&!session.alunoId&&!session.id){removeAI();return;}
     if(isTrainer()){removeAI();return;}
-    const studentArea=!!document.querySelector('.hero-load-box,.student-ex,.workout-card,.protocol-exercise,.today-panel');
+    const studentArea=!!document.querySelector('.student-view')&&!isCommunityScreen();
     if(!studentArea){removeAI();return;}
 
     let panel=document.getElementById('studentAiPanel');
@@ -5628,7 +5634,7 @@ function heroStableIsTrainer(){
     ['communityBackDirect','communityBackDirectLegacy','communityProtocolDirect','communityProtocolDirectLegacy'].forEach(id=>{
       const el=document.getElementById(id);
       if(el){
-        el.onclick=function(ev){ev.preventDefault();ev.stopPropagation();if(ev.stopImmediatePropagation)ev.stopImmediatePropagation();return goCommunityBack();};
+        el.onclick=function(ev){ev.preventDefault();ev.stopPropagation();if(ev.stopImmediatePropagation)ev.stopImmediatePropagation();if(!isTrainer()&&window.HERO&&typeof window.HERO.heroCommunityBackToStudent==='function')return window.HERO.heroCommunityBackToStudent(ev);return goCommunityBack();};
         el.setAttribute('data-hero-stable-nav-bound','true');
       }
     });
@@ -5691,6 +5697,8 @@ function heroStableIsTrainer(){
   if(typeof originalStudent==='function'&&!originalStudent.__heroCriticalStable){
     window.HERO.student=function(){
       const r=originalStudent.apply(this,arguments);
+      if(r&&typeof r.then==='function')r.then(runStable).catch(function(){setTimeout(runStable,80);});
+      else runStable();
       setTimeout(runStable,80);
       setTimeout(runStable,300);
       return r;
@@ -5723,7 +5731,7 @@ function heroStableIsTrainer(){
   document.addEventListener('click',function(ev){
     const id=ev.target&&ev.target.id;
     if(id==='communityBackDirect'||id==='communityBackDirectLegacy'||id==='communityProtocolDirect'||id==='communityProtocolDirectLegacy'){
-      ev.preventDefault();ev.stopPropagation();if(ev.stopImmediatePropagation)ev.stopImmediatePropagation();return goCommunityBack();
+      ev.preventDefault();ev.stopPropagation();if(ev.stopImmediatePropagation)ev.stopImmediatePropagation();if(!isTrainer()&&window.HERO&&typeof window.HERO.heroCommunityBackToStudent==='function')return window.HERO.heroCommunityBackToStudent(ev);return goCommunityBack();
     }
     scheduleStable();
   },true);
@@ -5775,7 +5783,7 @@ function heroStableIsTrainer(){
   function bindCommunityNavigation(){
     ['communityBackDirect','communityBackDirectLegacy','communityProtocolDirect','communityProtocolDirectLegacy'].forEach(function(id){
       var el=document.getElementById(id); if(!el||el.__heroRC1Bound)return; el.__heroRC1Bound=true;
-      el.addEventListener('click',function(ev){ev.preventDefault();ev.stopPropagation();if(ev.stopImmediatePropagation)ev.stopImmediatePropagation();var s=safeSession();try{location.hash='';}catch(e){} if(isTrainer()&&window.HERO&&typeof window.HERO.admin==='function')return window.HERO.admin();var sid=s.alunoId||s.id||s.email||'';if(window.HERO&&typeof window.HERO.student==='function')return window.HERO.student(sid,false);if(window.HERO&&typeof window.HERO.login==='function')return window.HERO.login();},true);
+      el.addEventListener('click',function(ev){ev.preventDefault();ev.stopPropagation();if(ev.stopImmediatePropagation)ev.stopImmediatePropagation();if(!isTrainer()&&window.HERO&&typeof window.HERO.heroCommunityBackToStudent==='function')return window.HERO.heroCommunityBackToStudent(ev);var s=safeSession();try{location.hash='';}catch(e){} if(isTrainer()&&window.HERO&&typeof window.HERO.admin==='function')return window.HERO.admin();var sid=window.HERO_LAST_STUDENT_ID||s.alunoId||s.id||'';if(window.HERO&&typeof window.HERO.student==='function')return window.HERO.student(sid,false);if(window.HERO&&typeof window.HERO.login==='function')return window.HERO.login();},true);
     });
     if(!isTrainer())document.querySelectorAll('#communityCenterDirect,#communityCenterDirectLegacy,#communityChatDirect,#communityChatDirectLegacy').forEach(function(el){try{el.remove();}catch(e){}});
   }
