@@ -1,0 +1,18 @@
+/* HERO OS V5.7 AUDIT FIXES: stable UX/UI layer without changing data, routes or integrations. */
+html,body{scroll-behavior:auto!important;}
+#heroCommunityFloating,.hero-community-floating,.community-fab,.hero-community-fab,#communityFab,[data-community-fab],#heroCommunityAccessFixed,#heroCommunityAccessFinal,#heroCommunityAccessTop,#heroTrainerCommunityCTA,#heroTrainerCommunityStableCTA,#heroTrainerCommunityInlineCTA,.hero-trainer-community-inline-wrap,.hero-trainer-community-inline-note{display:none!important;opacity:0!important;visibility:hidden!important;pointer-events:none!important;position:absolute!important;left:-99999px!important;right:auto!important;bottom:auto!important;top:auto!important;width:0!important;height:0!important;min-width:0!important;min-height:0!important;margin:0!important;padding:0!important;animation:none!important;transform:none!important;}
+.student-list-card strong,.student-list-card span,.student-profile h1,.operator-card strong,.aluno-card strong{min-width:0;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;}
+.student-list-card{min-width:0;overflow:hidden;}
+.toolbar,.context-actions,.student-profile .toolbar{flex-wrap:wrap;align-items:center;}
+.btn{line-height:1.15;text-align:center;}
+.wrap,.login-shell,.panel,.hero,.workout-card,.exercise,.metric-card,.student-ex,.modal{animation:none;}
+.student-view .hero .student-profile{min-width:0;}
+.student-view .student-profile>div:last-child{min-width:0;}
+.student-ex,.workout-card,.panel{overflow-wrap:anywhere;}
+@media(max-width:760px){
+  .wrap{width:min(100% - 24px,1180px);}
+  .student-profile{grid-template-columns:1fr!important;text-align:left;}
+  .student-profile .toolbar,.toolbar,.context-actions{width:100%;}
+  .student-profile .toolbar .btn,.context-actions .btn{flex:1 1 auto;min-width:140px;}
+  .student-list-card strong,.student-list-card span,.student-profile h1{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+}
