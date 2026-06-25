@@ -1,94 +1,181 @@
-# RELATÓRIO DE REFINAMENTO PREMIUM V5.8
+# HERO OS V61 • QA final de pré-produção
 
 ## Escopo executado
-Refinamento visual completo da interface HERO, sem alteração de funcionalidades, banco de dados, integrações, autenticação, rotas ou fluxos.
 
-## Arquivos alterados
-- index.html
-- 404.html
+Auditoria e correção final sobre a versão V60, mantendo intactos:
 
-## Arquivos preservados
-- supabase-config.js
-- SQL_COMUNIDADE_HERO.sql
-- SQL_CARGAS_TREINO_HERO_CORRIGIDO.sql
-- audit.json
-- relatórios anteriores
+- funcionalidades existentes
+- banco de dados
+- autenticação
+- Supabase
+- SQLs
+- fluxos principais
+- permissões
+- estrutura de sessão/localStorage
 
-## Camada adicionada
-Foi adicionada uma camada visual isolada:
+As correções foram limitadas a estabilidade visual, referências, responsividade, elementos legados e consistência pré-produção.
 
-`<style id="hero-v58-premium-refinement">`
+## Correções aplicadas
 
-Essa camada atua apenas sobre CSS, refinando aparência, hierarquia, espaçamento, botões, cards, responsividade e percepção de produto premium.
+### 1. Botões flutuantes legados da comunidade
 
-## Correções/refinamentos visuais aplicados
+Foram neutralizadas as rotinas que ainda podiam recriar botões de comunidade no `body`.
 
-### 1. Redução da complexidade visual
-- Redução de bordas agressivas.
-- Redução de linhas e separadores visuais.
-- Cards com aparência mais leve e integrada.
-- Containers menos pesados.
-- Fundo mais limpo e proprietário.
+Correções:
 
-### 2. Cards
-- Cards administrativos, métricas, treinos, biblioteca, comunidade e painéis receberam visual unificado.
-- Sombras exageradas foram neutralizadas.
-- Bordas foram suavizadas.
-- Aparência de blocos empilhados foi reduzida.
+- `heroCommunityEnsureButton` deixou de criar novo botão flutuante.
+- `heroCommunityScheduleButton` deixou de agendar recriação visual.
+- Removida a criação do `heroCommunityFloating`.
+- Desativada a injeção do `heroCommunityCleanButton` no corpo da página.
+- Desativada a injeção do `heroTrainerCommunityTopAccess` no corpo da página.
+- A comunidade permanece acessível pelos botões oficiais dentro da navegação/telas.
 
-### 3. Espaçamento
-- Padronização de margens e paddings.
-- Mais respiro entre seções.
-- Melhor distância entre cards, grids e toolbars.
-- Layout menos apertado em desktop e mobile.
+Resultado esperado:
 
-### 4. Tipografia
-- Hierarquia visual refinada para títulos, subtítulos, textos auxiliares e métricas.
-- Redução de excesso de pesos e tamanhos concorrentes.
-- Ajuste de letter spacing, line height e equilíbrio visual.
+- nenhum botão piscando no rodapé;
+- nenhum CTA duplicado fora do layout;
+- nenhuma recriação automática causando layout shift.
 
-### 5. Cores
-- Identidade escura e azul HERO preservada.
-- Uso da cor de destaque mais controlado.
-- Menos variação cromática desnecessária.
-- Contraste baseado em composição e profundidade, não em excesso de cor.
+### 2. Camada final de QA visual
 
-### 6. Botões
-- Todos os botões foram padronizados em linguagem única.
-- Ações principais mantêm destaque.
-- Ações secundárias ficaram mais discretas.
-- Aparência genérica foi reduzida.
+Criado o arquivo:
 
-### 7. Elementos visuais
-- Glows, brilhos artificiais e sombras excessivas foram neutralizados.
-- Animações e efeitos visuais foram suavizados.
-- Microinterações foram mantidas de forma discreta.
+```text
+/styles/qa-final-v61.css
+```
 
-### 8. Consistência
-- Login, área administrativa, área da aluna, comunidade, biblioteca e modais receberam a mesma linguagem visual.
-- Componentes passaram a parecer parte do mesmo produto.
+Aplicado em `index.html` e `404.html` após o Design System V60.
 
-### 9. Responsividade
-Foram adicionados refinamentos para:
-- desktop
-- notebook
-- tablet
-- mobile
-- telas pequenas abaixo de 460px
+A camada V61 corrige:
 
-## Testes executados
+- overflow horizontal;
+- quebras em mobile;
+- botões fora da largura útil;
+- imagens e mídias estourando containers;
+- textos longos em nomes/títulos;
+- inconsistências de toolbar/context-actions;
+- animações excessivas quando o usuário prefere movimento reduzido;
+- neutralização visual de FABs/comunidade legados.
+
+### 3. Responsividade
+
+Foram adicionadas proteções para:
+
+- desktop;
+- notebook;
+- tablet;
+- mobile.
+
+Ajustes principais:
+
+- grids de comunidade/login/aluna viram uma coluna em telas menores;
+- toolbars quebram em coluna no mobile;
+- botões ocupam largura total em telas pequenas;
+- painel da IA da aluna não estoura lateralmente;
+- containers recebem proteção contra overflow horizontal.
+
+### 4. Animações e microinterações
+
+Padronizada uma transição discreta de 180ms.
+
+Foram bloqueados, na camada final, comportamentos visuais indesejados em elementos legados:
+
+- blink;
+- pulse;
+- floating CTA;
+- transformações agressivas;
+- loops desnecessários em elementos removidos.
+
+### 5. Arquitetura e referências
+
+Verificado:
+
+- `index.html` carrega todos os CSS locais necessários;
+- `404.html` carrega todos os CSS locais necessários;
+- `supabase-config.js` continua na raiz;
+- SQLs permanecem intactos;
+- pastas `/styles`, `/components` e `/pages` preservadas;
+- nenhum arquivo local referenciado está ausente.
+
+## Validações executadas
 
 ### Sintaxe JavaScript
-- index.html: scripts inline extraídos e validados com `node --check`.
-- 404.html: scripts inline extraídos e validados com `node --check`.
 
-Resultado: sem erros de sintaxe.
+Executado `node --check` sobre os scripts inline extraídos de:
 
-### Integridade estrutural
-- Nenhum arquivo SQL alterado.
-- Configuração Supabase preservada.
-- Scripts de lógica preservados.
-- Fluxos existentes preservados.
+- `index.html`
+- `404.html`
 
-## Observação técnica
-O refinamento foi aplicado como camada visual final para reduzir risco de regressão. A estrutura monolítica do projeto permanece igual por exigência do escopo.
+Resultado:
+
+```text
+index.html: sem erro de sintaxe JS
+404.html: sem erro de sintaxe JS
+```
+
+### CSS
+
+Verificado balanceamento básico de chaves dos CSS:
+
+- `legacy-core.css`
+- `premium-refinement-v58.css`
+- `global-design-system-v59.css`
+- `audit-fixes-v57.css`
+- `product-system-v60.css`
+- `qa-final-v61.css`
+
+Resultado:
+
+```text
+CSS local com chaves balanceadas
+```
+
+### Referências locais
+
+Verificado em:
+
+- `index.html`
+- `404.html`
+
+Resultado:
+
+```text
+nenhum CSS/JS local obrigatório ausente
+```
+
+### Build
+
+Este projeto é estático, sem `package.json`, Vite, Next ou pipeline de build.
+
+Portanto, a validação de build aplicável é:
+
+- carregamento estático dos arquivos;
+- sintaxe JS;
+- referências locais;
+- pacote final ZIP.
+
+Resultado:
+
+```text
+pronto para deploy estático
+```
+
+## Observações importantes
+
+A auditoria automatizada estática não substitui um teste real em navegador com Supabase conectado. Antes de publicar oficialmente, recomenda-se validar manualmente no ambiente de staging:
+
+1. login com usuário treinador;
+2. login com usuária/aluna;
+3. criação/edição de aluna;
+4. acesso à comunidade;
+5. postagem na comunidade;
+6. upload de imagem;
+7. abertura do chat HERO;
+8. navegação no mobile;
+9. console do navegador sem erros externos.
+
+## Status final
+
+A versão V61 está pronta para deploy estático em ambiente de teste/staging.
+
+Não foram alteradas regras de negócio, banco de dados, autenticação ou integrações.

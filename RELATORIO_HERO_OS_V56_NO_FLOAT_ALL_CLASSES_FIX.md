@@ -1,98 +1,45 @@
-# RELATÓRIO HERO OS V60 — DESIGN SYSTEM PROFISSIONAL E REFINAMENTO ESTRUTURAL
+# RELATÓRIO HERO OS V5.9 - DESIGN SYSTEM GLOBAL
 
 ## Escopo executado
 
-Foi criada uma camada global de Design System profissional e uma separação estrutural inicial da camada visual do HERO.
+Foi criada uma camada global e definitiva de Design System para o HERO, aplicada sobre a versão V58, sem alterar funcionalidades, banco de dados, autenticação, APIs, integrações, permissões ou fluxos.
 
-A intervenção foi limitada à experiência visual, organização de CSS e documentação de arquitetura. Não foram alterados banco de dados, autenticação, Supabase, SQLs, APIs, permissões, fluxos ou regras de negócio.
+## Alterações realizadas
 
-## O que mudou
+- Criação do bloco `hero-v59-global-design-system` em `index.html` e `404.html`.
+- Padronização global de botões em dois estilos oficiais: primário e secundário.
+- Padronização global de inputs, selects e textareas.
+- Padronização de cards em dois padrões visuais: informativo e métrica.
+- Normalização de tipografia: H1, H2, H3, texto principal, auxiliar, legenda e indicadores.
+- Criação de escala única de espaçamento com tokens globais.
+- Padronização de bordas, radius, sombras e profundidade.
+- Redução de efeitos visuais artificiais, glow, pulse, blink e sombras exageradas.
+- Padronização de modais.
+- Normalização visual de ícones existentes sem adicionar dependência externa.
+- Ajustes responsivos para desktop, notebook, tablet e mobile.
+- Proteção visual de nomes de alunas e textos longos para evitar quebra/desalinhamento.
 
-### 1. CSS deixou de estar preso ao HTML
+## Preservações garantidas
 
-Os blocos visuais antes embutidos em `index.html` e `404.html` foram extraídos para a pasta `/styles`:
+- Nenhuma tabela SQL alterada.
+- Nenhuma integração Supabase alterada.
+- Nenhuma lógica de autenticação alterada.
+- Nenhum fluxo de usuário alterado.
+- Nenhuma permissão alterada.
+- Nenhuma função de negócio removida.
 
-- `legacy-core.css`
-- `premium-refinement-v58.css`
-- `global-design-system-v59.css`
-- `audit-fixes-v57.css`
-- `product-system-v60.css`
+## Observação técnica
 
-O arquivo `product-system-v60.css` é a camada final de autoridade visual.
+As classes antigas continuam existindo porque fazem parte da estrutura e da lógica renderizada pelo app. Porém, visualmente, elas agora são governadas por uma camada única de Design System global. Isso evita regressão funcional e elimina a aparência de componentes criados em momentos diferentes.
 
-### 2. Design System global
+## Testes realizados
 
-Foram definidos tokens visuais globais para:
+- Validação estática de HTML principal preservada.
+- Extração e validação sintática dos scripts JavaScript de `index.html`.
+- Extração e validação sintática dos scripts JavaScript de `404.html`.
+- Conferência de existência do bloco global em ambos os arquivos.
+- Conferência de preservação dos arquivos SQL e configuração Supabase.
 
-- cores
-- superfícies
-- bordas
-- raios
-- espaçamento
-- sombras
-- tipografia
-- velocidade de transição
-- easing
+## Resultado
 
-### 3. Componentes oficiais
-
-A plataforma passa a utilizar uma linguagem única para:
-
-- botões primários
-- botões secundários
-- inputs
-- cards informativos
-- cards de métrica
-- modais
-- badges
-- status
-- listas
-- áreas densas
-
-### 4. Refinamento visual premium
-
-Foram reduzidos:
-
-- sombras exageradas
-- glow artificial
-- bordas redundantes
-- sensação de dashboard administrativo
-- contraste excessivo entre cards
-- animações chamativas
-- visual de template pronto
-
-A interface agora prioriza composição, espaçamento, tipografia e hierarquia.
-
-### 5. Responsividade
-
-Foram reforçados padrões para:
-
-- desktop
-- notebook
-- tablet
-- mobile
-
-Especialmente em grids, botões, painéis, listas e modais.
-
-### 6. Estrutura futura
-
-Foram criadas as pastas:
-
-- `/components`
-- `/pages`
-- `/docs`
-
-Nesta versão, elas são documentação estrutural e guia de evolução. A lógica não foi extraída para evitar regressões.
-
-## Validações
-
-- `index.html` preservado como ponto de entrada principal.
-- `404.html` preservado como fallback.
-- `supabase-config.js` não foi alterado.
-- Arquivos SQL não foram alterados.
-- Scripts internos não foram modificados.
-- A camada visual foi movida para CSS externo e conectada por `<link rel="stylesheet">`.
-
-## Observação importante
-
-Esta versão é uma refatoração visual segura. A refatoração completa de JavaScript em componentes reais deve ser feita em uma próxima etapa, com testes funcionais mais amplos, porque hoje a aplicação depende de muitas funções globais no `index.html`.
+A plataforma HERO passa a operar visualmente com uma linguagem única de produto SaaS premium, com botões, cards, inputs, modais, espaçamentos, tipografia e responsividade submetidos ao mesmo Design System global.
