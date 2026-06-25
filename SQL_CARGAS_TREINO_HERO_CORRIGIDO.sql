@@ -11,9 +11,191 @@
 
 
 
-<link rel="stylesheet" href="./styles/hero-os-interface-v68.css?v=68-modal-scroll">
+<link rel="stylesheet" href="./styles/hero-os-interface-v69.css?v=69-inline-verified">
+<style id="hero-inline-v69">
+
+/* HERO OS V69 — camada garantida, não depende de versões anteriores.
+   Escopo: interface visual nova + correção do scroll de edição da aluna. */
+html, body{
+  background:
+    radial-gradient(circle at 10% -8%, rgba(201,44,61,.20), transparent 32%),
+    radial-gradient(circle at 88% 4%, rgba(255,255,255,.08), transparent 24%),
+    linear-gradient(180deg,#050607 0%,#090b0f 45%,#050607 100%) !important;
+  color:#f6f8fb !important;
+  font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+body{margin:0!important;overflow-x:hidden!important;}
+body::before{
+  content:"" !important;
+  position:fixed !important;
+  inset:0 !important;
+  pointer-events:none !important;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.026) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255,255,255,.018) 1px, transparent 1px) !important;
+  background-size:84px 84px !important;
+  opacity:.36 !important;
+  z-index:-1 !important;
+}
+#app{min-height:100vh!important;}
+.wrap, main.wrap, .login-shell, .top{
+  width:min(1220px,calc(100vw - 48px)) !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+main.wrap,.wrap{padding-top:clamp(34px,5vw,76px)!important;padding-bottom:clamp(70px,8vw,118px)!important;}
+.top{
+  position:sticky!important;top:16px!important;z-index:80!important;
+  display:flex!important;align-items:center!important;justify-content:space-between!important;gap:18px!important;
+  margin-top:16px!important;padding:12px 16px!important;
+  border:1px solid rgba(255,255,255,.10)!important;border-radius:999px!important;
+  background:rgba(8,10,14,.74)!important;backdrop-filter:blur(22px) saturate(135%)!important;
+  box-shadow:0 22px 70px rgba(0,0,0,.34)!important;
+}
+.top>div:first-child{display:flex!important;align-items:center!important;gap:14px!important;min-width:0!important;}
+.top strong{font-size:12px!important;letter-spacing:.16em!important;text-transform:uppercase!important;color:#aeb7c5!important;white-space:nowrap!important;}
+.top nav,.toolbar{display:flex!important;align-items:center!important;gap:10px!important;flex-wrap:wrap!important;}
+.logo::before{display:none!important;}
+.logo{display:flex!important;align-items:center!important;gap:10px!important;color:#fff!important;}
+.word{font-size:28px!important;font-weight:900!important;letter-spacing:-.08em!important;color:#fff!important;}
+.logo small{font-size:10px!important;letter-spacing:.18em!important;color:#8d97a6!important;}
+.logo::after{content:"OS"!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;height:28px!important;min-width:36px!important;padding:0 10px!important;border-radius:999px!important;background:rgba(201,44,61,.14)!important;border:1px solid rgba(201,44,61,.30)!important;color:#ffd6dc!important;font-size:11px!important;font-weight:800!important;letter-spacing:.14em!important;}
+
+h1,h2,h3,h4{color:#fff!important;font-family:Inter,ui-sans-serif,system-ui,sans-serif!important;letter-spacing:-.065em!important;line-height:.92!important;text-wrap:balance!important;}
+h1{font-size:clamp(42px,6vw,92px)!important;}
+h2{font-size:clamp(30px,3.8vw,58px)!important;}
+h3{font-size:clamp(20px,2vw,32px)!important;}
+p,li,label,small,.muted,.msg{color:#aeb7c5!important;line-height:1.65!important;}
+strong,b{color:#fff!important;}
+
+.login-screen{
+  min-height:100vh!important;display:flex!important;align-items:center!important;border-radius:0!important;
+  background:
+    linear-gradient(90deg,rgba(5,6,7,.98) 0%,rgba(5,6,7,.84) 44%,rgba(5,6,7,.38) 100%),
+    url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1800&q=88') center/cover no-repeat!important;
+}
+.login-shell{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(360px,.56fr)!important;gap:clamp(24px,4vw,70px)!important;align-items:center!important;min-height:calc(100vh - 64px)!important;}
+.login-card{
+  order:2!important;max-width:460px!important;justify-self:end!important;padding:34px!important;
+  border:1px solid rgba(255,255,255,.11)!important;border-radius:34px!important;
+  background:rgba(8,10,13,.66)!important;backdrop-filter:blur(24px)!important;box-shadow:0 28px 80px rgba(0,0,0,.42)!important;
+}
+.login-card h1{font-size:clamp(40px,4.6vw,70px)!important;line-height:.86!important;max-width:10ch!important;}
+.login-visual{order:1!important;min-height:560px!important;display:flex!important;flex-direction:column!important;justify-content:flex-end!important;background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;}
+.login-visual h2{font-size:clamp(52px,7vw,104px)!important;line-height:.86!important;letter-spacing:-.085em!important;max-width:840px!important;}
+.visual-cards{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px!important;max-width:720px!important;margin-top:34px!important;}
+.visual-card{min-height:132px!important;padding:20px!important;border:1px solid rgba(255,255,255,.08)!important;border-radius:26px!important;background:rgba(255,255,255,.035)!important;}
+
+.hero,.print-head,.community-hero{
+  min-height:clamp(280px,36vw,440px)!important;padding:clamp(34px,5vw,74px)!important;border-radius:42px!important;
+  border:1px solid rgba(255,255,255,.08)!important;
+  background:linear-gradient(115deg,rgba(255,255,255,.075),rgba(255,255,255,.018) 52%,rgba(163,25,43,.16)),radial-gradient(circle at 82% 18%,rgba(211,55,73,.22),transparent 32%)!important;
+  box-shadow:0 32px 90px rgba(0,0,0,.33)!important;
+  display:flex!important;flex-direction:column!important;justify-content:flex-end!important;overflow:hidden!important;
+}
+.panel,.workout-card,.exercise,.lib,.quick-card,.metric-card,.community-post,.community-composer,.community-side-card,.student-ex,.timer-box,.finish-box,.modal-box,.hero-ai-drawer,.student-list-card,.selected-student-panel,.students-panel,.quick-prescription,.hero-workout-timer-card,.note{
+  border:1px solid rgba(255,255,255,.075)!important;
+  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.024))!important;
+  border-radius:28px!important;
+  box-shadow:none!important;
+}
+.panel,.selected-student-panel,.students-panel,.quick-prescription,.community-composer,.community-side-card{padding:24px!important;}
+
+.btn,button.btn,a.btn{
+  appearance:none!important;min-height:42px!important;padding:0 18px!important;border-radius:999px!important;
+  border:1px solid rgba(201,44,61,.28)!important;background:linear-gradient(180deg,rgba(201,44,61,.24),rgba(155,22,38,.16))!important;color:#fff!important;
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;font-weight:750!important;cursor:pointer!important;box-shadow:none!important;transition:transform .18s ease,border-color .18s ease,background .18s ease!important;
+}
+.btn:hover{transform:translateY(-1px)!important;border-color:rgba(201,44,61,.48)!important;}
+.btn.secondary,.btn.ghost{background:rgba(255,255,255,.045)!important;border-color:rgba(255,255,255,.10)!important;color:#f5f7fb!important;}
+.btn.small{min-height:37px!important;padding:0 14px!important;font-size:13px!important;}
+
+input,select,textarea,.input{
+  width:100%!important;min-height:48px!important;padding:12px 14px!important;border-radius:18px!important;
+  border:1px solid rgba(255,255,255,.09)!important;background:rgba(255,255,255,.045)!important;color:#fff!important;outline:0!important;box-shadow:none!important;
+}
+textarea{min-height:124px!important;resize:vertical!important;}
+input:focus,select:focus,textarea:focus,.input:focus{border-color:rgba(201,44,61,.42)!important;background:rgba(255,255,255,.06)!important;}
+.form{display:grid!important;gap:18px!important;}
+.grid.two{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px!important;}
+
+.control-metrics{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:0!important;border-top:1px solid rgba(255,255,255,.07)!important;border-bottom:1px solid rgba(255,255,255,.07)!important;padding:18px 0!important;}
+.metric-card{border:0!important;border-radius:0!important;background:transparent!important;padding:10px 20px!important;border-right:1px solid rgba(255,255,255,.055)!important;}
+.metric-card:last-child{border-right:0!important;}
+.metric-card strong{font-size:clamp(24px,2.5vw,40px)!important;}
+
+.admin-grid-fixed{display:grid!important;grid-template-columns:minmax(340px,380px) minmax(0,1fr)!important;gap:28px!important;align-items:start!important;}
+.students-panel{position:sticky!important;top:96px!important;border-right:1px solid rgba(255,255,255,.06)!important;border-radius:0!important;background:transparent!important;padding:8px 26px 8px 0!important;overflow:visible!important;}
+.student-list{display:grid!important;gap:12px!important;overflow:visible!important;}
+.student-list-card{width:100%!important;display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:5px!important;padding:18px!important;overflow:hidden!important;text-align:left!important;}
+.student-list-card strong,.student-list-card span,.student-list-card small{display:block!important;width:100%!important;max-width:100%!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;line-height:1.35!important;position:relative!important;z-index:1!important;}
+
+.student-profile{display:grid!important;grid-template-columns:132px minmax(0,1fr)!important;align-items:end!important;gap:22px!important;}
+.avatar-wrap,.avatar-placeholder{width:132px!important;height:132px!important;border-radius:28px!important;overflow:hidden!important;}
+.student-view .print-head h1,.student-view .hero h1,.student-profile h1{
+  white-space:nowrap!important;overflow:visible!important;text-overflow:clip!important;max-width:100%!important;
+  font-size:clamp(32px,5.1vw,78px)!important;line-height:.9!important;letter-spacing:-.075em!important;
+}
+
+.exercise-list,.quick-results,.library-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:16px!important;}
+.exercise,.quick-card,.lib,.student-ex{padding:20px!important;border-radius:26px!important;}
+.exercise:nth-child(3n+1),.lib:nth-child(4n+1){grid-column:span 2!important;}
+
+.community-shell,.community-v3-board{display:grid!important;grid-template-columns:minmax(0,1.55fr) minmax(280px,.65fr)!important;gap:24px!important;align-items:start!important;}
+.community-feed,.community-v3-feed{display:grid!important;gap:24px!important;}
+.community-post{padding:0!important;overflow:hidden!important;border-radius:34px!important;}
+.community-post-head,.community-content,.community-actions,.community-comments{padding:0 24px!important;}
+.community-post-head{padding-top:24px!important;}
+.community-content{font-size:clamp(17px,1.8vw,22px)!important;line-height:1.58!important;color:#fff!important;}
+.community-image{width:100%!important;aspect-ratio:16/9!important;object-fit:cover!important;border-radius:0!important;border-left:0!important;border-right:0!important;}
+
+.modal{
+  position:fixed!important;inset:0!important;z-index:1200!important;
+  display:grid!important;place-items:start center!important;align-items:start!important;justify-items:center!important;
+  overflow-x:hidden!important;overflow-y:auto!important;padding:clamp(12px,3vh,28px) 16px!important;
+  background:rgba(4,6,8,.76)!important;backdrop-filter:blur(12px)!important;-webkit-overflow-scrolling:touch!important;overscroll-behavior:contain!important;
+}
+.modal-box{
+  width:min(920px,100%)!important;max-width:100%!important;max-height:none!important;height:auto!important;min-height:auto!important;
+  margin:0 auto!important;overflow:visible!important;padding:28px 28px 34px!important;border-radius:34px!important;
+  background:rgba(10,12,16,.96)!important;border-color:rgba(255,255,255,.11)!important;
+}
+.modal-box .form>button:last-child,.modal-box .form>.btn:last-child{
+  position:sticky!important;bottom:12px!important;z-index:10!important;width:100%!important;margin-top:8px!important;box-shadow:0 18px 44px rgba(0,0,0,.42)!important;
+}
+.x,.hero-ai-close{position:absolute!important;top:18px!important;right:18px!important;width:40px!important;height:40px!important;border-radius:50%!important;border:1px solid rgba(255,255,255,.1)!important;background:rgba(255,255,255,.05)!important;color:#fff!important;}
+
+.hero-ai-drawer{border-radius:34px!important;background:rgba(10,12,16,.96)!important;backdrop-filter:blur(18px)!important;}
+
+@media(max-width:1100px){
+  .admin-grid-fixed{grid-template-columns:minmax(300px,340px) minmax(0,1fr)!important;}
+  .community-shell,.community-v3-board{grid-template-columns:1fr!important;}
+}
+@media(max-width:980px){
+  .login-shell,.admin-grid-fixed,.exercise-list,.quick-results,.library-grid,.control-metrics,.grid.two,.visual-cards{grid-template-columns:1fr!important;}
+  .login-card{justify-self:stretch!important;max-width:none!important;}
+  .students-panel{position:static!important;border-right:0!important;padding-right:0!important;}
+  .exercise:nth-child(3n+1),.lib:nth-child(4n+1){grid-column:auto!important;}
+}
+@media(max-width:680px){
+  .wrap,main.wrap,.login-shell,.top{width:min(100vw - 22px,100%)!important;}
+  .top{border-radius:26px!important;align-items:flex-start!important;flex-direction:column!important;}
+  .top>div:first-child{flex-direction:column!important;align-items:flex-start!important;}
+  .student-profile{grid-template-columns:96px minmax(0,1fr)!important;gap:14px!important;}
+  .avatar-wrap,.avatar-placeholder{width:96px!important;height:96px!important;border-radius:22px!important;}
+  .student-view .print-head h1,.student-view .hero h1,.student-profile h1{font-size:clamp(27px,8.2vw,42px)!important;}
+  .btn,.btn.small{width:100%!important;}
+  .modal{padding:10px!important;}
+  .modal-box{border-radius:22px!important;padding:22px!important;padding-bottom:28px!important;}
+}
+@media(max-width:430px){
+  .student-profile{grid-template-columns:1fr!important;}
+  .student-view .print-head h1,.student-view .hero h1,.student-profile h1{font-size:clamp(26px,9vw,38px)!important;}
+}
+
+</style>
 </head>
-<body data-hero-visual="interface-v68" data-hero-version="modal-scroll-fix">
+<body data-hero-visual="interface-v69" data-hero-version="inline-verified-final">
 <div id="heroSplash" class="splash-screen">
   <div class="splash-content">
     <div class="access-indicator welcome-access-indicator" aria-label="Centro de performance privado">
