@@ -1,1 +1,0 @@
--- SQL já executado anteriormente.
