@@ -5466,6 +5466,43 @@ html[data-hero-role="student"] .hero-load-box{
   .hero-guided-post-models-clean{grid-template-columns:1fr!important;}
 }
 
+
+
+
+
+/* HERO OS V5.7 SURGICAL STABILITY FIX */
+.community-fab,.hero-community-fab,#communityFab,[data-community-fab],
+#heroCommunityAccessFixed,#heroCommunityAccessFinal,#heroCommunityCleanButton,
+#heroTrainerCommunityCTA,#heroTrainerCommunityStableCTA,#heroTrainerCommunityTopAccess,
+#heroTrainerCommunityInlineCTA,.hero-trainer-community-inline-wrap,.hero-trainer-community-inline-note,
+[data-hero-floating-community="true"],[data-hero-floating-center="true"],[data-hero-floating-central="true"]{
+  display:none!important;opacity:0!important;visibility:hidden!important;pointer-events:none!important;
+  animation:none!important;transition:none!important;transform:none!important;
+  position:absolute!important;left:-99999px!important;right:auto!important;bottom:auto!important;top:auto!important;
+  width:0!important;height:0!important;min-width:0!important;min-height:0!important;margin:0!important;padding:0!important;overflow:hidden!important;
+}
+
+html{scroll-behavior:auto!important;overflow-anchor:none!important;}
+body{overflow-anchor:none!important;}
+input,textarea,select,button{scroll-margin-top:0!important;scroll-margin-bottom:0!important;}
+
+.student-name,.aluna-name,.aluna-nome,.student-full-name,.student-card-name,.student-header-name,
+[data-student-name],[data-aluna-name],.profile-name,.user-name,.nome-aluna,.nomeAluno,.nome-aluno{
+  white-space:nowrap!important;display:inline-flex!important;align-items:center!important;gap:.25em!important;
+  max-width:100%!important;overflow:hidden!important;text-overflow:ellipsis!important;line-height:1.08!important;
+  word-break:normal!important;overflow-wrap:normal!important;hyphens:none!important;
+}
+.student-name span,.aluna-name span,.aluna-nome span,.student-full-name span,.student-card-name span,.student-header-name span,
+[data-student-name] span,[data-aluna-name] span,.profile-name span,.user-name span,.nome-aluna span,.nomeAluno span,.nome-aluno span{
+  display:inline!important;white-space:nowrap!important;
+}
+@media(max-width:760px){
+  .student-name,.aluna-name,.aluna-nome,.student-full-name,.student-card-name,.student-header-name,
+  [data-student-name],[data-aluna-name],.profile-name,.user-name,.nome-aluna,.nomeAluno,.nome-aluno{
+    font-size:clamp(.82rem,3.6vw,1rem)!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -11229,6 +11266,62 @@ function heroStableIsTrainer(){
   setTimeout(runStable,700);
 
   document.documentElement.setAttribute('data-hero-os-patch','critical-stability-final-v50');
+})();
+</script>
+
+
+
+
+
+<script>
+/* HERO OS V5.7 SURGICAL STABILITY FIX */
+(function(){
+  if(window.__heroV57SurgicalApplied)return;
+  window.__heroV57SurgicalApplied=true;
+  var lastUserGesture=0;
+  function userGesture(){lastUserGesture=Date.now();}
+  ['pointerdown','mousedown','touchstart','keydown','wheel'].forEach(function(evt){document.addEventListener(evt,userGesture,true);});
+  function isRecentUserGesture(){return Date.now()-lastUserGesture<700;}
+  function norm(t){return String(t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
+  function isFloatingCommunityElement(el){
+    if(!el)return false;
+    var id=String(el.id||''), cls=norm(el.className||''), txt=norm(el.textContent||''), onclick=norm(el.getAttribute&&el.getAttribute('onclick')||''), style=norm(el.getAttribute&&el.getAttribute('style')||'');
+    var known=id==='communityFab'||id==='heroCommunityAccessFixed'||id==='heroCommunityAccessFinal'||id==='heroCommunityCleanButton'||id==='heroTrainerCommunityCTA'||id==='heroTrainerCommunityStableCTA'||id==='heroTrainerCommunityTopAccess'||id==='heroTrainerCommunityInlineCTA'||cls.includes('community-fab')||cls.includes('hero-community-fab')||(el.hasAttribute&&el.hasAttribute('data-community-fab'))||(el.hasAttribute&&el.hasAttribute('data-hero-floating-community'));
+    var textLooks=txt==='comunidade hero'||txt==='comunidade'||txt.includes('comunidade hero')||txt.includes('central');
+    var floatLooks=cls.includes('floating')||cls.includes('float')||cls.includes('fab')||style.includes('position:fixed')||style.includes('position: fixed')||style.includes('bottom')||style.includes('right');
+    return known || (textLooks && (onclick.includes('community')||onclick.includes('comunidade')||floatLooks));
+  }
+  function removeFloatingButton(){
+    var selectors='.community-fab,.hero-community-fab,#communityFab,[data-community-fab],#heroCommunityAccessFixed,#heroCommunityAccessFinal,#heroCommunityCleanButton,#heroTrainerCommunityCTA,#heroTrainerCommunityStableCTA,#heroTrainerCommunityTopAccess,#heroTrainerCommunityInlineCTA,.hero-trainer-community-inline-wrap,.hero-trainer-community-inline-note,[data-hero-floating-community="true"]';
+    document.querySelectorAll(selectors).forEach(function(el){try{el.remove();}catch(e){if(el.style){el.style.setProperty('display','none','important');el.style.setProperty('visibility','hidden','important');el.style.setProperty('opacity','0','important');}}});
+    Array.from(document.querySelectorAll('button,a,.btn')).forEach(function(el){if(isFloatingCommunityElement(el)){try{el.remove();}catch(e){}}});
+  }
+  function stabilizeStudentNames(){
+    var selectors='.student-name,.aluna-name,.aluna-nome,.student-full-name,.student-card-name,.student-header-name,[data-student-name],[data-aluna-name],.profile-name,.user-name,.nome-aluna,.nomeAluno,.nome-aluno';
+    document.querySelectorAll(selectors).forEach(function(el){
+      el.style.setProperty('white-space','nowrap','important');el.style.setProperty('display','inline-flex','important');el.style.setProperty('align-items','center','important');el.style.setProperty('max-width','100%','important');el.style.setProperty('overflow','hidden','important');el.style.setProperty('text-overflow','ellipsis','important');el.style.setProperty('word-break','normal','important');el.style.setProperty('overflow-wrap','normal','important');
+      Array.from(el.children||[]).forEach(function(child){child.style.setProperty('display','inline','important');child.style.setProperty('white-space','nowrap','important');});
+    });
+  }
+  if(!window.__heroV57ScrollGuard){
+    var nativeScrollTo=window.scrollTo, nativeScrollBy=window.scrollBy;
+    window.scrollTo=function(){if(!isRecentUserGesture())return;return nativeScrollTo.apply(window,arguments);};
+    window.scrollBy=function(){if(!isRecentUserGesture())return;return nativeScrollBy.apply(window,arguments);};
+    var nativeScrollIntoView=Element.prototype.scrollIntoView;
+    Element.prototype.scrollIntoView=function(){if(!isRecentUserGesture())return;return nativeScrollIntoView.apply(this,arguments);};
+    var nativeFocus=HTMLElement.prototype.focus;
+    HTMLElement.prototype.focus=function(){if(!isRecentUserGesture()){try{return nativeFocus.call(this,{preventScroll:true});}catch(e){return nativeFocus.apply(this,arguments);}}return nativeFocus.apply(this,arguments);};
+    window.__heroV57ScrollGuard=true;
+  }
+  function runSurgicalFix(){removeFloatingButton();stabilizeStudentNames();document.documentElement.setAttribute('data-hero-v57-surgical','fixed-floating-scroll-name');}
+  var oldAdmin=window.HERO&&window.HERO.admin;
+  if(typeof oldAdmin==='function'&&!oldAdmin.__heroV57Surgical){window.HERO.admin=function(){var r=oldAdmin.apply(this,arguments);setTimeout(runSurgicalFix,80);setTimeout(runSurgicalFix,350);return r;};window.HERO.admin.__heroV57Surgical=true;}
+  var oldStudent=window.HERO&&window.HERO.student;
+  if(typeof oldStudent==='function'&&!oldStudent.__heroV57Surgical){window.HERO.student=function(){var r=oldStudent.apply(this,arguments);setTimeout(runSurgicalFix,80);setTimeout(runSurgicalFix,350);return r;};window.HERO.student.__heroV57Surgical=true;}
+  var oldCommunity=window.HERO&&window.HERO.community;
+  if(typeof oldCommunity==='function'&&!oldCommunity.__heroV57Surgical){window.HERO.community=function(){var r=oldCommunity.apply(this,arguments);setTimeout(runSurgicalFix,80);return r;};window.HERO.community.__heroV57Surgical=true;}
+  document.addEventListener('click',function(){setTimeout(runSurgicalFix,60);},true);
+  setTimeout(runSurgicalFix,60);setTimeout(runSurgicalFix,400);setTimeout(runSurgicalFix,1000);
 })();
 </script>
 
